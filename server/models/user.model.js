@@ -1,4 +1,4 @@
-const { Schema, Model} = require('mongoose');
+const { Schema, model} = require('mongoose');
 const bcrypt = require('bcryptjs');
 const JWT = require('jsonwebtoken');
 
@@ -74,6 +74,6 @@ userSchema.methods = {
     }
 }
 
-const User = Model('user', userSchema);
+const User = model('user', userSchema);
 
 module.exports = User;

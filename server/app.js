@@ -4,12 +4,14 @@ const app = express();
 
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const morgon = require('morgan');
 
 const userRoutes = require('./routes/user.routes');
 const errMiddleware = require('./middlewares/error.middleware')
 
 
 app.use(express.json());
+app.use(morgon('dev'));
 
 app.use(cors({
     origin : [process.env.FRONTEND_URL]
