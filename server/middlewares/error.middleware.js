@@ -1,9 +1,9 @@
 const errMiddleware = (error, req, res, next) =>{
 
-    res.statuscode = req.statuscode || 400;
-    res.message = req.message || 'Something went wrong'
+    req.statuscode = req.statuscode || 500;
+    req.message = req.message || 'Something went wrong'
 
-    res.status().json({
+    res.status(req.statuscode).json({
         success : false,
         message : req.message,
         stack : error.stack

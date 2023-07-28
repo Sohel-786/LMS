@@ -58,13 +58,13 @@ const register = async (req, res, next) =>{
                 user.avatar.secure_url = result.secure_url;
 
                 // remove file from local server
-                fs.rm(`uploads/${req.file.filename}`);
+                //fs.rm(`uploads/${req.file.filename}`);
 
             }
 
         } catch (e) {
 
-            return next( new AppError (e.message || 'File not uploaded, please try again', 500))
+            return next( new AppError ('File not uploaded, please try again', 500))
         }
     }
 

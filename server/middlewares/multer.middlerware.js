@@ -1,6 +1,4 @@
 import multer from "multer";
-import multe from "multer";
-
 import path from "path";
 
 const upload = multer({
