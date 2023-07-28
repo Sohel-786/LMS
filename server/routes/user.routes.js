@@ -1,17 +1,17 @@
-const express = require('express');
-const router = express.Router();
+import express from 'express';
+const userRoutes = express.Router();
 
-const { register, login, logout, getUser} = require('../controllers/user.controllers');
+import { register, login, logout, getUser} from '../controllers/user.controllers.js';
 
-const {IsLoggedIn} = require('../middlewares/auth.middleware');
+import IsLoggedIn from '../middlewares/auth.middleware.js';
+import upload from '../middlewares/multer.middlerware.js';
 
-router.post('/register', register);
+userRoutes.post('/register', upload.single('avatar') ,register);
 
-router.post('/login', login);
+userRoutes.post('/login', login);
 
-router.get('/logout', logout);
+userRoutes.get('/logout', logout);
 
-router.get('/me', IsLoggedIn, getUser);
+userRoutes.get('/me', IsLoggedIn, getUser);
 
-
-module.exports = router;
+export default userRoutes;

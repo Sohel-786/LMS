@@ -1,6 +1,8 @@
-const User = require('../models/user.model');
+import User from '../models/user.model.js';
 
-const AppError = require('../utils/appError');
+import AppError from '../utils/appError.js';
+import cloudinary from 'cloudinary';
+import fs from 'fs';
 
 const cookieOptions = {
     secure : true,
@@ -8,7 +10,7 @@ const cookieOptions = {
     httpOnly: true
 }
 
-exports.register = async (req, res) =>{
+const register = async (req, res, next) =>{
 
     const { fullname, email, password} = req.body;
 
@@ -37,6 +39,35 @@ exports.register = async (req, res) =>{
     }
 
     // TODO : upload user picture
+
+    if(req.file){
+
+        try {
+            
+            const result  = await cloudinary.v2.uploader.upload( req.file.path, {
+                folder : 'lms',
+                width : 250,
+                height : 250,
+                gravity : 'faces',
+                crop : 'fill'
+            });
+
+            if(result) {
+
+                user.avatar.public_id = result.public_id;
+                user.avatar.secure_url = result.secure_url;
+
+                // remove file from local server
+                fs.rm(`uploads/${req.file.filename}`);
+
+            }
+
+        } catch (e) {
+
+            return next( new AppError (e.message || 'File not uploaded, please try again', 500))
+        }
+    }
+
     await user.save();
 
     // TODO : jwttoken
@@ -49,7 +80,7 @@ exports.register = async (req, res) =>{
     })
 }
 
-exports.login = async (req, res) =>{
+const login = async (req, res, next) =>{
 
     const {email , password} = req.body; 
 
@@ -75,7 +106,7 @@ exports.login = async (req, res) =>{
 
 }
 
-exports.logout = (req, res) =>{
+const logout = (req, res) =>{
     
     res.cookie('token', null, {
         secure : true, 
@@ -90,7 +121,7 @@ exports.logout = (req, res) =>{
 
 }
 
-exports.getUser = async (req, res) =>{
+const getUser = async (req, res) =>{
 
     try{
         const user = await User.findById(req.user.id);
@@ -103,4 +134,11 @@ exports.getUser = async (req, res) =>{
     }catch(err){
         return res.status(400).send(err.message);
     }
+}
+
+export {
+    register,
+    login,
+    getUser,
+    logout
 }

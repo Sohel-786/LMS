@@ -1,14 +1,15 @@
-require('dotenv').config();
-const express = require('express');
+import {config} from 'dotenv';
+config();
+import express from 'express';
+
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import morgon from 'morgan';
+
+import userRoutes from './routes/user.routes.js';
+import errMiddleware from'./middlewares/error.middleware.js';
+
 const app = express();
-
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
-const morgon = require('morgan');
-
-const userRoutes = require('./routes/user.routes');
-const errMiddleware = require('./middlewares/error.middleware')
-
 
 app.use(express.json());
 app.use(morgon('dev'));
@@ -32,4 +33,4 @@ app.all('*', (req, res) =>{
 
 app.use(errMiddleware);
 
-module.exports = app;
+export default app;

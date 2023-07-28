@@ -1,6 +1,6 @@
-const { Schema, model} = require('mongoose');
-const bcrypt = require('bcryptjs');
-const JWT = require('jsonwebtoken');
+import { Schema, model} from 'mongoose';
+import bcrypt from 'bcryptjs';
+import JWT from 'jsonwebtoken';
 
 const userSchema = new Schema({
 
@@ -34,7 +34,7 @@ const userSchema = new Schema({
         default : 'USER'
     },
 
-    avater : {
+    avatar : {
         public_id: {
             type: String
         },
@@ -76,4 +76,4 @@ userSchema.methods = {
 
 const User = model('user', userSchema);
 
-module.exports = User;
+export default User;
