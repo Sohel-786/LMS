@@ -1,6 +1,7 @@
 import { Schema, model} from 'mongoose';
 import bcrypt from 'bcryptjs';
 import JWT from 'jsonwebtoken';
+import crypto from 'crypto';
 
 const userSchema = new Schema({
 
@@ -71,6 +72,20 @@ userSchema.methods = {
                 expiresIn : process.env.JWT_EXPIRY
             }
         )
+    },
+
+    generatePasswordToken : async function() {
+        const resetToken = crypto.randomBytes(20).toString('hex');
+
+        this.forgotPasswordToken = crypto
+                                   .createHash('sha256')
+                                   .update(resetToken)
+                                   .digest('hex');
+
+        this.forgotPasswordExpiry = Date.now() + 10 * 60 * 1000; // 10min from current time;
+
+        return resetToken;
+
     }
 }
 

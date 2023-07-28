@@ -2,7 +2,7 @@ import User from '../models/user.model.js';
 
 import AppError from '../utils/appError.js';
 import cloudinary from 'cloudinary';
-import fs from 'fs';
+import fs, { appendFile } from 'fs';
 
 const cookieOptions = {
     secure : true,
@@ -136,9 +136,54 @@ const getUser = async (req, res) =>{
     }
 }
 
+const forgotPassword = async (req, res, next) =>{
+
+    const {email} = req.body;
+
+    if(!email){
+        return next( new AppError ("Email is required", 400));
+    }
+
+    const user = await User.findOne({email});
+
+    if(!user){
+        return next(new AppError ('Email is not registered', 400));
+    }
+
+    const resetToken =  await user.generatePasswordToken();
+
+    await user.save();
+
+    const resetPasswordurl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+    const subject = 'Reset Password';
+    const message = `You can reset your password by clicking <a href = ${resetPasswordurl} target = "_blank"> Reset your password  </a>\n if the above link doesn't work for some reason then copy paste this link in new tab ${resetPasswordurl}.\n If you have not requested this, kindly ignore it.`;
+
+    try {
+            await sendEmail(email, subject, message);
+
+            res.status(200).json({
+                success : true,
+                message : `Reset password mail has been sent to ${email} successfully!`
+            });
+
+    } catch (e) {
+            user.forgotPasswordExpiry = undefined;
+            user.forgotPasswordToken = undefined;
+            await user.save();
+
+            return next( new AppError (e.message, 500));
+    }
+}
+
+const resetPassword = async (req, res) =>{
+
+}
+
 export {
     register,
     login,
     getUser,
-    logout
+    logout,
+    forgotPassword,
+    resetPassword
 }
