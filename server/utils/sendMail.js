@@ -4,9 +4,12 @@ import nodemailer from "nodemailer";
 // async..await is not allowed in global scope, must use a wrapper
 const sendEmail = async function (email, subject, message) {
 
+  console.log(process.env.SMTP_USERNAME, process.env.SMTP_PASSWORD);
+
 //create reusable transporter object using the default SMTP transport
     const transporter = nodemailer.createTransport({
-      service : "gmail",
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
       auth: {
 
         user: process.env.SMTP_USERNAME,
