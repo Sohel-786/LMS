@@ -3,6 +3,7 @@ import User from '../models/user.model.js';
 import AppError from '../utils/appError.js';
 import cloudinary from 'cloudinary';
 import fs, { appendFile } from 'fs';
+import sendEmail from '../utils/sendMail.js';
 
 const cookieOptions = {
     secure : true,
