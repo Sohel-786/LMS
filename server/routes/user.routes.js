@@ -16,6 +16,6 @@ userRoutes.get('/me', IsLoggedIn, getUser);
 
 userRoutes.post('/reset', forgotPassword);
 
-userRoutes.post('/reset/:token', resetPassword);
+userRoutes.post('/reset/:resetToken', resetPassword);
 
 export default userRoutes;

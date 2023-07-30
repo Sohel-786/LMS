@@ -67,7 +67,7 @@ userSchema.methods = {
     JWTtoken: function(){
         return JWT.sign(
             { id : this._id, role : this.role, email : this.email, subscription: this.subscription},
-            proccess.env.JWT_SECRET,
+            process.env.JWT_SECRET,
             {
                 expiresIn : process.env.JWT_EXPIRY
             }
