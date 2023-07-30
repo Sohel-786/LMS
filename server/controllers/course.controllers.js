@@ -118,5 +118,18 @@ export const updateCourse = async (req , res, next) =>{
 }
 
 export const deleteCourse = async (req , res, next) =>{
+    try {
 
+        const { courseId } = req.params;
+
+        await Course.findByIdAndDelete(courseId);
+
+        return res.status(200).json({
+            success : true,
+            message : 'Course Deleted Successfully'
+        })
+
+    } catch (e) {
+        return next( new AppError(e.message, 500))        
+    }
 }

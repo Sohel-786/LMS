@@ -20,4 +20,12 @@ const IsLoggedIn = (req, res, next) =>{
     next();
 }
 
-export default IsLoggedIn;
+const authorizedRoles = (...roles) => (req, res, next) => {
+
+    next();
+}
+
+export {
+    IsLoggedIn,
+    authorizedRoles
+} 

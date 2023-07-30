@@ -9,6 +9,8 @@ router
     .route('/')
     .get(getAllCourses)
     .post( 
+           IsLoggedIn,
+           authorizedRoles('ADMIN'),
            upload.single('thumbnail')
            ,createCourse
            );
@@ -16,8 +18,14 @@ router
 router
     .route('/:courseId')
     .get( IsLoggedIn ,getLecturesByCourseId)
-    .put(updateCourse)
-    .delete(deleteCourse);
+    .put(
+        IsLoggedIn,
+        authorizedRoles('ADMIN'),
+        updateCourse)
+    .delete(
+        IsLoggedIn,
+        authorizedRoles('ADMIN'),
+        deleteCourse);
 
 
 export default router;
