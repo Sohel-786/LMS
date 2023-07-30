@@ -8,6 +8,7 @@ import morgon from 'morgan';
 
 import userRoutes from './routes/user.routes.js';
 import errMiddleware from'./middlewares/error.middleware.js';
+import courseRoutes from './routes/course.routes.js';
 
 const app = express();
 
@@ -15,7 +16,8 @@ app.use(express.json());
 app.use(morgon('dev'));
 
 app.use(cors({
-    origin : [process.env.FRONTEND_URL]
+    origin : [process.env.FRONTEND_URL],
+    credentials : true
 }));
 
 app.use(cookieParser());
@@ -26,6 +28,7 @@ app.use('/ping', (req, res) =>{
 
 
 app.use('/api/v1/user', userRoutes);
+app.use('/api/v1/course', courseRoutes);
 
 app.all('*', (req, res) =>{
     res.status(404).send('<h1 style=" width:100%; text-align:center;">OOPS!! 404 page not found</h1>');
