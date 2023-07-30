@@ -2,7 +2,7 @@ import User from '../models/user.model.js';
 
 import AppError from '../utils/appError.js';
 import cloudinary from 'cloudinary';
-import fs, { appendFile } from 'fs';
+import fs from 'fs';
 import sendEmail from '../utils/sendMail.js';
 import crypto from 'crypto';
 
@@ -60,7 +60,7 @@ const register = async (req, res, next) =>{
                 user.avatar.secure_url = result.secure_url;
 
                 // remove file from local server
-                //fs.rm(`uploads/${req.file.filename}`);
+                fs.rm(`uploads/${req.file.filename}`);
 
             }
 
@@ -245,6 +245,53 @@ const changePassword = async function(req, res, next){
     })
 }   
 
+const updateProfile = async (req, res, next) => {
+    const { fullname } = req.body;
+    const { id } = req.user;
+
+    const user = await User.findById(id);
+
+    if(!user) {
+        return next(new AppError('User does not exist', 400));
+    }
+
+    if(fullname){
+        user.fullname = fullname;
+    }
+
+    if(req.file) {
+            await cloudinary.v2.uploader.destroy(user.avatar.public_id);
+
+            
+            
+                const result  = await cloudinary.v2.uploader.upload( req.file.path, {
+                    folder : 'lms',
+                    width : 250,
+                    height : 250,
+                    gravity : 'faces',
+                    crop : 'fill'
+                });
+    
+                if(result) {
+    
+                    user.avatar.public_id = result.public_id;
+                    user.avatar.secure_url = result.secure_url;
+    
+                    // remove file from local server
+                    fs.rm(`uploads/${req.file.filename}`);
+    
+                }
+    
+             }
+        
+        await user.save();
+
+        res.status(200).json({
+            success : true,
+            message : "User details updated successfully"
+        })
+}
+
 export {
     register,
     login,
@@ -252,5 +299,6 @@ export {
     logout,
     forgotPassword,
     resetPassword,
-    changePassword
+    changePassword,
+    updateProfile
 }

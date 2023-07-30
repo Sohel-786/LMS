@@ -1,7 +1,7 @@
 import express from 'express';
 const userRoutes = express.Router();
 
-import { register, login, logout, getUser, resetPassword, forgotPassword, changePassword} from '../controllers/user.controllers.js';
+import { register, login, logout, getUser, resetPassword, forgotPassword, changePassword, updateProfile} from '../controllers/user.controllers.js';
 
 import IsLoggedIn from '../middlewares/auth.middleware.js';
 import upload from '../middlewares/multer.middlerware.js';
@@ -19,6 +19,8 @@ userRoutes.post('/reset', forgotPassword);
 userRoutes.post('/reset/:resetToken', resetPassword);
 
 userRoutes.post('/changepassword',IsLoggedIn, changePassword);
+
+userRoutes.post('/update', IsLoggedIn, upload.single('avatar'), updateProfile);
 
 
 
