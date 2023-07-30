@@ -28,7 +28,7 @@ app.use('/ping', (req, res) =>{
 
 
 app.use('/api/v1/user', userRoutes);
-app.use('/api/v1/course', courseRoutes);
+app.use('/api/v1/courses', courseRoutes);
 
 app.all('*', (req, res) =>{
     res.status(404).send('<h1 style=" width:100%; text-align:center;">OOPS!! 404 page not found</h1>');

@@ -24,6 +24,11 @@ const courseSchema = new  Schema({
 
     },
 
+    createdBy : {
+        type : String,
+        required : [true, 'CreatedBy Name is Required']
+    },
+
     thumbnail : {
         public_id : {
             type : String,
