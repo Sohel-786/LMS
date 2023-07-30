@@ -3,7 +3,7 @@ const userRoutes = express.Router();
 
 import { register, login, logout, getUser, resetPassword, forgotPassword, changePassword, updateProfile} from '../controllers/user.controllers.js';
 
-import IsLoggedIn from '../middlewares/auth.middleware.js';
+import {IsLoggedIn} from '../middlewares/auth.middleware.js';
 import upload from '../middlewares/multer.middlerware.js';
 
 userRoutes.post('/register', upload.single('avatar') ,register);

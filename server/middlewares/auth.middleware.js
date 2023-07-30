@@ -1,7 +1,7 @@
 import JWT from 'jsonwebtoken';
 import AppError from '../utils/appError.js';
 
-const IsLoggedIn = (req, res, next) =>{
+export const IsLoggedIn = (req, res, next) =>{
     const token  = (req.cookies && req.cookies.token) || null;
     if(!token){
 
@@ -20,12 +20,13 @@ const IsLoggedIn = (req, res, next) =>{
     next();
 }
 
-const authorizedRoles = (...roles) => (req, res, next) => {
+export const authorizedRoles = (...roles) => (req, res, next) => {
 
+    const currentRole = req.user.role;
+
+    if(!roles.includes(currentRole)){
+        return next(new AppError('You do not have permission to access this route',400));
+    }
+    
     next();
 }
-
-export {
-    IsLoggedIn,
-    authorizedRoles
-} 
