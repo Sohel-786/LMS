@@ -212,11 +212,45 @@ const resetPassword = async (req, res, next) =>{
     })
 }
 
+const changePassword = async function(req, res, next){
+    const { oldPassword, newPassword } = req.body;
+    const { id } = req.user;
+
+    if ( !oldPassword || !newPassword) { 
+        return next(new AppError ('All fields are required', 400));
+    }
+
+    const user = await User.findById(id).select('+password');
+
+    if(!user){
+        return next(new AppError('User does not exist', 400));
+    }
+
+    const isPasswordvalid = await user.comparePassword(oldPassword);
+
+    if(!isPasswordvalid){
+        return next(new AppError('Invalid Old Password', 400));
+    }
+
+    user.password = newPassword;
+
+    await user.save();
+
+    user.password = undefined;
+
+    res.status(200).json({
+        success : true,
+        message : 'Your Password is changed',
+        user
+    })
+}   
+
 export {
     register,
     login,
     getUser,
     logout,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    changePassword
 }
