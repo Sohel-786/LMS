@@ -2,7 +2,7 @@ import User from '../models/user.model.js';
 
 import AppError from '../utils/appError.js';
 import cloudinary from 'cloudinary';
-import fs from 'fs';
+import fs from 'fs/promises';
 import sendEmail from '../utils/sendMail.js';
 import crypto from 'crypto';
 
