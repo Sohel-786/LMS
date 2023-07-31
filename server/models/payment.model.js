@@ -1,15 +1,15 @@
 import { model , Schema } from 'mongoose';
 
 const paymentSchema = new Schema({
-        payment_id : {
+    razorpay_payment_id : {
             type : String,
             required : true
         },
-        subscription_id : {
+    razorpay_signature : {
             type : String,
             required : true
         },
-        signature: {
+    razorpay_subscription_id: {
             type : String,
             required : true
         }
