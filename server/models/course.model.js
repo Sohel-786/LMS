@@ -1,77 +1,77 @@
-import { model, Schema}  from 'mongoose';
+import { model, Schema } from "mongoose";
 
-const courseSchema = new  Schema({
-
-    title : {
-        type : String,
-        required : [true, 'Title is required'],
-        minLength : [8, 'Title must be at least 8 characters'],
-        maxLength : [59, 'Title Should be less than 60 characters'],
-        trim : true
-    }, 
-
-    description : {
-        type : String,
-        required : [true, 'Description is required'],
-        minLength : [8, 'Title must be at least 8 characters'],
-        maxLength : [200, 'Title Should be less than 200 characters'],
-        trim : true
+const courseSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: [true, "Title is required"],
+      minLength: [8, "Title must be at least 8 characters"],
+      maxLength: [59, "Title Should be less than 60 characters"],
+      trim: true,
     },
 
-    category : {
-        type : String,
-        required : [true, 'Category is required'],
-
+    description: {
+      type: String,
+      required: [true, "Description is required"],
+      minLength: [8, "Title must be at least 8 characters"],
+      maxLength: [200, "Title Should be less than 200 characters"],
+      trim: true,
     },
 
-    createdBy : {
-        type : String,
-        required : [true, 'CreatedBy Name is Required']
+    category: {
+      type: String,
+      required: [true, "Category is required"],
     },
 
-    thumbnail : {
-        public_id : {
-            type : String,
-            required : true
+    createdBy: {
+      type: String,
+      required: [true, "CreatedBy Name is Required"],
+    },
+
+    thumbnail: {
+      public_id: {
+        type: String,
+        required: true,
+      },
+      secure_url: {
+        type: String,
+        required: true,
+      },
+    },
+
+    lectures: [
+      {
+        title: {
+          type: String,
+          required: true,
         },
-        secure_url : {
+        description: {
+          type: String,
+          required: true,
+        },
+        lecture: {
+          public_id: {
             type: String,
-            required : true
-        }
-    },
-
-    lectures : [{
-        title : {
-            type : String,
-            required : true
+            required: true,
+          },
+          secure_url: {
+            type: String,
+            required: true,
+          },
         },
-        description : {
-            type : String,
-            required : true
-        },
-        lecture : {
-            public_id : {
-                type : String,
-                required : true
+      },
+    ],
 
-            },
-            secure_url : {
-                type : String,
-                required : true
-
-            }
-        }
-    }],
-
-    numberofLectures : {
-        type : String,
-        default : 0
+    numberofLectures: {
+      type: String,
+      default: 0,
     },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-},{
-    timestamps : true
-});
-
-const Course = model('course', courseSchema);
+const Course = model("course", courseSchema);
 
 export default Course;
