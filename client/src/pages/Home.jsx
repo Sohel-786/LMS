@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import HomeLayout from "../layouts/HomeLayout";
+import homepageImage from '../../public/assets/homepage.png'
 
 function Home() {
   return (
@@ -9,7 +10,7 @@ function Home() {
 
           <h1 className="text-5xl font-semibold">
             Find Out Best{" "}
-            <span className="text-yellow-500 font-bold">Online Courses</span>
+            <span className="text-yellow-500 font-extrabold">Online Courses</span>
           </h1>
 
           <p className="text-xl">
@@ -24,11 +25,15 @@ function Home() {
             </Link>
 
             <Link>
-            <button className="bg-transparent px-5 py-3 border-2 border-yellow-600 rounded-md font-semibold text-lg cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
+            <button className="bg-transparent px-5 py-3 border-2 border-white rounded-md font-semibold text-lg cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
                 Contact Us
               </button>
             </Link>
           </div>
+        </div>
+
+        <div className="w-1/2 flex items-center justify-center">
+            <img src={homepageImage} alt="homepage" />
         </div>
       </div>
     </HomeLayout>
