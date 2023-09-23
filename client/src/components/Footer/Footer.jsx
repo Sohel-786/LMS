@@ -7,7 +7,7 @@ function Footer(){
     const year = newDate.getFullYear();
 
     return(
-        <footer className="flex w-full bg-gray-800 absolute bottom-0 flex-col sm:flex-row items-center h-[10vh] justify-between py-4 px-4 sm:px-12">
+        <footer className="flex w-full bg-gray-800 flex-col sm:flex-row items-center h-[10vh] justify-between py-4 px-4 sm:px-12">
             <section>
                 <h1 className='text-base font-sans'>CopyRight {year} | All rights reserved</h1>
             </section>
