@@ -4,7 +4,7 @@ import HomeLayout from "../layouts/HomeLayout";
 import { FaUserCircle } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 import { isEmail, isValidPassword } from "../helpers/RegexMatcher";
 
 function SignUp() {
@@ -12,7 +12,6 @@ function SignUp() {
 
   const [previewImage, setPreviewImage] = useState();
   const [viewPassword, setViewpassword] = useState(false);
-
   const [signupDetails, setSignupDetails] = useState({
     email: "",
     fullname: "",
@@ -25,48 +24,55 @@ function SignUp() {
   }
 
   function handleChange(e) {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setSignupDetails({ ...signupDetails, [name]: value });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    if(!signupDetails.email || !signupDetails.password || !signupDetails.avatar || !signupDetails.fullname){
-      toast.error('Please Fill all the field');
-      return ;
-    }
-
-    if(signupDetails.fullname.length < 5){
-      toast.error('Name Should at least 5 characters long');
+    if (
+      !signupDetails.email ||
+      !signupDetails.password ||
+      !signupDetails.avatar ||
+      !signupDetails.fullname
+    ) {
+      toast.error("Please Fill all the field");
       return;
     }
 
-    if(!isEmail(signupDetails.email)){
+    if (signupDetails.fullname.length < 5) {
+      toast.error("Name Should at least 5 characters long");
+      return;
+    }
+
+    if (!isEmail(signupDetails.email)) {
       toast.error("Invalid Email, Please Enter Valid Email");
       return;
     }
 
-    if(!isValidPassword(signupDetails.password)){
-      toast.error('Password Must be 6 to 16 character long with atleast a number and symbol');
+    if (!isValidPassword(signupDetails.password)) {
+      toast.error(
+        "Password Must be 6 to 16 character long with atleast a number and symbol"
+      );
       return;
     }
   }
 
-  function handleImage(e){
+  function handleImage(e) {
     e.preventDefault();
-    
+
     const uploadedImage = e.target.files[0];
-    if(!uploadedImage) return;
+    if (!uploadedImage) return;
     setSignupDetails({
       ...signupDetails,
-      avatar : uploadedImage
+      avatar: uploadedImage,
     });
     const fileReader = new FileReader();
     fileReader.readAsDataURL(uploadedImage);
-    fileReader.addEventListener('load', function (){
+    fileReader.addEventListener("load", function () {
       setPreviewImage(this.result);
-    })
+    });
   }
 
   return (
@@ -81,23 +87,32 @@ function SignUp() {
             Registration
           </h1>
 
-          {
-                previewImage ? (
-                  <div className="flex flex-col">
-                    <img className="max-w-28 max-h-28 rounded-full m-auto " src={previewImage} alt="userImage" />
-                    <label htmlFor="avatar"><FaEdit className="relative text-4xl -right-20 -top-8 text-red-300 cursor-pointer hover:text-red-400" /></label>
-                  </div>
-                ) : (
-                    <label htmlFor="avatar">
-                    <FaUserCircle
-                        className="w-28 h-28 cursor-pointer rounded-full border-[1px] border-red-300 hover:border-red-400 text-gray-400 hover:text-gray-600"
-                    />
-                    <FaEdit className="relative text-4xl -right-20 -top-8 text-red-300 cursor-pointer hover:text-red-400" />
-                    </label>
-                )
-          }
+          {previewImage ? (
+            <div className="flex flex-col">
+              <img
+                className="max-w-28 max-h-28 rounded-full m-auto "
+                src={previewImage}
+                alt="userImage"
+              />
+              <label htmlFor="avatar">
+                <FaEdit className="relative text-4xl -right-20 -top-8 text-red-300 cursor-pointer hover:text-red-400" />
+              </label>
+            </div>
+          ) : (
+            <label htmlFor="avatar">
+              <FaUserCircle className="w-28 h-28 cursor-pointer rounded-full border-[1px] border-red-300 hover:border-red-400 text-gray-400 hover:text-gray-600" />
+              <FaEdit className="relative text-4xl -right-20 -top-8 text-red-300 cursor-pointer hover:text-red-400" />
+            </label>
+          )}
 
-          <input onChange={handleImage} name="avatar" type="file" id="avatar" hidden accept=".jpg , .jpeg, .webp, .png, .svg" />
+          <input
+            onChange={handleImage}
+            name="avatar"
+            type="file"
+            id="avatar"
+            hidden
+            accept=".jpg , .jpeg, .webp, .png, .svg"
+          />
 
           <input
             onChange={handleChange}
