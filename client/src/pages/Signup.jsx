@@ -32,42 +32,51 @@ function SignUp() {
   }
 
   async function handleSubmit(e) {
-        e.preventDefault();
+    e.preventDefault();
 
-        if (
-          !signupDetails.email ||
-          !signupDetails.password ||
-          !signupDetails.avatar ||
-          !signupDetails.fullname
-        ) {
-          toast.error("Please Fill all the field");
-          return;
-        }
+    if (
+      !signupDetails.email ||
+      !signupDetails.password ||
+      !signupDetails.avatar ||
+      !signupDetails.fullname
+    ) {
+      toast.error("Please Fill all the field");
+      return;
+    }
 
-        if (signupDetails.fullname.length < 5) {
-          toast.error("Name Should at least 5 characters long");
-          return;
-        }
+    if (signupDetails.fullname.length < 5) {
+      toast.error("Name Should at least 5 characters long");
+      return;
+    }
 
-        if (!isEmail(signupDetails.email)) {
-          toast.error("Invalid Email, Please Enter Valid Email");
-          return;
-        }
+    if (!isEmail(signupDetails.email)) {
+      toast.error("Invalid Email, Please Enter Valid Email");
+      return;
+    }
 
-        if (!isValidPassword(signupDetails.password)) {
-          toast.error(
-            "Password Must be 6 to 16 character long with atleast a number and symbol"
-          );
-          return;
-        }
+    if (!isValidPassword(signupDetails.password)) {
+      toast.error(
+        "Password Must be 6 to 16 character long with atleast a number and symbol"
+      );
+      return;
+    }
 
+    const formData = new FormData();
 
-        const res = await dispatch(createUser(signupDetails));
+    formData.append('fullname', signupDetails.fullname)
+    formData.append('email', signupDetails.email)
+    formData.append('password', signupDetails.password)
+    formData.append('avatar', signupDetails.avatar)
+
+    const res = await dispatch(createUser(formData));
+
+    if (res?.payload?.data?.success) {
+      navigate("/");
+    }
+    
   }
 
   function handleImage(e) {
-    e.preventDefault();
-
     const uploadedImage = e.target.files[0];
     if (!uploadedImage) return;
     setSignupDetails({

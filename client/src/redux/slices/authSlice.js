@@ -8,14 +8,16 @@ const initialState = {
     data : localStorage.getItem('data') || {}   
 }
 
-export const createUser = createAsyncThunk('auth/register', async (data) => {
+export const createUser = createAsyncThunk('auth/signup', async (data) => {
     try {
-        const res = await axiosInstance.post('/user/register', data);
-        console.log(res);
-        if(res?.data?.success){
-            toast.success('Congratulation, Your Account Got created Successfully');
-        }
-       
+        const res = axiosInstance.post('/user/register', data);
+        toast.promise(res, {
+            loading : 'Wait! Creating your account',
+            success : 'Congratulations, Your Account Got Created',
+            error : 'Failed to create your account'
+        })
+        
+        return await res;
     } catch (err) {
         toast.error(err?.response?.data?.message);
     }
