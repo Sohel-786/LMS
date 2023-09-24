@@ -90,7 +90,9 @@ function HomeLayout({ children }) {
                   </button>
                 </Link>
                 <Link to={"/signup"}>
-                  <button className="btn border-[2px] border-white bg-sky-500 rounded-md hover:bg-sky-700">Sign Up</button>
+                  <button className="btn border-[2px] border-white bg-sky-500 rounded-md hover:bg-sky-700">
+                    Sign Up
+                  </button>
                 </Link>
               </div>
             )}
