@@ -12,6 +12,8 @@ const cookieOptions = {
   httpOnly: true,
 };
 
+//Todo : Wrap It all in Try Catch
+
 const register = async (req, res, next) => {
   const { fullname, email, password } = req.body;
 
