@@ -12,8 +12,12 @@ export const createUser = createAsyncThunk('auth/register', async (data) => {
     try {
         const res = await axiosInstance.post('/user/register', data);
         console.log(res);
+        if(res?.data?.success){
+            toast.success('Congratulation, Your Account Got created Successfully');
+        }
+       
     } catch (err) {
-        toast.error('Something Went Wrong')
+        toast.error(err?.response?.data?.message);
     }
 })
 
