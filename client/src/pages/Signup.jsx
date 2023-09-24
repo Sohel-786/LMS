@@ -6,9 +6,12 @@ import { FaEdit } from "react-icons/fa";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 import { isEmail, isValidPassword } from "../helpers/RegexMatcher";
+import { useDispatch } from "react-redux";
+import { createUser } from "../redux/slices/authSlice";
 
 function SignUp() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [previewImage, setPreviewImage] = useState();
   const [viewPassword, setViewpassword] = useState(false);
@@ -28,35 +31,38 @@ function SignUp() {
     setSignupDetails({ ...signupDetails, [name]: value });
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSubmit(e) {
+        e.preventDefault();
 
-    if (
-      !signupDetails.email ||
-      !signupDetails.password ||
-      !signupDetails.avatar ||
-      !signupDetails.fullname
-    ) {
-      toast.error("Please Fill all the field");
-      return;
-    }
+        if (
+          !signupDetails.email ||
+          !signupDetails.password ||
+          !signupDetails.avatar ||
+          !signupDetails.fullname
+        ) {
+          toast.error("Please Fill all the field");
+          return;
+        }
 
-    if (signupDetails.fullname.length < 5) {
-      toast.error("Name Should at least 5 characters long");
-      return;
-    }
+        if (signupDetails.fullname.length < 5) {
+          toast.error("Name Should at least 5 characters long");
+          return;
+        }
 
-    if (!isEmail(signupDetails.email)) {
-      toast.error("Invalid Email, Please Enter Valid Email");
-      return;
-    }
+        if (!isEmail(signupDetails.email)) {
+          toast.error("Invalid Email, Please Enter Valid Email");
+          return;
+        }
 
-    if (!isValidPassword(signupDetails.password)) {
-      toast.error(
-        "Password Must be 6 to 16 character long with atleast a number and symbol"
-      );
-      return;
-    }
+        if (!isValidPassword(signupDetails.password)) {
+          toast.error(
+            "Password Must be 6 to 16 character long with atleast a number and symbol"
+          );
+          return;
+        }
+
+
+        const res = await dispatch(createUser(signupDetails));
   }
 
   function handleImage(e) {
