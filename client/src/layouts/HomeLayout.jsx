@@ -84,7 +84,7 @@ function HomeLayout({ children }) {
               </div>
             ) : (
               <div className="flex justify-center items-center gap-4 w-[90%] absolute bottom-4">
-                <Link to={"/login"}>
+                <Link to={"/signin"}>
                   <button className="btn text-white border-[2px] border-white bg-green-500 rounded-md hover:bg-green-700">
                     Sign In
                   </button>

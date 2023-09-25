@@ -7,7 +7,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 import { isEmail, isValidPassword } from "../helpers/RegexMatcher";
 import { useDispatch } from "react-redux";
-import { createUser } from "../redux/slices/authSlice";
+import { login } from "../redux/slices/authSlice";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -44,12 +44,7 @@ function SignIn() {
       return;
     }
 
-    const formData = new FormData();
-
-    formData.append('email', signinDetails.email)
-    formData.append('password', signinDetails.password)
-
-    const res = await dispatch(createUser(formData));
+    const res = await dispatch(login(signinDetails));
 
     if (res?.payload?.data?.success) {
       navigate("/");
@@ -95,7 +90,7 @@ function SignIn() {
           <button className="btn bg-blue-500 text-white font-bold border-4 border-transparent hover:bg-blue-700 hover:border-green-700 focus:scale-110 hover:scale-110 mt-5">
             Login
           </button>
-          <p className="text-gray-500 font-bold text-[15px] tracking-wide my-3">Create new account ? <span type='button' className="text-sky-500 underline cursor-pointer text-[16px] hover:text-sky-600 hover:scale-110"><Link to={'/signup'}>SingUp</Link></span></p>
+          <p className="text-gray-500 font-bold text-[15px] tracking-wide my-3">Create new account. <span type='button' className="text-sky-500 underline cursor-pointer text-[16px] hover:text-sky-600 hover:scale-110 ml-1"><Link to={'/signup'}>SingUp</Link></span></p>
         </form>
       </div>
     </HomeLayout>
