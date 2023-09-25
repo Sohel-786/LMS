@@ -21,13 +21,13 @@ function Home() {
 
           <div className="flex gap-7">
             <Link to="/courses">
-              <button className="bg-yellow-500 text-white px-5 py-3 rounded-md font-semibold text-lg cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
+              <button className="bg-yellow-500 hover:text-white border-[2px] border-transparent hover:border-white font-bold px-5 py-3 rounded-md text-lg hover:scale-105 cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
                 Expolore Courses
               </button>
             </Link>
 
             <Link to="/contact">
-              <button className="bg-transparent text-white px-5 py-3 border-2 border-white rounded-md font-semibold text-lg cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
+              <button className="bg-transparent hover:scale-110 text-white px-5 py-3 border-2 border-white rounded-md font-semibold text-lg cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
                 Contact Us
               </button>
             </Link>
