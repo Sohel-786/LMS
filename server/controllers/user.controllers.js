@@ -81,6 +81,7 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   const { email, password } = req.body;
+  console.log(req.body);
 
   if ((!email, !password)) {
     return next(new AppError("All input fields are required", 400));
@@ -88,7 +89,7 @@ const login = async (req, res, next) => {
 
   const user = await User.findOne({ email }).select("+password");
 
-  if (!user || !user.comparePassword(password)) {
+  if (!user || user.comparePassword(password)) {
     return next(new AppError("Email or Password do not match", 400));
   }
 
