@@ -16,8 +16,8 @@ function HomeLayout({ children }) {
     const res = await dispatch(logout());
 
     console.log(res);
-    if(res?.payload?.data){
-      navigate('/');
+    if (res?.payload?.data) {
+      navigate("/");
     }
   }
 
