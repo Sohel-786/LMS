@@ -31,10 +31,7 @@ function SignIn() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (
-      !signinDetails.email ||
-      !signinDetails.password
-    ) {
+    if (!signinDetails.email || !signinDetails.password) {
       toast.error("Please Fill all the field");
       return;
     }
@@ -49,7 +46,6 @@ function SignIn() {
     if (res?.payload?.data?.success) {
       navigate("/");
     }
-    
   }
 
   return (
@@ -60,9 +56,7 @@ function SignIn() {
           noValidate
           className="flex flex-col items-center w-[38%] p-5 shadow-formshadow bg-white rounded-xl"
         >
-          <h1 className="text-4xl font-bold mb-8 text-blue-500">
-            Sign In
-          </h1>
+          <h1 className="text-4xl font-bold mb-8 text-blue-500">Sign In</h1>
 
           <input
             onChange={handleChange}
@@ -90,7 +84,15 @@ function SignIn() {
           <button className="btn bg-blue-500 text-white font-bold border-4 border-transparent hover:bg-blue-700 hover:border-green-700 focus:scale-110 hover:scale-110 mt-5">
             Login
           </button>
-          <p className="text-gray-500 font-bold text-[15px] tracking-wide my-3">Create new account. <span type='button' className="text-sky-500 underline cursor-pointer text-[16px] hover:text-sky-600 hover:scale-110 ml-1"><Link to={'/signup'}>SingUp</Link></span></p>
+          <p className="text-gray-500 font-bold text-[15px] tracking-wide my-3">
+            Create new account.{" "}
+            <span
+              type="button"
+              className="text-sky-500 underline cursor-pointer text-[16px] hover:text-sky-600 hover:scale-110 ml-1"
+            >
+              <Link to={"/signup"}>SingUp</Link>
+            </span>
+          </p>
         </form>
       </div>
     </HomeLayout>
