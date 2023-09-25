@@ -89,7 +89,7 @@ const login = async (req, res, next) => {
 
   const user = await User.findOne({ email }).select("+password");
 
-  if (!user || user.comparePassword(password)) {
+  if (!user || !(await user.comparePassword(password))) {
     return next(new AppError("Email or Password do not match", 400));
   }
 

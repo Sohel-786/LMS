@@ -3,6 +3,7 @@ import Footer from "../components/Footer/Footer";
 import { TfiMenu } from "react-icons/tfi";
 import { IoMdClose } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/slices/authSlice";
 
 function HomeLayout({ children }) {
   const dispatch = useDispatch();
@@ -11,7 +12,14 @@ function HomeLayout({ children }) {
   const isLoggedIn = useSelector((s) => s?.auth?.isLoggedIn);
   const role = useSelector((s) => s?.auth?.role);
 
-  function handleLogout() {}
+  async function handleLogout() {
+    const res = await dispatch(logout());
+
+    console.log(res);
+    if(res?.payload?.data){
+      navigate('/');
+    }
+  }
 
   function changeWidth() {
     const drawerSide = document.getElementsByClassName("drawer-side");
