@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HomeLayout from "../layouts/HomeLayout";
 import { FaUserCircle } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
@@ -163,6 +163,7 @@ function SignUp() {
           <button className="btn bg-blue-500 text-white font-bold border-4 border-transparent hover:bg-blue-700 hover:border-green-700 focus:scale-110 hover:scale-110 mt-5">
             Create Account
           </button>
+          <p className="text-gray-500 font-bold text-[15px] tracking-wide my-3">Already have an account ? <span type='button' className="text-sky-500 underline cursor-pointer text-[16px] hover:text-sky-600 hover:scale-110"><Link to={'/signin'}>Login</Link></span></p>
         </form>
       </div>
     </HomeLayout>

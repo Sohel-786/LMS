@@ -77,7 +77,7 @@ function HomeLayout({ children }) {
               <div className="flex items-center gap-4 w-[90%] absolute bottom-4">
                 <button
                   onClick={handleLogout}
-                  className="btn bg-red-600 rounded-md border-[2px] border-white hover:bg-red-800"
+                  className="btn text-white bg-red-600 rounded-md border-[2px] border-white hover:bg-red-800"
                 >
                   LogOut
                 </button>
@@ -85,12 +85,12 @@ function HomeLayout({ children }) {
             ) : (
               <div className="flex justify-center items-center gap-4 w-[90%] absolute bottom-4">
                 <Link to={"/login"}>
-                  <button className="btn border-[2px] border-white bg-green-500 rounded-md hover:bg-green-700">
+                  <button className="btn text-white border-[2px] border-white bg-green-500 rounded-md hover:bg-green-700">
                     Sign In
                   </button>
                 </Link>
                 <Link to={"/signup"}>
-                  <button className="btn border-[2px] border-white bg-sky-500 rounded-md hover:bg-sky-700">
+                  <button className="btn text-white border-[2px] border-white bg-sky-500 rounded-md hover:bg-sky-700">
                     Sign Up
                   </button>
                 </Link>
