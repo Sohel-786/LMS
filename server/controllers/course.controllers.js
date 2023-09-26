@@ -8,7 +8,7 @@ export const getAllCourses = async (req, res, next) => {
     const courses = await Course.find({}).select("-lectures").lean().exec();
     res.status(200).json({
       success: true,
-      message: "All Courses",
+      message: "Fetched all courses successfully",
       courses,
     });
   } catch (e) {
