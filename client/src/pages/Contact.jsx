@@ -3,7 +3,7 @@ import HomeLayout from "../layouts/HomeLayout";
 function Contact() {
   return (
     <HomeLayout>
-      <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <div className="isolate bg-white px-6 py-24 sm:py-14 lg:px-8">
         <div
           className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
           aria-hidden="true"
@@ -24,7 +24,7 @@ function Contact() {
         <form
           action="#"
           method="POST"
-          className="mx-auto mt-16 max-w-xl sm:mt-20"
+          className="mx-auto mt-16 max-w-xl sm:mt-16"
         >
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             <div>
