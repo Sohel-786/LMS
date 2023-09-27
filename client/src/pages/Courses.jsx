@@ -30,7 +30,7 @@ function Courses(){
                     {
                         data?.map((el) => {
                             return (
-                                <CourseCard key={el.} el={el} />
+                                <CourseCard key={el._id} el={el} />
                             )
                         })
                     }
