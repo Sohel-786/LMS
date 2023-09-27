@@ -6,7 +6,8 @@ import SignUp from "./pages/Signup";
 import SignIn from "./pages/SignIn";
 import Contact from "./pages/Contact";
 import Denied from "./pages/Denied";
-import Courses from "./pages/Courses";
+import Courses from "./pages/Course/Courses";
+import CourseDescription from "./pages/Course/CourseDescription";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/denied" element={<Denied />} />
         <Route path="/courses" element={<Courses />} />
+        <Route path="/course-description" element={<CourseDescription />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </div>

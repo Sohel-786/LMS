@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import HomeLayout from "../layouts/HomeLayout";
+import HomeLayout from "../../layouts/HomeLayout";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCourses } from "../redux/slices/courseSlice";
-import CourseCard from "../components/CourseCard";
+import { getAllCourses } from "../../redux/slices/courseSlice";
+import CourseCard from "../../components/CourseCard";
 import { FcApproval } from "react-icons/fc";
 
 function Courses() {
@@ -20,7 +20,7 @@ function Courses() {
 
   return (
     <HomeLayout>
-      <section className="min-h-[90vh] flex flex-col justify-center items-center m-auto py-6 px-7">
+      <section className="min-h-[90vh] flex flex-col justify-center items-center m-auto py-6 px-7 mb-7">
         <div className="flex flex-col justify-center items-center my-7">
           <h1 className="text-5xl font-bold tracking-wide my-2">Our Courses</h1>
           <p className="text-xl font-semibold font-mono my-2">
