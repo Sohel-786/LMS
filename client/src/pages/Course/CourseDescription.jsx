@@ -37,7 +37,7 @@ function CourseDescription() {
 
             <div className="flex flex-col justify-center items-center my-6">
               <h1 className="text-[22px] text-stone-800 font-bold flex justify-center items-center gap-1">
-                Your Mentor Will Be{" "}
+                Your Instructor Will Be{" "}
                 <span className="text-yellow-600">{state.createdBy}</span>
                 <BsFillBookmarkStarFill className="text-green-600" />
               </h1>
@@ -86,6 +86,10 @@ function CourseDescription() {
                 </button>
               )}
             </div>
+          </div>
+
+          <div>
+
           </div>
         </div>
       </div>
