@@ -29,7 +29,7 @@ function Courses() {
 
         <div className="flex flex-wrap justify-center items-center gap-4">
           {data?.map((el) => {
-            return <CourseCard key={el._id} el={el} />;
+            return <CourseCard key={el._id} data={el} />;
           })}
         </div>
       </section>
