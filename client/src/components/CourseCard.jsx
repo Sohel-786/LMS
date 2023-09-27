@@ -1,10 +1,10 @@
 import { FaCheck } from "react-icons/fa6";
 import { BsPersonWorkspace } from "react-icons/bs";
-import { FcVideoCall } from "react-icons/fc";
+import { MdVideoLibrary } from "react-icons/md";
 
 function CourseCard({ el }) {
   return (
-    <div className="w-[380px] h-[548px] rounded-lg overflow-hidden bg-white">
+    <div className="w-[380px] h-[560px] rounded-lg overflow-hidden bg-white hover:scale-105 transition-all duration-300">
       <div className="w-full h-[40%]">
         <img
           className="w-full aspect-auto max-h-full"
@@ -29,7 +29,7 @@ function CourseCard({ el }) {
             <p>{el.description}</p>
           </div>
 
-          <div className="flex text-black text-[15.5px] font-bold tracking-wide my-4">
+          <div className="flex text-black text-[15.5px] font-bold tracking-wide my-3">
             <BsPersonWorkspace
               size={"22px"}
               className="h-5 font-semibold rounded-full text-green-600 mr-2"
@@ -40,9 +40,9 @@ function CourseCard({ el }) {
           </div>
 
           <div className="flex text-black text-[15.5px] font-bold tracking-wide my-4">
-            <FcVideoCall
+            <MdVideoLibrary
               size={"23px"}
-              className="h-5 font-semibold rounded-full text-green-600 mt-1 mr-[6px]"
+              className="h-5 font-semibold rounded-full text-green-700 mt-1 mr-[6px]"
             />
             <p>
               Totol Lectures :{" "}
@@ -50,6 +50,12 @@ function CourseCard({ el }) {
             </p>
           </div>
         </div>
+        <button
+          className="bg-[#ed0331] py-[10px] text-white w-full rounded-lg mt-2 text-sm font-medium tracking-wider active:scale-105 active:border-green-500  border-[2px] hover:bg-gradient-to-r from-red-500
+      via-purple-500 to-blue-600 border-transparent"
+        >
+          VIEW DETAILS
+        </button>
       </div>
     </div>
   );
