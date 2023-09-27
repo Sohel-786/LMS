@@ -33,7 +33,7 @@ const courseSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAllCourses.fulfilled, (state, action) => {
       state.courseData = action.payload;
-    })
+    });
   },
 });
 
