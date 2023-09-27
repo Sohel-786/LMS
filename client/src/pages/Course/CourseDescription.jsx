@@ -52,13 +52,28 @@ function CourseDescription() {
               </h1>
             </div>
 
-            <div>
+            <div className="px-10 pb-7">
               {role === "ADMIN" ? (
-                <button>View Lectures</button>
+                <button
+                  className="bg-green-500 py-[10px] text-white w-full rounded-lg mt-2 text-lg font-bold tracking-wider hover:scale-110 transition-all duration-300 active:scale-95 ease-in-out hover:bg-gradient-to-r from-green-700 via-green-600 to-green-700 border-transparent"
+                  onClick={() => {
+                    navigate("/course/lectures");
+                  }}
+                >
+                  View Lectures
+                </button>
               ) : data?.subscription?.status === "active" ? (
-                <button>View Lectures</button>
+                <button
+                  className="bg-green-500 py-[10px] text-white w-full rounded-lg mt-2 text-lg font-bold tracking-wider hover:scale-110 transition-all duration-300 active:scale-95 ease-in-out hover:bg-gradient-to-r from-green-700 via-green-600 to-green-700 border-transparent"
+                  onClick={() => {
+                    navigate("/course/lectures");
+                  }}
+                >
+                  View Lectures
+                </button>
               ) : (
                 <button
+                  className="bg-red-500 py-[10px] text-white w-full rounded-lg mt-2 text-lg font-bold tracking-wider hover:scale-110 transition-all duration-300 active:scale-95 ease-in-out hover:bg-gradient-to-r from-red-700 via-red-600 to-red-700 border-transparent"
                   onClick={() => {
                     if (!isLoggedIn) {
                       navigate("/signin");
