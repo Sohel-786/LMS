@@ -88,9 +88,7 @@ function CourseDescription() {
             </div>
           </div>
 
-          <div>
-
-          </div>
+          <div></div>
         </div>
       </div>
     </HomeLayout>
