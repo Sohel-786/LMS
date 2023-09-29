@@ -10,15 +10,17 @@ function CreateCourse() {
     category: "",
     createdBy: "",
     thumbnail: null,
-    previewImage: '',
+    previewImage: null,
   });
 
   const handleDrag = function (e) {
+    console.log("sohel");
     e.preventDefault();
     e.stopPropagation();
     if (e.type === "dragenter" || e.type === "dragover") {
       setDragActive(true);
-    } else if (e.type === "dragleave") {
+    }
+    if (e.type === "dragleave") {
       setDragActive(false);
     }
   };
@@ -89,41 +91,47 @@ function CreateCourse() {
         </h1>
         <form className="bg-white py-12 px-32 rounded-xl w-[70%] flex flex-col items-center">
           <div
-            onDragEnter={handleDrag}
+            onDragEnter={!dragActive ? handleDrag : () => {}}
             className="w-full h-56 flex flex-col items-center justify-center mb-6"
           >
             {courseDetails.previewImage ? (
-              <>
+              <div
+                onDragEnter={handleDrag}
+                onDragLeave={handleDrag}
+                onDragOver={handleDrag}
+                onDrop={handleDrop}
+                onMouseOver={handleView}
+                onMouseOut={handleHideView}
+                className="w-full h-full flex justify-center items-center"
+              >
                 <div
-                  onMouseOver={handleView}
-                  onMouseOut={handleHideView}
-                  className="max-w-full h-full flex justify-center items-center"
+                  id="thumbnailBtn"
+                  className="hidden z-20 absolute flex-col gap-2"
                 >
-                  <div id="thumbnailBtn" className="hidden z-20 absolute flex-col gap-2">
-                    <button className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent">
-                      VIEW
-                    </button>
-                    <button
+                  <button className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent">
+                    VIEW
+                  </button>
+                  <button
                     onClick={() => {
                       setCourseDetails({
                         ...courseDetails,
-                        previewImage : null,
-                        thumbnail : null
-                      })
+                        previewImage: null,
+                        thumbnail: null,
+                      });
                     }}
-                    className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-red-500 hover:text-white hover:border-transparent">
-                      CANCEL
-                    </button>
-                  </div>
-
-                  <img
-                    id="thumbnail"
-                    src={courseDetails.previewImage}
-                    alt="Course Thumbnail"
-                    className="max-w-full max-h-full border-[2px] border-gray-300"
-                  />
+                    className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-red-500 hover:text-white hover:border-transparent"
+                  >
+                    CANCEL
+                  </button>
                 </div>
-              </>
+
+                <img
+                  id="thumbnail"
+                  src={courseDetails.previewImage}
+                  alt="Course Thumbnail"
+                  className="max-w-full h-full m-auto"
+                />
+              </div>
             ) : dragActive ? (
               <div
                 className="w-full h-full bg-gray-200 border-gray-300 transition-all duration-200 ease-in-out flex justify-center items-center border-[2px] border-dashed "
@@ -131,12 +139,7 @@ function CreateCourse() {
                 onDragLeave={handleDrag}
                 onDragOver={handleDrag}
                 onDrop={handleDrop}
-              >
-                {" "}
-                <h1 className="text-2xl font-bold text-gray-400">
-                  Drop Your Image
-                </h1>{" "}
-              </div>
+              ></div>
             ) : (
               <div className="border-[2px] border-dashed flex flex-col justify-center items-center w-full h-full">
                 <HiOutlinePhoto size={"70px"} />
