@@ -71,7 +71,7 @@ export const createCourse = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: "Course is created",
+      message: "Course got created successfully",
       course,
     });
   } catch (e) {

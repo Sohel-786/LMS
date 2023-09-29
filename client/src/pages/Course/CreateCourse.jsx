@@ -2,9 +2,16 @@ import { HiOutlinePhoto } from "react-icons/hi2";
 import { RiCloseCircleFill } from "react-icons/ri";
 import HomeLayout from "../../layouts/HomeLayout";
 import { useState } from "react";
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { createCourse } from "../../redux/slices/courseSlice";
+import toast from "react-hot-toast";
 
 function CreateCourse() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [dragActive, setDragActive] = useState(false);
   const [courseDetails, setCourseDetails] = useState({
     title: "",
@@ -33,6 +40,7 @@ function CreateCourse() {
 
   // triggers when file is dropped
   const handleDrop = function (e) {
+
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
@@ -41,19 +49,24 @@ function CreateCourse() {
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const uploadedImage = e.dataTransfer.files[0];
-      setCourseDetails({ ...courseDetails, thumbnail: uploadedImage });
+      setCourseDetails( function (state) {
+        return {...state,
+          thumbnail: uploadedImage}
+      });
       const fileReader = new FileReader();
       fileReader.readAsDataURL(uploadedImage);
       fileReader.addEventListener("load", function () {
-        setCourseDetails({
-          ...courseDetails,
-          previewImage: this.result,
+        let result = this.result;
+        setCourseDetails( function (state) {
+          return {...state,
+            previewImage: result}
         });
       });
     }
   };
 
   function handleChange(e) {
+    console.log(e.target.value);
     const { name, value } = e.target;
     setCourseDetails({
       ...courseDetails,
@@ -98,14 +111,29 @@ function CreateCourse() {
     fullView.style.display = "flex";
   }
 
-  function handleFullViewclose(){
+  function handleFullViewclose() {
     enableBodyScroll(document);
     const fullView = document.getElementById("fullView");
     fullView.style.display = "none";
   }
 
-  function handleSubmit() {
-    console.log("sohel");
+  async function handleSubmit() {
+    if (
+      !courseDetails.title ||
+      !courseDetails.category ||
+      !courseDetails.createdBy ||
+      !courseDetails.description ||
+      !courseDetails.thumbnail
+    ) {
+      toast.error("All fields are Required");
+      return;
+    }
+
+    const res = await dispatch(createCourse(courseDetails));
+    console.log(res);
+    if (res?.data?.success) {
+      navigate("/courses");
+    }
   }
   return (
     <HomeLayout>
@@ -114,10 +142,11 @@ function CreateCourse() {
           Create Course
         </h1>
         <form
+          noValidate
           onSubmit={(e) => {
             e.preventDefault();
           }}
-          className="bg-white py-12 px-32 rounded-xl w-[70%] flex flex-col items-center"
+          className="bg-white text-black py-12 px-32 rounded-xl w-[70%] flex flex-col items-center"
         >
           <div
             id="container"
@@ -148,8 +177,8 @@ function CreateCourse() {
                     onClick={() => {
                       setCourseDetails({
                         ...courseDetails,
-                        previewImage: null,
-                        thumbnail: null,
+                        previewImage: '',
+                        thumbnail: '',
                       });
                     }}
                     className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-red-500 hover:text-white hover:border-transparent"
@@ -160,7 +189,7 @@ function CreateCourse() {
 
                 <img
                   id="thumbnail"
-                  src={courseDetails.previewImage}
+                  src={courseDetails.previewImage ? courseDetails.previewImage : ''}
                   alt="Course Thumbnail"
                   className="max-w-full h-full m-auto"
                 />
@@ -175,7 +204,7 @@ function CreateCourse() {
               ></div>
             ) : (
               <div className="border-[2px] border-dashed flex flex-col justify-center items-center w-full h-full">
-                <HiOutlinePhoto size={"70px"} />
+                <HiOutlinePhoto size={"70px"} className="text-gray-300" />
                 <p className="text-gray-500 text-sm font-semibold text-center">
                   <label htmlFor="courseImage">
                     <span
@@ -192,11 +221,18 @@ function CreateCourse() {
           </div>
 
           {/* To View Image on Full Screen */}
-          <div id="fullView" className="fixed top-0 h-[100vh] w-[100vw] hidden z-50 bg-black flex-col justify-center items-center">
-            <RiCloseCircleFill onClick={handleFullViewclose} size={"50px"} className="absolute top-3 right-8 cursor-pointer text-red-600 hover:text-red-800 bg-black border-[2px] border-transparent rounded-full hover:border-white" />
+          <div
+            id="fullView"
+            className="fixed top-0 h-[100vh] w-[100vw] hidden z-50 bg-black flex-col justify-center items-center"
+          >
+            <RiCloseCircleFill
+              onClick={handleFullViewclose}
+              size={"50px"}
+              className="absolute top-3 right-8 cursor-pointer text-red-600 hover:text-red-800 bg-black border-[2px] border-transparent rounded-full hover:border-white"
+            />
             <img
               className="w-auto h-auto"
-              src={courseDetails.previewImage}
+              src={courseDetails.previewImage ? courseDetails.previewImage : ''}
               alt="Preview Image"
             />
           </div>
@@ -217,6 +253,7 @@ function CreateCourse() {
               Title
             </label>
             <input
+              name="title"
               onChange={handleChange}
               className="rounded-lg border-gray-300 border-[1.2px] w-full"
               type="text"
@@ -233,6 +270,7 @@ function CreateCourse() {
                 Category
               </label>
               <input
+                name="category"
                 onChange={handleChange}
                 className="rounded-lg border-gray-300 border-[1.2px] w-full"
                 type="text"
@@ -247,6 +285,7 @@ function CreateCourse() {
                 Created By
               </label>
               <input
+                name="createdBy"
                 onChange={handleChange}
                 className="rounded-lg border-gray-300 border-[1.2px] w-full"
                 type="text"
@@ -263,6 +302,7 @@ function CreateCourse() {
               Description
             </label>
             <textarea
+              name="description"
               onChange={handleChange}
               rows={"8"}
               className="rounded-lg border-gray-300 border-[1.2px] w-full resize-y"

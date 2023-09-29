@@ -60,7 +60,7 @@ function SignIn() {
 
           <input
             onChange={handleChange}
-            className="w-[80%] p-2 bg-transparent border-t-0 border-r-0 border-l-0 border-b-[2px] border-sky-500 focus:outline-none focus:bg-sky-100 focus:rounded-lg placeholder:font-semibold focus:ring-0 font-bold text-green-900 my-3"
+            className="w-[80%] py-4 px-5 bg-transparent border-t-0 border-r-0 border-l-0 border-b-[2px] border-sky-500 focus:outline-none focus:bg-sky-100 focus:rounded-lg placeholder:font-semibold focus:border-sky-500 focus:ring-0 font-bold text-green-900 my-3"
             type="email"
             name="email"
             placeholder="Enter your Email"

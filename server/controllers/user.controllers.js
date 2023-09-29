@@ -106,7 +106,7 @@ const login = async (req, res, next) => {
 };
 
 const logout = (req, res) => {
-  req.cookie("token", null, {
+  res.cookie("token", null, {
     secure: true,
     maxAge: 0,
     httpOnly: true,

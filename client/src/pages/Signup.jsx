@@ -130,7 +130,7 @@ function SignUp() {
 
           <input
             onChange={handleChange}
-            className="w-[80%] p-2 bg-transparent border-b-[2px] border-t-0 border-l-0 border-r-0 focus:ring-0 border-sky-500 focus:outline-none focus:bg-sky-100 focus:rounded-lg placeholder:font-semibold font-bold text-green-900 my-3"
+            className="w-[80%] px-3 py-2 bg-transparent border-b-[2px] border-t-0 border-l-0 border-r-0 focus:ring-0 border-sky-500 focus:outline-none focus:bg-sky-100 focus:rounded-lg focus:border-sky-500 placeholder:font-semibold font-bold text-green-900 my-3"
             type="text"
             name="fullname"
             placeholder="Enter your full name"
@@ -138,13 +138,13 @@ function SignUp() {
 
           <input
             onChange={handleChange}
-            className="w-[80%] p-2 bg-transparent border-t-0 border-l-0 border-r-0 border-b-[2px] focus:ring-0 border-sky-500 focus:outline-none focus:bg-sky-100 focus:rounded-lg placeholder:font-semibold font-bold text-green-900 my-3"
+            className="w-[80%] px-3 py-2 bg-transparent border-t-0 border-l-0 border-r-0 border-b-[2px] focus:ring-0 focus:border-sky-500 border-sky-500 focus:outline-none focus:bg-sky-100 focus:rounded-lg placeholder:font-semibold font-bold text-green-900 my-3"
             type="email"
             name="email"
             placeholder="Enter your Email"
           />
 
-          <div className="w-[80%] p-2 bg-transparent border-b-[2px] border-sky-500 focus-within:bg-sky-100 focus-within:rounded-lg text-green-900 my-3 flex">
+          <div className="w-[80%] bg-transparent border-b-[2px] border-sky-500 focus-within:bg-sky-100 focus-within:rounded-lg text-green-900 my-3 flex justify-center items-center">
             <input
               onChange={handleChange}
               className="bg-transparent focus:outline-none border-none focus:ring-0 w-full placeholder:font-semibold font-bold"
