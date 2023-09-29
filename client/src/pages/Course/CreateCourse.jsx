@@ -10,7 +10,7 @@ function CreateCourse() {
     category: "",
     createdBy: "",
     thumbnail: null,
-    previewImage: null,
+    previewImage: '',
   });
 
   const handleDrag = function (e) {
@@ -67,6 +67,20 @@ function CreateCourse() {
     });
   }
 
+  function handleView() {
+    const thumbnailBtn = document.querySelector("#thumbnailBtn");
+    const thumbnail = document.querySelector("#thumbnail");
+    thumbnail.style.filter = "blur(3px)";
+    thumbnailBtn.style.display = "flex";
+  }
+
+  function handleHideView() {
+    const thumbnailBtn = document.querySelector("#thumbnailBtn");
+    const thumbnail = document.querySelector("#thumbnail");
+    thumbnail.style.filter = "blur(0)";
+    thumbnailBtn.style.display = "none";
+  }
+
   return (
     <HomeLayout>
       <section className="flex flex-col justify-center items-center w-full py-20 pt-12">
@@ -76,11 +90,43 @@ function CreateCourse() {
         <form className="bg-white py-12 px-32 rounded-xl w-[70%] flex flex-col items-center">
           <div
             onDragEnter={handleDrag}
-            className="w-full h-56 border-[2px] border-dashed flex flex-col items-center justify-center mb-6"
+            className="w-full h-56 flex flex-col items-center justify-center mb-6"
           >
-            {dragActive ? (
+            {courseDetails.previewImage ? (
+              <>
+                <div
+                  onMouseOver={handleView}
+                  onMouseOut={handleHideView}
+                  className="max-w-full h-full flex justify-center items-center"
+                >
+                  <div id="thumbnailBtn" className="hidden z-20 absolute flex-col gap-2">
+                    <button className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent">
+                      VIEW
+                    </button>
+                    <button
+                    onClick={() => {
+                      setCourseDetails({
+                        ...courseDetails,
+                        previewImage : null,
+                        thumbnail : null
+                      })
+                    }}
+                    className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-red-500 hover:text-white hover:border-transparent">
+                      CANCEL
+                    </button>
+                  </div>
+
+                  <img
+                    id="thumbnail"
+                    src={courseDetails.previewImage}
+                    alt="Course Thumbnail"
+                    className="max-w-full max-h-full border-[2px] border-gray-300"
+                  />
+                </div>
+              </>
+            ) : dragActive ? (
               <div
-                className="w-full h-full bg-gray-200 border-[2px] border-dotted border-gray-300 transition-all duration-200 ease-in-out flex justify-center items-center"
+                className="w-full h-full bg-gray-200 border-gray-300 transition-all duration-200 ease-in-out flex justify-center items-center border-[2px] border-dashed "
                 onDragEnter={handleDrag}
                 onDragLeave={handleDrag}
                 onDragOver={handleDrag}
@@ -92,7 +138,7 @@ function CreateCourse() {
                 </h1>{" "}
               </div>
             ) : (
-              <>
+              <div className="border-[2px] border-dashed flex flex-col justify-center items-center w-full h-full">
                 <HiOutlinePhoto size={"70px"} />
                 <p className="text-gray-500 text-sm font-semibold text-center">
                   <label htmlFor="courseImage">
@@ -105,11 +151,17 @@ function CreateCourse() {
                   </label>
                   or drag and drop <br /> PNG, JPG, JPEG, WEBP
                 </p>
-              </>
+              </div>
             )}
           </div>
 
-          <input type="file" hidden id="courseImage" onChange={handleImage} />
+          <input
+            type="file"
+            hidden
+            id="courseImage"
+            onChange={handleImage}
+            accept=".jpg, .jpeg, .png, .webp, .svg"
+          />
 
           <div className="my-2 w-full">
             <label
