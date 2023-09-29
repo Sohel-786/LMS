@@ -30,14 +30,14 @@ function CreateCourse() {
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const uploadedImage = e.dataTransfer.files[0];
-      setCourseDetails({ ...courseDetails, thumbnail : uploadedImage});
+      setCourseDetails({ ...courseDetails, thumbnail: uploadedImage });
       const fileReader = new FileReader();
       fileReader.readAsDataURL(uploadedImage);
       fileReader.addEventListener("load", function () {
         setCourseDetails({
           ...courseDetails,
-          previewImage : this.result
-        })
+          previewImage: this.result,
+        });
       });
     }
   };
@@ -50,22 +50,21 @@ function CreateCourse() {
     });
   }
 
-  function handleImage(e){
+  function handleImage(e) {
     const uploadedImage = e.target.files[0];
     if (!uploadedImage) return;
     setCourseDetails({
       ...courseDetails,
-      thumbnail : uploadedImage
+      thumbnail: uploadedImage,
     });
     const fileReader = new FileReader();
     fileReader.readAsDataURL(uploadedImage);
     fileReader.addEventListener("load", function () {
       setCourseDetails({
         ...courseDetails,
-        previewImage : this.result
-      })
+        previewImage: this.result,
+      });
     });
-
   }
 
   return (
@@ -110,7 +109,7 @@ function CreateCourse() {
             )}
           </div>
 
-          <input type="file" hidden  id='courseImage' onChange={handleImage} />
+          <input type="file" hidden id="courseImage" onChange={handleImage} />
 
           <div className="my-2 w-full">
             <label
