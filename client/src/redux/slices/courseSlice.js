@@ -30,11 +30,11 @@ export const createCourse = createAsyncThunk(
   "/course/createCourse",
   async (data) => {
     const formData = new FormData();
-    formData.append('title', data.title);
-    formData.append('description', data.description);
-    formData.append('category', data.category);
-    formData.append('createdBy', data.createdBy);
-    formData.append('thumbnail', data.thumbnail);
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("category", data.category);
+    formData.append("createdBy", data.createdBy);
+    formData.append("thumbnail", data.thumbnail);
 
     try {
       const res = axiosInstance.post("/courses/");

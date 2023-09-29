@@ -40,7 +40,6 @@ function CreateCourse() {
 
   // triggers when file is dropped
   const handleDrop = function (e) {
-
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
@@ -49,17 +48,15 @@ function CreateCourse() {
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const uploadedImage = e.dataTransfer.files[0];
-      setCourseDetails( function (state) {
-        return {...state,
-          thumbnail: uploadedImage}
+      setCourseDetails(function (state) {
+        return { ...state, thumbnail: uploadedImage };
       });
       const fileReader = new FileReader();
       fileReader.readAsDataURL(uploadedImage);
       fileReader.addEventListener("load", function () {
         let result = this.result;
-        setCourseDetails( function (state) {
-          return {...state,
-            previewImage: result}
+        setCourseDetails(function (state) {
+          return { ...state, previewImage: result };
         });
       });
     }
@@ -177,8 +174,8 @@ function CreateCourse() {
                     onClick={() => {
                       setCourseDetails({
                         ...courseDetails,
-                        previewImage: '',
-                        thumbnail: '',
+                        previewImage: "",
+                        thumbnail: "",
                       });
                     }}
                     className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-red-500 hover:text-white hover:border-transparent"
@@ -189,7 +186,9 @@ function CreateCourse() {
 
                 <img
                   id="thumbnail"
-                  src={courseDetails.previewImage ? courseDetails.previewImage : ''}
+                  src={
+                    courseDetails.previewImage ? courseDetails.previewImage : ""
+                  }
                   alt="Course Thumbnail"
                   className="max-w-full h-full m-auto"
                 />
@@ -232,7 +231,7 @@ function CreateCourse() {
             />
             <img
               className="w-auto h-auto"
-              src={courseDetails.previewImage ? courseDetails.previewImage : ''}
+              src={courseDetails.previewImage ? courseDetails.previewImage : ""}
               alt="Preview Image"
             />
           </div>
