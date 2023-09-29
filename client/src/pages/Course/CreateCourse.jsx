@@ -1,6 +1,8 @@
 import { HiOutlinePhoto } from "react-icons/hi2";
+import { RiCloseCircleFill } from "react-icons/ri";
 import HomeLayout from "../../layouts/HomeLayout";
 import { useState } from "react";
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 function CreateCourse() {
   const [dragActive, setDragActive] = useState(false);
@@ -14,13 +16,17 @@ function CreateCourse() {
   });
 
   const handleDrag = function (e) {
-    console.log("sohel");
     e.preventDefault();
     e.stopPropagation();
+
+    const container = document.getElementById("container");
+    container.style.borderColor = "red";
+
     if (e.type === "dragenter" || e.type === "dragover") {
       setDragActive(true);
     }
     if (e.type === "dragleave") {
+      container.style.borderColor = "transparent";
       setDragActive(false);
     }
   };
@@ -30,6 +36,9 @@ function CreateCourse() {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
+    const container = document.getElementById("container");
+    container.style.borderColor = "transparent";
+
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const uploadedImage = e.dataTransfer.files[0];
       setCourseDetails({ ...courseDetails, thumbnail: uploadedImage });
@@ -69,30 +78,51 @@ function CreateCourse() {
     });
   }
 
-  function handleView() {
+  function handleBlur() {
     const thumbnailBtn = document.querySelector("#thumbnailBtn");
     const thumbnail = document.querySelector("#thumbnail");
     thumbnail.style.filter = "blur(3px)";
     thumbnailBtn.style.display = "flex";
   }
 
-  function handleHideView() {
+  function handleBlurRemove() {
     const thumbnailBtn = document.querySelector("#thumbnailBtn");
     const thumbnail = document.querySelector("#thumbnail");
     thumbnail.style.filter = "blur(0)";
     thumbnailBtn.style.display = "none";
   }
 
+  function handleFullImageView() {
+    disableBodyScroll(document);
+    const fullView = document.getElementById("fullView");
+    fullView.style.display = "flex";
+  }
+
+  function handleFullViewclose(){
+    enableBodyScroll(document);
+    const fullView = document.getElementById("fullView");
+    fullView.style.display = "none";
+  }
+
+  function handleSubmit() {
+    console.log("sohel");
+  }
   return (
     <HomeLayout>
       <section className="flex flex-col justify-center items-center w-full py-20 pt-12">
         <h1 className="mb-6 text-4xl font-bold tracking-wider">
           Create Course
         </h1>
-        <form className="bg-white py-12 px-32 rounded-xl w-[70%] flex flex-col items-center">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+          className="bg-white py-12 px-32 rounded-xl w-[70%] flex flex-col items-center"
+        >
           <div
-            onDragEnter={!dragActive ? handleDrag : () => {}}
-            className="w-full h-56 flex flex-col items-center justify-center mb-6"
+            id="container"
+            onDragEnter={handleDrag}
+            className="w-full h-56 flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
           >
             {courseDetails.previewImage ? (
               <div
@@ -100,15 +130,18 @@ function CreateCourse() {
                 onDragLeave={handleDrag}
                 onDragOver={handleDrag}
                 onDrop={handleDrop}
-                onMouseOver={handleView}
-                onMouseOut={handleHideView}
+                onMouseOver={handleBlur}
+                onMouseOut={handleBlurRemove}
                 className="w-full h-full flex justify-center items-center"
               >
                 <div
                   id="thumbnailBtn"
                   className="hidden z-20 absolute flex-col gap-2"
                 >
-                  <button className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent">
+                  <button
+                    onClick={handleFullImageView}
+                    className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent"
+                  >
                     VIEW
                   </button>
                   <button
@@ -156,6 +189,16 @@ function CreateCourse() {
                 </p>
               </div>
             )}
+          </div>
+
+          {/* To View Image on Full Screen */}
+          <div id="fullView" className="fixed top-0 h-[100vh] w-[100vw] hidden z-50 bg-black flex-col justify-center items-center">
+            <RiCloseCircleFill onClick={handleFullViewclose} size={"50px"} className="absolute top-3 right-8 cursor-pointer text-red-600 hover:text-red-800 bg-black border-[2px] border-transparent rounded-full hover:border-white" />
+            <img
+              className="w-auto h-auto"
+              src={courseDetails.previewImage}
+              alt="Preview Image"
+            />
           </div>
 
           <input
@@ -230,6 +273,7 @@ function CreateCourse() {
 
           <div className="mt-6 flex items-center justify-end w-full">
             <button
+              onClick={handleSubmit}
               type="submit"
               className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
