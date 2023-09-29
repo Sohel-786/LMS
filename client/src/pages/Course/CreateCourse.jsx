@@ -4,6 +4,14 @@ import { useState } from "react";
 
 function CreateCourse() {
   const [dragActive, setDragActive] = useState(false);
+  const [courseDetails, setCourseDetails] = useState({
+    title: "",
+    description: "",
+    category: "",
+    createdBy: "",
+    thumbnail: null,
+    previewImage: null,
+  });
 
   const handleDrag = function (e) {
     e.preventDefault();
@@ -21,9 +29,44 @@ function CreateCourse() {
     e.stopPropagation();
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleFile(e.dataTransfer.files);
+      const uploadedImage = e.dataTransfer.files[0];
+      setCourseDetails({ ...courseDetails, thumbnail : uploadedImage});
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(uploadedImage);
+      fileReader.addEventListener("load", function () {
+        setCourseDetails({
+          ...courseDetails,
+          previewImage : this.result
+        })
+      });
     }
   };
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setCourseDetails({
+      ...courseDetails,
+      [name]: value,
+    });
+  }
+
+  function handleImage(e){
+    const uploadedImage = e.target.files[0];
+    if (!uploadedImage) return;
+    setCourseDetails({
+      ...courseDetails,
+      thumbnail : uploadedImage
+    });
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(uploadedImage);
+    fileReader.addEventListener("load", function () {
+      setCourseDetails({
+        ...courseDetails,
+        previewImage : this.result
+      })
+    });
+
+  }
 
   return (
     <HomeLayout>
@@ -67,6 +110,8 @@ function CreateCourse() {
             )}
           </div>
 
+          <input type="file" hidden  id='courseImage' onChange={handleImage} />
+
           <div className="my-2 w-full">
             <label
               className="block text-black font-semibold tracking-wide mb-3 font-sans"
@@ -75,6 +120,7 @@ function CreateCourse() {
               Title
             </label>
             <input
+              onChange={handleChange}
               className="rounded-lg border-gray-300 border-[1.2px] w-full"
               type="text"
               id="title"
@@ -90,6 +136,7 @@ function CreateCourse() {
                 Category
               </label>
               <input
+                onChange={handleChange}
                 className="rounded-lg border-gray-300 border-[1.2px] w-full"
                 type="text"
                 id="category"
@@ -103,6 +150,7 @@ function CreateCourse() {
                 Created By
               </label>
               <input
+                onChange={handleChange}
                 className="rounded-lg border-gray-300 border-[1.2px] w-full"
                 type="text"
                 id="createdBy"
@@ -118,6 +166,7 @@ function CreateCourse() {
               Description
             </label>
             <textarea
+              onChange={handleChange}
               rows={"8"}
               className="rounded-lg border-gray-300 border-[1.2px] w-full resize-y"
               type="text"
