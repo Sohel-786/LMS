@@ -28,7 +28,9 @@ function CreateCourse() {
   return (
     <HomeLayout>
       <section className="flex flex-col justify-center items-center w-full py-20 pt-12">
-        <h1 className="mb-6 text-4xl font-bold tracking-wider">Create Course</h1>
+        <h1 className="mb-6 text-4xl font-bold tracking-wider">
+          Create Course
+        </h1>
         <form className="bg-white py-12 px-32 rounded-xl w-[70%] flex flex-col items-center">
           <div
             onDragEnter={handleDrag}
@@ -109,19 +111,19 @@ function CreateCourse() {
           </div>
 
           <div className="my-2 w-full">
-              <label
-                className="block text-black font-semibold tracking-wide mb-3 font-sans"
-                htmlFor="description"
-              >
-                Description
-              </label>
-              <textarea
-                rows={'8'}
-                className="rounded-lg border-gray-300 border-[1.2px] w-full resize-y"
-                type="text"
-                id="description"
-              />
-            </div>
+            <label
+              className="block text-black font-semibold tracking-wide mb-3 font-sans"
+              htmlFor="description"
+            >
+              Description
+            </label>
+            <textarea
+              rows={"8"}
+              className="rounded-lg border-gray-300 border-[1.2px] w-full resize-y"
+              type="text"
+              id="description"
+            />
+          </div>
 
           <div className="mt-6 flex items-center justify-end w-full">
             <button
