@@ -13,9 +13,9 @@ function Denied() {
         Access Denied
       </p>
       <button
-        onClick={() => {
-          navigate(-1);
-        }}
+         onClick={() =>
+          navigate('/')
+        }
         className="btn border-2 border-white hover:bg-purple-900 hover:scale-125 hover:text-white hover:border-sky-300 relative -top-8"
       >
         Go Back

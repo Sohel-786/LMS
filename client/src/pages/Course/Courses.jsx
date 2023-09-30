@@ -27,7 +27,7 @@ function Courses() {
             Become a <span className="text-cyan-400 font-bold font-sans tracking-wide">Software Developer</span>, <span className="text-cyan-400 font-bold font-sans tracking-wide">Testing Engineer</span> or a <span className="text-cyan-400 font-bold font-sans tracking-wide">Data Analyst</span> at <span className="text-green-400 font-bold font-sans tracking-wide">ZERO upfront fees<FcApproval className="inline ml-1 text-2xl"/></span></p>
         </div>
 
-        <div className="flex flex-wrap justify-center items-center gap-4">
+        <div className="flex flex-wrap justify-center items-center gap-12">
           {data?.map((el) => {
             return <CourseCard key={el._id} data={el} />;
           })}

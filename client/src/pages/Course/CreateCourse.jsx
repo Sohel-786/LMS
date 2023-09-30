@@ -63,7 +63,6 @@ function CreateCourse() {
   };
 
   function handleChange(e) {
-    console.log(e.target.value);
     const { name, value } = e.target;
     setCourseDetails({
       ...courseDetails,
@@ -127,8 +126,15 @@ function CreateCourse() {
     }
 
     const res = await dispatch(createCourse(courseDetails));
-    console.log(res);
-    if (res?.data?.success) {
+    if (res?.payload?.success) {
+      setCourseDetails({
+        title: "",
+        description: "",
+        category: "",
+        createdBy: "",
+        thumbnail: null,
+        previewImage: null,
+      });
       navigate("/courses");
     }
   }
@@ -310,13 +316,13 @@ function CreateCourse() {
             />
           </div>
 
-          <div className="mt-6 flex items-center justify-end w-full">
+          <div className="mt-6 flex items-center justify-end w-full border-t-[2px] border-gray-100 pt-3">
             <button
               onClick={handleSubmit}
               type="submit"
-              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:scale-110 focus:scale-110 transition-all duration-200"
             >
-              Save
+              Create
             </button>
           </div>
         </form>

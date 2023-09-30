@@ -8,7 +8,7 @@ import {FcApproval} from 'react-icons/fc';
 
 function CourseDescription() {
   const { state } = useLocation();
-  const { role, data, isLoggedIn } = useSelector((state) => state.auth.data);
+  const { role, data, isLoggedIn } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   return (

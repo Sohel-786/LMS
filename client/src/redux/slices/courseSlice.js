@@ -37,7 +37,7 @@ export const createCourse = createAsyncThunk(
     formData.append("thumbnail", data.thumbnail);
 
     try {
-      const res = axiosInstance.post("/courses/");
+      const res = axiosInstance.post("/courses/", formData);
       toast.promise(res, {
         loading: "Wait! Creating Course",
         success: (data) => {
@@ -46,7 +46,7 @@ export const createCourse = createAsyncThunk(
         error: "Failed to Create Course",
       });
 
-      return await res;
+      return (await res).data;
     } catch (err) {
       toast.error(err?.response?.data?.message);
     }

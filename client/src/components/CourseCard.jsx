@@ -9,9 +9,9 @@ function CourseCard({ data }) {
 
   return (
     <div className="w-[380px] h-[560px] rounded-lg overflow-hidden bg-white hover:scale-105 transition-all duration-300">
-      <div className="w-full h-[40%]">
+      <div className="w-full h-[38%] mb-2">
         <img
-          className="w-full aspect-auto max-h-full"
+          className="h-full aspect-auto"
           src={data.thumbnail.secure_url}
           alt={"course thumbnail"}
         />

@@ -10,7 +10,7 @@ userRoutes.post('/register', upload.single('avatar') ,register);
 
 userRoutes.post('/login', login);
 
-userRoutes.get('/logout', logout);
+userRoutes.get('/logout', IsLoggedIn, logout);
 
 userRoutes.get('/me', IsLoggedIn, getUser);
 
