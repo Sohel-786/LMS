@@ -4,7 +4,7 @@ import { PiShootingStarFill } from "react-icons/pi";
 import { BsFillBookmarkStarFill } from "react-icons/bs";
 import { RiVideoFill } from "react-icons/ri";
 import { useSelector } from "react-redux";
-import {FcApproval} from 'react-icons/fc';
+import { FcApproval } from "react-icons/fc";
 
 function CourseDescription() {
   const { state } = useLocation();
@@ -90,8 +90,15 @@ function CourseDescription() {
           </div>
 
           <div className="flex flex-col justify-center gap-5 px-10">
-                  <h1 className="text-3xl font-bold tracking-wide text-yellow-500">Course Description</h1>
-                  <p className="text-xl font-bold tracking-wider">{state.description}{" "}<span className="inline-block text-2xl relative top-[6px]"><FcApproval/></span> </p>
+            <h1 className="text-3xl font-bold tracking-wide text-yellow-500">
+              Course Description
+            </h1>
+            <p className="text-xl font-bold tracking-wider">
+              {state.description}{" "}
+              <span className="inline-block text-2xl relative top-[6px]">
+                <FcApproval />
+              </span>{" "}
+            </p>
           </div>
         </div>
       </div>
