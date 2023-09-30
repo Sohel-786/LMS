@@ -5,6 +5,7 @@ import cloudinary from "cloudinary";
 import fs from "fs/promises";
 import sendEmail from "../utils/sendMail.js";
 import crypto from "crypto";
+import { isEmail, isValidPassword, isValidPhoneNumber } from "../helpers/RegexMatcher.js";
 
 const cookieOptions = {
   secure: true,
@@ -19,6 +20,15 @@ const register = async (req, res, next) => {
 
   if ((!fullname, !email, !password)) {
     return next(new AppError("All input fields are required", 400));
+  }
+
+  if (!isValidPassword(password)) {
+    return next(
+      new AppError(
+        "Password must be 6 to 16 characters long with at least a number and symbol",
+        400
+      )
+    );
   }
 
   const userExits = await User.findOne({ email });
@@ -279,6 +289,36 @@ const updateProfile = async (req, res, next) => {
   });
 };
 
+async function contactUs(req, res, next) {
+  const { firstname, lastname, email, phNo, message, term } = req.body;
+
+  if (!firstname || !lastname || !email || !phNo || !message || !term) {
+    return next(new AppError("All fields required", 400));
+  }
+
+  if (!isEmail(email)) {
+    return next(new AppError("Invalid Email, Please provide valid email", 400));
+  }
+
+  if (!isValidPhoneNumber(phNo)) {
+    return next(new AppError("Invalid Phone Number, Please recheck", 400));
+  }
+
+  const subject = 'Thank you from Classroom';
+  const msg = ''
+
+  try {
+    await sendEmail(email, subject, msg);
+
+    res.status(200).json({
+      success: true,
+      message: "Thank you, We will reach you soon",
+    });
+  } catch (e) {
+    return next(new AppError('Something went wrong, please try again', 500));
+  }
+}
+
 export {
   register,
   login,
@@ -288,4 +328,5 @@ export {
   resetPassword,
   changePassword,
   updateProfile,
+  contactUs,
 };

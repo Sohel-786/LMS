@@ -43,6 +43,8 @@ function Contact() {
       return;
     }
 
+
+
   }
 
   return (
@@ -218,6 +220,7 @@ function Contact() {
           </form>
         </div>
       </section>
+
     </HomeLayout>
   );
 }
