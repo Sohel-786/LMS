@@ -308,8 +308,19 @@ async function contactUs(req, res, next) {
     return next(new AppError("Invalid Phone Number, Please recheck", 400));
   }
 
-  const subject = "Thank you from Classroom";
-  const msg = "";
+  const subject = `Greeting to you ${
+    firstname + " " + lastname
+  } from Classroom`;
+  const msg = `<div style="width:100%;height:100%;;padding-top:50px;padding-bottom:50px;background-color:#0f1729;border-radius: 20px;">
+  <h1 style="font-size:45px;font-weight:900;font-family: Arial, Helvetica, sans-serif;color: white;text-align:center;">Thank You
+  <span style="font-size: 15px;text-align:center;font-weight: bolder;font-family: Arial, Helvetica, sans-serif;color: skyblue;letter-spacing: 1px;display:block">for reaching out to us</span>
+  <span style="font-size: 20px;font-weight:900;font-family: Arial, Helvetica, sans-serif;color: rgb(255, 0, 166);letter-spacing: 1px;text-align:center;display:block">we will connect to you soon</span></h1>
+  <div style="width:90%;background-color: white;border-radius: 10px;padding: 20px;margin: auto;">
+    <p style="font-size: 20px;font-weight:bolder;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Your Message</p>
+    <div style="padding: 15px 20px;border-left: 5px solid rgb(0, 199, 0);border-radius: 10px;margin-left:20px;"><p style="font-weight: 600;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">${message}</p></div>
+  </div>
+    </div>
+`;
 
   try {
     await sendEmail(email, subject, msg);

@@ -2,8 +2,13 @@ import { useState } from "react";
 import HomeLayout from "../layouts/HomeLayout";
 import toast from "react-hot-toast";
 import { isEmail, isValidPhoneNumber } from "../helpers/RegexMatcher";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { contact } from "../redux/slices/authSlice";
 
 function Contact() {
+  const disptach = useDispatch();
+
   const [userDetails, setUserDetails] = useState({
     firstname: "",
     lastname: "",
@@ -21,7 +26,7 @@ function Contact() {
     });
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (
       !userDetails.firstname ||
       !userDetails.lastname ||
@@ -32,19 +37,29 @@ function Contact() {
       toast.error("All fields required");
       return;
     }
-    
-    if(!isEmail(userDetails.email)){
-      toast.error('Please Provide Valid Email');
-      return;
-    }
-    
-    if(!isValidPhoneNumber(userDetails.phNo)){
-      toast.error('Please Provide Valid Phone Number');
+
+    if (!isEmail(userDetails.email)) {
+      toast.error("Please Provide Valid Email");
       return;
     }
 
+    if (!isValidPhoneNumber(userDetails.phNo)) {
+      toast.error("Please Provide Valid Phone Number");
+      return;
+    }
 
-
+    const res = await disptach(contact(userDetails));
+    console.log(res);
+    if (res?.payload?.data?.success) {
+      setUserDetails({
+        firstname: "",
+        lastname: "",
+        email: "",
+        phNo: "",
+        message: "",
+        term: false,
+      });
+    }
   }
 
   return (
@@ -82,6 +97,7 @@ function Contact() {
                 </label>
                 <div className="mt-2.5">
                   <input
+                    value={userDetails.firstname}
                     onChange={handleChange}
                     type="text"
                     name="firstname"
@@ -100,6 +116,7 @@ function Contact() {
                 </label>
                 <div className="mt-2.5">
                   <input
+                    value={userDetails.lastname}
                     onChange={handleChange}
                     type="text"
                     name="lastname"
@@ -119,6 +136,7 @@ function Contact() {
                 </label>
                 <div className="mt-2.5">
                   <input
+                    value={userDetails.email}
                     onChange={handleChange}
                     type="email"
                     name="email"
@@ -164,6 +182,7 @@ function Contact() {
                     </svg>
                   </div>
                   <input
+                    value={userDetails.phNo}
                     onChange={handleChange}
                     type="tel"
                     name="phNo"
@@ -183,6 +202,7 @@ function Contact() {
                 </label>
                 <div className="mt-2.5">
                   <textarea
+                    value={userDetails.message}
                     onChange={handleChange}
                     name="message"
                     id="message"
@@ -193,7 +213,12 @@ function Contact() {
               </div>
               <div className="flex gap-x-4 sm:col-span-2">
                 <div className="flex h-6 items-center">
-                  <input name="term" onChange={handleChange} type="checkbox" />
+                  <input
+                    checked={userDetails.term}
+                    name="term"
+                    onChange={handleChange}
+                    type="checkbox"
+                  />
                 </div>
                 <label
                   className="text-sm leading-6 text-gray-600"
@@ -209,7 +234,7 @@ function Contact() {
             </div>
             <div className="mt-10">
               <button
-                disabled={ userDetails.term ? false : true }
+                disabled={userDetails.term ? false : true}
                 type="submit"
                 onClick={handleSubmit}
                 className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-sky-300 disabled:cursor-not-allowed"
@@ -220,7 +245,6 @@ function Contact() {
           </form>
         </div>
       </section>
-
     </HomeLayout>
   );
 }

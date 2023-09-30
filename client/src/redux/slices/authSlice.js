@@ -53,6 +53,23 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   }
 });
 
+export const contact = createAsyncThunk("/contact", async (data) => {
+  try {
+    const res = axiosInstance.post("/user/contactUs", data);
+    toast.promise(res, {
+      loading: "Wait! Receiving your request",
+      success: (data) => {
+        return data?.data?.message;
+      },
+      error: "Failed to receive your request",
+    });
+
+    return await res;
+  } catch (err) {
+    toast.error(err?.response?.data?.message);
+  }
+});
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
