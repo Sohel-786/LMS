@@ -5,7 +5,11 @@ import cloudinary from "cloudinary";
 import fs from "fs/promises";
 import sendEmail from "../utils/sendMail.js";
 import crypto from "crypto";
-import { isEmail, isValidPassword, isValidPhoneNumber } from "../helpers/RegexMatcher.js";
+import {
+  isEmail,
+  isValidPassword,
+  isValidPhoneNumber,
+} from "../helpers/RegexMatcher.js";
 
 const cookieOptions = {
   secure: true,
@@ -304,8 +308,8 @@ async function contactUs(req, res, next) {
     return next(new AppError("Invalid Phone Number, Please recheck", 400));
   }
 
-  const subject = 'Thank you from Classroom';
-  const msg = ''
+  const subject = "Thank you from Classroom";
+  const msg = "";
 
   try {
     await sendEmail(email, subject, msg);
@@ -315,7 +319,7 @@ async function contactUs(req, res, next) {
       message: "Thank you, We will reach you soon",
     });
   } catch (e) {
-    return next(new AppError('Something went wrong, please try again', 500));
+    return next(new AppError("Something went wrong, please try again", 500));
   }
 }
 
