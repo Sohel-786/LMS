@@ -8,6 +8,7 @@ import { contact } from "../redux/slices/authSlice";
 
 function Contact() {
   const disptach = useDispatch();
+  const [disableBtn, setDisableBtn] = useState(false);
 
   const [userDetails, setUserDetails] = useState({
     firstname: "",
@@ -48,8 +49,12 @@ function Contact() {
       return;
     }
 
+    setDisableBtn(true);
+
     const res = await disptach(contact(userDetails));
-    console.log(res);
+
+    setDisableBtn(false);
+
     if (res?.payload?.data?.success) {
       setUserDetails({
         firstname: "",
@@ -214,6 +219,7 @@ function Contact() {
               <div className="flex gap-x-4 sm:col-span-2">
                 <div className="flex h-6 items-center">
                   <input
+                    className="focus:outline-none focus:ring-0"
                     checked={userDetails.term}
                     name="term"
                     onChange={handleChange}
@@ -234,7 +240,7 @@ function Contact() {
             </div>
             <div className="mt-10">
               <button
-                disabled={userDetails.term ? false : true}
+                disabled={userDetails.term ? (disableBtn ? true : false) : true}
                 type="submit"
                 onClick={handleSubmit}
                 className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-sky-300 disabled:cursor-not-allowed"
