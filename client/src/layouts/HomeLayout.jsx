@@ -35,7 +35,7 @@ function HomeLayout({ children }) {
 
   return (
     <div className="min-h-[90vh]">
-      <div className="drawer absolute left-0 z-50 w-full">
+      <div className="drawer absolute left-0 z-50 w-full sm:hidden">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
 
         <div className="drawer-content">
@@ -90,7 +90,7 @@ function HomeLayout({ children }) {
               <div className="flex items-center gap-4 w-[90%] absolute bottom-4">
                 <button
                   onClick={handleLogout}
-                  className="btn text-white bg-red-600 rounded-md border-[2px] border-white hover:bg-red-800"
+                  className="btn bg-red-600 rounded-md border-[2px]  hover:bg-red-800"
                 >
                   LogOut
                 </button>
@@ -98,18 +98,54 @@ function HomeLayout({ children }) {
             ) : (
               <div className="flex justify-center items-center gap-4 w-[90%] absolute bottom-4">
                 <Link to={"/signin"}>
-                  <button className="btn text-white border-[2px] border-white bg-green-500 rounded-md hover:bg-green-700">
+                  <button className="btn border-[2px]  bg-green-500 rounded-md hover:bg-green-700">
                     Sign In
                   </button>
                 </Link>
                 <Link to={"/signup"}>
-                  <button className="btn text-white border-[2px] border-white bg-sky-500 rounded-md hover:bg-sky-700">
+                  <button className="btn border-[2px]  bg-sky-500 rounded-md hover:bg-sky-700">
                     Sign Up
                   </button>
                 </Link>
               </div>
             )}
           </ul>
+        </div>
+      </div>
+
+      <div className="hidden sm:flex justify-center items-center py-4 px-5 border-[2px] border-black z-50">
+        <div
+          className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:top-0"
+          aria-hidden="true"
+        >
+        </div>
+        <div className="w-[150px] aspect-auto">
+          <img src={"/assets/classroom.svg"} alt="logo" />
+        </div>
+
+        <div>
+          <ul className="flex justify-center items-center gap-8">
+            <Link to={"/courses"}>
+              <li>Courses</li>
+            </Link>
+            <Link to={"/about"}>
+              <li>About Us</li>
+            </Link>
+            <Link to={"/contact"}>
+              <li>Contact Us</li>
+            </Link>
+            <Link to={"/"}>
+              <li>Home</li>
+            </Link>
+          </ul>
+        </div>
+        <div>
+          <Link>
+            <button>LOGIN</button>
+          </Link>
+          <Link>
+            <button>SING UP</button>
+          </Link>
         </div>
       </div>
 

@@ -9,7 +9,7 @@ function Footer(){
     return(
         <footer className="flex w-full bg-gray-800 flex-col sm:flex-row items-center h-[10vh] justify-between py-4 px-4 sm:px-12">
             <section>
-                <h1 className='text-base font-sans'>CopyRight {year} | All rights reserved</h1>
+                <h1 className='text-base font-sans text-white'>CopyRight {year} | All rights reserved</h1>
             </section>
             <section>
                 <ul className='flex items-center justify-center gap-4 sm:gap-8 text-lg sm:text-2xl'>
