@@ -35,7 +35,7 @@ function HomeLayout({ children }) {
 
   return (
     <div className="min-h-[90vh]">
-      <div className="drawer absolute left-0 z-50 w-full sm:hidden">
+      <header className="drawer absolute left-0 z-50 w-full sm:hidden">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
 
         <div className="drawer-content">
@@ -111,37 +111,33 @@ function HomeLayout({ children }) {
             )}
           </ul>
         </div>
-      </div>
+      </header>
 
-      <div className="hidden sm:flex justify-between items-center py-4 px-5 border-[2px] border-black z-50">
-        <div
-          className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:top-0"
-          aria-hidden="true"
-        ></div>
-        <div className="w-[150px] aspect-auto">
+      <header className="hidden sm:flex justify-between items-center py-3 px-10 shadow-headershadow z-50">
+        <div className="w-[160px] aspect-auto relative -top-1">
           <img src={"/assets/classroom.svg"} alt="logo" />
         </div>
 
-        <div className="flex justify-center items-center gap-3 pr-2">
+        <div className="flex justify-center items-center gap-4">
           <div>
-            <ul className="flex justify-center items-center gap-4 px-3">
+            <ul className="flex justify-center items-center gap-8 px-3">
               <Link to={"/courses"}>
-                <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+                <li className="text-lg font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                   Courses
                 </li>
               </Link>
               <Link to={"/about"}>
-                <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+                <li className="text-lg font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                   About Us
                 </li>
               </Link>
               <Link to={"/contact"}>
-                <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+                <li className="text-lg font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                   Contact Us
                 </li>
               </Link>
               <Link to={"/"}>
-                <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-3 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+                <li className="text-lg font-bold font-mono hover:bg-pink-50 py-1 px-3 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                   Home
                 </li>
               </Link>
@@ -169,7 +165,7 @@ function HomeLayout({ children }) {
             </button>
           </div>
         </div>
-      </div>
+      </header>
 
       {children}
       <Footer />
