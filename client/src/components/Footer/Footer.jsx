@@ -104,6 +104,15 @@ function Footer() {
             />
           </h1>
         </div>
+
+        <hr className="border-t-[0.4px] border-[#4f5961]" />
+
+        <ul className="flex flex-col justify-center px-8 gap-2 text-gray-400 relative -top-4 font-mono font-bold">
+          <li className="cursor-pointer">Blog</li>
+          <li className="cursor-pointer">Events</li>
+          <li className="cursor-pointer">Community</li>
+          <li className="cursor-pointer">Placement Statistics</li>
+        </ul>
       </section>
     </footer>
   );
