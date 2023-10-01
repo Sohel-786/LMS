@@ -34,7 +34,7 @@ function HomeLayout({ children }) {
   }
 
   return (
-    <div className="min-h-[90vh]">
+    <div className="min-h-[90vh] pt-9">
       <header className="drawer absolute left-0 z-50 w-full sm:hidden">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
 
@@ -113,9 +113,9 @@ function HomeLayout({ children }) {
         </div>
       </header>
 
-      <header className="hidden sm:flex justify-between items-center py-3 px-10 shadow-headershadow z-50">
+      <header className="hidden sm:flex justify-between items-center py-3 px-10 shadow-headershadow z-50 bg-white fixed w-full top-0">
         <div className="w-[160px] aspect-auto relative -top-1">
-          <img src={"/assets/classroom.svg"} alt="logo" />
+          <img className="w-full aspect-auto" src={"/assets/classroom.svg"} alt="logo" />
         </div>
 
         <div className="flex justify-center items-center gap-4">
