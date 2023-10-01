@@ -125,12 +125,12 @@ function HomeLayout({ children }) {
         <div>
           <ul className="flex justify-center items-center gap-4 px-3">
             <Link to={"/courses"}>
-            <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+              <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                 Courses
               </li>
             </Link>
             <Link to={"/about"}>
-            <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+              <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                 About Us
               </li>
             </Link>
@@ -140,20 +140,33 @@ function HomeLayout({ children }) {
               </li>
             </Link>
             <Link to={"/"}>
-            <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+              <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                 Home
               </li>
             </Link>
           </ul>
         </div>
-        
-        <div>
-          <Link>
-            <button>LOGIN</button>
-          </Link>
-          <Link>
-            <button>SING UP</button>
-          </Link>
+
+        <div className="flex justify-center items-center gap-5">
+          <button
+            onClick={() => {
+              navigate("/signin");
+            }}
+            className="py-2 px-4 text-lg transition-all duration-300 bg-cyan-100 rounded-lg font-mono font-black text-indigo-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-indigo-300 
+            focus:outline-none focus:scale-110 focus:border-indigo-300"
+          >
+            LOGIN
+          </button>
+
+          <button
+            onClick={() => {
+              navigate("/signup");
+            }}
+            className="py-2 px-4 text-lg transition-all duration-300 bg-cyan-100 rounded-lg font-mono font-black text-indigo-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-indigo-300 
+            focus:outline-none focus:scale-110 focus:border-indigo-300"
+          >
+            SING UP
+          </button>
         </div>
       </div>
 
