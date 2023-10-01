@@ -60,7 +60,7 @@ function Footer() {
         </div>
       </section>
 
-      <section className="flex flex-col justify-center">
+      <section className="flex flex-col gap-8 h-[300px]">
         <div>
           <h1 className="text-gray-400 font-semibold text-xl">Follow Us</h1>
           <ul className="flex items-center gap-4 sm:gap-6 text-lg sm:text-2xl my-4">
@@ -98,7 +98,7 @@ function Footer() {
             />{" "}
             by{" "}
             <img
-              className="w-[200px] inline-block relative -top-[6px]"
+              className="w-[200px] inline-block relative -top-[6px] -left-2"
               src="/assets/my name.png"
               alt="My Name"
             />
