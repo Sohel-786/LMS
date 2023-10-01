@@ -113,7 +113,7 @@ function HomeLayout({ children }) {
         </div>
       </div>
 
-      <div className="hidden sm:flex justify-center items-center py-4 px-5 border-[2px] border-black z-50">
+      <div className="hidden sm:flex justify-between items-center py-4 px-5 border-[2px] border-black z-50">
         <div
           className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:top-0"
           aria-hidden="true"
@@ -122,50 +122,52 @@ function HomeLayout({ children }) {
           <img src={"/assets/classroom.svg"} alt="logo" />
         </div>
 
-        <div>
-          <ul className="flex justify-center items-center gap-4 px-3">
-            <Link to={"/courses"}>
-              <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
-                Courses
-              </li>
-            </Link>
-            <Link to={"/about"}>
-              <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
-                About Us
-              </li>
-            </Link>
-            <Link to={"/contact"}>
-              <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
-                Contact Us
-              </li>
-            </Link>
-            <Link to={"/"}>
-              <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-3 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
-                Home
-              </li>
-            </Link>
-          </ul>
-        </div>
+        <div className="flex justify-center items-center gap-3 pr-2">
+          <div>
+            <ul className="flex justify-center items-center gap-4 px-3">
+              <Link to={"/courses"}>
+                <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+                  Courses
+                </li>
+              </Link>
+              <Link to={"/about"}>
+                <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+                  About Us
+                </li>
+              </Link>
+              <Link to={"/contact"}>
+                <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+                  Contact Us
+                </li>
+              </Link>
+              <Link to={"/"}>
+                <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-3 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+                  Home
+                </li>
+              </Link>
+            </ul>
+          </div>
 
-        <div className="flex justify-center items-center gap-5">
-          <button
-            onClick={() => {
-              navigate("/signin");
-            }}
-            className="py-[6px] px-4 text-lg transition-all duration-300 ease-in-out bg-cyan-100 rounded-lg font-mono font-black text-indigo-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-indigo-300 focus:outline-none focus:scale-110 focus:border-indigo-300"
-          >
-            LOGIN
-          </button>
+          <div className="flex justify-center items-center gap-5">
+            <button
+              onClick={() => {
+                navigate("/signin");
+              }}
+              className="py-[6px] px-4 text-lg transition-all duration-300 ease-in-out bg-cyan-100 rounded-lg font-mono font-black text-indigo-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-indigo-300 focus:outline-none focus:scale-110 focus:border-indigo-300"
+            >
+              LOGIN
+            </button>
 
-          <button
-            onClick={() => {
-              navigate("/signup");
-            }}
-            className="py-[6px] px-4 text-lg transition-all duration-300 ease-in-out bg-red-50 rounded-lg font-mono font-black text-red-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-pink-300 
+            <button
+              onClick={() => {
+                navigate("/signup");
+              }}
+              className="py-[6px] px-4 text-lg transition-all duration-300 ease-in-out bg-red-50 rounded-lg font-mono font-black text-red-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-pink-300 
             focus:outline-none focus:scale-110 focus:border-pink-300"
-          >
-            SING UP
-          </button>
+            >
+              SING UP
+            </button>
+          </div>
         </div>
       </div>
 
