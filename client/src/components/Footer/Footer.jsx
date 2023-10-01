@@ -59,31 +59,51 @@ function Footer() {
           </button>
         </div>
       </section>
+
       <section className="flex flex-col justify-center">
-        <h1 className="text-gray-400 font-semibold text-xl">Follow Us</h1>
-        <ul className="flex items-center justify-center gap-4 sm:gap-6 text-lg sm:text-2xl my-4">
-          <Li>
-            <BsFacebook />
-          </Li>
-          <Li>
-            <BsTwitter />
-          </Li>
-          <Li>
-            <BsInstagram />
-          </Li>
-          <Li>
-            <BsLinkedin />
-          </Li>
-          <Li>
-            <IoLogoYoutube />
-          </Li>
-          <Li>
-            <BsGithub />
-          </Li>
-          <Li>
-            <FaTelegramPlane />
-          </Li>
-        </ul>
+        <div>
+          <h1 className="text-gray-400 font-semibold text-xl">Follow Us</h1>
+          <ul className="flex items-center gap-4 sm:gap-6 text-lg sm:text-2xl my-4">
+            <Li>
+              <BsFacebook />
+            </Li>
+            <Li>
+              <BsTwitter />
+            </Li>
+            <Li>
+              <BsInstagram />
+            </Li>
+            <Li>
+              <BsLinkedin />
+            </Li>
+            <Li>
+              <IoLogoYoutube />
+            </Li>
+            <Li>
+              <BsGithub />
+            </Li>
+            <Li>
+              <FaTelegramPlane />
+            </Li>
+          </ul>
+        </div>
+
+        <div className="flex justify-center items-center">
+          <h1 className="text-lg text-white font-bold">
+            Made with{" "}
+            <img
+              className="w-9 h-9 inline-block"
+              src="/assets/heart.svg"
+              alt="heart Image"
+            />{" "}
+            by{" "}
+            <img
+              className="w-[200px] inline-block relative -top-[6px]"
+              src="/assets/my name.png"
+              alt="My Name"
+            />
+          </h1>
+        </div>
       </section>
     </footer>
   );
