@@ -117,28 +117,36 @@ function HomeLayout({ children }) {
         <div
           className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:top-0"
           aria-hidden="true"
-        >
-        </div>
+        ></div>
         <div className="w-[150px] aspect-auto">
           <img src={"/assets/classroom.svg"} alt="logo" />
         </div>
 
         <div>
-          <ul className="flex justify-center items-center gap-8">
+          <ul className="flex justify-center items-center gap-4 px-3">
             <Link to={"/courses"}>
-              <li>Courses</li>
+            <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+                Courses
+              </li>
             </Link>
             <Link to={"/about"}>
-              <li>About Us</li>
+            <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+                About Us
+              </li>
             </Link>
             <Link to={"/contact"}>
-              <li>Contact Us</li>
+              <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+                Contact Us
+              </li>
             </Link>
             <Link to={"/"}>
-              <li>Home</li>
+            <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+                Home
+              </li>
             </Link>
           </ul>
         </div>
+        
         <div>
           <Link>
             <button>LOGIN</button>
