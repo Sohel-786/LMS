@@ -125,22 +125,22 @@ function HomeLayout({ children }) {
         <div>
           <ul className="flex justify-center items-center gap-4 px-3">
             <Link to={"/courses"}>
-              <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+              <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                 Courses
               </li>
             </Link>
             <Link to={"/about"}>
-              <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+              <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                 About Us
               </li>
             </Link>
             <Link to={"/contact"}>
-              <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+              <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                 Contact Us
               </li>
             </Link>
             <Link to={"/"}>
-              <li className="text-base font-bold font-mono hover:bg-pink-50 py-[2px] px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+              <li className="text-base font-bold font-mono hover:bg-pink-50 py-1 px-3 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                 Home
               </li>
             </Link>
@@ -152,8 +152,7 @@ function HomeLayout({ children }) {
             onClick={() => {
               navigate("/signin");
             }}
-            className="py-2 px-4 text-lg transition-all duration-300 bg-cyan-100 rounded-lg font-mono font-black text-indigo-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-indigo-300 
-            focus:outline-none focus:scale-110 focus:border-indigo-300"
+            className="py-[6px] px-4 text-lg transition-all duration-300 ease-in-out bg-cyan-100 rounded-lg font-mono font-black text-indigo-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-indigo-300 focus:outline-none focus:scale-110 focus:border-indigo-300"
           >
             LOGIN
           </button>
@@ -162,8 +161,8 @@ function HomeLayout({ children }) {
             onClick={() => {
               navigate("/signup");
             }}
-            className="py-2 px-4 text-lg transition-all duration-300 bg-cyan-100 rounded-lg font-mono font-black text-indigo-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-indigo-300 
-            focus:outline-none focus:scale-110 focus:border-indigo-300"
+            className="py-[6px] px-4 text-lg transition-all duration-300 ease-in-out bg-red-50 rounded-lg font-mono font-black text-red-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-pink-300 
+            focus:outline-none focus:scale-110 focus:border-pink-300"
           >
             SING UP
           </button>
