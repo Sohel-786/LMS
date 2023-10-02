@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import HomeLayout from "../../layouts/HomeLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCourses } from "../../redux/slices/courseSlice";
@@ -7,12 +7,14 @@ import { FcApproval } from "react-icons/fc";
 
 function Courses() {
   const data = useSelector((state) => state.course.courseData);
+  const [isLodding, setIslodding] = useState(true);
 
   const dispatch = useDispatch();
 
   async function handleData() {
     await dispatch(getAllCourses());
-  }
+    setIslodding(false);
+  } 
 
   useEffect(() => {
     handleData();
@@ -45,24 +47,52 @@ function Courses() {
         </div>
 
         <div className="flex flex-wrap justify-center items-center gap-12">
-          {data.length === 0 ? (
+          {!isLodding ? (
             data?.map((el) => {
               return <CourseCard key={el._id} data={el} />;
             })
           ) : (
-            <div class="border border-blue-300 shadow overflow-hidden rounded-xl max-w-sm w-full mx-auto">
-              <div class="animate-pulse w-[380px] h-[560px] flex flex-col justify-center items-center">
+            <div class="border border-blue-300 shadow overflow-hidden rounded-xl max-w-sm mx-auto ">
+              <div class="animate-pulse w-[380px] h-[560px]  flex flex-col items-center">
                 <div className="w-full h-[38%] bg-slate-700"></div>
 
-                <div className="flex flex-col justify-center px-6">
-                  <div className="flex justify-center flex-col">
-                    <h1 className="text-black font-bold text-[22px]">
-                      {data.title}
-                    </h1>
-                    <h3 className="text-gray-600 font-bold text-lg font-mono tracking-wide">
-                      {data.category}
-                    </h3>
+                <div className="flex flex-col justify-center px-6 mt-3 w-full">
+                  <div className="flex justify-center flex-col w-full gap-3">
+                    <div className="bg-slate-700 h-[35px] w-[80%] rounded-xl"></div>
+                    <div className="bg-slate-700 h-[22px] w-[60%] rounded-xl"></div>
                   </div>
+                </div>
+
+                <hr className="border-t-[3px] my-3 w-[95%]" />
+
+                <div className="flex flex-col w-full">
+                  <div className="flex w-full gap-3 pl-6">
+                    <div className="w-5 h-5 rounded-full bg-slate-700"></div>
+                    <div className="w-[90%] flex flex-col gap-3">
+                      <div className="w-[80%] h-4 rounded-2xl bg-slate-700"></div>
+                      <div className="w-[80%] h-4 rounded-2xl bg-slate-700"></div>
+                      <div className="w-[80%] h-4 rounded-2xl bg-slate-700"></div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center w-full gap-3 pl-6 mt-8">
+                    <div className="w-5 h-5 rounded-full bg-slate-700"></div>
+                    <div className="w-[90%] flex flex-col gap-3">
+                      <div className="w-[80%] h-4 rounded-2xl bg-slate-700"></div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center w-full gap-3 pl-6 my-5">
+                    <div className="w-5 h-5 rounded-full bg-slate-700"></div>
+                    <div className="w-[90%] flex flex-col gap-3">
+                      <div className="w-[80%] h-4 rounded-2xl bg-slate-700"></div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div className="w-[80%] h-10 bg-stone-600 rounded-xl">
+
                 </div>
               </div>
             </div>
