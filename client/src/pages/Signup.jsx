@@ -91,15 +91,17 @@ function SignUp() {
 
   return (
     <HomeLayout>
-      <div className="flex justify-center items-center min-h-[100vh] w-full">
+      <div className="flex justify-center items-center my-16 w-full">
         <form
           onSubmit={handleSubmit}
           noValidate
-          className="flex flex-col items-center w-[38%] p-5 shadow-formshadow bg-white rounded-xl"
+          className="flex flex-col items-center w-[38%] p-5 shadow-formshadow bg-gradient-to-r from-zinc-900 to-zinc-700 rounded-xl text-white"
         >
-          <h1 className="text-4xl font-bold mb-8 text-blue-500">
-            Registration
-          </h1>
+          <img
+            className="w-[270px] aspect-auto mb-5"
+            src="/assets/signUp.svg"
+            alt="sign In"
+          />
 
           {previewImage ? (
             <div className="flex flex-col">
@@ -130,7 +132,7 @@ function SignUp() {
 
           <input
             onChange={handleChange}
-            className="w-[80%] px-3 py-2 bg-transparent border-b-[2px] border-t-0 border-l-0 border-r-0 focus:ring-0 border-sky-500 focus:outline-none focus:bg-sky-100 focus:rounded-lg focus:border-sky-500 placeholder:font-semibold font-bold text-green-900 my-3"
+            className="w-[80%] px-3 py-3 bg-transparent border-b-[2px] border-t-0 border-l-0 border-r-0 focus:ring-0 border-sky-500 focus:outline-none focus:border-sky-500 placeholder:font-semibold font-bold my-3"
             type="text"
             name="fullname"
             placeholder="Enter your full name"
@@ -138,35 +140,47 @@ function SignUp() {
 
           <input
             onChange={handleChange}
-            className="w-[80%] px-3 py-2 bg-transparent border-t-0 border-l-0 border-r-0 border-b-[2px] focus:ring-0 focus:border-sky-500 border-sky-500 focus:outline-none focus:bg-sky-100 focus:rounded-lg placeholder:font-semibold font-bold text-green-900 my-3"
+            className="w-[80%] px-3 py-3 bg-transparent border-t-0 border-l-0 border-r-0 border-b-[2px] focus:ring-0 focus:border-sky-500 border-sky-500 focus:outline-none placeholder:font-semibold font-bold my-3"
             type="email"
             name="email"
             placeholder="Enter your Email"
           />
 
-          <div className="w-[80%] bg-transparent border-b-[2px] border-sky-500 focus-within:bg-sky-100 focus-within:rounded-lg text-green-900 my-3 flex justify-center items-center">
+          <div className="w-[80%] bg-transparent border-b-[2px] border-sky-500 my-3 flex justify-center items-center">
             <input
               onChange={handleChange}
-              className="bg-transparent focus:outline-none border-none focus:ring-0 w-full placeholder:font-semibold font-bold"
+              className="bg-transparent py-3 focus:outline-none border-none focus:ring-0 w-full placeholder:font-semibold font-bold"
               type={viewPassword ? "text" : "password"}
               name="password"
               placeholder="Choose your Password"
             />
             {viewPassword ? (
-              <FiEye className="text-xl" onClick={handlePassView} />
+              <span type="button">
+                <FiEye
+                  className="text-xl"
+                  aria-label="eye"
+                  onClick={handlePassView}
+                />
+              </span>
             ) : (
-              <FiEyeOff className="text-xl" onClick={handlePassView} />
+              <span type="button">
+                <FiEyeOff
+                  className="text-xl"
+                  aria-label="eyeOff"
+                  onClick={handlePassView}
+                />
+              </span>
             )}
           </div>
 
-          <button className="btn bg-blue-500  font-bold border-4 border-transparent hover:bg-blue-700 hover:border-green-700 focus:scale-110 hover:scale-110 mt-5">
-            Create Account
+          <button className="py-2 px-5 rounded-lg transition-all duration-300 bg-blue-500 font-bold hover:bg-blue-600 focus:scale-110 hover:scale-110 mt-5">
+            Submit
           </button>
-          <p className="text-gray-500 font-bold text-[15px] tracking-wide my-3">
+          <p className="font-bold text-[15px] tracking-wide my-4">
             Already have an account ?{" "}
             <span
               type="button"
-              className="text-sky-500 underline cursor-pointer text-[16px] hover:text-sky-600 hover:scale-110"
+              className="text-sky-300 underline cursor-pointer text-[16px] hover:text-sky-400 hover:scale-110"
             >
               <Link to={"/signin"}>Login</Link>
             </span>
