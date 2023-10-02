@@ -4,11 +4,10 @@ import { MdVideoLibrary } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 function CourseCard({ data }) {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
-    <div className="w-[380px] h-[560px] rounded-lg overflow-hidden bg-white hover:scale-105 transition-all duration-300">
+    <div className="w-[380px] h-[560px] rounded-lg overflow-hidden bg-white hover:scale-105 transition-all duration-300 shadow-course">
       <div className="w-full h-[38%] mb-2">
         <img
           className="h-full aspect-auto"
@@ -55,10 +54,10 @@ function CourseCard({ data }) {
           </div>
         </div>
         <button
-          onClick={() =>{
-            navigate('/course-description', {state : {...data}});
+          onClick={() => {
+            navigate("/course-description", { state: { ...data } });
           }}
-          className="bg-[#ed0331] py-[10px] w-full rounded-lg mt-2 text-sm font-medium tracking-wider active:scale-105 active:border-green-500  border-[2px] hover:bg-gradient-to-r from-red-500
+          className="bg-[#ed0331] text-white font-bold py-[10px] w-full rounded-lg mt-2 text-sm tracking-wider active:scale-105 active:border-green-500  border-[2px] hover:bg-gradient-to-r from-red-500
       via-purple-500 to-blue-600 border-transparent"
         >
           VIEW DETAILS

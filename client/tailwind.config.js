@@ -4,10 +4,10 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        formshadow:
-          "rgb(0, 162, 255) 0px 10px 20px,rgb(0, 162, 255) 0px 6px 6px",
+        formshadow:"rgb(0, 162, 255) 0px 1px 2px 0px, rgb(0, 162, 255) 0px 2px 6px 2px",
         headershadow: "0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)",
-        marquee : '0px 0px 13px #B6BEFC'
+        marquee : '0px 0px 13px #B6BEFC',
+        course : 'rgba(215, 216, 222, 0.41) 0px 6px 34px 0px'
       },
       fontFamily : {
         roboto : "'Roboto Condensed', sans-serif",

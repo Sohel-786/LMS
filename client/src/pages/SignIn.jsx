@@ -54,19 +54,19 @@ function SignIn() {
         <form
           onSubmit={handleSubmit}
           noValidate
-          className="flex flex-col items-center w-[38%] p-5 shadow-formshadow bg-white rounded-xl"
+          className="flex flex-col items-center w-[38%] p-5 shadow-formshadow bg-gradient-to-r from-gray-800 to-gray-700 rounded-xl text-white"
         >
-          <h1 className="text-4xl font-bold mb-8 text-blue-500">Sign In</h1>
+          <img className="w-[200px] aspect-auto mb-8" src="/assets/Sign In.svg" alt="sign In" />
 
           <input
             onChange={handleChange}
-            className="w-[80%] py-4 px-5 bg-transparent border-t-0 border-r-0 border-l-0 border-b-[2px] border-sky-500 focus:outline-none focus:bg-sky-100 focus:rounded-lg placeholder:font-semibold focus:border-sky-500 focus:ring-0 font-bold text-green-900 my-3"
+            className="w-[80%] py-4 px-5 bg-transparent border-t-0 border-r-0 border-l-0 border-b-[2px] border-sky-500 focus:border-sky-300 focus:outline-none placeholder:font-semibold focus:ring-0 font-bold my-3"
             type="email"
             name="email"
             placeholder="Enter your Email"
           />
 
-          <div className="w-[80%] p-2 bg-transparent flex justify-center items-center  border-b-[2px] border-sky-500 focus-within:bg-sky-100 focus-within:rounded-lg text-green-900 my-3">
+          <div className="w-[80%] p-2 bg-transparent flex justify-center items-center border-b-[2px] border-sky-500 my-3 focus-within:border-sky-300">
             <input
               onChange={handleChange}
               className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
@@ -75,20 +75,21 @@ function SignIn() {
               placeholder="Choose your Password"
             />
             {viewPassword ? (
-              <FiEye className="text-xl" onClick={handlePassView} />
+              <span type="button"><FiEye aria-label="eyeOn" className="text-2xl" onClick={handlePassView} /></span>
             ) : (
-              <FiEyeOff className="text-xl" onClick={handlePassView} />
+              <span type="button"><FiEyeOff aria-label="eyeOff" className="text-2xl" onClick={handlePassView} /></span>
+              
             )}
           </div>
 
-          <button className="btn bg-blue-500  font-bold border-4 border-transparent hover:bg-blue-700 hover:border-green-700 focus:scale-110 hover:scale-110 mt-5">
+          <button className="btn bg-blue-500 text-white font-bold hover:bg-blue-600 focus:scale-110 hover:scale-110 mt-5">
             Login
           </button>
-          <p className="text-gray-500 font-bold text-[15px] tracking-wide my-3">
+          <p className=" font-bold text-[15px] tracking-wide my-3">
             Create new account.{" "}
             <span
               type="button"
-              className="text-sky-500 underline cursor-pointer text-[16px] hover:text-sky-600 hover:scale-110 ml-1"
+              className="text-sky-300 underline cursor-pointer text-[16px] hover:text-sky-400 hover:scale-110 ml-1"
             >
               <Link to={"/signup"}>SingUp</Link>
             </span>
