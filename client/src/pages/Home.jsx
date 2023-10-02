@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import HomeLayout from "../layouts/HomeLayout";
 import homepageImage from "/assets/homepage.png";
 import Typewriter from "typewriter-effect";
+import Marquee from "react-fast-marquee";
+import MarqueeDiv from "../components/MarqueeDiv";
 
 function Home() {
   return (
     <HomeLayout>
-      <div className="pt-10  flex items-center justify-center gap-10 mx-16 min-h-[90vh]">
+      <div className="pt-16  flex items-center justify-center gap-10 mx-16 min-h-[90vh]">
         <div className="w-1/2">
           <h1 className="text-5xl font-semibold tracking-wide font-poppins leading-[70px]">
             Learning is better with
@@ -60,6 +62,12 @@ function Home() {
 
         <div className="w-1/2 flex items-center justify-center">
           <img src={homepageImage} alt="homepage" />
+        </div>
+
+        <div>
+          <Marquee>
+                <MarqueeDiv url={} />
+          </Marquee>
         </div>
       </div>
     </HomeLayout>
