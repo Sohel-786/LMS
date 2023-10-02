@@ -6,22 +6,26 @@ import Marquee from "react-fast-marquee";
 import MarqueeDiv from "../components/MarqueeDiv";
 
 function Home() {
+
+  const array = ['airmeet', 'ajio', 'bharatagri', 'bharatpe', 'byjus', 'paytm', 'swiggy' , 'capgemini', 'dream11', 'eatfit', 'globallogic', 'homelane', 'ibm', 'leapfinance', 'moneytap', 'ola', 'pagarbook', 'salesken', 'sharechat', 'simplilearn', 'smallcase', 'urbanpiper', 'vyapar', 'whitehat'];
+
+  const array2 = array.reverse();
+
   return (
     <HomeLayout>
+      <section className="flex flex-col justify-center items-center">
       <div className="pt-16  flex items-center justify-center gap-10 mx-16 min-h-[90vh]">
         <div className="w-1/2">
-          <h1 className="text-5xl font-semibold tracking-wide font-poppins leading-[70px]">
-            Learning is better with
-            <span className="inline-block ml-3 text-[#f00037] after:content-[''] after:h-2 after:w-full after:float-left after:bg-gradient-to-r from-[#2d23a6] to-[#e10e5afc]">
+          <h1 className="text-[53px] tracking-wide font-semibold font-poppins leading-[70px]">
+            Learning is better with {" "}
+            <span className="inline-block text-[#f00037] after:content-[''] after:h-2 after:w-full after:float-left after:bg-gradient-to-r from-[#2d23a6] to-[#e10e5afc]">
               <Typewriter
-                className=""
                 options={{
                   strings: [
                     "Cohorts",
                     "Code",
                     "Community",
                     "Coaches",
-                    "Collaboration",
                     "Classroom",
                   ],
                   autoStart: true,
@@ -64,12 +68,22 @@ function Home() {
           <img src={homepageImage} alt="homepage" />
         </div>
 
-        <div>
-          <Marquee>
-                <MarqueeDiv url={} />
-          </Marquee>
-        </div>
       </div>
+
+        <div className="flex flex-col justify-center items-center w-full my-8">
+          <h1 className="text-[43px] font-slab font-bold mb-3">Our <span className="text-[#f00037]">Students</span> are <span className="text-cyan-500">Placed</span> At <img className="relative left-28" src="/assets/line.svg" alt="line" /></h1>
+          <Marquee className="py-10" direction="right" pauseOnClick={true}>
+                {
+                  array.map((el) => <MarqueeDiv url={`/assets/companies/${el}.svg`} />)
+                }
+          </Marquee>  
+          <Marquee className="py-5" pauseOnClick={true}>
+                {
+                  array2.map((el) => <MarqueeDiv url={`/assets/companies/${el}.svg`} />)
+                }
+          </Marquee>  
+        </div>
+      </section>
     </HomeLayout>
   );
 }
