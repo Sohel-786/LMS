@@ -113,7 +113,7 @@ function HomeLayout({ children }) {
         </div>
       </header>
 
-      <header className="hidden sm:flex justify-between items-center py-3 px-10 shadow-headershadow z-50 bg-white fixed w-full top-0">
+      <header className="hidden sm:flex justify-between items-center py-1 px-10 shadow-headershadow z-50 bg-white fixed w-full top-0">
         <div className="w-[160px] aspect-auto relative -top-1">
           <img className="w-full aspect-auto" src={"/assets/classroom.svg"} alt="logo" />
         </div>
