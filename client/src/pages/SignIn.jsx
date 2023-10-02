@@ -54,7 +54,7 @@ function SignIn() {
         <form
           onSubmit={handleSubmit}
           noValidate
-          className="flex flex-col items-center w-[38%] p-5 shadow-formshadow bg-gradient-to-r from-gray-800 to-gray-700 rounded-xl text-white"
+          className="flex flex-col items-center w-[38%] p-5 shadow-formshadow bg-gradient-to-r from-gray-950 to-gray-700 rounded-xl text-white"
         >
           <img className="w-[200px] aspect-auto mb-8" src="/assets/Sign In.svg" alt="sign In" />
 

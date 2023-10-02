@@ -95,7 +95,7 @@ function SignUp() {
         <form
           onSubmit={handleSubmit}
           noValidate
-          className="flex flex-col items-center w-[38%] p-5 shadow-formshadow bg-gradient-to-r from-zinc-900 to-zinc-700 rounded-xl text-white"
+          className="flex flex-col items-center w-[38%] p-5 shadow-formshadow bg-gradient-to-r from-zinc-950 to-zinc-700 rounded-xl text-white"
         >
           <img
             className="w-[270px] aspect-auto mb-5"
@@ -157,7 +157,7 @@ function SignUp() {
             {viewPassword ? (
               <span type="button">
                 <FiEye
-                  className="text-xl"
+                  className="text-2xl"
                   aria-label="eye"
                   onClick={handlePassView}
                 />
@@ -165,7 +165,7 @@ function SignUp() {
             ) : (
               <span type="button">
                 <FiEyeOff
-                  className="text-xl"
+                  className="text-2xl"
                   aria-label="eyeOff"
                   onClick={handlePassView}
                 />
