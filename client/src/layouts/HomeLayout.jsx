@@ -34,8 +34,8 @@ function HomeLayout({ children }) {
   }
 
   return (
-    <div className="min-h-[90vh] pt-9 w-100%">
-      <header className="drawer absolute left-0 z-50 w-full sm:hidden">
+    <div className="pt-9 w-100%">
+      <div className="drawer left-0 z-50 w-full h-[100vh] sm:hidden">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
 
         <div className="drawer-content">
@@ -111,7 +111,7 @@ function HomeLayout({ children }) {
             )}
           </ul>
         </div>
-      </header>
+      </div>
 
       <header className="hidden sm:flex justify-between items-center py-1 px-10 shadow-headershadow z-50 bg-white fixed w-full top-0">
         <div className="w-[160px] aspect-auto relative -top-1">
