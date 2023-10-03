@@ -14,14 +14,14 @@ function CourseDescription() {
   return (
     <HomeLayout>
       <div className="min-h-[90vh] flex flex-col justify-center items-center">
-        <div className="flex justify-center items-center flex-col bg-gradient-to-r from-stone-900 via-[#810CA8] to-blue-700 h-[300px] px-6 w-[100%] relative">
+        <div className="flex text-white justify-center items-center flex-col bg-gradient-to-r from-stone-900 via-[#980fc6] to-blue-600 h-[300px] px-6 w-[100%] relative">
           <h1 className="flex justify-center items-center gap-2 text-[46px] font-bold">
             <PiShootingStarFill className="text-yellow-400" />
             Become Master In {state.title}
           </h1>
-          <h3 className="text-cyan-500 text-4xl my-6 font-bold">
+          <h3 className="text-cyan-400 text-4xl my-6 font-bold">
             ( Extensive Learning Course ){" "}
-            <span className="bg-yellow-500 px-4 py-1 text-base font-black text-stone-800 rounded-2xl">
+            <span className="bg-yellow-500 px-4 py-1 text-sm font-slab text-stone-600 rounded-xl">
               REMOTE
             </span>
           </h3>
@@ -53,7 +53,7 @@ function CourseDescription() {
               </h1>
             </div>
 
-            <div className="px-10 pb-7">
+            <div className="px-10 pb-7 text-white">
               {role === "ADMIN" ? (
                 <button
                   className="bg-green-500 py-[10px] w-full rounded-lg mt-2 text-lg font-bold tracking-wider hover:scale-110 transition-all duration-300 active:scale-95 ease-in-out hover:bg-gradient-to-r from-green-700 via-green-600 to-green-700 border-transparent"
@@ -90,10 +90,10 @@ function CourseDescription() {
           </div>
 
           <div className="flex flex-col justify-center gap-5 px-10">
-            <h1 className="text-3xl font-bold tracking-wide text-yellow-500">
+            <h1 className="text-4xl font-roboto font-black tracking-wide text-indigo-400">
               Course Description
             </h1>
-            <p className="text-xl font-bold tracking-wider">
+            <p className="text-xl font-slab text-stone-700 tracking-wider">
               {state.description}{" "}
               <span className="inline-block text-2xl relative top-[6px]">
                 <FcApproval />

@@ -70,7 +70,7 @@ function Contact() {
   return (
     <HomeLayout>
       <section className="flex justify-center items-center w-full py-10">
-        <div className="isolate px-6 py-24 sm:py-14 lg:px-8 w-[65%] rounded-xl">
+        <div className="isolate px-6 py-10 sm:py-10 lg:px-8 w-[65%] rounded-xl">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Contact Us
@@ -78,7 +78,7 @@ function Contact() {
           </div>
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="mx-auto mt-16 max-w-xl sm:mt-16"
+            className="mx-auto mt-10 max-w-xl sm:mt-14"
           >
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div>

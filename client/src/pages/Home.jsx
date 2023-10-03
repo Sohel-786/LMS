@@ -22,10 +22,10 @@ function Home() {
               <Typewriter
                 options={{
                   strings: [
-                    "Cohorts",
                     "Code",
-                    "Community",
                     "Coaches",
+                    "Cohorts",
+                    "Community",
                     "Classroom",
                   ],
                   autoStart: true,
