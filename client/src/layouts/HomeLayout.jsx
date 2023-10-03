@@ -4,6 +4,7 @@ import { TfiMenu } from "react-icons/tfi";
 import { IoMdClose } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slices/authSlice";
+import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
 
 function HomeLayout({ children }) {
   const dispatch = useDispatch();
@@ -23,19 +24,21 @@ function HomeLayout({ children }) {
   function changeWidth() {
     const drawerSide = document.getElementsByClassName("drawer-side");
     drawerSide[0].style.width = "auto";
+    disableBodyScroll('document');
   }
-
+  
   function hideDrawer() {
     const element = document.getElementsByClassName("drawer-toggle");
     element[0].checked = false;
+    enableBodyScroll('document');
 
     const drawerSide = document.getElementsByClassName("drawer-side");
     drawerSide[0].style.width = "0";
   }
 
   return (
-    <div className="pt-9 w-100%">
-      <div className="drawer left-0 z-50 w-full h-[100vh] sm:hidden">
+    <div className="sm:pt-9 w-100%">
+      <div className="drawer absolute left-0 z-50 w-full h-[90vh] sm:hidden">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
 
         <div className="drawer-content">
@@ -48,46 +51,46 @@ function HomeLayout({ children }) {
           </label>
         </div>
 
-        <div className="drawer-side w-0">
+        <div className="drawer-side w-0 h-full">
           <label htmlFor="my-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-48 sm:w-80 min-h-full bg-base-200 text-base-content relative">
+          <ul className="menu p-4 w-64 bg-base-200 h-full font-slab text-xl tracking-wide pt-5 text-white bg-gradient-to-r from-slate-950 to-slate-700">
             <li className="absolute right-2 z-50">
               <button onClick={hideDrawer} className="w-fit">
-                <IoMdClose size={"24px"} />
+                <IoMdClose size={"28px"}/>
               </button>
             </li>
-            <li>
+            <li onClick={hideDrawer}>
               <Link to="/">Home</Link>
             </li>
             {isLoggedIn && role === "ADMIN" && (
-              <li>
+              <li onClick={hideDrawer}>
                 <Link to="/admin/dashboard">Admin Dashboard</Link>
               </li>
             )}
 
             {isLoggedIn && role === "ADMIN" && (
-              <li>
+              <li onClick={hideDrawer}>
                 <Link to="/course-create">Create Course</Link>
               </li>
             )}
-            <li>
+            <li onClick={hideDrawer}>
               <Link to="/courses">All Courses</Link>
             </li>
-            <li>
+            <li onClick={hideDrawer}>
               <Link to="/about">About Us</Link>
             </li>
-            <li>
+            <li onClick={hideDrawer}>
               <Link to="/contact">Contact Us</Link>
             </li>
 
             {isLoggedIn && (
-              <li>
+              <li onClick={hideDrawer}>
                 <Link to="/profile">Profile</Link>
               </li>
             )}
 
             {isLoggedIn ? (
-              <div className="flex items-center gap-4 w-[90%] absolute bottom-4">
+              <div onClick={hideDrawer} className="flex items-center gap-4 w-[90%] absolute bottom-3">
                 <button
                   onClick={handleLogout}
                   className="btn bg-red-600 rounded-md border-[2px]  hover:bg-red-800"
@@ -96,14 +99,14 @@ function HomeLayout({ children }) {
                 </button>
               </div>
             ) : (
-              <div className="flex justify-center items-center gap-4 w-[90%] absolute bottom-4">
+              <div className="flex justify-center items-center gap-4 w-[90%] absolute bottom-5 ">
                 <Link to={"/signin"}>
-                  <button className="btn border-[2px]  bg-green-500 rounded-md hover:bg-green-700">
+                  <button onClick={hideDrawer} className="btn border-[2px] text-white bg-green-500 rounded-md hover:bg-green-700">
                     Sign In
                   </button>
                 </Link>
                 <Link to={"/signup"}>
-                  <button className="btn border-[2px]  bg-sky-500 rounded-md hover:bg-sky-700">
+                  <button onClick={hideDrawer} className="btn border-[2px] text-white bg-sky-500 rounded-md hover:bg-sky-700">
                     Sign Up
                   </button>
                 </Link>
