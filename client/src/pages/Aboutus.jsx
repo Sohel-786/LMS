@@ -11,7 +11,7 @@ function Aboutus() {
             <h1 className="text-5xl text-yellow-500 font-slab font-bold sm:font-sans">
               Affordable and Quality Education
             </h1>
-            <p className="text-xl font-roboto text-slate-700 font-bold sm:text-lg tracking-wide">
+            <p className="text-xl font-roboto font-bold sm:text-lg tracking-wide">
               Our goal is to provide the affordable and quality education to the
               world. We are providing the platform for the aspiring teachers and
               students to share their skills, creativity and knowledge to each

@@ -136,7 +136,7 @@ function Footer() {
         <hr className="border-t-[0.4px] border-[#4f5961] sm:w-[95%] sm:self-center" />
         
         <div className="flex justify-center items-center w-full">
-          <h1 className="text-lg text-white font-bold">
+          <h1 className="text-lg text-white font-bold text-center sm:text-start">
             Made with{" "}
             <img
               className="w-7 h-7 inline-block"
