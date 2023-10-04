@@ -13,10 +13,12 @@ function CourseDescription() {
 
   return (
     <HomeLayout>
-      <div className="min-h-[90vh] flex flex-col justify-center items-center">
-        <div className="flex text-white justify-center items-center flex-col bg-gradient-to-r from-stone-900 via-[#980fc6] to-blue-600 h-[300px] px-6 w-[100%] relative">
-          <h1 className="flex justify-center items-center gap-2 text-[46px] font-bold">
-            <PiShootingStarFill className="text-yellow-400" />
+      <div className="flex flex-col justify-center items-center">
+        <div className="flex text-white justify-center items-center flex-col bg-gradient-to-r from-stone-900 via-[#980fc6] to-blue-600 h-[300px] px-6 w-[100%]">
+          <h1 className="flex justify-center items-center gap-2 text-3xl font-bold sm:text-[46px]">
+            <span>
+              <PiShootingStarFill className="text-yellow-400" />
+            </span>
             Become Master In {state.title}
           </h1>
           <h3 className="text-cyan-400 text-4xl my-6 font-bold">
