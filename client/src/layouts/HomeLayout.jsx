@@ -98,16 +98,16 @@ function HomeLayout({ children }) {
             )}
 
             {isLoggedIn ? (
-              <div onClick={hideDrawer} className="flex items-center gap-4 w-[90%] absolute bottom-3">
+              <div onClick={hideDrawer} className="flex items-center gap-4 w-[90%] absolute bottom-5">
                 <button
                   onClick={handleLogout}
-                  className="btn bg-red-600 rounded-md border-[2px]  hover:bg-red-800"
+                  className="btn bg-red-600 text-white rounded-md border-[2px]  hover:bg-red-800"
                 >
                   LogOut
                 </button>
               </div>
             ) : (
-              <div className="flex justify-center items-center gap-4 w-[90%] absolute bottom-5 ">
+              <div className="flex justify-center items-center gap-4 w-[90%] absolute bottom-5">
                 <Link to={"/signin"}>
                   <button onClick={hideDrawer} className="btn border-[2px] text-white bg-green-500 rounded-md hover:bg-green-700">
                     Sign In

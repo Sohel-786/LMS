@@ -149,12 +149,12 @@ function CreateCourse() {
           onSubmit={(e) => {
             e.preventDefault();
           }}
-          className="bg-white text-black py-12 px-32 rounded-xl w-[70%] flex flex-col items-center"
+          className="bg-white text-black py-6 sm:py-12 px-4 sm:px-32 rounded-xl w-[95%] sm:w-[70%] flex flex-col items-center"
         >
           <div
             id="container"
             onDragEnter={handleDrag}
-            className="w-full h-56 flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
+            className="w-full h-[200px] sm:h-56 flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
           >
             {courseDetails.previewImage ? (
               <div
@@ -320,7 +320,7 @@ function CreateCourse() {
             <button
               onClick={handleSubmit}
               type="submit"
-              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:scale-110 focus:scale-110 transition-all duration-200"
+              className="rounded-md text-white bg-indigo-600 px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:scale-110 focus:scale-110 transition-all duration-200"
             >
               Create
             </button>
