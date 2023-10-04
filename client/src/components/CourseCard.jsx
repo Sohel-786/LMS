@@ -7,7 +7,7 @@ function CourseCard({ data }) {
   const navigate = useNavigate();
 
   return (
-    <div className="w-[380px] h-[560px] rounded-lg overflow-hidden bg-white hover:scale-105 transition-all duration-300 shadow-course">
+    <div className="sm:w-[380px] sm:h-[560px] w-[95%] rounded-lg overflow-hidden bg-white hover:scale-105 transition-all duration-300 shadow-course">
       <div className="w-full h-[38%] mb-2">
         <img
           className="h-full aspect-auto"
@@ -17,8 +17,8 @@ function CourseCard({ data }) {
       </div>
       <div className="flex flex-col justify-center px-6">
         <div className="flex justify-center flex-col">
-          <h1 className="text-black font-bold text-[22px]">{data.title}</h1>
-          <h3 className="text-gray-600 font-bold text-lg font-mono tracking-wide">
+          <h1 className="text-black font-bold text-[18px] sm:text-[22px]">{data.title}</h1>
+          <h3 className="text-gray-600 font-bold text-base sm:text-lg font-mono tracking-wide">
             {data.category}
           </h3>
         </div>
@@ -58,7 +58,7 @@ function CourseCard({ data }) {
             navigate("/course-description", { state: { ...data } });
           }}
           className="bg-[#ed0331] text-white font-bold py-[10px] w-full rounded-lg mt-2 text-sm tracking-wider active:scale-105 active:border-green-500  border-[2px] hover:bg-gradient-to-r from-red-500
-      via-purple-500 to-blue-600 border-transparent"
+      via-purple-500 to-blue-600 border-transparent mb-5"
         >
           VIEW DETAILS
         </button>
