@@ -6,10 +6,11 @@ function Aboutus() {
   return (
     <HomeLayout>
       <section className="flex flex-col justify-center items-center mx-auto pt-14">
-
         <div className="w-full flex flex-col justify-center items-center px-10 gap-4 sm:flex-row">
           <div className="w-full flex flex-col justify-center gap-10 sm:w-1/2">
-            <h1 className="text-5xl text-yellow-500 font-slab font-bold sm:font-sans">Affordable and Quality Education</h1>
+            <h1 className="text-5xl text-yellow-500 font-slab font-bold sm:font-sans">
+              Affordable and Quality Education
+            </h1>
             <p className="text-xl font-roboto text-slate-700 font-bold sm:text-lg tracking-wide">
               Our goal is to provide the affordable and quality education to the
               world. We are providing the platform for the aspiring teachers and
@@ -20,20 +21,58 @@ function Aboutus() {
           </div>
 
           <div className="w-full sm:w-1/2">
-            <img className="w-full aspect-auto" src={aboutImage} alt="About Us Main Image" />
+            <img
+              className="w-full aspect-auto"
+              src={aboutImage}
+              alt="About Us Main Image"
+            />
           </div>
         </div>
 
-        <div className="carousel w-[95%] sm:w-[90%] my-20">
+        <div className="carousel w-[100%] sm:w-[90%] my-20">
+          <Slide
+            num={"slide1"}
+            url={"/assets/apj.png"}
+            q={
+              " The best brains of the nation may be found on the last benches of the classroom. "
+            }
+            author={"A. P. J. Abdul Kalam"}
+            leftId={"#slide4"}
+            rightId={"#slide2"}
+          />
 
-          <Slide num={'slide1'} url={'/assets/apj.png'} q={' The best brains of the nation may be found on the last benches of the classroom. '} author={'A. P. J. Abdul Kalam'} leftId={'#slide4'} rightId={'#slide2'}  />
+          <Slide
+            num={"slide2"}
+            url={"/assets/einstein.png"}
+            q={
+              " We cannot solve our problems with the same thinking we used when we created them. "
+            }
+            author={"Albert Einstein"}
+            leftId={"#slide1"}
+            rightId={"#slide3"}
+          />
 
-          <Slide num={'slide2'} url={'/assets/einstein.png'} q={' We cannot solve our problems with the same thinking we used when we created them. '} author={'Albert Einstein'} leftId={'#slide1'} rightId={'#slide3'}  />
+          <Slide
+            num={"slide3"}
+            url={"/assets/billGates.png"}
+            q={
+              " What's amazing is, if young people understood how doing well in school makes the rest of their life so much interesting, they would be more motivated. "
+            }
+            author={"Bill Gates"}
+            leftId={"#slide2"}
+            rightId={"#slide4"}
+          />
 
-          <Slide num={'slide3'} url={'/assets/billGates.png'} q={" What's amazing is, if young people understood how doing well in school makes the rest of their life so much interesting, they would be more motivated. "} author={'Bill Gates'} leftId={'#slide2'} rightId={'#slide4'}  />
-
-          <Slide num={'slide4'} url={'/assets/nelsonMandela.png'} q={' Do not judge me by my successes, judge me by how many times I fell down and got back up again. '} author={'Nelson Mandela'} leftId={'#slide3'} rightId={'#slide1'}  />
-          
+          <Slide
+            num={"slide4"}
+            url={"/assets/nelsonMandela.png"}
+            q={
+              " Do not judge me by my successes, judge me by how many times I fell down and got back up again. "
+            }
+            author={"Nelson Mandela"}
+            leftId={"#slide3"}
+            rightId={"#slide1"}
+          />
         </div>
       </section>
     </HomeLayout>
