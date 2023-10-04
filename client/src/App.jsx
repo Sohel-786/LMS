@@ -13,7 +13,7 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <>
+    <div className="mx-auto max-w-[1470px]">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<Aboutus />} />
@@ -28,7 +28,7 @@ function App() {
         <Route path="/course-description" element={<CourseDescription />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

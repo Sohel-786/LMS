@@ -48,7 +48,7 @@ function HomeLayout({ children }) {
             <TfiMenu
               onClick={changeWidth}
               size={"33px"}
-              className="ml-4 mt-7 cursor-pointer fixed z-20"
+              className="ml-4 mt-7 cursor-pointer fixed z-20 text-black"
             />
           </label>
         </div>
@@ -130,7 +130,7 @@ function HomeLayout({ children }) {
           <img className="w-full aspect-auto" src={"/assets/classroom.svg"} alt="logo" />
         </div>
 
-        <div className="flex justify-center items-center gap-4">
+        <div className="flex justify-center items-center gap-4 text-black">
           <div>
             <ul className="flex justify-center items-center gap-8 px-3">
               <Link to={"/courses"}>
