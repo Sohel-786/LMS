@@ -37,8 +37,8 @@ function HomeLayout({ children }) {
   }
 
   return (
-    <div className="sm:pt-9 w-100%">
-      <div className="drawer absolute left-0 z-50 w-full sm:hidden">
+    <div className="lg:pt-9 w-100%">
+      <div className="drawer absolute left-0 z-50 w-full lg:hidden">
         {/* this Input for toggle the burgur */}
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
 
@@ -125,7 +125,7 @@ function HomeLayout({ children }) {
       </div>
 
       {/* This Header is for Bigger Screens */}
-      <header className="hidden sm:flex justify-between items-center py-1 px-10 shadow-headershadow z-50 bg-white fixed w-full top-0">
+      <header className="hidden lg:flex justify-between items-center py-1 px-10 shadow-headershadow z-50 bg-white fixed w-full top-0">
         <div className="w-[160px] aspect-auto relative -top-1">
           <img className="w-full aspect-auto" src={"/assets/classroom.svg"} alt="logo" />
         </div>
@@ -179,7 +179,7 @@ function HomeLayout({ children }) {
         </div>
       </header>
 
-      <div className="sm:hidden z-30 bg-white flex justify-center items-center w-full py-2 shadow-headershadow fixed">
+      <div className="lg:hidden z-30 bg-white flex justify-center items-center w-full py-2 shadow-headershadow fixed">
           <div>
             <img className="w-44" src="/assets/classroom.svg" alt="Classroom Logo" />
           </div>

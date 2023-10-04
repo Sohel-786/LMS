@@ -40,15 +40,15 @@ function Home() {
   
     <HomeLayout>
       <section className="flex flex-col justify-center items-center">
-        <div className="pt-16  flex flex-col items-center justify-center gap-10 mx-8 sm:mx-16 sm:min-h-[90vh] sm:flex-row">
+        <div className="pt-16  flex flex-col items-center justify-center gap-10 mx-8 lg:mx-16 lg:min-h-[90vh] lg:flex-row">
 
-        <div className="flex items-center justify-center sm:hidden mb-4">
+        <div className="flex items-center justify-center lg:hidden mb-4">
             <img src={homepageImage} alt="homepage" />
           </div>
           
-          <div className="w-full h-[400px] flex flex-col justify-center sm:block sm:h-auto sm:w-1/2">
-            <div className="h-[120px] sm:h-auto">
-             <h1 className="text-4xl tracking-wide font-semibold font-poppins sm:leading-[70px] sm:text-[53px]">
+          <div className="w-full h-[400px] flex flex-col justify-center lg:block lg:h-auto lg:w-1/2">
+            <div className="h-[120px] md:h-auto">
+             <h1 className="text-4xl tracking-wide font-semibold font-poppins lg:leading-[70px] lg:text-[53px]">
               Learning is better with{" "}
               <span className="inline-block text-[#f00037] after:content-[''] after:h-2 after:w-full after:float-left after:bg-gradient-to-r from-[#2d23a6] to-[#e10e5afc]">
                 <Typewriter
@@ -71,7 +71,7 @@ function Home() {
             </div>
             
 
-            <h1 className=" text-3xl font-slab font-bold mb-5 mt-6 sm:my-7 sm:text-4xl">
+            <h1 className="text-3xl font-slab font-bold mb-5 mt-6 sm:my-7 sm:text-4xl">
               Find Out Best{" "}
               <span className="text-yellow-500 font-extrabold">
                 Online Courses
@@ -98,7 +98,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="hidden sm:flex items-center justify-center sm:w-1/2">
+          <div className="hidden lg:flex items-center justify-center lg:w-1/2">
             <img src={homepageImage} alt="homepage" />
           </div>
         </div>
