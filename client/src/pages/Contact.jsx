@@ -73,7 +73,7 @@ function Contact() {
         <div className="isolate px-6 py-10 sm:py-10 lg:px-8 w-[65%] rounded-xl">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Contact Us
+            How can we help you?
             </h2>
           </div>
           <form
