@@ -15,16 +15,15 @@ function CourseDescription() {
     <HomeLayout>
       <div className="flex flex-col justify-center items-center w-full">
         <div className="flex text-white justify-center items-center flex-col bg-gradient-to-r from-stone-900 via-[#980fc6] to-blue-600 h-[320px] gap-2 text-center sm:gap-0 sm:h-[300px] px-6 w-full py-3 sm:py-0">
-
           <h1 className="flex justify-center items-center gap-2 text-3xl font-bold sm:text-[46px]">
             <span className="hidden h-full sm:flex justify-center text-5xl">
               <PiShootingStarFill className="text-yellow-400" />
             </span>
             Become Master In {state.title}
           </h1>
-            <span className="sm:hidden justify-center text-5xl">
-              <PiShootingStarFill className="text-yellow-400" />
-            </span>
+          <span className="sm:hidden justify-center text-5xl">
+            <PiShootingStarFill className="text-yellow-400" />
+          </span>
           <h3 className="text-cyan-400 text-2xl font-bold sm:text-4xl sm:my-6">
             ( Extensive Learning Course ){" "}
             <span className="bg-yellow-500 px-4 py-1 text-sm font-slab text-stone-600 rounded-xl">
@@ -34,7 +33,6 @@ function CourseDescription() {
         </div>
 
         <div className="flex flex-col gap-6 justify-center items-center my-12 sm:px-20 w-full sm:gap-0 sm:w-auto sm:grid sm:grid-cols-2">
-
           <div className="rounded-xl overflow-hidden bg-[#f6ede7] w-[90%] sm:w-auto">
             <div className="rounded-xl overflow-hidden w-full">
               <img
