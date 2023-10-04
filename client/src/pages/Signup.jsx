@@ -95,10 +95,10 @@ function SignUp() {
         <form
           onSubmit={handleSubmit}
           noValidate
-          className="flex flex-col items-center w-[38%] p-5 shadow-formshadow bg-gradient-to-r from-zinc-950 to-zinc-700 rounded-xl text-white"
+          className="flex flex-col items-center w-[90%] p-5 shadow-formshadow bg-gradient-to-r from-zinc-950 to-zinc-700 rounded-xl text-white sm:w-[38%]"
         >
           <img
-            className="w-[270px] aspect-auto mb-5"
+            className="w-[240px] sm:w-[270px] aspect-auto mb-5"
             src="/assets/signUp.svg"
             alt="sign In"
           />
@@ -132,7 +132,7 @@ function SignUp() {
 
           <input
             onChange={handleChange}
-            className="w-[80%] px-3 py-3 bg-transparent border-b-[2px] border-t-0 border-l-0 border-r-0 focus:ring-0 border-sky-500 focus:outline-none focus:border-sky-500 placeholder:font-semibold font-bold my-3"
+            className="w-[95%] sm:w-[80%] px-3 py-3 bg-transparent border-b-[2px] border-t-0 border-l-0 border-r-0 focus:ring-0 border-sky-500 focus:outline-none focus:border-sky-500 placeholder:font-semibold font-bold my-3"
             type="text"
             name="fullname"
             placeholder="Enter your full name"
@@ -140,13 +140,13 @@ function SignUp() {
 
           <input
             onChange={handleChange}
-            className="w-[80%] px-3 py-3 bg-transparent border-t-0 border-l-0 border-r-0 border-b-[2px] focus:ring-0 focus:border-sky-500 border-sky-500 focus:outline-none placeholder:font-semibold font-bold my-3"
+            className="w-[95%] sm:w-[80%] px-3 py-3 bg-transparent border-t-0 border-l-0 border-r-0 border-b-[2px] focus:ring-0 focus:border-sky-500 border-sky-500 focus:outline-none placeholder:font-semibold font-bold my-3"
             type="email"
             name="email"
             placeholder="Enter your Email"
           />
 
-          <div className="w-[80%] bg-transparent border-b-[2px] border-sky-500 my-3 flex justify-center items-center">
+          <div className="w-[95%] sm:w-[80%] bg-transparent border-b-[2px] border-sky-500 my-3 flex justify-center items-center">
             <input
               onChange={handleChange}
               className="bg-transparent py-3 focus:outline-none border-none focus:ring-0 w-full placeholder:font-semibold font-bold"
@@ -173,7 +173,7 @@ function SignUp() {
             )}
           </div>
 
-          <button className="py-2 px-5 rounded-lg transition-all duration-300 bg-blue-500 font-bold hover:bg-blue-600 focus:scale-110 hover:scale-110 mt-5">
+          <button className="btn text-white py-2 px-5 rounded-lg transition-all duration-300 bg-blue-500 font-bold hover:bg-blue-600 focus:scale-110 hover:scale-110 mt-5">
             Submit
           </button>
           <p className="font-bold text-[15px] tracking-wide my-4">

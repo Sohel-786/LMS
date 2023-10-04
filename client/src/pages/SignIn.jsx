@@ -54,19 +54,19 @@ function SignIn() {
         <form
           onSubmit={handleSubmit}
           noValidate
-          className="flex flex-col items-center w-[38%] p-5 shadow-formshadow bg-gradient-to-r from-gray-950 to-gray-700 rounded-xl text-white"
+          className="flex flex-col items-center w-[90%] p-5 shadow-formshadow bg-gradient-to-r from-gray-950 to-gray-700 rounded-xl text-white sm:w-[38%]"
         >
-          <img className="w-[200px] aspect-auto mb-8" src="/assets/Sign In.svg" alt="sign In" />
+          <img className="sm:w-[200px] w-[170px] aspect-auto mb-8" src="/assets/Sign In.svg" alt="sign In" />
 
           <input
             onChange={handleChange}
-            className="w-[80%] py-4 px-5 bg-transparent border-t-0 border-r-0 border-l-0 border-b-[2px] border-sky-500 focus:border-sky-300 focus:outline-none placeholder:font-semibold focus:ring-0 font-bold my-3"
+            className="w-[95%] py-4 px-5 bg-transparent border-t-0 border-r-0 border-l-0 border-b-[2px] border-sky-500 focus:border-sky-300 focus:outline-none placeholder:font-semibold focus:ring-0 font-bold my-3 sm:w-[80%]"
             type="email"
             name="email"
             placeholder="Enter your Email"
           />
 
-          <div className="w-[80%] p-2 bg-transparent flex justify-center items-center border-b-[2px] border-sky-500 my-3 focus-within:border-sky-300">
+          <div className="w-[95%] p-2 bg-transparent flex justify-center items-center border-b-[2px] border-sky-500 my-3 focus-within:border-sky-300 sm:w-[80%]">
             <input
               onChange={handleChange}
               className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"

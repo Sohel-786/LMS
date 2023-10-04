@@ -38,30 +38,38 @@ function HomeLayout({ children }) {
 
   return (
     <div className="sm:pt-9 w-100%">
-      <div className="drawer absolute left-0 z-50 w-full h-[90vh] sm:hidden">
+      <div className="drawer absolute left-0 z-50 w-full sm:hidden">
+        {/* this Input for toggle the burgur */}
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
 
+        {/* this is burgur Icon */}
         <div className="drawer-content">
           <label htmlFor="my-drawer">
             <TfiMenu
               onClick={changeWidth}
-              size={"28px"}
-              className="font-bold m-4 cursor-pointer"
+              size={"33px"}
+              className="ml-4 mt-7 cursor-pointer fixed z-20"
             />
           </label>
         </div>
 
-        <div className="drawer-side w-0 h-full">
+        {/* From Here This is Drawer */}
+        <div className="drawer-side w-0 h-full z-30">
           <label htmlFor="my-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-64 bg-base-200 h-full font-slab text-xl tracking-wide pt-5 text-white bg-gradient-to-r from-slate-950 to-slate-700">
+
+          {/* This Drawer List */}
+          <ul className="menu flex flex-col gap-3 p-4 w-80 bg-base-200 h-full font-slab text-xl tracking-wide pt-5 text-white bg-gradient-to-r from-slate-950 to-slate-700">
+
             <li className="absolute right-2 z-50">
               <button onClick={hideDrawer} className="w-fit">
                 <IoMdClose size={"28px"}/>
               </button>
             </li>
+
             <li onClick={hideDrawer}>
               <Link to="/">Home</Link>
             </li>
+
             {isLoggedIn && role === "ADMIN" && (
               <li onClick={hideDrawer}>
                 <Link to="/admin/dashboard">Admin Dashboard</Link>
@@ -116,6 +124,7 @@ function HomeLayout({ children }) {
         </div>
       </div>
 
+      {/* This Header is for Bigger Screens */}
       <header className="hidden sm:flex justify-between items-center py-1 px-10 shadow-headershadow z-50 bg-white fixed w-full top-0">
         <div className="w-[160px] aspect-auto relative -top-1">
           <img className="w-full aspect-auto" src={"/assets/classroom.svg"} alt="logo" />
@@ -170,7 +179,15 @@ function HomeLayout({ children }) {
         </div>
       </header>
 
-      {children}
+      <div className="sm:hidden z-30 bg-white flex justify-center items-center w-full py-2 shadow-headershadow fixed">
+          <div>
+            <img className="w-44" src="/assets/classroom.svg" alt="Classroom Logo" />
+          </div>
+      </div>
+
+      <div className="pt-16 sm:pt-0">
+        {children}
+      </div>
       <Footer />
     </div>
   );
