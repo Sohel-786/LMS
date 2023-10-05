@@ -5,6 +5,7 @@ import { BiEdit, BiSolidEdit } from "react-icons/bi";
 import { TbDeviceDesktopCancel } from "react-icons/tb";
 import { useState } from "react";
 import { MdFreeCancellation } from "react-icons/md";
+import { GiSave } from "react-icons/gi";
 
 function Profile() {
   const navigate = useNavigate();
@@ -13,6 +14,8 @@ function Profile() {
   );
 
   const [editable, setEditable] = useState(false);
+  const [enableSave, setEnableSave] = useState(false);
+
   const [formData, setFormdata] = useState({
     fullname: fullname,
     previewImage: avatar.secure_url,
@@ -34,6 +37,8 @@ function Profile() {
         return { ...formData, previewImage: result };
       });
     });
+
+    setEnableSave(true);
   }
 
   function handleChange(e) {
@@ -42,6 +47,7 @@ function Profile() {
       ...formData,
       [name]: value,
     });
+    setEnableSave(true);
   }
 
   return (
@@ -140,19 +146,33 @@ function Profile() {
 
             <div className="w-full flex items-center gap-6 mt-8">
               {editable ? (
-                <button
-                  onClick={() => {
-                    setEditable(false);
-                    setFormdata({
-                      fullname: fullname,
-                      previewImage: avatar.secure_url,
-                    });
-                  }}
-                  className="flex justify-center items-center gap-2 text-xl px-5 py-2 rounded-xl bg-gradient-to-t from-stone-800 via-stone-600 to-stone-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-b hover:from-stone-900 hover:via-stone-700 hover:to-stone-500"
-                >
-                  <MdFreeCancellation size={"22px"} />
-                  Cancel
-                </button>
+                <>
+                  <button
+                    onClick={() => {
+                      setEditable(false);
+                      setFormdata({
+                        fullname: fullname,
+                        previewImage: avatar.secure_url,
+                      });
+                      setEnableSave(false);
+                    }}
+                    className="flex justify-center items-center gap-2 text-xl px-5 py-2 rounded-xl bg-gradient-to-t from-stone-800 via-stone-600 to-stone-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-b hover:from-stone-900 hover:via-stone-700 hover:to-stone-500"
+                  >
+                    <MdFreeCancellation size={"22px"} />
+                    Cancel
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setEditable(true);
+                    }}
+                    disabled={!enableSave}
+                    className="flex justify-center items-center gap-2 text-xl px-5 py-2 rounded-xl bg-gradient-to-b from-green-800 via-green-600 to-green-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-green-900 hover:via-green-700 hover:to-green-500 disabled:cursor-not-allowed disabled:bg-gradient-to-r disabled:from-red-800 disabled:to-red-500"
+                  >
+                    <GiSave size={"22px"} />
+                    Save
+                  </button>
+                </>
               ) : (
                 <>
                   <button
