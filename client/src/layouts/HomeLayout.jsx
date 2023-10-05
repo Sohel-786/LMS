@@ -4,14 +4,38 @@ import { TfiMenu } from "react-icons/tfi";
 import { IoMdClose } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slices/authSlice";
-import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
+import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
+import { useEffect, useRef, useState } from "react";
 
 function HomeLayout({ children }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showProfile, setShowProfile] = useState(false);
+  const wrapperRef = useRef("profileMenu");
 
   const isLoggedIn = useSelector((s) => s?.auth?.isLoggedIn);
   const role = useSelector((s) => s?.auth?.role);
+
+  //This is for the Profile Menu, to close on click of pointer device anywhere on the window except the element itself
+  function handleProfilemenuview(ref, useClickOutside) {-
+    useEffect(() => {
+      function handleClickoutside(e) {
+        if (ref.current && !ref.current.contains(e.target)) {
+          useClickOutside();
+        }
+      }
+
+      document.addEventListener("mousedown", handleClickoutside);
+
+      return () => {
+        document.removeEventListener("mousedown", handleClickoutside);
+      };
+    }, [ref, useClickOutside]);
+  }
+
+  handleProfilemenuview(wrapperRef, () => {
+    setShowProfile(false);
+  });
 
   async function handleLogout() {
     const res = await dispatch(logout());
@@ -24,13 +48,13 @@ function HomeLayout({ children }) {
   function changeWidth() {
     const drawerSide = document.getElementsByClassName("drawer-side");
     drawerSide[0].style.width = "auto";
-    disableBodyScroll('document');
+    disableBodyScroll("document");
   }
-  
+
   function hideDrawer() {
     const element = document.getElementsByClassName("drawer-toggle");
     element[0].checked = false;
-    enableBodyScroll('document');
+    enableBodyScroll("document");
 
     const drawerSide = document.getElementsByClassName("drawer-side");
     drawerSide[0].style.width = "0";
@@ -59,10 +83,9 @@ function HomeLayout({ children }) {
 
           {/* This Drawer List */}
           <ul className="menu flex flex-col gap-3 p-4 w-80 bg-base-200 h-full font-slab text-xl tracking-wide pt-5 text-white bg-gradient-to-r from-slate-950 to-slate-700">
-
             <li className="absolute right-2 z-50">
               <button onClick={hideDrawer} className="w-fit">
-                <IoMdClose size={"28px"}/>
+                <IoMdClose size={"28px"} />
               </button>
             </li>
 
@@ -98,7 +121,10 @@ function HomeLayout({ children }) {
             )}
 
             {isLoggedIn ? (
-              <div onClick={hideDrawer} className="flex items-center gap-4 w-[90%] absolute bottom-5">
+              <div
+                onClick={hideDrawer}
+                className="flex items-center gap-4 w-[90%] absolute bottom-5"
+              >
                 <button
                   onClick={handleLogout}
                   className="btn bg-red-600 text-white rounded-md border-[2px]  hover:bg-red-800"
@@ -109,12 +135,18 @@ function HomeLayout({ children }) {
             ) : (
               <div className="flex justify-center items-center gap-4 w-[90%] absolute bottom-5">
                 <Link to={"/signin"}>
-                  <button onClick={hideDrawer} className="btn border-[2px] text-white bg-green-500 rounded-md hover:bg-green-700">
+                  <button
+                    onClick={hideDrawer}
+                    className="btn border-[2px] text-white bg-green-500 rounded-md hover:bg-green-700"
+                  >
                     Sign In
                   </button>
                 </Link>
                 <Link to={"/signup"}>
-                  <button onClick={hideDrawer} className="btn border-[2px] text-white bg-sky-500 rounded-md hover:bg-sky-700">
+                  <button
+                    onClick={hideDrawer}
+                    className="btn border-[2px] text-white bg-sky-500 rounded-md hover:bg-sky-700"
+                  >
                     Sign Up
                   </button>
                 </Link>
@@ -127,7 +159,11 @@ function HomeLayout({ children }) {
       {/* This Header is for Bigger Screens */}
       <header className="hidden lg:flex justify-between items-center py-1 px-10 shadow-headershadow z-50 bg-white fixed w-full top-0">
         <div className="w-[160px] aspect-auto relative -top-1">
-          <img className="w-full aspect-auto" src={"/assets/classroom.svg"} alt="logo" />
+          <img
+            className="w-full aspect-auto"
+            src={"/assets/classroom.svg"}
+            alt="logo"
+          />
         </div>
 
         <div className="flex justify-center items-center gap-4 text-black">
@@ -156,38 +192,57 @@ function HomeLayout({ children }) {
             </ul>
           </div>
 
-          <div className="flex justify-center items-center gap-5">
-            <button
+          {isLoggedIn ? (
+            <div
+              ref={wrapperRef}
               onClick={() => {
-                navigate("/signin");
+                console.log(showProfile);
+                setShowProfile(!showProfile);
               }}
-              className="py-[6px] px-4 text-lg transition-all duration-300 ease-in-out bg-cyan-100 rounded-lg font-mono font-black text-indigo-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-indigo-300 focus:outline-none focus:scale-110 focus:border-indigo-300"
+              className="rounded-full w-11 h-11 bg-black"
             >
-              LOGIN
-            </button>
+              {showProfile && (
+                <div
+                  className="absolute h-24 w-10 bg-black top-14"
+                ></div>
+              )}
+            </div>
+          ) : (
+            <div className="flex justify-center items-center gap-5">
+              <button
+                onClick={() => {
+                  navigate("/signin");
+                }}
+                className="py-[6px] px-4 text-lg transition-all duration-300 ease-in-out bg-cyan-100 rounded-lg font-mono font-black text-indigo-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-indigo-300 focus:outline-none focus:scale-110 focus:border-indigo-300"
+              >
+                LOGIN
+              </button>
 
-            <button
-              onClick={() => {
-                navigate("/signup");
-              }}
-              className="py-[6px] px-4 text-lg transition-all duration-300 ease-in-out bg-red-50 rounded-lg font-mono font-black text-red-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-pink-300 
+              <button
+                onClick={() => {
+                  navigate("/signup");
+                }}
+                className="py-[6px] px-4 text-lg transition-all duration-300 ease-in-out bg-red-50 rounded-lg font-mono font-black text-red-500 tracking-wider border-[3px] border-transparent hover:scale-110 hover:border-pink-300 
             focus:outline-none focus:scale-110 focus:border-pink-300"
-            >
-              SING UP
-            </button>
-          </div>
+              >
+                SING UP
+              </button>
+            </div>
+          )}
         </div>
       </header>
 
       <div className="lg:hidden z-30 bg-white flex justify-center items-center w-full py-2 shadow-headershadow fixed">
-          <div>
-            <img className="w-44" src="/assets/classroom.svg" alt="Classroom Logo" />
-          </div>
+        <div>
+          <img
+            className="w-44"
+            src="/assets/classroom.svg"
+            alt="Classroom Logo"
+          />
+        </div>
       </div>
 
-      <div className="pt-16 lg:pt-0">
-        {children}
-      </div>
+      <div className="pt-16 lg:pt-0">{children}</div>
       <Footer />
     </div>
   );
