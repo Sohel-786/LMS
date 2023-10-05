@@ -4,7 +4,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { BiEdit, BiSolidEdit } from "react-icons/bi";
 import { TbDeviceDesktopCancel } from "react-icons/tb";
 import { useState } from "react";
-import { MdFreeCancellation } from 'react-icons/md';
+import { MdFreeCancellation } from "react-icons/md";
 
 function Profile() {
   const navigate = useNavigate();
@@ -13,6 +13,36 @@ function Profile() {
   );
 
   const [editable, setEditable] = useState(false);
+  const [formData, setFormdata] = useState({
+    fullname: fullname,
+    previewImage: avatar.secure_url,
+  });
+
+  function handleImage(e) {
+    const uploadedImage = e.target.files[0];
+    if (!uploadedImage) return;
+
+    setFormdata((s) => {
+      return { ...formData, avatar: uploadedImage };
+    });
+
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(uploadedImage);
+    fileReader.addEventListener("load", function () {
+      let result = this.result;
+      setFormdata((s) => {
+        return { ...formData, previewImage: result };
+      });
+    });
+  }
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormdata({
+      ...formData,
+      [name]: value,
+    });
+  }
 
   return (
     <div className="h-[100vh] flex flex-col items-center">
@@ -44,24 +74,25 @@ function Profile() {
           <div className="flex justify-center items-center">
             <div
               style={{
-                backgroundImage: `url(${avatar.secure_url})`,
+                backgroundImage: `url(${formData.previewImage})`,
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "contain",
               }}
               className="w-[350px] h-[350px] rounded-full border-[1px] border-transparent hover:border-pink-400 "
             >
-              <label htmlFor="profile"><BiSolidEdit
-                hidden={!editable}
-                size={"80px"}
-                className="relative left-60 top-[270px] text-pink-500 hover:text-green-700 transition-colors duration-300 ease-in-out"
-              /></label>
-              
+              <label htmlFor="profile">
+                <BiSolidEdit
+                  hidden={!editable}
+                  size={"80px"}
+                  className="relative left-60 top-[270px] text-pink-500 hover:text-green-700 transition-colors duration-300 ease-in-out"
+                />
+              </label>
             </div>
           </div>
 
           <div>
-            <input type="file" hidden id="profile" />
+            <input onChange={handleImage} type="file" hidden id="profile" />
           </div>
         </div>
 
@@ -92,7 +123,8 @@ function Profile() {
                 }}
                 contentEditable={editable}
                 name="fullname"
-                value={fullname}
+                onChange={handleChange}
+                value={formData.fullname}
                 className="capitalize text-4xl font-roboto font-semibold tracking-wide outline-none border-none focus:outline-none focus:ring-0 bg-transparent"
               />
             </fieldset>
@@ -107,28 +139,37 @@ function Profile() {
             </fieldset>
 
             <div className="w-full flex items-center gap-6 mt-8">
-              {editable ? <button
-                onClick={() => {
-                  setEditable(false);
-                }}
-                className="flex justify-center items-center gap-2 text-xl px-5 py-2 rounded-xl bg-gradient-to-t from-stone-800 via-stone-600 to-stone-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-b hover:from-stone-900 hover:via-stone-700 hover:to-stone-500"
-              >
-                <MdFreeCancellation size={"22px"} />
-                Cancel
-              </button> : <button
-                onClick={() => {
-                  setEditable(true);
-                }}
-                className="flex justify-center items-center gap-1 text-xl px-3 py-2 rounded-xl bg-gradient-to-b from-green-800 via-green-600 to-green-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-green-900 hover:via-green-700 hover:to-green-500"
-              >
-                <BiEdit size={"22px"} />
-                Edit Profile
-              </button>}
-
-              <button className="flex justify-center items-center gap-1 text-xl px-3 py-2 rounded-xl bg-gradient-to-b from-red-800 via-red-600 to-red-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-red-900 hover:via-red-700 hover:to-red-500">
-                <TbDeviceDesktopCancel size={"22px"} />
-                Cancel Subscription
-              </button>
+              {editable ? (
+                <button
+                  onClick={() => {
+                    setEditable(false);
+                    setFormdata({
+                      fullname: fullname,
+                      previewImage: avatar.secure_url,
+                    });
+                  }}
+                  className="flex justify-center items-center gap-2 text-xl px-5 py-2 rounded-xl bg-gradient-to-t from-stone-800 via-stone-600 to-stone-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-b hover:from-stone-900 hover:via-stone-700 hover:to-stone-500"
+                >
+                  <MdFreeCancellation size={"22px"} />
+                  Cancel
+                </button>
+              ) : (
+                <>
+                  <button
+                    onClick={() => {
+                      setEditable(true);
+                    }}
+                    className="flex justify-center items-center gap-1 text-xl px-3 py-2 rounded-xl bg-gradient-to-b from-green-800 via-green-600 to-green-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-green-900 hover:via-green-700 hover:to-green-500"
+                  >
+                    <BiEdit size={"22px"} />
+                    Edit Profile
+                  </button>{" "}
+                  <button className="flex justify-center items-center gap-1 text-xl px-3 py-2 rounded-xl bg-gradient-to-b from-red-800 via-red-600 to-red-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-red-900 hover:via-red-700 hover:to-red-500">
+                    <TbDeviceDesktopCancel size={"22px"} />
+                    Cancel Subscription
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
