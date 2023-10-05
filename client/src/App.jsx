@@ -10,6 +10,7 @@ import CourseDescription from "./pages/Course/CourseDescription";
 import AuthRoute from "./components/AuthRoute";
 import CreateCourse from "./pages/Course/CreateCourse";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route element={<AuthRoute allowedRoles={["ADMIN"]} />}>
           <Route path="/course-create" element={<CreateCourse />} />
         </Route>
+        <Route path="/profile" element={<Profile />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/course-description" element={<CourseDescription />} />
         <Route path="*" element={<Notfound />} />
