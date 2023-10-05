@@ -23,7 +23,7 @@ function Courses() {
   return (
     <HomeLayout>
       <section className="min-h-[90vh] flex flex-col justify-center items-center m-auto py-6 px-7 mb-7">
-        <div className="flex flex-col justify-center items-center w-[95%] gap-7 my-10 bg-[#fcf4f5] rounded-xl sm:rounded-lg py-14 sm:w-[90%]">
+        <div className="flex flex-col justify-center items-center w-[95%] gap-7 my-10 bg-[#fcf4f5] rounded-xl sm:rounded-lg py-14 lg:w-[90%]">
           <h1 className="text-4xl text-black sm:text-5xl font-bold">Our Courses</h1>
           <p className="sm:text-xl text- text-base text-center font-roboto font-semibold text-stone-600">
             Fast forward your career with our high impact, hands on and
@@ -31,7 +31,7 @@ function Courses() {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center items-center gap-12">
+        <div className="flex flex-wrap justify-center items-center gap-10 md:gap-6 lg:gap-12">
           {!isLodding ? (
             data?.map((el) => {
               return <CourseCard key={el._id} data={el} />;

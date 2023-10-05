@@ -185,7 +185,7 @@ function HomeLayout({ children }) {
           </div>
       </div>
 
-      <div className="pt-16 sm:pt-0">
+      <div className="pt-16 lg:pt-0">
         {children}
       </div>
       <Footer />

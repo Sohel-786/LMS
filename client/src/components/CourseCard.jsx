@@ -7,17 +7,17 @@ function CourseCard({ data }) {
   const navigate = useNavigate();
 
   return (
-    <div className="sm:w-[380px] sm:h-[560px] w-[95%] rounded-lg overflow-hidden bg-white hover:scale-105 transition-all duration-300 shadow-course">
+    <div className="lg:w-[380px] lg:h-[560px] w-[95%] md:w-[45%] rounded-lg overflow-hidden bg-white hover:scale-105 transition-all duration-300 shadow-course">
       <div className="w-full h-[38%] mb-2">
         <img
-          className="h-full aspect-auto"
+          className="h-full md:w-full lg:aspect-auto aspect-auto"
           src={data.thumbnail.secure_url}
           alt={"course thumbnail"}
         />
       </div>
       <div className="flex flex-col justify-center px-6">
         <div className="flex justify-center flex-col">
-          <h1 className="text-black font-bold text-[18px] sm:text-[22px]">{data.title}</h1>
+          <h1 className="text-black font-bold text-[18px] md:text-[17px] sm:text-[22px]">{data.title}</h1>
           <h3 className="text-gray-600 font-bold text-base sm:text-lg font-mono tracking-wide">
             {data.category}
           </h3>
