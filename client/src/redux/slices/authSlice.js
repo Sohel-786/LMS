@@ -70,6 +70,21 @@ export const contact = createAsyncThunk("/contact", async (data) => {
   }
 });
 
+export const updateUser = createAsyncThunk("auth/updateUser", async (data) => {
+  try {
+    const res = axiosInstance.post("/user/update", data);
+    toast.promise(res, {
+      loading: "Wait! Updating your profile",
+      success: "Your Profile Updated Successfully",
+      error: "Failed to updated your profile",
+    });
+
+    return await res;
+  } catch (err) {
+    toast.error(err?.response?.data?.message);
+  }
+});
+
 const authSlice = createSlice({
   name: "auth",
   initialState,

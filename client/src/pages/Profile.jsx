@@ -1,14 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { BiEdit, BiSolidEdit } from "react-icons/bi";
 import { TbDeviceDesktopCancel } from "react-icons/tb";
 import { useState } from "react";
 import { MdFreeCancellation } from "react-icons/md";
 import { GiSave } from "react-icons/gi";
+import { updateUser } from "../redux/slices/authSlice";
 
 function Profile() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { avatar, fullname, email, createdAt } = useSelector(
     (s) => s?.auth?.data
   );
@@ -18,6 +20,7 @@ function Profile() {
 
   const [formData, setFormdata] = useState({
     fullname: fullname,
+    avatar : null,
     previewImage: avatar.secure_url,
   });
 
@@ -25,16 +28,16 @@ function Profile() {
     const uploadedImage = e.target.files[0];
     if (!uploadedImage) return;
 
-    setFormdata((s) => {
-      return { ...formData, avatar: uploadedImage };
+    setFormdata((s) =>{
+      return { ...s, avatar: uploadedImage };
     });
 
     const fileReader = new FileReader();
     fileReader.readAsDataURL(uploadedImage);
     fileReader.addEventListener("load", function () {
       let result = this.result;
-      setFormdata((s) => {
-        return { ...formData, previewImage: result };
+      setFormdata((s) =>{
+        return { ...s, previewImage: result };
       });
     });
 
@@ -50,8 +53,26 @@ function Profile() {
     setEnableSave(true);
   }
 
+  async function handleSubmit(){
+    
+    if(formData.fullname === fullname && !formData.avatar){
+      return;
+    }
+
+    const data = new FormData();
+    data.append('fullname', formData.fullname)
+    if(formData.avatar){
+      data.append('avatar', formData.avatar)
+    }
+
+    console.log('reached');
+    const res = await dispatch(updateUser(data));
+
+    console.log(res);
+  }
+
   return (
-    <div className="h-[100vh] flex flex-col items-center">
+    <div className="flex flex-col items-center">
       <header className="flex justify-center items-center shadow-headershadow w-full">
         <div className="w-[160px] aspect-auto">
           <img
@@ -62,7 +83,7 @@ function Profile() {
         </div>
       </header>
 
-      <div className="w-[90%] h-[80%] flex justify-center items-center shadow-profile my-8 rounded-lg">
+      <div className="w-[90%] h-[480px] flex justify-center items-center shadow-profile my-8 rounded-lg">
         <div
           style={{ userSelect: "none" }}
           className="flex flex-col items-center w-1/2 h-full"
@@ -83,7 +104,7 @@ function Profile() {
                 backgroundImage: `url(${formData.previewImage})`,
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
+                backgroundSize: "cover",
               }}
               className="w-[350px] h-[350px] rounded-full border-[1px] border-transparent hover:border-pink-400 "
             >
@@ -163,9 +184,7 @@ function Profile() {
                   </button>
 
                   <button
-                    onClick={() => {
-                      setEditable(true);
-                    }}
+                    onClick={handleSubmit}
                     disabled={!enableSave}
                     className="flex justify-center items-center gap-2 text-xl px-5 py-2 rounded-xl bg-gradient-to-b from-green-800 via-green-600 to-green-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-green-900 hover:via-green-700 hover:to-green-500 disabled:cursor-not-allowed disabled:bg-gradient-to-r disabled:from-red-800 disabled:to-red-500"
                   >
