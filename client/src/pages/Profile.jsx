@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { BiEdit } from "react-icons/bi";
+import { BiEdit, BiSolidEdit } from "react-icons/bi";
 import { TbDeviceDesktopCancel } from "react-icons/tb";
 import { useState } from "react";
+import { MdFreeCancellation } from 'react-icons/md';
 
 function Profile() {
   const navigate = useNavigate();
@@ -25,10 +26,10 @@ function Profile() {
         </div>
       </header>
 
-      <div className="w-[90%] h-[80%] flex justify-center items-center shadow-profile my-8 pb-16 rounded-lg">
+      <div className="w-[90%] h-[80%] flex justify-center items-center shadow-profile my-8 rounded-lg">
         <div
           style={{ userSelect: "none" }}
-          className="flex flex-col justify-center items-center w-1/2"
+          className="flex flex-col items-center w-1/2 h-full"
         >
           <div className="w-full p-3">
             <div
@@ -40,15 +41,28 @@ function Profile() {
               <FaArrowLeftLong size={"36px"} className="text-stone-500" />
             </div>
           </div>
-          <div
-            style={{
-              backgroundImage: `url(${avatar.secure_url})`,
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
-            }}
-            className="w-[350px] h-[350px] rounded-full border-[1px] border-transparent hover:border-pink-400 "
-          ></div>
+          <div className="flex justify-center items-center">
+            <div
+              style={{
+                backgroundImage: `url(${avatar.secure_url})`,
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "contain",
+              }}
+              className="w-[350px] h-[350px] rounded-full border-[1px] border-transparent hover:border-pink-400 "
+            >
+              <label htmlFor="profile"><BiSolidEdit
+                hidden={!editable}
+                size={"80px"}
+                className="relative left-60 top-[270px] text-pink-500 hover:text-green-700 transition-colors duration-300 ease-in-out"
+              /></label>
+              
+            </div>
+          </div>
+
+          <div>
+            <input type="file" hidden id="profile" />
+          </div>
         </div>
 
         <div className="flex flex-col w-1/2 h-full px-5 py-4">
@@ -58,7 +72,7 @@ function Profile() {
             </p>
           </div>
 
-          <div className="w-full h-[80%] flex flex-col gap-5 justify-center">
+          <div className="w-full h-[80%] flex flex-col gap-5 justify-center  pb-16">
             <fieldset
               style={{
                 userSelect: "none",
@@ -71,12 +85,15 @@ function Profile() {
                 spellCheck="false"
                 style={{
                   caretColor: editable ? "green" : "transparent",
-                  borderBottom : editable ? '2px solid #4f46e5' : '2px solid transparent'
+                  borderBottom: editable
+                    ? "2px solid #4f46e5"
+                    : "2px solid transparent",
+                  color: editable ? "#4f46e5" : "inherit",
                 }}
                 contentEditable={editable}
                 name="fullname"
                 value={fullname}
-                className="capitalize text-4xl font-roboto font-semibold tracking-wide outline-none border-none focus:outline-none focus:ring-0"
+                className="capitalize text-4xl font-roboto font-semibold tracking-wide outline-none border-none focus:outline-none focus:ring-0 bg-transparent"
               />
             </fieldset>
 
@@ -90,14 +107,25 @@ function Profile() {
             </fieldset>
 
             <div className="w-full flex items-center gap-6 mt-8">
-              <button onClick={() =>{
-                setEditable(true)
-              }} className="flex justify-center items-center gap-1 text-xl px-3 py-2 rounded-xl bg-gradient-to-b from-green-800 via-green-600 to-green-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-b hover:from-green-900 hover:via-green-700 hover:to-green-500">
+              {editable ? <button
+                onClick={() => {
+                  setEditable(false);
+                }}
+                className="flex justify-center items-center gap-2 text-xl px-5 py-2 rounded-xl bg-gradient-to-t from-stone-800 via-stone-600 to-stone-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-b hover:from-stone-900 hover:via-stone-700 hover:to-stone-500"
+              >
+                <MdFreeCancellation size={"22px"} />
+                Cancel
+              </button> : <button
+                onClick={() => {
+                  setEditable(true);
+                }}
+                className="flex justify-center items-center gap-1 text-xl px-3 py-2 rounded-xl bg-gradient-to-b from-green-800 via-green-600 to-green-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-green-900 hover:via-green-700 hover:to-green-500"
+              >
                 <BiEdit size={"22px"} />
                 Edit Profile
-              </button>
+              </button>}
 
-              <button className="flex justify-center items-center gap-1 text-xl px-3 py-2 rounded-xl bg-gradient-to-b from-red-800 via-red-600 to-red-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-b hover:from-red-900 hover:via-red-700 hover:to-red-500">
+              <button className="flex justify-center items-center gap-1 text-xl px-3 py-2 rounded-xl bg-gradient-to-b from-red-800 via-red-600 to-red-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-red-900 hover:via-red-700 hover:to-red-500">
                 <TbDeviceDesktopCancel size={"22px"} />
                 Cancel Subscription
               </button>

@@ -63,10 +63,6 @@ const register = async (req, res, next) => {
     try {
       const result = await cloudinary.v2.uploader.upload(req.file.path, {
         folder: "lms",
-        width: 250,
-        height: 250,
-        gravity: "faces",
-        crop: "fill",
       });
 
       if (result) {
@@ -270,10 +266,6 @@ const updateProfile = async (req, res, next) => {
 
     const result = await cloudinary.v2.uploader.upload(req.file.path, {
       folder: "lms",
-      width: 250,
-      height: 250,
-      gravity: "faces",
-      crop: "fill",
     });
 
     if (result) {
