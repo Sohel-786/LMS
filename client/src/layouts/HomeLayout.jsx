@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slices/authSlice";
 import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
 import { useEffect, useRef, useState } from "react";
+import { BiSolidUser } from "react-icons/bi";
+import { RiLogoutBoxRLine } from "react-icons/ri";
 
 function HomeLayout({ children }) {
   const dispatch = useDispatch();
@@ -15,9 +17,11 @@ function HomeLayout({ children }) {
 
   const isLoggedIn = useSelector((s) => s?.auth?.isLoggedIn);
   const role = useSelector((s) => s?.auth?.role);
+  const name = useSelector((s) => s?.auth?.data?.fullname);
+  const img = useSelector((s) => s?.auth?.data?.avatar?.secure_url);
 
   //This is for the Profile Menu, to close on click of pointer device anywhere on the window except the element itself
-  function handleProfilemenuview(ref, useClickOutside) {-
+  function handleProfilemenuview(ref, useClickOutside) {
     useEffect(() => {
       function handleClickoutside(e) {
         if (ref.current && !ref.current.contains(e.target)) {
@@ -193,18 +197,42 @@ function HomeLayout({ children }) {
           </div>
 
           {isLoggedIn ? (
-            <div
-              ref={wrapperRef}
-              onClick={() => {
-                console.log(showProfile);
-                setShowProfile(!showProfile);
-              }}
-              className="rounded-full w-11 h-11 bg-black"
-            >
+            <div className="flex flex-col justify-center items-center" ref={wrapperRef}>
+              <div
+                
+                onClick={() => {
+                  setShowProfile(!showProfile);
+                }}
+                className="rounded-full w-11 h-11 mr-3 cursor-pointer bg-center bg-contain hover:border-[1px] border-transparent hover:border-pink-300"
+                style={{
+                  userSelect: 'none',
+                  backgroundImage: `url(${img})`,
+                }}
+              ></div>
+
               {showProfile && (
-                <div
-                  className="absolute h-24 w-10 bg-black top-14"
-                ></div>
+                <div className="absolute flex flex-col justify-center w-36 bg-white shadow-menu top-16 right-4 rounded-md">
+                  <div className="w-full p-2">
+                    <h1 className="font-slab text-sm tracking-wide text-indigo-500">
+                      Hay
+                    </h1>
+                    <p className="font-roboto font-semibold tracking-wide text-gray-600 mt-1">
+                      {name}
+                    </p>
+                  </div>
+                  <hr className="w-[90%] self-center" />
+                  <Link to={"/profile"}>
+                    <div className="flex gap-4 items-center py-2 px-2 font-bold text-sm text-stone-700 hover:bg-slate-200">
+                      <BiSolidUser size={"18px"} /> My Profile
+                    </div>
+                  </Link>
+                  <div
+                    onClick={handleLogout}
+                    className="flex gap-4 cursor-pointer items-center py-2 px-2 font-bold text-sm text-stone-700 hover:bg-slate-200"
+                  >
+                    <RiLogoutBoxRLine size={"18px"} /> Logout
+                  </div>
+                </div>
               )}
             </div>
           ) : (

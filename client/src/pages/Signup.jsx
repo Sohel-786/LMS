@@ -132,7 +132,7 @@ function SignUp() {
 
           <input
             onChange={handleChange}
-            className="w-[95%] sm:w-[80%] px-3 py-3 bg-transparent border-b-[2px] border-t-0 border-l-0 border-r-0 focus:ring-0 border-sky-500 focus:outline-none focus:border-sky-500 placeholder:font-semibold font-bold my-3"
+            className="w-[95%] sm:w-[80%] px-3 py-3 bg-transparent border-b-[2px] border-t-0 border-l-0 border-r-0 focus:ring-0 border-sky-500 focus:outline-none focus:border-sky-500 placeholder:font-semibold font-bold my-3 capitalize"
             type="text"
             name="fullname"
             placeholder="Enter your full name"

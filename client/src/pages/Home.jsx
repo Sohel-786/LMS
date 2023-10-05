@@ -98,7 +98,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="hidden lg:flex items-center justify-center lg:w-1/2">
+          <div style={{userSelect: 'none'}} className="hidden lg:flex items-center justify-center lg:w-1/2">
             <img src={homepageImage} alt="homepage" />
           </div>
         </div>
