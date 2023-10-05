@@ -124,7 +124,7 @@ const authSlice = createSlice({
         state.data = {};
       })
       .addCase(getUserDetails.fulfilled, (state, action) => {
-          state.data = action?.payload?.data?.user;
+        state.data = action?.payload?.data?.user;
       });
   },
 });

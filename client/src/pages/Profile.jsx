@@ -20,7 +20,7 @@ function Profile() {
 
   const [formData, setFormdata] = useState({
     fullname: fullname,
-    avatar : null,
+    avatar: null,
     previewImage: avatar.secure_url,
   });
 
@@ -28,7 +28,7 @@ function Profile() {
     const uploadedImage = e.target.files[0];
     if (!uploadedImage) return;
 
-    setFormdata((s) =>{
+    setFormdata((s) => {
       return { ...s, avatar: uploadedImage };
     });
 
@@ -36,7 +36,7 @@ function Profile() {
     fileReader.readAsDataURL(uploadedImage);
     fileReader.addEventListener("load", function () {
       let result = this.result;
-      setFormdata((s) =>{
+      setFormdata((s) => {
         return { ...s, previewImage: result };
       });
     });
@@ -53,23 +53,22 @@ function Profile() {
     setEnableSave(true);
   }
 
-  async function handleSubmit(){
-    
-    if(formData.fullname === fullname && !formData.avatar){
+  async function handleSubmit() {
+    if (formData.fullname === fullname && !formData.avatar) {
       return;
     }
 
     const data = new FormData();
-    data.append('fullname', formData.fullname)
-    if(formData.avatar){
-      data.append('avatar', formData.avatar)
+    data.append("fullname", formData.fullname);
+    if (formData.avatar) {
+      data.append("avatar", formData.avatar);
     }
 
-    console.log('reached');
+    console.log("reached");
     const res = await dispatch(updateUser(data));
 
-    if(res?.payload?.data?.success){
-      console.log('sohel');
+    if (res?.payload?.data?.success) {
+      console.log("sohel");
       await dispatch(getUserDetails());
     }
 

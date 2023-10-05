@@ -218,7 +218,7 @@ function HomeLayout({ children }) {
                     <h1 className="font-slab text-sm tracking-wide text-indigo-500">
                       Hay
                     </h1>
-                    <p className="font-roboto font-semibold tracking-wide text-gray-600 mt-1">
+                    <p className="font-roboto font-semibold tracking-wide text-gray-600 mt-1 capitalize">
                       {name}
                     </p>
                   </div>

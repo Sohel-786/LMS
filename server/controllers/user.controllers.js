@@ -41,15 +41,8 @@ const register = async (req, res, next) => {
     return next(new AppError("User Already Registered", 400));
   }
 
-  const arr = fullname.trim().split(" ");
-  arr.forEach(el => {
-      el = el.charAt(0).toUpperCase() + el.slice(1);
-  });
-
-  fullname = arr.join(' ');
-
   const user = await User.create({
-    fullname : (arr.join(' ')),
+    fullname,
     email,
     password,
     avatar: {
@@ -265,13 +258,7 @@ const updateProfile = async (req, res, next) => {
   }
 
   if (fullname) {
-    const arr = fullname.trim().split(" ");
-    arr.forEach(el => {
-        el = el.charAt(0).toUpperCase() + el.slice(1);
-    });
-    
-    console.log(arr.join(' '));
-    user.fullname = (arr.join(' '));
+    user.fullname = fullname;
   }
 
   if (req.file) {
