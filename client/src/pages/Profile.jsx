@@ -6,7 +6,7 @@ import { TbDeviceDesktopCancel } from "react-icons/tb";
 import { useState } from "react";
 import { MdFreeCancellation } from "react-icons/md";
 import { GiSave } from "react-icons/gi";
-import { updateUser } from "../redux/slices/authSlice";
+import { getUserDetails, updateUser } from "../redux/slices/authSlice";
 
 function Profile() {
   const navigate = useNavigate();
@@ -68,7 +68,12 @@ function Profile() {
     console.log('reached');
     const res = await dispatch(updateUser(data));
 
-    console.log(res);
+    if(res?.payload?.data?.success){
+      console.log('sohel');
+      await dispatch(getUserDetails());
+    }
+
+    setEditable(false);
   }
 
   return (

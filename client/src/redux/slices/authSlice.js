@@ -85,6 +85,21 @@ export const updateUser = createAsyncThunk("auth/updateUser", async (data) => {
   }
 });
 
+export const getUserDetails = createAsyncThunk("auth/getUser", async () => {
+  try {
+    const res = axiosInstance.get("/user/me");
+    toast.promise(res, {
+      loading: "Wait!",
+      success: "Done",
+      error: "Something Went Wrong",
+    });
+
+    return await res;
+  } catch (err) {
+    toast.error(err?.response?.data?.message);
+  }
+});
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -107,6 +122,9 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.role = "";
         state.data = {};
+      })
+      .addCase(getUserDetails.fulfilled, (state, action) => {
+          state.data = action?.payload?.data?.user;
       });
   },
 });
