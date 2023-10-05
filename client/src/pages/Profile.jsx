@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import { AiTwotoneHome } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { BiEdit } from 'react-icons/bi';
+import { TbDeviceDesktopCancel } from 'react-icons/tb';
 
 function Profile() {
   const navigate = useNavigate();
@@ -21,8 +22,8 @@ function Profile() {
         </div>
       </header>
 
-      <div className="w-[90%] flex justify-center items-center shadow-course my-8">
-        <div className="flex flex-col justify-center items-center w-1/2">
+      <div className="w-[90%] h-[80%] flex justify-center items-center shadow-profile my-8 pb-16 rounded-lg">
+        <div style={{userSelect : 'none'}} className="flex flex-col justify-center items-center w-1/2">
           <div className="w-full p-3">
             <div
               onClick={() => {
@@ -40,7 +41,7 @@ function Profile() {
               backgroundRepeat: "no-repeat",
               backgroundSize: "contain",
             }}
-            className="w-[350px] h-[350px] rounded-full border-[2px] border-black"
+            className="w-[350px] h-[350px] rounded-full border-[1px] border-transparent hover:border-pink-400 "
           ></div>
         </div>
 
@@ -65,6 +66,12 @@ function Profile() {
                 {email}
               </h1>
             </fieldset>
+
+            <div className="w-full flex items-center gap-6 mt-8">
+              <button className="flex justify-center items-center gap-1 text-xl px-3 py-2 rounded-xl bg-gradient-to-b from-green-800 via-green-600 to-green-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-b hover:from-green-900 hover:via-green-700 hover:to-green-500"><BiEdit size={'22px'} />Edit Profile</button>
+
+              <button className="flex justify-center items-center gap-1 text-xl px-3 py-2 rounded-xl bg-gradient-to-b from-red-800 via-red-600 to-red-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-b hover:from-red-900 hover:via-red-700 hover:to-red-500"><TbDeviceDesktopCancel size={'22px'} />Cancel Subscription</button>
+            </div>
           </div>
         </div>
       </div>
