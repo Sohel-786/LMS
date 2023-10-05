@@ -197,15 +197,17 @@ function HomeLayout({ children }) {
           </div>
 
           {isLoggedIn ? (
-            <div className="flex flex-col justify-center items-center" ref={wrapperRef}>
+            <div
+              className="flex flex-col justify-center items-center"
+              ref={wrapperRef}
+            >
               <div
-                
                 onClick={() => {
                   setShowProfile(!showProfile);
                 }}
-                className="rounded-full w-11 h-11 mr-3 cursor-pointer bg-center bg-contain hover:border-[1px] border-transparent hover:border-pink-300"
+                className="rounded-full w-11 h-11 mr-3 cursor-pointer bg-center bg-cover hover:border-[1px] border-transparent hover:border-pink-300"
                 style={{
-                  userSelect: 'none',
+                  userSelect: "none",
                   backgroundImage: `url(${img})`,
                 }}
               ></div>
