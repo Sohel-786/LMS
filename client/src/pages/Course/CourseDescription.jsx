@@ -32,8 +32,8 @@ function CourseDescription() {
           </h3>
         </div>
 
-        <div className="flex flex-col gap-6 justify-center items-center my-12 sm:px-20 w-full sm:gap-0 sm:w-auto sm:grid sm:grid-cols-2">
-          <div className="rounded-xl overflow-hidden bg-[#f6ede7] w-[90%] sm:w-auto">
+        <div className="flex flex-col gap-6 justify-center items-center my-12 lg:px-20 w-full lg:gap-0 lg:w-auto lg:grid lg:grid-cols-2">
+          <div className="rounded-xl overflow-hidden bg-[#f6ede7] w-[90%] lg:w-auto">
             <div className="rounded-xl overflow-hidden w-full">
               <img
                 src={state?.thumbnail?.secure_url}

@@ -149,7 +149,7 @@ function CreateCourse() {
           onSubmit={(e) => {
             e.preventDefault();
           }}
-          className="bg-white text-black py-6 sm:py-12 px-4 sm:px-32 rounded-xl w-[95%] sm:w-[70%] flex flex-col items-center"
+          className="bg-white text-black py-6 sm:py-12 px-4 sm:px-32 rounded-xl w-[95%] lg:w-[70%] flex flex-col items-center"
         >
           <div
             id="container"
