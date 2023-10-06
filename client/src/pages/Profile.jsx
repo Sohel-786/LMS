@@ -64,11 +64,9 @@ function Profile() {
       data.append("avatar", formData.avatar);
     }
 
-    console.log("reached");
     const res = await dispatch(updateUser(data));
 
     if (res?.payload?.data?.success) {
-      console.log("sohel");
       await dispatch(getUserDetails());
     }
 
