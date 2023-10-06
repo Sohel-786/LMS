@@ -259,10 +259,10 @@ function HomeLayout({ children }) {
         </div>
       </header>
 
-      <div className="lg:hidden z-30 bg-white flex justify-center items-center w-full py-2 shadow-headershadow fixed">
+      <div className="lg:hidden z-30 bg-white flex justify-center items-center w-full py-2 pt-3 shadow-headershadow fixed">
         <div>
           <img
-            className="w-44"
+            className="w-40"
             src="/assets/classroom.svg"
             alt="Classroom Logo"
           />

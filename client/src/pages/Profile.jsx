@@ -112,11 +112,19 @@ function Profile() {
               }}
               className="w-[230px] h-[230px] rounded-full border-[1px] border-transparent hover:border-pink-400 lg:w-[350px] lg:h-[350px]"
             >
-              <label htmlFor="profile">
+              <label htmlFor="profile" className="hidden sm:inline-block">
                 <BiSolidEdit
                   hidden={!editable}
                   size={"80px"}
                   className="relative left-60 top-[270px] text-pink-500 hover:text-green-700 transition-colors duration-300 ease-in-out"
+                />
+              </label>
+
+              <label htmlFor="profile" className="inline-block sm:hidden">
+                <BiSolidEdit
+                  hidden={!editable}
+                  size={"60px"}
+                  className="relative left-36 top-44 text-pink-500 hover:text-green-700 transition-colors duration-300 ease-in-out"
                 />
               </label>
             </div>
@@ -138,6 +146,9 @@ function Profile() {
             <fieldset
               style={{
                 userSelect: "none",
+                border: editable
+                ? "2px solid #4f46e5"
+                : "2px solid #e5e7eb",
               }}
               className="w-full border-[2px] px-2 sm:px-4 pb-1 sm:pb-2 rounded-xl"
             >
@@ -147,13 +158,11 @@ function Profile() {
                 spellCheck="false"
                 style={{
                   caretColor: editable ? "green" : "transparent",
-                  borderBottom: editable
-                    ? "2px solid #4f46e5"
-                    : "2px solid transparent",
                   color: editable ? "#4f46e5" : "inherit",
                 }}
                 contentEditable={editable}
                 name="fullname"
+                id="fullname"
                 onChange={handleChange}
                 value={formData.fullname}
                 className="capitalize text-xl w-full font-roboto font-semibold tracking-wide outline-none border-none focus:outline-none focus:ring-0 bg-transparent sm:text-4xl"
@@ -199,6 +208,7 @@ function Profile() {
               ) : (
                 <>
                   <button
+                    aria-label="fullname"
                     onClick={() => {
                       setEditable(true);
                     }}
@@ -206,7 +216,8 @@ function Profile() {
                   >
                     <BiEdit size={"22px"} />
                     Edit Profile
-                  </button>{" "}
+                  </button>
+
                   <button className="flex justify-center items-center rounded-xl bg-gradient-to-b from-red-800 via-red-600 to-red-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-red-900 hover:via-red-700 hover:to-red-500 py-2 gap-2 px-4 sm:text-xl sm:px-5">
                     <TbDeviceDesktopCancel size={"22px"} />
                     Cancel Subscription
