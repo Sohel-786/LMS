@@ -118,12 +118,6 @@ function HomeLayout({ children }) {
               <Link to="/contact">Contact Us</Link>
             </li>
 
-            {isLoggedIn && (
-              <li onClick={hideDrawer}>
-                <Link to="/profile">Profile</Link>
-              </li>
-            )}
-
             {isLoggedIn ? (
               <div
                 onClick={hideDrawer}
@@ -162,7 +156,10 @@ function HomeLayout({ children }) {
 
       {/* This Header is for Bigger Screens */}
       <header className="hidden lg:flex justify-between items-center py-1 px-10 shadow-headershadow z-50 bg-white fixed w-full top-0">
-        <div className="w-[160px] aspect-auto relative -top-1">
+        <div
+          style={{ userSelect: "none" }}
+          className="w-[160px] aspect-auto relative -top-1"
+        >
           <img
             className="w-full aspect-auto"
             src={"/assets/classroom.svg"}
@@ -270,6 +267,18 @@ function HomeLayout({ children }) {
             alt="Classroom Logo"
           />
         </div>
+
+          <div
+            onClick={() => {
+              navigate("/profile");
+            }}
+            className="rounded-full w-[50px] h-[50px] cursor-pointer bg-center bg-cover border-[1px] border-pink-300 absolute right-3 top-5"
+            style={{
+              userSelect: "none",
+              backgroundImage: `url(${img})`,
+            }}
+          ></div>
+
       </div>
 
       <div className="pt-16 lg:pt-0">{children}</div>

@@ -74,8 +74,8 @@ function Profile() {
   }
 
   return (
-    <div className="flex flex-col items-center">
-      <header className="flex justify-center items-center shadow-headershadow w-full">
+    <div className="flex flex-col items-center w-full h-[900px]">
+      <header style={{userSelect : 'none'}} className="flex justify-center items-center shadow-headershadow w-full h-[8%] lg:h-auto">
         <div className="w-[160px] aspect-auto">
           <img
             className="w-full aspect-auto"
@@ -85,10 +85,10 @@ function Profile() {
         </div>
       </header>
 
-      <div className="w-[90%] h-[480px] flex justify-center items-center shadow-profile my-8 rounded-lg">
+      <div className="w-[90%] h-[90%] sm:h-[480px] flex flex-col lg:flex-row justify-center items-center shadow-profile my-8 rounded-lg">
         <div
           style={{ userSelect: "none" }}
-          className="flex flex-col items-center w-1/2 h-full"
+          className="flex flex-col items-center w-full h-[50%] lg:h-full lg:items-center lg:w-1/2 lg:justify-normal"
         >
           <div className="w-full p-3">
             <div
@@ -100,7 +100,7 @@ function Profile() {
               <FaArrowLeftLong size={"36px"} className="text-stone-500" />
             </div>
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center w-full h-[90%]">
             <div
               style={{
                 backgroundImage: `url(${formData.previewImage})`,
@@ -108,7 +108,7 @@ function Profile() {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
               }}
-              className="w-[350px] h-[350px] rounded-full border-[1px] border-transparent hover:border-pink-400 "
+              className="w-[80%] h-full rounded-full border-[1px] border-transparent hover:border-pink-400 lg:w-[350px] lg:h-[350px]"
             >
               <label htmlFor="profile">
                 <BiSolidEdit
@@ -125,7 +125,7 @@ function Profile() {
           </div>
         </div>
 
-        <div className="flex flex-col w-1/2 h-full px-5 py-4">
+        <div className="flex flex-col px-5 py-4 w-full h-[50%] lg:w-1/2 lg:h-full">
           <div className="w-full h-[20%]">
             <p className="float-right font-slab text-stone-500">
               Joined On {createdAt.slice(0, 10)}
