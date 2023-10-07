@@ -86,7 +86,7 @@ function Profile() {
   }
 
   return (
-    <div className="flex flex-col items-center w-full h-[900px]">
+    <div className="flex flex-col items-center w-full h-[900px] sm:h-auto">
       <header
         style={{ userSelect: "none" }}
         className="flex justify-center items-center shadow-headershadow w-full h-[8%] lg:h-auto"
@@ -193,70 +193,87 @@ function Profile() {
             </fieldset>
 
             {viewPassChange ? (
-              <div className="w-full flex flex-col justify-center">
-                <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-sky-300 rounded-xl sm:w-[80%]">
-                  <input
-                    onChange={handleChange}
-                    className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
-                    type={viewOldPassword ? "text" : "password"}
-                    name="password"
-                    placeholder="Choose your Password"
-                  />
-                  {viewOldPassword ? (
-                    <span type="button">
-                      <FiEye
-                        aria-label="eyeOn"
-                        className="text-2xl"
-                        onClick={handleOldPassView}
-                      />
-                    </span>
-                  ) : (
-                    <span type="button">
-                      <FiEyeOff
-                        aria-label="eyeOff"
-                        className="text-2xl"
-                        onClick={handleOldPassView}
-                      />
-                    </span>
-                  )}
+              // change password section
+              <div className="top-0 right-0 bottom-0 left-0 fixed bg-gradient-to-r from-[#0000006d] to-[#0000006d] flex justify-center items-center z-30">
+
+                <div className="flex flex-col justify-center w-[40%] bg-white rounded-xl py-5 px-6">
+
+                  <label htmlFor="oldpassword" className="font-slab text-gray-600 mt-4 mb-2 pl-1">Enter your old password</label>
+
+                  <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-red-600 rounded-xl ">
+                    <input
+                      onChange={handleChange}
+                      className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
+                      type={viewOldPassword ? "text" : "password"}
+                      name="oldpassword"
+                      id="oldpassword"
+                    />
+                    {viewOldPassword ? (
+                      <span type="button">
+                        <FiEye
+                          aria-label="eyeOn"
+                          className="text-2xl"
+                          onClick={handleOldPassView}
+                        />
+                      </span>
+                    ) : (
+                      <span type="button">
+                        <FiEyeOff
+                          aria-label="eyeOff"
+                          className="text-2xl"
+                          onClick={handleOldPassView}
+                        />
+                      </span>
+                    )}
+                  </div>
+                  <label htmlFor="newpassword" className="font-slab text-gray-600 mt-4 mb-2 pl-1">Create new password</label>
+
+                  <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-red-600 rounded-xl ">
+                    <input
+                      onChange={handleChange}
+                      className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
+                      type={viewNewPassword ? "text" : "password"}
+                      name="newpassword"
+                      id="newpassword"
+                    />
+                    {viewNewPassword ? (
+                      <span type="button">
+                        <FiEye
+                          aria-label="eyeOn"
+                          className="text-xl"
+                          onClick={handleNewPassView}
+                        />
+                      </span>
+                    ) : (
+                      <span type="button">
+                        <FiEyeOff
+                          aria-label="eyeOff"
+                          className="text-xl"
+                          onClick={handleNewPassView}
+                        />
+                      </span>
+                    )}
+                  </div>
+
+                  <div style={{
+                    userSelect : 'none'
+                  }} className="w-full flex items-center gap-3 mt-4">
+
+                    <button className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800 hover:scale-110 transition-all duration-300">SUBMIT</button>
+
+                    <button onClick={() =>{
+                      setViewPassChange(false)
+                    }} className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-orange-800 via-orange-600 to-orange-400 hover:bg-gradient-to-t hover:from-orange-400 hover:via-orange-600 hover:to-orange-800 hover:scale-110 transition-all duration-300">CANCEL</button>
+
+                  </div>
                 </div>
 
-                <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-sky-300 rounded-xl sm:w-[80%]">
-                  <input
-                    onChange={handleChange}
-                    className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
-                    type={viewNewPassword ? "text" : "password"}
-                    name="password"
-                    placeholder="Choose your Password"
-                  />
-                  {viewNewPassword ? (
-                    <span type="button">
-                      <FiEye
-                        aria-label="eyeOn"
-                        className="text-2xl"
-                        onClick={handleNewPassView}
-                      />
-                    </span>
-                  ) : (
-                    <span type="button">
-                      <FiEyeOff
-                        aria-label="eyeOff"
-                        className="text-2xl"
-                        onClick={handleNewPassView}
-                      />
-                    </span>
-                  )}
-                </div>
-
-                <div style={{
-                  userSelect : 'none'
-                }} className="w-full flex items-center gap-3 mt-3">
-                  <button className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800 hover:scale-110 transition-all duration-300">SUBMIT</button>
-                  <button className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-orange-800 via-orange-600 to-orange-400 hover:bg-gradient-to-t hover:from-orange-400 hover:via-orange-600 hover:to-orange-800 hover:scale-110 transition-all duration-300">CANCEL</button>
-                </div>
               </div>
             ) : (
               <button
+              style={{
+                userSelect : 'none'
+              }}
                 onClick={() => {
                   setViewPassChange(true);
                 }}
@@ -266,7 +283,9 @@ function Profile() {
               </button>
             )}
 
-            <div className="w-full flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-4 sm:mt-6">
+            <div style={{
+              userSelect : 'none'
+            }} className="w-full flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-4 sm:mt-6">
               {editable ? (
                 <>
                   <button
