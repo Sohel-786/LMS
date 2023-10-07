@@ -10,6 +10,8 @@ import { getUserDetails, updateUser } from "../redux/slices/authSlice";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import toast from "react-hot-toast";
 import axiosInstance from "../config/axiosInstance";
+import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
+import { RiCloseCircleFill } from "react-icons/ri";
 
 function Profile() {
   const navigate = useNavigate();
@@ -73,12 +75,12 @@ function Profile() {
   }
 
   // For Change Password
-  function handlePasswordChange(e){
+  function handlePasswordChange(e) {
     const { name, value } = e.target;
     setPasswordData({
       ...passwordData,
-      [name] : value
-    })
+      [name]: value,
+    });
   }
   async function handleSubmit() {
     if (formData.fullname === fullname && !formData.avatar) {
@@ -100,15 +102,14 @@ function Profile() {
     setEditable(false);
   }
 
-  async function handlePasswordSubmit(){
-
-    if(!passwordData.oldPassword || !passwordData.newPassword){
-      toast.error('Please fill the password field')
+  async function handlePasswordSubmit() {
+    if (!passwordData.oldPassword || !passwordData.newPassword) {
+      toast.error("Please fill the password field");
       return;
     }
 
     try {
-      const res = axiosInstance.post('/user/changepassword', passwordData);
+      const res = axiosInstance.post("/user/changepassword", passwordData);
       toast.promise(res, {
         loading: "Wait! Changing your password",
         success: (data) => {
@@ -116,31 +117,59 @@ function Profile() {
         },
         error: (data) => {
           let msg = data?.response?.data?.message;
-          if(msg === 'Invalid Old Password'){
-            return 'Please Enter Correct Old Password'
+          if (msg === "Invalid Old Password") {
+            return "Please Enter Correct Old Password";
           }
 
-          if(msg === 'Password must be 6 to 16 characters long with at least a number and symbol'){
-            return 'Please Create a Strong Password'
+          if (
+            msg ===
+            "Password must be 6 to 16 characters long with at least a number and symbol"
+          ) {
+            return "Please Create a Strong Password";
           }
 
-          return 'Something Went Wrong'
+          return "Something Went Wrong";
         },
       });
 
       const response = await res;
-      
-      if(response?.data?.success){
+
+      if (response?.data?.success) {
         setViewPassChange(false);
         setPasswordData({
-          oldPassword : '',
-          newPassword : ''
-        })
+          oldPassword: "",
+          newPassword: "",
+        });
       }
     } catch (err) {
       toast.error(err.response?.data?.message);
     }
-   
+  }
+
+  function handleFullImageView() {
+    disableBodyScroll(document);
+    const fullView = document.getElementById("fullView");
+    fullView.style.display = "flex";
+  }
+
+  function handleFullViewclose() {
+    enableBodyScroll(document);
+    const fullView = document.getElementById("fullView");
+    fullView.style.display = "none";
+  }
+
+  function handleBlur() {
+    const profileBtn = document.querySelector("#profileBtn");
+    const profileImage = document.querySelector("#profileImage");
+    profileImage.style.filter = "blur(3px)";
+    profileBtn.style.display = "block";
+  }
+
+  function handleBlurRemove() {
+    const profileBtn = document.querySelector("#profileBtn");
+    const profileImage = document.querySelector("#profileImage");
+    profileImage.style.filter = "blur(0)";
+    profileBtn.style.display = "none";
   }
 
   return (
@@ -182,7 +211,7 @@ function Profile() {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
               }}
-              className="w-[230px] h-[230px] rounded-full border-[1px] border-transparent hover:border-pink-400 lg:w-[350px] lg:h-[350px]"
+              className="w-[230px] h-[230px] rounded-full border-[1px] border-transparent hover:border-pink-400 lg:w-[350px] lg:h-[350px] flex justify-center items-center"
             >
               <label htmlFor="profile" className="hidden sm:inline-block">
                 <BiSolidEdit
@@ -199,6 +228,25 @@ function Profile() {
                   className="relative left-36 top-44 text-pink-500 hover:text-green-700 transition-colors duration-300 ease-in-out"
                 />
               </label>
+
+              <div
+                id="profileImage"
+                onMouseOver={handleBlur}
+                onMouseOut={handleBlurRemove}
+                className="w-full h-full bg-transparent rounded-full border-2 border-red-600 flex justify-center items-center"
+              >
+                <div
+                  id="profileBtn"
+                  className="hidden z-20 absolute flex-col gap-2"
+                >
+                  <button
+                    onClick={handleFullImageView}
+                    className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent"
+                  >
+                    VIEW
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -250,6 +298,7 @@ function Profile() {
               </h1>
             </fieldset>
 
+            {/* Change Password Input and Button Container */}
             {viewPassChange ? (
               // change password section
               <div className="top-0 right-0 bottom-0 left-0 fixed bg-gradient-to-r from-[#00000095] to-[#00000095] flex justify-center items-center z-30">
@@ -330,8 +379,9 @@ function Profile() {
                     className="w-full flex items-center gap-3 mt-4"
                   >
                     <button
-                    onClick={handlePasswordSubmit}
-                    className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800 hover:scale-110 transition-all duration-300">
+                      onClick={handlePasswordSubmit}
+                      className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800 hover:scale-110 transition-all duration-300"
+                    >
                       SUBMIT
                     </button>
 
@@ -364,6 +414,24 @@ function Profile() {
               </button>
             )}
 
+            {/* Full View of Profile Image */}
+            <div
+              id="fullView"
+              className="fixed top-0 h-[100vh] w-[100vw] hidden z-50 bg-black flex-col justify-center items-center"
+            >
+              <RiCloseCircleFill
+                onClick={handleFullViewclose}
+                size={"50px"}
+                className="absolute top-3 right-8 cursor-pointer text-red-600 hover:text-red-800 bg-black border-[2px] border-transparent rounded-full hover:border-white"
+              />
+              <img
+                className="w-auto h-auto"
+                src={formData.previewImage}
+                alt="Preview Profile Image"
+              />
+            </div>
+
+            {/* Profile buttons, for save, edit, cancel */}
             <div
               style={{
                 userSelect: "none",
