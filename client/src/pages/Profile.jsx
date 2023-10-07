@@ -7,7 +7,9 @@ import { useState } from "react";
 import { MdFreeCancellation } from "react-icons/md";
 import { GiSave } from "react-icons/gi";
 import { getUserDetails, updateUser } from "../redux/slices/authSlice";
-import { FiEye , FiEyeOff } from 'react-icons/fi'
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 function Profile() {
   const navigate = useNavigate();
@@ -29,11 +31,16 @@ function Profile() {
     previewImage: avatar.secure_url,
   });
 
+  const [passwordData, setPasswordData] = useState({
+    oldPassword: "",
+    newPassword: "",
+  });
+
   function handleOldPassView() {
     setViewOldpassword(!viewOldPassword);
   }
   function handleNewPassView() {
-        setViewNewpassword(!viewNewPassword);
+    setViewNewpassword(!viewNewPassword);
   }
 
   function handleImage(e) {
@@ -65,6 +72,14 @@ function Profile() {
     setEnableSave(true);
   }
 
+  // For Change Password
+  function handlePasswordChange(e){
+    const { name, value } = e.target;
+    setPasswordData({
+      ...passwordData,
+      [name] : value
+    })
+  }
   async function handleSubmit() {
     if (formData.fullname === fullname && !formData.avatar) {
       return;
@@ -83,6 +98,31 @@ function Profile() {
     }
 
     setEditable(false);
+  }
+
+  async function handlePasswordSubmit(){
+    console.log(passwordData);
+    if(!passwordData.oldPassword && !passwordData.newPassword){
+      toast.error('Please fill the password field')
+      return;
+    }
+
+    const res = axios.post('/user/changepassword', passwordData);
+    toast.promise(res, {
+      loading: "Wait! Changing your password",
+      success: (data) => {
+        return data?.data?.message;
+      },
+      error: "Something Went Wrong",
+    });
+    const response = await res;
+    if(response?.payload?.success){
+      setViewPassChange(false);
+      setPasswordData({
+        oldPassword : '',
+        newPassword : ''
+      })
+    }
   }
 
   return (
@@ -195,18 +235,22 @@ function Profile() {
             {viewPassChange ? (
               // change password section
               <div className="top-0 right-0 bottom-0 left-0 fixed bg-gradient-to-r from-[#00000095] to-[#00000095] flex justify-center items-center z-30">
-
                 <div className="flex flex-col justify-center w-[40%] bg-white rounded-xl py-5 px-6">
-
-                  <label htmlFor="oldpassword" className="font-slab text-gray-600 mt-4 mb-2 pl-1">Enter your old password</label>
+                  <label
+                    htmlFor="oldpassword"
+                    className="font-slab text-gray-600 mt-4 mb-2 pl-1"
+                  >
+                    Enter your old password
+                  </label>
 
                   <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-red-600 rounded-xl ">
                     <input
-                      onChange={handleChange}
+                      onChange={handlePasswordChange}
                       className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
                       type={viewOldPassword ? "text" : "password"}
-                      name="oldpassword"
+                      name="oldPassword"
                       id="oldpassword"
+                      value={passwordData.oldPassword}
                     />
                     {viewOldPassword ? (
                       <span type="button">
@@ -226,15 +270,21 @@ function Profile() {
                       </span>
                     )}
                   </div>
-                  <label htmlFor="newpassword" className="font-slab text-gray-600 mt-4 mb-2 pl-1">Create new password</label>
+                  <label
+                    htmlFor="newpassword"
+                    className="font-slab text-gray-600 mt-4 mb-2 pl-1"
+                  >
+                    Create new password
+                  </label>
 
                   <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-red-600 rounded-xl ">
                     <input
-                      onChange={handleChange}
+                      onChange={handlePasswordChange}
                       className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
                       type={viewNewPassword ? "text" : "password"}
-                      name="newpassword"
+                      name="newPassword"
                       id="newpassword"
+                      value={passwordData.newPassword}
                     />
                     {viewNewPassword ? (
                       <span type="button">
@@ -255,25 +305,38 @@ function Profile() {
                     )}
                   </div>
 
-                  <div style={{
-                    userSelect : 'none'
-                  }} className="w-full flex items-center gap-3 mt-4">
+                  <div
+                    style={{
+                      userSelect: "none",
+                    }}
+                    className="w-full flex items-center gap-3 mt-4"
+                  >
+                    <button
+                    onClick={handlePasswordSubmit}
+                    className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800 hover:scale-110 transition-all duration-300">
+                      SUBMIT
+                    </button>
 
-                    <button className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800 hover:scale-110 transition-all duration-300">SUBMIT</button>
-
-                    <button onClick={() =>{
-                      setViewPassChange(false)
-                    }} className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-orange-800 via-orange-600 to-orange-400 hover:bg-gradient-to-t hover:from-orange-400 hover:via-orange-600 hover:to-orange-800 hover:scale-110 transition-all duration-300">CANCEL</button>
-
+                    <button
+                      onClick={() => {
+                        setPasswordData({
+                          oldPassword: "",
+                          newPassword: "",
+                        });
+                        setViewPassChange(false);
+                      }}
+                      className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-orange-800 via-orange-600 to-orange-400 hover:bg-gradient-to-t hover:from-orange-400 hover:via-orange-600 hover:to-orange-800 hover:scale-110 transition-all duration-300"
+                    >
+                      CANCEL
+                    </button>
                   </div>
                 </div>
-
               </div>
             ) : (
               <button
-              style={{
-                userSelect : 'none'
-              }}
+                style={{
+                  userSelect: "none",
+                }}
                 onClick={() => {
                   setViewPassChange(true);
                 }}
@@ -283,9 +346,12 @@ function Profile() {
               </button>
             )}
 
-            <div style={{
-              userSelect : 'none'
-            }} className="w-full flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-4 sm:mt-6">
+            <div
+              style={{
+                userSelect: "none",
+              }}
+              className="w-full flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-4 sm:mt-6"
+            >
               {editable ? (
                 <>
                   <button
