@@ -9,7 +9,7 @@ import { GiSave } from "react-icons/gi";
 import { getUserDetails, updateUser } from "../redux/slices/authSlice";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import toast from "react-hot-toast";
-import axios from "axios";
+import axiosInstance from "../config/axiosInstance";
 
 function Profile() {
   const navigate = useNavigate();
@@ -101,28 +101,46 @@ function Profile() {
   }
 
   async function handlePasswordSubmit(){
-    console.log(passwordData);
-    if(!passwordData.oldPassword && !passwordData.newPassword){
+
+    if(!passwordData.oldPassword || !passwordData.newPassword){
       toast.error('Please fill the password field')
       return;
     }
 
-    const res = axios.post('/user/changepassword', passwordData);
-    toast.promise(res, {
-      loading: "Wait! Changing your password",
-      success: (data) => {
-        return data?.data?.message;
-      },
-      error: "Something Went Wrong",
-    });
-    const response = await res;
-    if(response?.payload?.success){
-      setViewPassChange(false);
-      setPasswordData({
-        oldPassword : '',
-        newPassword : ''
-      })
+    try {
+      const res = axiosInstance.post('/user/changepassword', passwordData);
+      toast.promise(res, {
+        loading: "Wait! Changing your password",
+        success: (data) => {
+          return data?.data?.message;
+        },
+        error: (data) => {
+          let msg = data?.response?.data?.message;
+          if(msg === 'Invalid Old Password'){
+            return 'Please Enter Correct Old Password'
+          }
+
+          if(msg === 'Password must be 6 to 16 characters long with at least a number and symbol'){
+            return 'Please Create a Strong Password'
+          }
+
+          return 'Something Went Wrong'
+        },
+      });
+
+      const response = await res;
+      
+      if(response?.data?.success){
+        setViewPassChange(false);
+        setPasswordData({
+          oldPassword : '',
+          newPassword : ''
+        })
+      }
+    } catch (err) {
+      toast.error(err.response?.data?.message);
     }
+   
   }
 
   return (
