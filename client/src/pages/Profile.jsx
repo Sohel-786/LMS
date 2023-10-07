@@ -190,7 +190,7 @@ function Profile() {
       <div className="w-[90%] h-[90%] sm:h-[470px] flex flex-col lg:flex-row justify-center items-center shadow-profile my-8 rounded-lg">
         <div
           style={{ userSelect: "none" }}
-          className="flex flex-col w-full h-[43%] lg:h-full lg:items-center lg:w-1/2 lg:justify-normal"
+          className="flex flex-col w-full h-[43%] items-center lg:h-full lg:items-center lg:w-1/2 lg:justify-normal"
         >
           <div className="w-full p-3 h-[20%] sm:h-auto">
             <div
@@ -203,56 +203,70 @@ function Profile() {
             </div>
           </div>
 
-          <div className="flex justify-center items-center w-full h-[80%] sm:h-auto">
+          <div
+            onMouseOver={handleBlur}
+            onMouseOut={handleBlurRemove}
+            className="flex flex-col justify-center items-center h-[80%] sm:h-auto w-fit rounded-full"
+          >
             <div
+              id="profileImage"
               style={{
                 backgroundImage: `url(${formData.previewImage})`,
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
               }}
-              className="w-[230px] h-[230px] rounded-full border-[1px] border-transparent hover:border-pink-400 lg:w-[350px] lg:h-[350px] flex justify-center items-center"
-            >
-              <label htmlFor="profile" className="hidden sm:inline-block">
-                <BiSolidEdit
-                  hidden={!editable}
-                  size={"80px"}
-                  className="relative left-60 top-[270px] text-pink-500 hover:text-green-700 transition-colors duration-300 ease-in-out"
-                />
-              </label>
+              className="w-[230px] h-[230px] rounded-full border-[1px] border-transparent hover:border-pink-400 lg:w-[350px] lg:h-[350px] "
+            ></div>
 
-              <label htmlFor="profile" className="inline-block sm:hidden">
-                <BiSolidEdit
-                  hidden={!editable}
-                  size={"60px"}
-                  className="relative left-36 top-44 text-pink-500 hover:text-green-700 transition-colors duration-300 ease-in-out"
-                />
-              </label>
-
-              <div
-                id="profileImage"
-                onMouseOver={handleBlur}
-                onMouseOut={handleBlurRemove}
-                className="w-full h-full bg-transparent rounded-full border-2 border-red-600 flex justify-center items-center"
+            <div id="profileBtn" className="hidden absolute flex-col gap-2">
+              <button
+                onClick={handleFullImageView}
+                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent"
               >
-                <div
-                  id="profileBtn"
-                  className="hidden z-20 absolute flex-col gap-2"
-                >
-                  <button
-                    onClick={handleFullImageView}
-                    className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent"
-                  >
-                    VIEW
-                  </button>
-                </div>
-              </div>
+                VIEW
+              </button>
             </div>
           </div>
+
+          {/* this for the small screens  */}
+          <label htmlFor="profile" className="inline-block sm:hidden">
+            <BiSolidEdit
+              hidden={!editable}
+              size={"60px"}
+              className="relative -top-14 left-14 text-pink-500 hover:text-green-700 transition-colors duration-300 ease-in-out"
+            />
+          </label>
+
+          {/* this for the large screens */}
+          <label htmlFor="profile" className="hidden sm:inline-block">
+            <BiSolidEdit
+              hidden={!editable}
+              size={"80px"}
+              className="relative -top-20 left-24 text-pink-500 hover:text-green-700 transition-colors duration-300 ease-in-out cursor-pointer"
+            />
+          </label>
 
           <div>
             <input onChange={handleImage} type="file" hidden id="profile" />
           </div>
+        </div>
+
+        {/* Full View of Profile Image */}
+        <div
+          id="fullView"
+          className="fixed top-0 right-0 left-0 bottom-0 hidden z-50 bg-black flex-col justify-center items-center"
+        >
+          <RiCloseCircleFill
+            onClick={handleFullViewclose}
+            size={"50px"}
+            className="absolute top-3 right-8 cursor-pointer text-red-600 hover:text-red-800 bg-black border-[2px] border-transparent rounded-full hover:border-white"
+          />
+          <img
+            className="max-h-full aspect-auto"
+            src={formData.previewImage}
+            alt="Preview Profile Image"
+          />
         </div>
 
         <div className="flex flex-col px-5 py-4 w-full h-[57%] lg:w-1/2 lg:h-full">
@@ -413,23 +427,6 @@ function Profile() {
                 Change your password
               </button>
             )}
-
-            {/* Full View of Profile Image */}
-            <div
-              id="fullView"
-              className="fixed top-0 h-[100vh] w-[100vw] hidden z-50 bg-black flex-col justify-center items-center"
-            >
-              <RiCloseCircleFill
-                onClick={handleFullViewclose}
-                size={"50px"}
-                className="absolute top-3 right-8 cursor-pointer text-red-600 hover:text-red-800 bg-black border-[2px] border-transparent rounded-full hover:border-white"
-              />
-              <img
-                className="w-auto h-auto"
-                src={formData.previewImage}
-                alt="Preview Profile Image"
-              />
-            </div>
 
             {/* Profile buttons, for save, edit, cancel */}
             <div
