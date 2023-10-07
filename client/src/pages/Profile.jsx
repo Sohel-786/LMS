@@ -18,6 +18,8 @@ function Profile() {
   const [editable, setEditable] = useState(false);
   const [enableSave, setEnableSave] = useState(false);
 
+  const [viewPassChange, setViewPassChange] = useState(false);
+
   const [formData, setFormdata] = useState({
     fullname: fullname,
     avatar: null,
@@ -75,7 +77,10 @@ function Profile() {
 
   return (
     <div className="flex flex-col items-center w-full h-[900px]">
-      <header style={{userSelect : 'none'}} className="flex justify-center items-center shadow-headershadow w-full h-[8%] lg:h-auto">
+      <header
+        style={{ userSelect: "none" }}
+        className="flex justify-center items-center shadow-headershadow w-full h-[8%] lg:h-auto"
+      >
         <div className="w-[160px] aspect-auto">
           <img
             className="w-full aspect-auto"
@@ -85,8 +90,7 @@ function Profile() {
         </div>
       </header>
 
-      <div className="w-[90%] h-[90%] sm:h-[480px] flex flex-col lg:flex-row justify-center items-center shadow-profile my-8 rounded-lg">
-
+      <div className="w-[90%] h-[90%] sm:h-[500px] flex flex-col lg:flex-row justify-center items-center shadow-profile my-8 rounded-lg">
         <div
           style={{ userSelect: "none" }}
           className="flex flex-col w-full h-[43%] lg:h-full lg:items-center lg:w-1/2 lg:justify-normal"
@@ -146,13 +150,13 @@ function Profile() {
             <fieldset
               style={{
                 userSelect: "none",
-                border: editable
-                ? "2px solid #4f46e5"
-                : "2px solid #e5e7eb",
+                border: editable ? "2px solid #4f46e5" : "2px solid #e5e7eb",
               }}
               className="w-full border-[2px] px-2 sm:px-4 pb-1 sm:pb-2 rounded-xl"
             >
-              <legend className="font-slab text-stone-500 sm:text-lg">Name</legend>
+              <legend className="font-slab text-stone-500 sm:text-lg">
+                Name
+              </legend>
 
               <input
                 spellCheck="false"
@@ -178,7 +182,47 @@ function Profile() {
               </h1>
             </fieldset>
 
-            <div className="w-full flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-4 sm:mt-8">
+            {viewPassChange ? (
+              <div>
+                <div className="w-[95%] p-2 bg-transparent flex justify-center items-center border-b-[2px] border-sky-500 my-3 focus-within:border-sky-300 sm:w-[80%]">
+                  <input
+                    onChange={handleChange}
+                    className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
+                    type={viewPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="Choose your Password"
+                  />
+                  {viewPassword ? (
+                    <span type="button">
+                      <FiEye
+                        aria-label="eyeOn"
+                        className="text-2xl"
+                        onClick={handlePassView}
+                      />
+                    </span>
+                  ) : (
+                    <span type="button">
+                      <FiEyeOff
+                        aria-label="eyeOff"
+                        className="text-2xl"
+                        onClick={handlePassView}
+                      />
+                    </span>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <button
+                onClick={() => {
+                  setViewPassChange(true);
+                }}
+                className="bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 w-fit px-5 py-2 text-lg font-slab text-white rounded-xl border-2 border-white mt-2 hover:scale-110 transition-all duration-300 ease-in-out shadow-marquee hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800"
+              >
+                Change your password
+              </button>
+            )}
+
+            <div className="w-full flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-4 sm:mt-6">
               {editable ? (
                 <>
                   <button
