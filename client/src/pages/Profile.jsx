@@ -100,7 +100,7 @@ function Profile() {
         </div>
       </header>
 
-      <div className="w-[90%] h-[90%] sm:h-[500px] flex flex-col lg:flex-row justify-center items-center shadow-profile my-8 rounded-lg">
+      <div className="w-[90%] h-[90%] sm:h-[470px] flex flex-col lg:flex-row justify-center items-center shadow-profile my-8 rounded-lg">
         <div
           style={{ userSelect: "none" }}
           className="flex flex-col w-full h-[43%] lg:h-full lg:items-center lg:w-1/2 lg:justify-normal"
@@ -194,7 +194,7 @@ function Profile() {
 
             {viewPassChange ? (
               // change password section
-              <div className="top-0 right-0 bottom-0 left-0 fixed bg-gradient-to-r from-[#0000006d] to-[#0000006d] flex justify-center items-center z-30">
+              <div className="top-0 right-0 bottom-0 left-0 fixed bg-gradient-to-r from-[#00000095] to-[#00000095] flex justify-center items-center z-30">
 
                 <div className="flex flex-col justify-center w-[40%] bg-white rounded-xl py-5 px-6">
 
@@ -212,7 +212,7 @@ function Profile() {
                       <span type="button">
                         <FiEye
                           aria-label="eyeOn"
-                          className="text-2xl"
+                          className="text-xl"
                           onClick={handleOldPassView}
                         />
                       </span>
@@ -220,7 +220,7 @@ function Profile() {
                       <span type="button">
                         <FiEyeOff
                           aria-label="eyeOff"
-                          className="text-2xl"
+                          className="text-xl"
                           onClick={handleOldPassView}
                         />
                       </span>
