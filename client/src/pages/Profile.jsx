@@ -314,9 +314,10 @@ function Profile() {
 
             {/* Change Password Input and Button Container */}
             {viewPassChange ? (
+
               // change password section
               <div className="top-0 right-0 bottom-0 left-0 fixed bg-gradient-to-r from-[#00000095] to-[#00000095] flex justify-center items-center z-30">
-                <div className="flex flex-col justify-center w-[40%] bg-white rounded-xl py-5 px-6">
+                <div className="flex flex-col justify-center w-[80%] md:w-[60%] lg:w-[40%] bg-white rounded-xl py-5 px-6">
                   <label
                     htmlFor="oldpassword"
                     className="font-slab text-gray-600 mt-4 mb-2 pl-1"
