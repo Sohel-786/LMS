@@ -125,6 +125,10 @@ const authSlice = createSlice({
       })
       .addCase(getUserDetails.fulfilled, (state, action) => {
         state.data = action?.payload?.data?.user;
+        localStorage.setItem(
+          "data",
+          JSON.stringify(action?.payload?.data?.user)
+        );
       });
   },
 });
