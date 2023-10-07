@@ -7,6 +7,7 @@ import { useState } from "react";
 import { MdFreeCancellation } from "react-icons/md";
 import { GiSave } from "react-icons/gi";
 import { getUserDetails, updateUser } from "../redux/slices/authSlice";
+import { FiEye , FiEyeOff } from 'react-icons/fi'
 
 function Profile() {
   const navigate = useNavigate();
@@ -19,12 +20,21 @@ function Profile() {
   const [enableSave, setEnableSave] = useState(false);
 
   const [viewPassChange, setViewPassChange] = useState(false);
+  const [viewOldPassword, setViewOldpassword] = useState(false);
+  const [viewNewPassword, setViewNewpassword] = useState(false);
 
   const [formData, setFormdata] = useState({
     fullname: fullname,
     avatar: null,
     previewImage: avatar.secure_url,
   });
+
+  function handleOldPassView() {
+    setViewOldpassword(!viewOldPassword);
+  }
+  function handleNewPassView() {
+        setViewNewpassword(!viewNewPassword);
+  }
 
   function handleImage(e) {
     const uploadedImage = e.target.files[0];
@@ -183,21 +193,21 @@ function Profile() {
             </fieldset>
 
             {viewPassChange ? (
-              <div>
-                <div className="w-[95%] p-2 bg-transparent flex justify-center items-center border-b-[2px] border-sky-500 my-3 focus-within:border-sky-300 sm:w-[80%]">
+              <div className="w-full flex flex-col justify-center">
+                <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-sky-300 rounded-xl sm:w-[80%]">
                   <input
                     onChange={handleChange}
                     className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
-                    type={viewPassword ? "text" : "password"}
+                    type={viewOldPassword ? "text" : "password"}
                     name="password"
                     placeholder="Choose your Password"
                   />
-                  {viewPassword ? (
+                  {viewOldPassword ? (
                     <span type="button">
                       <FiEye
                         aria-label="eyeOn"
                         className="text-2xl"
-                        onClick={handlePassView}
+                        onClick={handleOldPassView}
                       />
                     </span>
                   ) : (
@@ -205,10 +215,44 @@ function Profile() {
                       <FiEyeOff
                         aria-label="eyeOff"
                         className="text-2xl"
-                        onClick={handlePassView}
+                        onClick={handleOldPassView}
                       />
                     </span>
                   )}
+                </div>
+
+                <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-sky-300 rounded-xl sm:w-[80%]">
+                  <input
+                    onChange={handleChange}
+                    className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
+                    type={viewNewPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="Choose your Password"
+                  />
+                  {viewNewPassword ? (
+                    <span type="button">
+                      <FiEye
+                        aria-label="eyeOn"
+                        className="text-2xl"
+                        onClick={handleNewPassView}
+                      />
+                    </span>
+                  ) : (
+                    <span type="button">
+                      <FiEyeOff
+                        aria-label="eyeOff"
+                        className="text-2xl"
+                        onClick={handleNewPassView}
+                      />
+                    </span>
+                  )}
+                </div>
+
+                <div style={{
+                  userSelect : 'none'
+                }} className="w-full flex items-center gap-3 mt-3">
+                  <button className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800 hover:scale-110 transition-all duration-300">SUBMIT</button>
+                  <button className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-orange-800 via-orange-600 to-orange-400 hover:bg-gradient-to-t hover:from-orange-400 hover:via-orange-600 hover:to-orange-800 hover:scale-110 transition-all duration-300">CANCEL</button>
                 </div>
               </div>
             ) : (
