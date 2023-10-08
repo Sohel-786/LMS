@@ -11,10 +11,12 @@ import AuthRoute from "./components/AuthRoute";
 import CreateCourse from "./pages/Course/CreateCourse";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import ResetPassword from "./pages/ResetPassword";
+import ForgottenPassword from "./pages/ForgottenPassword";
 
 function App() {
   return (
-    <div className="mx-auto max-w-[1470px]">
+    <div className="mx-auto max-w-[1490px]">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<Aboutus />} />
@@ -28,6 +30,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/course-description" element={<CourseDescription />} />
+        <Route path="/forgot-password" element={<ForgottenPassword />} />
+        <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </div>

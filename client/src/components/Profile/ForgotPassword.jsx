@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axiosInstance from "../../config/axiosInstance";
 import toast from "react-hot-toast";
+import { useLocation } from "react-router-dom";
 
 function ForgotPassword({ hideForgotPass }) {
   const { isLoggedIn, data } = useSelector((s) => s?.auth);
@@ -9,6 +10,15 @@ function ForgotPassword({ hideForgotPass }) {
   const [registeredEmail, setRegisteredEmail] = useState({
     email: "",
   });
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if(!isLoggedIn && pathname === '/forgot-password'){
+        const forgotPass = document.getElementById('forgotPass');
+        forgotPass.style.display = 'flex';
+    }
+  }, [])
 
   async function handleChange(e) {
     const { name, value } = e.target;
@@ -101,34 +111,34 @@ function ForgotPassword({ hideForgotPass }) {
   ) : (
     <div
       id="forgotPass"
-      className="hidden flex-col justify-center w-[80%] md:w-[60%] lg:w-[40%] bg-white rounded-xl py-5 px-6"
+      className="hidden flex-col justify-center w-[90%] md:w-[60%] lg:w-[50%] bg-gradient-to-r from-zinc-950 to-zinc-700 rounded-xl py-5 px-6"
     >
-      <label htmlFor="email" className="font-slab text-gray-600 mt-4 mb-2 pl-1">
+      <label htmlFor="email" className="font-slab text-gray-300 mt-4 mb-4 pl-1 sm:text-xl tracking-wide">
         Enter Your Registered Email
       </label>
 
-      <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-red-600 rounded-xl ">
+      <div className="w-full px-2 bg-transparent flex justify-center items-center border-[2px] border-sky-500 focus-within:border-green-600 rounded-xl ">
         <input
           onChange={handleChange}
-          className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
+          className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full text-white font-semibold my-2 sm:text-xl"
           type="email"
           name="email"
           id="email"
           value={registeredEmail.email}
         />
       </div>
-
+    
       <div
         style={{
           userSelect: "none",
         }}
-        className="w-full flex items-center gap-5 mt-5"
+        className="w-full flex items-center gap-3 sm:gap-5 mt-6"
       >
         <button
           onClick={handleSubmit}
-          className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 hover:bg-gradient-to-t hover:from-blue-400 hover:via-blue-600 hover:to-blue-800 hover:scale-110 transition-all duration-300"
+          className="text-white px-4 sm:px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 hover:bg-gradient-to-t hover:from-blue-400 hover:via-blue-600 hover:to-blue-800 hover:scale-110 transition-all duration-300"
         >
-          SUBMIT
+          CONTINUE
         </button>
 
         <button
@@ -138,7 +148,7 @@ function ForgotPassword({ hideForgotPass }) {
             });
             hideForgotPass();
           }}
-          className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-red-800 via-red-600 to-red-400 hover:bg-gradient-to-t hover:from-red-400 hover:via-red-600 hover:to-red-800 hover:scale-110 transition-all duration-300"
+          className="text-white px-4 sm:px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-red-800 via-red-600 to-red-400 hover:bg-gradient-to-t hover:from-red-400 hover:via-red-600 hover:to-red-800 hover:scale-110 transition-all duration-300"
         >
           CANCEL
         </button>

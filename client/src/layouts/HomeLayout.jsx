@@ -24,8 +24,10 @@ function HomeLayout({ children }) {
   function handleProfilemenuview(ref, useClickOutside) {
     useEffect(() => {
       function handleClickoutside(e) {
-        if (ref.current && !ref.current.contains(e.target)) {
-          useClickOutside();
+        if(isLoggedIn){
+          if (ref.current && !((ref.current).contains(e.target))) {
+            useClickOutside();
+          }
         }
       }
 

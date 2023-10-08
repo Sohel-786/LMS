@@ -85,7 +85,12 @@ function SignIn() {
           <button className="btn bg-blue-500 text-white font-bold hover:bg-blue-600 focus:scale-110 hover:scale-110 mt-5">
             Login
           </button>
-          <p className=" font-bold text-[15px] tracking-wide my-3">
+
+          <Link to={'/forgot-password'}>
+          <p type='button' className="text-white font-bold text-lg tracking-wide mt-3 cursor-pointer hover:underline hover:text-cyan-400">Forgotten password ?</p>
+          </Link>
+
+          <p className="font-bold text-[15px] tracking-wide my-4">
             Create new account.{" "}
             <span
               type="button"
