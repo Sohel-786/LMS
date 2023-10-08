@@ -260,7 +260,9 @@ function HomeLayout({ children }) {
       </header>
 
       <div className="lg:hidden z-30 bg-white flex justify-center items-center w-full py-2 pt-3 shadow-headershadow fixed">
-        <div>
+        <div style={{
+          userSelect : 'none'
+        }}>
           <img
             className="w-40"
             src="/assets/classroom.svg"
@@ -268,7 +270,7 @@ function HomeLayout({ children }) {
           />
         </div>
 
-          <div
+          {isLoggedIn && <div
             onClick={() => {
               navigate("/profile");
             }}
@@ -277,7 +279,7 @@ function HomeLayout({ children }) {
               userSelect: "none",
               backgroundImage: `url(${img})`,
             }}
-          ></div>
+          ></div>}
 
       </div>
 

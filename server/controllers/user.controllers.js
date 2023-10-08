@@ -167,7 +167,7 @@ const forgotPassword = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: `Reset password mail has been sent to ${email} successfully!`,
+      message: `Reset password mail has been sent to registered email successfully!`,
     });
   } catch (e) {
     user.forgotPasswordExpiry = undefined;

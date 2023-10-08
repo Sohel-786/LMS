@@ -180,7 +180,6 @@ function Profile() {
     changePass.style.display = 'none';
     
     const forgotPass = document.getElementById('forgotPass');
-    console.log(forgotPass)
     forgotPass.style.display = 'flex'
   }
 

@@ -98,7 +98,7 @@ function SignUp() {
           className="flex flex-col items-center w-[90%] p-5 shadow-formshadow bg-gradient-to-r from-zinc-950 to-zinc-700 rounded-xl text-white md:w-[65%] lg:w-[38%]"
         >
           <img
-            className="w-[240px] sm:w-[270px] aspect-auto mb-5"
+            className="w-[240px] sm:w-[270px] aspect-auto mb-5 select-none"
             src="/assets/signUp.svg"
             alt="sign In"
           />
