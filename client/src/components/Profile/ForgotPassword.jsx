@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import axiosInstance from "../../config/axiosInstance";
+import toast from "react-hot-toast";
 
 function ForgotPassword({ hideForgotPass }) {
   const { isLoggedIn, data } = useSelector((s) => s?.auth);
@@ -17,7 +19,36 @@ function ForgotPassword({ hideForgotPass }) {
   }
 
   async function handleSubmit() {}
-  async function handleCurrentSubmit() {}
+  async function handleCurrentSubmit() {
+    if(!data.email){
+        toast.error('User Is Not Logged In');
+        return;
+    }
+    
+    try {
+        const res = axiosInstance.post('/user/reset');
+        toast.promise(res, {
+            loading : 'Wait, Checking your email & changing password',
+            success : (data) => {
+                return data?.data?.message;
+            },
+            error : (data) => {
+                const msg = data?.response?.data?.message;
+
+                if(msg === 'Email is required'){
+                    return 'User Is Not Logged In';
+                }
+                if(msg === 'Email is not registered'){
+                    return "User doesn't exists";
+                }
+            }
+        })
+    } catch (err) {
+        toast.error(err.response?.data?.message);
+    }
+  
+
+  }
 
   return isLoggedIn ? (
       <div
