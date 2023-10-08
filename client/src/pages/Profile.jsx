@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import axiosInstance from "../config/axiosInstance";
 import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
 import { RiCloseCircleFill } from "react-icons/ri";
+import ForgotPassword from "../components/Profile/ForgotPassword";
 
 function Profile() {
   const navigate = useNavigate();
@@ -22,6 +23,8 @@ function Profile() {
 
   const [editable, setEditable] = useState(false);
   const [enableSave, setEnableSave] = useState(false);
+
+  const [ forgotPassView, setForgotPassView] = useState(false);
 
   const [viewPassChange, setViewPassChange] = useState(false);
   const [viewOldPassword, setViewOldpassword] = useState(false);
@@ -172,6 +175,23 @@ function Profile() {
     profileBtn.style.display = "none";
   }
 
+  function ShowForgotPass(){
+    const changePass = document.getElementById('changePass');
+    changePass.style.display = 'none';
+    
+    const forgotPass = document.getElementById('forgotPass');
+    console.log(forgotPass)
+    forgotPass.style.display = 'flex'
+  }
+
+  function hideForgotPass(){
+    const changePass = document.getElementById('changePass');
+    changePass.style.display = 'flex';
+    
+    const forgotPass = document.getElementById('forgotPass');
+    forgotPass.style.display = 'none'
+  }
+
   return (
     <div className="flex flex-col items-center w-full h-[900px] lg:h-auto">
       <header
@@ -317,7 +337,8 @@ function Profile() {
 
               // change password section
               <div className="top-0 right-0 bottom-0 left-0 fixed bg-gradient-to-r from-[#00000095] to-[#00000095] flex justify-center items-center z-30">
-                <div className="flex flex-col justify-center w-[80%] md:w-[60%] lg:w-[40%] bg-white rounded-xl py-5 px-6">
+
+                <div id='changePass' className="flex flex-col justify-center w-[80%] md:w-[60%] lg:w-[40%] bg-white rounded-xl py-5 px-6">
                   <label
                     htmlFor="oldpassword"
                     className="font-slab text-gray-600 mt-4 mb-2 pl-1"
@@ -387,15 +408,19 @@ function Profile() {
                     )}
                   </div>
 
+                  <div className="w-full pl-1 mt-2 flex justify-end">
+                    <p type='button' onClick={ShowForgotPass} className="text-[#1877f2] text-lg font-semibold cursor-pointer hover:underline">Forgotten password?</p>
+                  </div>
+
                   <div
                     style={{
                       userSelect: "none",
                     }}
-                    className="w-full flex items-center gap-3 mt-4"
+                    className="w-full flex items-center gap-5 mt-1"
                   >
                     <button
                       onClick={handlePasswordSubmit}
-                      className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800 hover:scale-110 transition-all duration-300"
+                      className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800 hover:scale-110 transition-all duration-300"
                     >
                       SUBMIT
                     </button>
@@ -408,12 +433,16 @@ function Profile() {
                         });
                         setViewPassChange(false);
                       }}
-                      className="text-white px-4 py-1 font-roboto font-bold rounded-lg bg-gradient-to-t from-orange-800 via-orange-600 to-orange-400 hover:bg-gradient-to-t hover:from-orange-400 hover:via-orange-600 hover:to-orange-800 hover:scale-110 transition-all duration-300"
+                      className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-orange-800 via-orange-600 to-orange-400 hover:bg-gradient-to-t hover:from-orange-400 hover:via-orange-600 hover:to-orange-800 hover:scale-110 transition-all duration-300"
                     >
                       CANCEL
                     </button>
                   </div>
                 </div>
+
+                {/* forgot password container */}
+                
+                  <ForgotPassword  hideForgotPass={hideForgotPass} />
               </div>
             ) : (
               <button
