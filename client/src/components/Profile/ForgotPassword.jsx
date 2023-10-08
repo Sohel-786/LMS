@@ -3,9 +3,13 @@ import { useSelector } from "react-redux";
 import axiosInstance from "../../config/axiosInstance";
 import toast from "react-hot-toast";
 import { useLocation } from "react-router-dom";
+import { isEmail } from '../../helpers/RegexMatcher';
+import { MdEmail } from 'react-icons/md';
 
 function ForgotPassword({ hideForgotPass }) {
   const { isLoggedIn, data } = useSelector((s) => s?.auth);
+
+  const [ showSendMail, setshowSendMail ] = useState(false);
 
   const [registeredEmail, setRegisteredEmail] = useState({
     email: "",
@@ -14,11 +18,11 @@ function ForgotPassword({ hideForgotPass }) {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if(!isLoggedIn && pathname === '/forgot-password'){
-        const forgotPass = document.getElementById('forgotPass');
-        forgotPass.style.display = 'flex';
+    if (!isLoggedIn && pathname === "/forgot-password") {
+      const forgotPass = document.getElementById("forgotPass");
+      forgotPass.style.display = "flex";
     }
-  }, [])
+  }, []);
 
   async function handleChange(e) {
     const { name, value } = e.target;
@@ -28,7 +32,24 @@ function ForgotPassword({ hideForgotPass }) {
     });
   }
 
-  async function handleSubmit() {}
+  function handleSubmit() {
+    if(!registeredEmail.email){
+        toast.error('Please enter an email first');
+        return;
+    }
+
+    if(!isEmail(registeredEmail.email)){
+        toast.error('Invalid Email');
+        return;
+    }
+    
+    setshowSendMail(true);
+  }
+
+  async function handleSendMail(){
+
+  }
+
   async function handleCurrentSubmit() {
     if (!data.email) {
       toast.error("User Is Not Logged In");
@@ -36,7 +57,7 @@ function ForgotPassword({ hideForgotPass }) {
     }
 
     try {
-      const res = axiosInstance.post("/user/reset", { email : data.email});
+      const res = axiosInstance.post("/user/reset", { email: data.email });
       toast.promise(res, {
         loading: "Wait, Checking your email & changing password",
         success: (data) => {
@@ -58,10 +79,10 @@ function ForgotPassword({ hideForgotPass }) {
 
       const response = await res;
 
-      if(response?.data?.success) {
+      if (response?.data?.success) {
         hideForgotPass();
       }
-    }catch (err) {
+    } catch (err) {
       toast.error(err.response?.data?.message);
     }
   }
@@ -113,7 +134,10 @@ function ForgotPassword({ hideForgotPass }) {
       id="forgotPass"
       className="hidden flex-col justify-center w-[90%] md:w-[60%] lg:w-[50%] bg-gradient-to-r from-zinc-950 to-zinc-700 rounded-xl py-5 px-6"
     >
-      <label htmlFor="email" className="font-slab text-gray-300 mt-4 mb-4 pl-1 sm:text-xl tracking-wide">
+      <label
+        htmlFor="email"
+        className="font-slab text-gray-300 mt-4 mb-4 pl-1 sm:text-xl tracking-wide"
+      >
         Enter Your Registered Email
       </label>
 
@@ -127,7 +151,20 @@ function ForgotPassword({ hideForgotPass }) {
           value={registeredEmail.email}
         />
       </div>
-    
+
+      {showSendMail && (
+        <div className="fixed top-0 right-0 bottom-0 left-0 bg-gradient-to-r from-[#00000095] to-[#00000095] flex justify-center items-center z-30">
+          <div className="flex flex-col justify-center w-[90%] md:w-[60%] lg:w-[50%] bg-white rounded-xl py-8 px-6 text-center">
+            <h1 className="font-poppins sm:text-xl font-bold tracking-wide text-zinc-600">We will send you mail to the provided registered email address</h1>
+            <p className="my-5 font-slab tracking-wider sm:text-xl text-blue-600 flex justify-center items-center gap-1"><MdEmail size={'30px'}/>{registeredEmail.email}</p>
+            
+            <hr className="border-b-[1.5px] my-2 sm:my-4" />
+
+            <button onClick={handleSendMail} className="bg-gradient-to-t from-indigo-900 via-indigo-600 to-indigo-400 w-fit self-center text-white px-5 py-3 text-xl font-bold font-poppins rounded-xl hover:bg-gradient-to-t hover:from-indigo-400 hover:via-indigo-600 hover:to-indigo-900 transition-all duration-300 ease-in-out hover:scale-110">OK</button>
+          </div>
+        </div>
+      )}
+
       <div
         style={{
           userSelect: "none",
