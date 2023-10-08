@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { isValidPassword } from "../helpers/RegexMatcher";
 import axiosInstance from "../config/axiosInstance";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function ResetPassword() {
   const [viewPasswords, setViewPasswords] = useState({
@@ -16,6 +16,7 @@ function ResetPassword() {
     confirmPassword: "",
   });
 
+  const navigate = useNavigate();
   const { resetToken } = useParams();
 
   function handleChange(e) {
@@ -98,8 +99,25 @@ function ResetPassword() {
             return 'Something Went Wrong'
         }
       })
+
+      const response = await res;
+
+      if(response?.data?.success){
+        setPassword({
+            password : '',
+            confirmPassword : ''
+        })
+        navigate('/signin');
+      }
     }catch(err){
         toast.error(err.response?.data?.message);
+        if(err.response?.data?.message === 'Token in invalid or expired, please try again'){
+            setPassword({
+                password : '',
+                confirmPassword : ''
+            })
+            navigate('/signin');
+        }
     }
   }
 
