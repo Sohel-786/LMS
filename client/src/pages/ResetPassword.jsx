@@ -2,6 +2,8 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { isValidPassword } from "../helpers/RegexMatcher";
+import axiosInstance from "../config/axiosInstance";
+import { useParams } from "react-router-dom";
 
 function ResetPassword() {
   const [viewPasswords, setViewPasswords] = useState({
@@ -14,20 +16,35 @@ function ResetPassword() {
     confirmPassword: "",
   });
 
+  const { resetToken } = useParams();
+
   function handleChange(e) {
     const { name, value } = e.target;
 
-    if (name === "confirmPassword") {
-      const confirm = document.getElementById("confirm");
+    const confirm = document.getElementById("confirm");
 
-      if (!value) {
-        confirm.style.borderColor = "#0ea5e9";
-      } else if (!(password.password === value)) {
-        confirm.style.borderColor = "red";
+    if (!value) {
+      if (name === "password") {
+        if (password.confirmPassword.length > 0) {
+          confirm.style.borderColor = "red";
+        }
       } else {
-        confirm.style.borderColor = "#4ade80";
+        confirm.style.borderColor = "#0ea5e9";
       }
+    } else if (name === "password") {
+      if (password.confirmPassword === value) {
+        confirm.style.borderColor = "#4ade80";
+      } else if (!password.confirmPassword) {
+        confirm.style.borderColor = "#0ea5e9";
+      } else if (!(password.confirmPassword === value)) {
+        confirm.style.borderColor = "red";
+      }
+    } else if (!(password.password === value)) {
+      confirm.style.borderColor = "red";
+    } else {
+      confirm.style.borderColor = "#4ade80";
     }
+
     setPassword({
       ...password,
       [name]: value,
@@ -54,14 +71,35 @@ function ResetPassword() {
       return;
     }
 
-    if(!(password.password === password.confirmPassword)){
-        toast.error("Confirmation of new password doesn't match");
-        return;
+    if (!(password.password === password.confirmPassword)) {
+      toast.error("Confirmation of new password doesn't match");
+      return;
     }
 
-    if(!isValidPassword(password.password)){
-        toast.error("Password must be 6 to 16 characters long with at least a number and symbol")
-        return;
+    if (!isValidPassword(password.password)) {
+      toast.error(
+        "Password must be 6 to 16 characters long with at least a number and symbol"
+      );
+      return;
+    }
+
+    try {
+      const res = axiosInstance.post(`/user/reset/${resetToken}`, password);
+      toast.promise(res, {
+        loading : 'Wait, Changing your password',
+        success : (data) => {
+            return data?.data?.message;
+        },
+        error : (data) => {
+            const msg = data?.response?.data?.message;
+            if(msg === 'Token in invalid or expired, please try again'){
+                return 'Provide email again and generate new token'
+            }
+            return 'Something Went Wrong'
+        }
+      })
+    }catch(err){
+        toast.error(err.response?.data?.message);
     }
   }
 

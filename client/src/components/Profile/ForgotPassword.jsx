@@ -104,7 +104,7 @@ function ForgotPassword({ hideForgotPass }) {
       if (response?.data?.success) {
         hideForgotPass();
       }
-    } catch (err) {
+    }catch(err) {
       toast.error(err.response?.data?.message);
     }
   }

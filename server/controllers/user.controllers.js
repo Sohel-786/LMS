@@ -186,6 +186,10 @@ const resetPassword = async (req, res, next) => {
     return next(new AppError("Password is Required", 400));
   }
 
+  if(!isValidPassword(password)){
+    return next(new AppError("Password must be 6 to 16 characters long with at least a number and symbol", 400));
+  }
+
   const forgotPasswordToken = crypto
     .createHash("sha256")
     .update(resetToken)
