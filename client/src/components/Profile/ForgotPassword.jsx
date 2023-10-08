@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axiosInstance from "../../config/axiosInstance";
 import toast from "react-hot-toast";
-import { useLocation } from "react-router-dom";
-import { isEmail } from '../../helpers/RegexMatcher';
-import { MdEmail } from 'react-icons/md';
+import { useLocation, useNavigate } from "react-router-dom";
+import { isEmail } from "../../helpers/RegexMatcher";
+import { MdEmail } from "react-icons/md";
 
 function ForgotPassword({ hideForgotPass }) {
   const { isLoggedIn, data } = useSelector((s) => s?.auth);
+  const navigate = useNavigate();
 
-  const [ showSendMail, setshowSendMail ] = useState(false);
+  const [showSendMail, setshowSendMail] = useState(false);
 
   const [registeredEmail, setRegisteredEmail] = useState({
     email: "",
@@ -33,21 +34,42 @@ function ForgotPassword({ hideForgotPass }) {
   }
 
   function handleSubmit() {
-    if(!registeredEmail.email){
-        toast.error('Please enter an email first');
-        return;
+    if (!registeredEmail.email) {
+      toast.error("Please enter an email first");
+      return;
     }
 
-    if(!isEmail(registeredEmail.email)){
-        toast.error('Invalid Email');
-        return;
+    if (!isEmail(registeredEmail.email)) {
+      toast.error("Invalid Email");
+      return;
     }
-    
+
     setshowSendMail(true);
   }
 
-  async function handleSendMail(){
+  async function handleSendMail() {
+    try {
+      const res = axiosInstance.post("/user/reset", registeredEmail);
+      toast.promise(res, {
+        loading: "Wait, Sending Mail",
+        success: (data) => {
+          return data?.data?.message;
+        },
+        error: "Something Went Wrong",
+      });
 
+      const response = await res;
+
+      if (response?.data?.success) {
+        setRegisteredEmail({
+            email : ''
+        });
+        navigate('/signin')
+      }
+
+    } catch (err) {
+      toast.error(err.response?.data?.message);
+    }
   }
 
   async function handleCurrentSubmit() {
@@ -57,9 +79,9 @@ function ForgotPassword({ hideForgotPass }) {
     }
 
     try {
-      const res = axiosInstance.post("/user/reset", { email: data.email });
+      const res = axiosInstance.post("/user/reset", registeredEmail);
       toast.promise(res, {
-        loading: "Wait, Checking your email & changing password",
+        loading: "Wait, Sending Mail",
         success: (data) => {
           return data?.data?.message;
         },
@@ -155,12 +177,22 @@ function ForgotPassword({ hideForgotPass }) {
       {showSendMail && (
         <div className="fixed top-0 right-0 bottom-0 left-0 bg-gradient-to-r from-[#00000095] to-[#00000095] flex justify-center items-center z-30">
           <div className="flex flex-col justify-center w-[90%] md:w-[60%] lg:w-[50%] bg-white rounded-xl py-8 px-6 text-center">
-            <h1 className="font-poppins sm:text-xl font-bold tracking-wide text-zinc-600">We will send you mail to the provided registered email address</h1>
-            <p className="my-5 font-slab tracking-wider sm:text-xl text-blue-600 flex justify-center items-center gap-1"><MdEmail size={'30px'}/>{registeredEmail.email}</p>
-            
+            <h1 className="font-poppins sm:text-xl font-bold tracking-wide text-zinc-600">
+              We will send you mail to the provided registered email address
+            </h1>
+            <p className="my-5 font-slab tracking-wider sm:text-xl text-blue-600 flex justify-center items-center gap-1">
+              <MdEmail size={"30px"} />
+              {registeredEmail.email}
+            </p>
+
             <hr className="border-b-[1.5px] my-2 sm:my-4" />
 
-            <button onClick={handleSendMail} className="bg-gradient-to-t from-indigo-900 via-indigo-600 to-indigo-400 w-fit self-center text-white px-5 py-3 text-xl font-bold font-poppins rounded-xl hover:bg-gradient-to-t hover:from-indigo-400 hover:via-indigo-600 hover:to-indigo-900 transition-all duration-300 ease-in-out hover:scale-110">OK</button>
+            <button
+              onClick={handleSendMail}
+              className="bg-gradient-to-t from-indigo-900 via-indigo-600 to-indigo-400 w-fit self-center text-white px-5 py-3 text-xl font-bold font-poppins rounded-xl hover:bg-gradient-to-t hover:from-indigo-400 hover:via-indigo-600 hover:to-indigo-900 transition-all duration-300 ease-in-out hover:scale-110"
+            >
+              OK
+            </button>
           </div>
         </div>
       )}

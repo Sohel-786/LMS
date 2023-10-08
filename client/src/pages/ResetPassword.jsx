@@ -1,11 +1,27 @@
+import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
 function ResetPassword() {
+  const [ viewPasswords , setViewPasswords ] = useState({
+    viewNewPassword : false,
+    viewConfirmPassword : false
+  })
+
   function handleChange() {}
 
-  function handleConfirmPassView() {}
+  function handleConfirmPassView() {
+    setViewPasswords({
+        ...viewPasswords,
+        viewConfirmPassword : !viewPasswords.viewConfirmPassword
+    })
+  }
 
-  function handleNewPassView() {}
+  function handleNewPassView() {
+    setViewPasswords({
+        ...viewPasswords,
+        viewNewPassword : !viewPasswords.viewNewPassword
+    })
+  }
 
   return (
     <div className="flex flex-col items-center w-full h-[900px] lg:h-auto">
@@ -35,11 +51,11 @@ function ResetPassword() {
             <input
               onChange={handleChange}
               className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
-              type={viewOldPassword ? "text" : "password"}
+              type={viewPasswords.viewNewPassword ? "text" : "password"}
               name="password"
               id="newPassword"
             />
-            {viewOldPassword ? (
+            {viewPasswords.viewNewPassword ? (
               <span type="button">
                 <FiEye
                   aria-label="eyeOn"
@@ -68,11 +84,11 @@ function ResetPassword() {
             <input
               onChange={handleChange}
               className="bg-transparent border-none focus:outline-0 focus:ring-0 w-full placeholder:font-semibold font-bold"
-              type={viewNewPassword ? "text" : "password"}
+              type={viewPasswords.viewConfirmPassword ? "text" : "password"}
               name="confirmPassword"
               id="confirmPassword"
             />
-            {viewNewPassword ? (
+            {viewPasswords.viewConfirmPassword ? (
               <span type="button">
                 <FiEye
                   aria-label="eyeOn"
