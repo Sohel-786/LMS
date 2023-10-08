@@ -87,37 +87,40 @@ function ResetPassword() {
     try {
       const res = axiosInstance.post(`/user/reset/${resetToken}`, password);
       toast.promise(res, {
-        loading : 'Wait, Changing your password',
-        success : (data) => {
-            return data?.data?.message;
+        loading: "Wait, Changing your password",
+        success: (data) => {
+          return data?.data?.message;
         },
-        error : (data) => {
-            const msg = data?.response?.data?.message;
-            if(msg === 'Token in invalid or expired, please try again'){
-                return 'Provide email again and generate new token'
-            }
-            return 'Something Went Wrong'
-        }
-      })
+        error: (data) => {
+          const msg = data?.response?.data?.message;
+          if (msg === "Token in invalid or expired, please try again") {
+            return "Provide email again and generate new token";
+          }
+          return "Something Went Wrong";
+        },
+      });
 
       const response = await res;
 
-      if(response?.data?.success){
+      if (response?.data?.success) {
         setPassword({
-            password : '',
-            confirmPassword : ''
-        })
-        navigate('/signin');
+          password: "",
+          confirmPassword: "",
+        });
+        navigate("/signin");
       }
-    }catch(err){
-        toast.error(err.response?.data?.message);
-        if(err.response?.data?.message === 'Token in invalid or expired, please try again'){
-            setPassword({
-                password : '',
-                confirmPassword : ''
-            })
-            navigate('/signin');
-        }
+    } catch (err) {
+      toast.error(err.response?.data?.message);
+      if (
+        err.response?.data?.message ===
+        "Token in invalid or expired, please try again"
+      ) {
+        setPassword({
+          password: "",
+          confirmPassword: "",
+        });
+        navigate("/signin");
+      }
     }
   }
 

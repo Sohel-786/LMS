@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import HomeLayout from "../layouts/HomeLayout";
-import { FaUserCircle } from "react-icons/fa";
-import { FaEdit } from "react-icons/fa";
+import HomeLayout from "../layouts/HomeLayout";;
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { toast } from "react-hot-toast";
-import { isEmail, isValidPassword } from "../helpers/RegexMatcher";
+import { isEmail } from "../helpers/RegexMatcher";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/slices/authSlice";
 

@@ -24,7 +24,7 @@ function Profile() {
   const [editable, setEditable] = useState(false);
   const [enableSave, setEnableSave] = useState(false);
 
-  const [ forgotPassView, setForgotPassView] = useState(false);
+  const [forgotPassView, setForgotPassView] = useState(false);
 
   const [viewPassChange, setViewPassChange] = useState(false);
   const [viewOldPassword, setViewOldpassword] = useState(false);
@@ -175,20 +175,20 @@ function Profile() {
     profileBtn.style.display = "none";
   }
 
-  function ShowForgotPass(){
-    const changePass = document.getElementById('changePass');
-    changePass.style.display = 'none';
-    
-    const forgotPass = document.getElementById('forgotPass');
-    forgotPass.style.display = 'flex'
+  function ShowForgotPass() {
+    const changePass = document.getElementById("changePass");
+    changePass.style.display = "none";
+
+    const forgotPass = document.getElementById("forgotPass");
+    forgotPass.style.display = "flex";
   }
 
-  function hideForgotPass(){
-    const changePass = document.getElementById('changePass');
-    changePass.style.display = 'flex';
-    
-    const forgotPass = document.getElementById('forgotPass');
-    forgotPass.style.display = 'none'
+  function hideForgotPass() {
+    const changePass = document.getElementById("changePass");
+    changePass.style.display = "flex";
+
+    const forgotPass = document.getElementById("forgotPass");
+    forgotPass.style.display = "none";
   }
 
   return (
@@ -333,11 +333,12 @@ function Profile() {
 
             {/* Change Password Input and Button Container */}
             {viewPassChange ? (
-
               // change password section
               <div className="top-0 right-0 bottom-0 left-0 fixed bg-gradient-to-r from-[#00000095] to-[#00000095] flex justify-center items-center z-30">
-
-                <div id='changePass' className="flex flex-col justify-center w-[80%] md:w-[60%] lg:w-[40%] bg-white rounded-xl py-5 px-6">
+                <div
+                  id="changePass"
+                  className="flex flex-col justify-center w-[80%] md:w-[60%] lg:w-[40%] bg-white rounded-xl py-5 px-6"
+                >
                   <label
                     htmlFor="oldpassword"
                     className="font-slab text-gray-600 mt-4 mb-2 pl-1"
@@ -408,7 +409,13 @@ function Profile() {
                   </div>
 
                   <div className="w-full pl-1 mt-2 flex justify-end">
-                    <p type='button' onClick={ShowForgotPass} className="text-[#1877f2] text-lg font-semibold cursor-pointer hover:underline">Forgotten password?</p>
+                    <p
+                      type="button"
+                      onClick={ShowForgotPass}
+                      className="text-[#1877f2] text-lg font-semibold cursor-pointer hover:underline"
+                    >
+                      Forgotten password?
+                    </p>
                   </div>
 
                   <div
@@ -440,8 +447,8 @@ function Profile() {
                 </div>
 
                 {/* forgot password container */}
-                
-                  <ForgotPassword  hideForgotPass={hideForgotPass} />
+
+                <ForgotPassword hideForgotPass={hideForgotPass} />
               </div>
             ) : (
               <button
