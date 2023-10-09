@@ -21,6 +21,7 @@ function Contact() {
 
   function handleChange(e) {
     const { type, value, name, checked } = e.target;
+
     setUserDetails({
       ...userDetails,
       [name]: type === "checkbox" ? checked : value,
@@ -211,6 +212,7 @@ function Contact() {
                     checked={userDetails.term}
                     name="term"
                     onChange={handleChange}
+                    onKeyDown={handleChange}
                     type="checkbox"
                   />
                 </div>
