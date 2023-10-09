@@ -21,7 +21,6 @@ function Contact() {
 
   function handleChange(e) {
     const { type, value, name, checked } = e.target;
-
     setUserDetails({
       ...userDetails,
       [name]: type === "checkbox" ? checked : value,
@@ -74,7 +73,7 @@ function Contact() {
         <div className="isolate px-6 py-10 sm:py-10 lg:px-8 w-[65%] rounded-xl">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            How can we help you?
+              How can we help you?
             </h2>
           </div>
           <form
@@ -216,10 +215,7 @@ function Contact() {
                     type="checkbox"
                   />
                 </div>
-                <label
-                  className="text-sm leading-6"
-                  id="switch-1-label"
-                >
+                <label className="text-sm leading-6" id="switch-1-label">
                   By selecting this, you agree to our{" "}
                   <a href="#" className="font-semibold text-indigo-400">
                     privacy&nbsp;policy
