@@ -79,7 +79,7 @@ function ForgotPassword({ hideForgotPass }) {
     }
 
     try {
-      const res = axiosInstance.post("/user/reset", registeredEmail);
+      const res = axiosInstance.post("/user/reset", {email : data.email});
       toast.promise(res, {
         loading: "Wait, Sending Mail",
         success: (data) => {

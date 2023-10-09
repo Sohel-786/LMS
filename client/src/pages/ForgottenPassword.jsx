@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import ForgotPassword from "../components/Profile/ForgotPassword";
+import ForgotPassword from "../components/Password/ForgotPassword";
 
 function ForgottenPassword() {
   const navigate = useNavigate();

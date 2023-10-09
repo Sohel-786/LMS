@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 import axiosInstance from "../config/axiosInstance";
 import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
 import { RiCloseCircleFill } from "react-icons/ri";
-import ForgotPassword from "../components/Profile/ForgotPassword";
+import ForgotPassword from "../components/Password/ForgotPassword";
 
 function Profile() {
   const navigate = useNavigate();
