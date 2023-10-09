@@ -138,7 +138,7 @@ function ResetPassword() {
           />
         </div>
       </header>
-      <div className="w-full flex justify-center items-center h-[563px]">
+      <form onSubmit={(e) => e.preventDefault()} className="w-full flex justify-center items-center h-[563px]">
         <div className="flex flex-col justify-center w-[90%] md:w-[60%] lg:w-[50%] bg-gradient-to-r from-slate-950 via-slate-800 to-slate-700 rounded-xl py-5 px-6">
           <label
             htmlFor="newPassword"
@@ -217,6 +217,7 @@ function ResetPassword() {
             className="w-full flex items-center justify-center gap-5 mt-5"
           >
             <button
+              type="submit"
               onClick={handleSubmit}
               className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-green-800 via-green-600 to-green-400 hover:bg-gradient-to-t hover:from-green-400 hover:via-green-600 hover:to-green-800 hover:scale-110 transition-all duration-300"
             >
@@ -224,7 +225,7 @@ function ResetPassword() {
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
