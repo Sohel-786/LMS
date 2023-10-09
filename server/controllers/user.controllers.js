@@ -160,7 +160,91 @@ const forgotPassword = async (req, res, next) => {
 
   const resetPasswordurl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
   const subject = "Reset Password";
-  const message = `You can reset your password by clicking <a href = ${resetPasswordurl} target = "_blank"> Reset your password  </a>\n if the above link doesn't work for some reason then copy paste this link in new tab ${resetPasswordurl}.\n If you have not requested this, kindly ignore it.`;
+  // const name = (user.fullname).toUpperCase()
+  const message = `
+  <div
+  style="
+    width: 100%;
+    height: 100%;
+    padding-bottom: 50px;
+    background-color: #0f1729;
+    border-radius: 20px;
+  "
+>
+  <div style="width: 100%; height:250px">
+    <img
+      style="width: 100%; height: 100%"
+      src="https://res.cloudinary.com/da3zef4f0/image/upload/v1696837273/lms/classroomlogo_n9974k.png"
+      alt="classroom"
+    />
+  </div>
+  <h1
+  style="
+    font-size: 30px;
+    font-weight: 800;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-align: center;
+  "
+  >
+  Hello, ${user.fullname.toUpperCase()}
+  </h1>
+  <h1
+    style="
+      font-size: 25px;
+      font-weight: 500;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #d2d2d2da;
+      text-align: center;
+    "
+  >
+    Reset Your Password
+  </h1>
+  <div style="width: fit-content; padding: 10px; margin: auto">
+    <a href=${resetPasswordurl}
+        style="
+          padding: 15px 50px;
+          border-radius: 10px;
+          background: linear-gradient(
+            to right,
+            rgb(56, 0, 146),
+            rgb(0, 119, 198)
+          );
+          color: white;
+          font-weight: bold;
+          font-size: 23px;
+          border: 1px solid white;
+          cursor: pointer;
+          letter-spacing: 3px;
+          font-family: 'Roboto Condensed', sans-serif;
+          text-decoration : none
+        "
+      >
+        Reset
+    </a>
+  </div>
+
+  <div style="width: 80px; height: 80px; margin: auto">
+    <img
+      style="width: 100%; height: 100%"
+      src="https://res.cloudinary.com/da3zef4f0/image/upload/v1696838585/lms/giphy_lrbsuy.gif"
+      alt="arrowGif"
+    />
+  </div>
+
+    <div style="width:95%;margin:auto;background-color:white;border-radius:10px">
+      <p style="color: black; text-align: center;font-size: 14px;font-family:Verdana, Geneva, Tahoma, sans-serif;font-weight: 700;letter-spacing: 1.5px;padding:20px 15px">
+      If the above link doesn't work for some reason then copy paste this
+      link in new tab
+    </p>
+       <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-decoration: underline;font-size: 13px;text-align: center;padding-bottom:15px">${resetPasswordurl}</p>
+    </div>
+   
+
+    <div style="width: 80%; border-left:5px solid rgb(255, 0, 255);margin:20px 80px; padding:5px 30px;border-radius: 10px;">
+      <p style="font-size: 18px; color: rgb(255, 143, 143);font-weight:bold;font-family:monospace;letter-spacing: 1.5px;">If you have not requested this, kindly ignore it.</p>
+    </div>
+</div>`;
 
   try {
     await sendEmail(email, subject, message);
@@ -321,7 +405,8 @@ async function contactUs(req, res, next) {
   const subject = `Greeting to you ${
     firstname + " " + lastname
   } from Classroom`;
-  const msg = `<div style="width:100%;height:100%;;padding-top:50px;padding-bottom:50px;background-color:#0f1729;border-radius: 20px;">
+  const msg = `<div style="width:100%;height:100%;padding-bottom:50px;background-color:#0f1729;border-radius: 20px;">
+  <div style="width:100%;height:250px;"><img style="width:100%;height:100%;" src='https://res.cloudinary.com/da3zef4f0/image/upload/v1696837273/lms/classroomlogo_n9974k.png' alt='classroom' /></div>
   <h1 style="font-size:45px;font-weight:900;font-family: Arial, Helvetica, sans-serif;color: white;text-align:center;">Thank You
   <span style="font-size: 15px;text-align:center;font-weight: bolder;font-family: Arial, Helvetica, sans-serif;color: skyblue;letter-spacing: 1px;display:block">for reaching out to us</span>
   <span style="font-size: 20px;font-weight:900;font-family: Arial, Helvetica, sans-serif;color: rgb(255, 0, 166);letter-spacing: 1px;text-align:center;display:block">we will connect to you soon</span></h1>
