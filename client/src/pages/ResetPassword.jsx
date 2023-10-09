@@ -138,7 +138,10 @@ function ResetPassword() {
           />
         </div>
       </header>
-      <form onSubmit={(e) => e.preventDefault()} className="w-full flex justify-center items-center h-[563px]">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="w-full flex justify-center items-center h-[563px]"
+      >
         <div className="flex flex-col justify-center w-[90%] md:w-[60%] lg:w-[50%] bg-gradient-to-r from-slate-950 via-slate-800 to-slate-700 rounded-xl py-5 px-6">
           <label
             htmlFor="newPassword"

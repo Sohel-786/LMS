@@ -62,11 +62,10 @@ function ForgotPassword({ hideForgotPass }) {
 
       if (response?.data?.success) {
         setRegisteredEmail({
-            email : ''
+          email: "",
         });
-        navigate('/signin')
+        navigate("/signin");
       }
-
     } catch (err) {
       toast.error(err.response?.data?.message);
     }
@@ -79,7 +78,7 @@ function ForgotPassword({ hideForgotPass }) {
     }
 
     try {
-      const res = axiosInstance.post("/user/reset", {email : data.email});
+      const res = axiosInstance.post("/user/reset", { email: data.email });
       toast.promise(res, {
         loading: "Wait, Sending Mail",
         success: (data) => {
@@ -104,7 +103,7 @@ function ForgotPassword({ hideForgotPass }) {
       if (response?.data?.success) {
         hideForgotPass();
       }
-    }catch(err) {
+    } catch (err) {
       toast.error(err.response?.data?.message);
     }
   }
