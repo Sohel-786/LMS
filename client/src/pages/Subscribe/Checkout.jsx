@@ -56,7 +56,7 @@ function Checkout() {
           />
         </div>
 
-        <div className="w-[40%] rounded-xl overflow-hidden h-[650px] my-[50px] shadow-marquee">
+        <div className="w-[40%] flex flex-col rounded-xl overflow-hidden h-[650px] my-[50px] shadow-marquee">
           <div className="w-full h-[32%]">
             <img
               className="h-full w-full"
@@ -123,7 +123,7 @@ function Checkout() {
             </div>
           </div>
 
-          <button type="submit" className="">
+          <button type="submit" className="w-[80%] py-2 m-auto bg-green-500">
             buy now
           </button>
         </div>
