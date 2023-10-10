@@ -32,6 +32,18 @@ export const purchaseCourseBundle = createAsyncThunk(
   }
 );
 
+export const verifyPayment = createAsyncThunk(
+  "/payment/verify",
+  async (data) => {
+    try {
+      const res = await axiosInstance.post("/payments/verify", data);
+      return res;
+    } catch (err) {
+      toast.error(error?.response?.data?.message);
+    }
+  }
+);
+
 const paymentSlice = createSlice({
   name: "payment",
   initialState: initialState,
@@ -43,7 +55,15 @@ const paymentSlice = createSlice({
       })
       .addCase(purchaseCourseBundle.fulfilled, (state, action) => {
         state.subscription_id = action?.payload?.subscription_id;
-      });
+      })
+      .addCase(verifyPayment.fulfilled, (state, action) => {
+        toast.success(action?.payload?.message);
+        state.isPaymentVerified = action?.payload?.success;
+      })
+      .addCase(verifyPayment.rejected, (state, action) => {
+        toast.error(action?.payload?.message);
+        state.isPaymentVerified = action?.payload?.success;
+      })
   },
 });
 

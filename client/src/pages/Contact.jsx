@@ -3,7 +3,6 @@ import HomeLayout from "../layouts/HomeLayout";
 import toast from "react-hot-toast";
 import { isEmail, isValidPhoneNumber } from "../helpers/RegexMatcher";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { contact } from "../redux/slices/authSlice";
 
 function Contact() {

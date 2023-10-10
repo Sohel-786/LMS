@@ -29,10 +29,14 @@ export const buySubscription = async (req, res, next) => {
       return next(new AppError("Admin can't buy a subscription", 400));
     }
 
+    console.log("first point");
+
     const subscription = await razorpay.subscriptions.create({
       plan_id: process.env.RAZORPAY_PLAN_ID,
-      customer_notify: 1,
+      customer_notify: 1
     });
+
+    console.log("second point", subscription);
 
     user.subscription.id = subscription.id;
     user.subscription.status = subscription.status;
@@ -42,10 +46,10 @@ export const buySubscription = async (req, res, next) => {
     return res.status(200).json({
       success: true,
       message: "Subscribed Successfully",
-      subscription_id : subscription.id
+      subscription_id: subscription.id,
     });
   } catch (e) {
-    return next(new AppError(e.message, 500));
+    return next(new AppError("Something Is Very Wrong sir", 500));
   }
 };
 
