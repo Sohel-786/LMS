@@ -4,6 +4,10 @@ import { GrClose } from "react-icons/gr";
 import { BiRupee } from "react-icons/bi";
 import { SiBookstack } from "react-icons/si";
 import { FcApproval } from "react-icons/fc";
+import { GiDuration } from "react-icons/gi";
+import { IoDocumentTextSharp } from "react-icons/io5";
+import { HiReceiptRefund } from 'react-icons/hi2';
+import { RiRefund2Line } from 'react-icons/ri';
 
 function Checkout() {
   useEffect(() => {
@@ -52,8 +56,8 @@ function Checkout() {
           />
         </div>
 
-        <div className="w-[40%] rounded-xl overflow-hidden h-[450px] my-[50px] shadow-marquee">
-          <div className="w-full h-[40%]">
+        <div className="w-[40%] rounded-xl overflow-hidden h-[650px] my-[50px] shadow-marquee">
+          <div className="w-full h-[32%]">
             <img
               className="h-full w-full"
               src={
@@ -71,36 +75,55 @@ function Checkout() {
 
             <hr className="border-b-[1.2px] rounded-xl my-1 border-indigo-100" />
 
-            <div className="flex flex-col just">
-              <div className="text-lg">
-                <FcApproval />
-                <h1>
-                  {" "}
-                  This purchase will allow you to access all the available
-                  courses on our platform for{" "}
-                  <span className="font-bold text-yellow-500">
-                    1 yr duratrion
-                  </span>{" "}
-                  All the existing and new launched courses will be available
-                </h1>
+            <div className="flex flex-col px-4">
+              <div className="flex gap-2">
+                <div>
+                  <FcApproval size={"20px"} className="inline-block" />
+                </div>
+                <div>
+                  <h1 className="text-lg font-roboto font-bold text-slate-600 tracking-wide">
+                    This purchase will allow you to access all the available
+                    courses on our platform for{" "}
+                    <span className="font-slab text-blue-500 block text-center text-xl my-[10px] tracking-wider">
+                      <GiDuration className="inline-block text-4xl text-green-700 mr-1" />{" "}
+                      1 Year Duratrion
+                    </span>{" "}
+                    & all the existing and new launched courses will also be
+                    available.
+                  </h1>
+                </div>
               </div>
-              <p className="flex items-center justify-center gap-1 text-2xl font-bold text-yellow-500">
-                <BiRupee />
-                <span>499</span> only
+
+              <p className="flex items-center justify-center my-3">
+                <BiRupee className="text-green-600 text-3xl" />
+                <span className="font-poppins text-orange-500 block text-2xl font-bold">
+                  499{" "}
+                </span>
+                <span className="font-slab text-xl text-blue-500 tracking-wide ml-1">
+                  Only
+                </span>
               </p>
-              <div className="text-gray-200">
-                <p>100% refund on cancellation</p>
-                <p>Terms and conditions apply *</p>
+
+              <div className="flex flex-col gap-1 my-3">
+                <div className="flex items-center gap-2 sm:text-lg font-mono font-bold">
+                  <HiReceiptRefund className="text-orange-600" />
+                  <p className="flex items-center gap-2">100% refund on cancellation <RiRefund2Line className="text-green-600" /></p>
+                </div>
+                <div className="flex items-center gap-2 sm:text-lg font-mono font-bold">
+                  <IoDocumentTextSharp className="text-yellow-500" />
+                  <p>Terms and conditions apply <span className="text-red-600">*</span></p>
+                </div>
               </div>
             </div>
           </div>
 
           <button
             type="submit"
-            className="bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 absolute bottom-0 w-full left-0 text-xl font-bold rounded-bl-lg rounded-br-lg py-2"
+            className=""
           >
             buy now
           </button>
+          
         </div>
       </div>
     </HomeLayout>
