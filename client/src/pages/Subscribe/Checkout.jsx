@@ -96,10 +96,10 @@ function Checkout() {
 
               <p className="flex items-center justify-center my-3">
                 <BiRupee className="text-green-600 text-3xl" />
-                <span className="font-poppins text-orange-500 block text-2xl font-bold">
+                <span className="font-poppins text-orange-500 block text-3xl font-bold">
                   499{" "}
                 </span>
-                <span className="font-slab text-xl text-blue-500 tracking-wide ml-1">
+                <span className="font-slab text-xl text-blue-500 tracking-wide ml-2">
                   Only
                 </span>
               </p>
