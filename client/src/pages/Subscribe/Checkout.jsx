@@ -6,8 +6,8 @@ import { SiBookstack } from "react-icons/si";
 import { FcApproval } from "react-icons/fc";
 import { GiDuration } from "react-icons/gi";
 import { IoDocumentTextSharp } from "react-icons/io5";
-import { HiReceiptRefund } from 'react-icons/hi2';
-import { RiRefund2Line } from 'react-icons/ri';
+import { HiReceiptRefund } from "react-icons/hi2";
+import { RiRefund2Line } from "react-icons/ri";
 
 function Checkout() {
   useEffect(() => {
@@ -107,23 +107,25 @@ function Checkout() {
               <div className="flex flex-col gap-1 my-3">
                 <div className="flex items-center gap-2 sm:text-lg font-mono font-bold">
                   <HiReceiptRefund className="text-orange-600" />
-                  <p className="flex items-center gap-2">100% refund on cancellation <RiRefund2Line className="text-green-600" /></p>
+                  <p className="flex items-center gap-2">
+                    100% refund on cancellation{" "}
+                    <RiRefund2Line className="text-green-600" />
+                  </p>
                 </div>
                 <div className="flex items-center gap-2 sm:text-lg font-mono font-bold">
                   <IoDocumentTextSharp className="text-yellow-500" />
-                  <p>Terms and conditions apply <span className="text-red-600">*</span></p>
+                  <p>
+                    Terms and conditions apply{" "}
+                    <span className="text-red-600">*</span>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <button
-            type="submit"
-            className=""
-          >
+          <button type="submit" className="">
             buy now
           </button>
-          
         </div>
       </div>
     </HomeLayout>
