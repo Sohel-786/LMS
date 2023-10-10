@@ -8,7 +8,7 @@ export const getRazorpayApiKey = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "Razorpay API Key",
-      Key_Id: process.env.RAZORPAY_KEY_ID,
+      key: process.env.RAZORPAY_KEY_ID,
     });
   } catch (e) {
     return next(new AppError(e.message, 500));
@@ -42,6 +42,7 @@ export const buySubscription = async (req, res, next) => {
     return res.status(200).json({
       success: true,
       message: "Subscribed Successfully",
+      subscription_id : subscription.id
     });
   } catch (e) {
     return next(new AppError(e.message, 500));
