@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import ResetPassword from "./pages/ResetPassword";
 import ForgottenPassword from "./pages/ForgottenPassword";
+import Checkout from "./pages/Subscribe/Checkout";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/course-description" element={<CourseDescription />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/forgot-password" element={<ForgottenPassword />} />
         <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
         <Route path="*" element={<Notfound />} />
