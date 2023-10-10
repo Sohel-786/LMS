@@ -21,6 +21,9 @@ export default {
         poppins: "'Poppins', sans-serif",
         slab: "'Roboto Slab', serif",
       },
+      transitionProperty : {
+        notice : 'height'
+      }
     },
   },
   plugins: [require("@tailwindcss/forms"), require("daisyui")],
