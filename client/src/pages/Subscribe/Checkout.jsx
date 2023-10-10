@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import HomeLayout from "../../layouts/HomeLayout";
 import { GrClose } from "react-icons/gr";
 import { BiRupee } from "react-icons/bi";
-import { SiBookstack } from "react-icons/si";
+import { SiBookstack, SiWebmoney } from "react-icons/si";
 import { FcApproval } from "react-icons/fc";
 import { GiDuration } from "react-icons/gi";
 import { IoDocumentTextSharp } from "react-icons/io5";
@@ -28,35 +28,43 @@ function Checkout() {
 
   return (
     <HomeLayout>
-      <div className="w-full flex flex-col justify-center items-center sm:pt-8">
+      <div
+        className="w-full flex flex-col justify-center items-center sm:pt-8 bg-contain"
+        style={{
+          backgroundImage: 'url("/assets/bg2.svg")',
+        }}
+      >
         <div
           id="notice"
-          className="flex justify-center items-center w-full h-0 px-4 bg-red-400 transition-all ease-in-out duration-500"
+          className="flex justify-end items-center w-full h-0 px-4 bg-red-400 transition-all ease-in-out duration-300"
         >
           <p
             id="notice_p"
-            className="font-roboto font-bold tracking-wide sm:text-lg text-center mr-28 hidden transition-all ease-in-out duration-500"
+            className="font-roboto font-bold tracking-wide sm:text-lg text-center mr-28 hidden"
           >
             This is just for the development purpose, no ammount will be charged
             from you, you can proceed with buying option.
           </p>
-          <GrClose
-            id="notice_close"
-            onClick={() => {
-              const notice = document.getElementById("notice");
-              const notice_p = document.getElementById("notice_p");
-              const notice_close = document.getElementById("notice_close");
+          <div className="">
+            <GrClose
+              id="notice_close"
+              onClick={() => {
+                const notice = document.getElementById("notice");
+                const notice_p = document.getElementById("notice_p");
+                const notice_close = document.getElementById("notice_close");
 
-              notice.style.height = "0px";
-              notice_p.style.display = "none";
-              notice_close.style.display = "none";
-            }}
-            size={"22px"}
-            className="cursor-pointer hidden transition-all ease-in-out duration-500"
-          />
+                notice.style.height = "0px";
+                notice_p.style.display = "none";
+                notice_close.style.display = "none";
+              }}
+              size={"22px"}
+              className="cursor-pointer hidden"
+            />
+          </div>
         </div>
 
-        <div className="w-[40%] flex flex-col rounded-xl overflow-hidden h-[650px] my-[50px] shadow-marquee">
+        <div className="w-full flex justify-center items-center gap-6 pl-20 pr-4">
+        <div className="w-[45%] flex flex-col rounded-xl overflow-hidden h-[700px] my-[50px] shadow-marquee bg-white">
           <div className="w-full h-[32%]">
             <img
               className="h-full w-full"
@@ -73,7 +81,7 @@ function Checkout() {
               <SiBookstack className="text-blue-500" /> Subscription bundle
             </h1>
 
-            <hr className="border-b-[1.2px] rounded-xl my-1 border-indigo-100" />
+            <hr className="border-b-[1.2px] rounded-xl my-1 mb-4 border-indigo-100" />
 
             <div className="flex flex-col px-4">
               <div className="flex gap-2">
@@ -121,11 +129,20 @@ function Checkout() {
                 </div>
               </div>
             </div>
-          </div>
 
-          <button type="submit" className="w-[80%] py-2 m-auto bg-green-500">
-            buy now
-          </button>
+            <button
+              type="submit"
+              className="w-[90%] mt-3 flex justify-center items-center gap-[9px] py-3 m-auto bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 text-2xl font-bold rounded-xl text-white hover:scale-110 transition-all duration-300 ease-in-out"
+            >
+              <SiWebmoney />
+              Buy Now
+            </button>
+          </div>
+        </div>
+
+        <div className="w-[55%] h-full">
+              <img className="w-full aspect-auto" src={'/assets/paymentPageImage.svg'} alt="PaymentPage Image" />
+        </div>
         </div>
       </div>
     </HomeLayout>
