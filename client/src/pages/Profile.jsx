@@ -13,11 +13,12 @@ import axiosInstance from "../config/axiosInstance";
 import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
 import { RiCloseCircleFill } from "react-icons/ri";
 import ForgotPassword from "../components/Password/ForgotPassword";
+import { cancelSubscription } from "../redux/slices/paymentSlice";
 
 function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { avatar, fullname, email, createdAt } = useSelector(
+  const { avatar, fullname, email, createdAt, subscription } = useSelector(
     (s) => s?.auth?.data
   );
 
@@ -189,6 +190,15 @@ function Profile() {
 
     const forgotPass = document.getElementById("forgotPass");
     forgotPass.style.display = "none";
+  }
+
+  async function handleCancelBundle() {
+    const res = await dispatch(cancelSubscription());
+    if(res?.payload?.data?.success){
+      await dispatch(getUserData());
+      toast.success("Cancellation complete");
+      navigate("/");
+    }
   }
 
   return (
@@ -510,10 +520,13 @@ function Profile() {
                     Edit Profile
                   </button>
 
-                  <button className="flex justify-center items-center rounded-xl bg-gradient-to-b from-red-800 via-red-600 to-red-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-red-900 hover:via-red-700 hover:to-red-500 py-2 gap-2 px-4 lg:text-xl lg:px-5">
+                  {subscription && subscription?.status && subscription?.status === 'active' && <button
+                    onClick={handleCancelBundle}
+                    className="flex justify-center items-center rounded-xl bg-gradient-to-b from-red-800 via-red-600 to-red-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-red-900 hover:via-red-700 hover:to-red-500 py-2 gap-2 px-4 lg:text-xl lg:px-5"
+                  >
                     <TbDeviceDesktopCancel size={"22px"} />
                     Cancel Subscription
-                  </button>
+                  </button>}
                 </>
               )}
             </div>

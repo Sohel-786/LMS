@@ -91,7 +91,6 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(req.body);
 
   if ((!email, !password)) {
     return next(new AppError("All input fields are required", 400));

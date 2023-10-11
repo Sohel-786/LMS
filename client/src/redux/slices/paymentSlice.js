@@ -41,10 +41,28 @@ export const verifyPayment = createAsyncThunk(
       const res = await axiosInstance.post("/payments/verify", data);
       return res;
     } catch (err) {
-      toast.error(error?.response?.data?.message);
+      toast.error(err?.response?.data?.message);
     }
   }
 );
+
+export const cancelSubscription = createAsyncThunk('payment/cancelSubscription', async () => {
+  try {
+    const res = axiosInstance.get("/payments/unsubscribe");
+    toast.promise(res, {
+      loading : 'Wait, Canceling Subscription',
+      success : (data) => {
+        return data?.data?.message;
+      },
+      error : 'Unable to Unsubscribe'
+    })
+
+    return (await res).data;
+    
+  } catch (err) {
+    toast.error(err?.response?.data?.message);
+  }
+})
 
 const paymentSlice = createSlice({
   name: "payment",

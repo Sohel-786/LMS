@@ -3,11 +3,22 @@ import { BsBoxArrowInRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import HomeLayout from "../../layouts/HomeLayout";
 import { BiSolidErrorCircle } from 'react-icons/bi';
+import { useDispatch } from "react-redux";
+import { getUserDetails } from "../../redux/slices/authSlice";
 
 function CheckoutFail(){
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    async function load(){
+      await dispatch(getUserDetails());
+    }
+  
 
     useEffect(() => {
+
+      load();
+
       const id = setTimeout(() =>{
         const showImage = document.getElementById('showImage');
         showImage.style.display = 'none';

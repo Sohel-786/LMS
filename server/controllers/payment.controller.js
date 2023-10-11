@@ -21,7 +21,6 @@ export const buySubscription = async (req, res, next) => {
     const { id } = req.user;
 
     const user = await User.findById(id);
-    console.log(user)
 
     if (!user) {
       return next(new AppError("Unathorized, please login", 500));
@@ -109,8 +108,8 @@ export const cancelSubscription = async (req, res, next) => {
     }
 
     const subscription_id = user.subscription.id;
-
-    const subscription = await razorpay.subscriptions.cancel(subscription_id);
+    
+    const subscription = await razorpay.subscriptions.cancel('sub_MmvHUCaAAP85Im');
 
     user.subscription.status = subscription.status;
 
@@ -121,7 +120,7 @@ export const cancelSubscription = async (req, res, next) => {
       message: "Subscription Cancelled",
     });
   } catch (e) {
-    return next(new AppError(e.message, 500));
+    return next(new AppError(e?.error?.description, 500));
   }
 };
 
