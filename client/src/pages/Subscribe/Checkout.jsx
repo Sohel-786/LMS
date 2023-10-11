@@ -23,6 +23,7 @@ function Checkout() {
 
   const razorpayKey = useSelector((s) => s?.payment?.key);
   const subscription_id = useSelector((s) => s?.payment?.subscription_id);
+  const data = useSelector((s) => s?.auth?.data);
 
   const paymentDetails = {
     razorpay_payment_id: "",
@@ -60,17 +61,23 @@ function Checkout() {
     }
 
     const options = {
-      key: "key_id",
-      subscription_id: "sub_00000000000001",
-      name: "Acme Corp.",
-      description: "Monthly Test Plan",
-      image: "/your_logo.jpg",
+      key: razorpayKey,
+      subscription_id: subscription_id,
+      name: "Classroom .pvt .ltd",
+      description: "Yearly Pro Plan",
+      image: "/assets/classroom.svg",
       theme: {
-        color: "#169aff",
+        color: "#0073ff",
       },
+      // prefill: {
+      //   name: data.fullname,
+      //   email: data.email,
+      //   contact: 9000090000,
+      // },
       handler: async function (response) {
         paymentDetails.razorpay_payment_id = response.razorpay_payment_id;
-        paymentDetails.razorpay_subscription_id = response.razorpay_subscription_id;
+        paymentDetails.razorpay_subscription_id =
+          response.razorpay_subscription_id;
         paymentDetails.razorpay_signature = response.razorpay_signature;
 
         const res = await dispatch(verifyPayment(paymentDetails));

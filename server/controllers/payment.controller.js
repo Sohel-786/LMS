@@ -19,7 +19,7 @@ export const buySubscription = async (req, res, next) => {
   try {
     const { id } = req.user;
 
-    const user = await User.findById(id).lean().exec();
+    const user = await User.findById(id);
     console.log(user)
 
     if (!user) {
@@ -30,16 +30,11 @@ export const buySubscription = async (req, res, next) => {
       return next(new AppError("Admin can't buy a subscription", 400));
     }
 
-    console.log("first point");
-    console.log(process.env.RAZORPAY_PLAN_ID)
-
     const subscription = await razorpay.subscriptions.create({
       plan_id: process.env.RAZORPAY_PLAN_ID,
       customer_notify: 1,
-      total_count : 6
+      total_count : 2
     });
-
-    console.log("second point", subscription, typeof subscription);
 
     user.subscription.id = subscription.id;
     user.subscription.status = subscription.status;
