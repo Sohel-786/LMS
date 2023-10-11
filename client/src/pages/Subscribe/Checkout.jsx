@@ -15,6 +15,7 @@ import {
   purchaseCourseBundle,
   verifyPayment,
 } from "../../redux/slices/paymentSlice";
+import toast from "react-hot-toast";
 
 function Checkout() {
   const navigate = useNavigate();

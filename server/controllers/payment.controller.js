@@ -20,6 +20,7 @@ export const buySubscription = async (req, res, next) => {
     const { id } = req.user;
 
     const user = await User.findById(id).lean().exec();
+    console.log(user)
 
     if (!user) {
       return next(new AppError("Unathorized, please login", 500));
@@ -30,6 +31,7 @@ export const buySubscription = async (req, res, next) => {
     }
 
     console.log("first point");
+    console.log(process.env.RAZORPAY_PLAN_ID)
 
     const subscription = await razorpay.subscriptions.create({
       plan_id: process.env.RAZORPAY_PLAN_ID,
@@ -37,7 +39,7 @@ export const buySubscription = async (req, res, next) => {
       total_count : 6
     });
 
-    console.log("second point", subscription);
+    console.log("second point", subscription, typeof subscription);
 
     user.subscription.id = subscription.id;
     user.subscription.status = subscription.status;
@@ -50,7 +52,7 @@ export const buySubscription = async (req, res, next) => {
       subscription_id: subscription.id,
     });
   } catch (e) {
-    return next(new AppError("Something Went Very Wrong sir", 500));
+    return next(new AppError(e, 500));
   }
 };
 
