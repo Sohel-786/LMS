@@ -10,6 +10,8 @@ function CheckoutSuccess(){
         const id = setTimeout(() =>{
             toast.custom((t) => (
                 <div
+                  data-aos='fade-down'
+                  data-aos-easing="ease-in"
                   className={`${
                     t.visible ? 'animate-enter' : 'animate-leave'
                   } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
@@ -20,7 +22,7 @@ function CheckoutSuccess(){
                         <img
                           className="h-14 w-14 rounded-full"
                           src= {data.avatar.secure_url}
-                          alt=""
+                          alt="Profile"
                         />
                       </div>
                       <div className="ml-3 flex-1">
@@ -36,14 +38,14 @@ function CheckoutSuccess(){
                   <div className="flex border-l border-gray-200">
                     <button
                       onClick={() => toast.dismiss(t.id)}
-                      className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-base font-bold text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 hover:bg-indigo-100"
                     >
                       Close
                     </button>
                   </div>
                 </div>
               ))
-        },500)
+        },200)
 
         return () => {
             clearTimeout(id);
@@ -52,7 +54,9 @@ function CheckoutSuccess(){
 
     return (
         <>
+            <div>
 
+            </div>
         </>
     )
 }

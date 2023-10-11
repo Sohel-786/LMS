@@ -1,3 +1,5 @@
+import Aos from "aos";
+import "aos/dist/aos.css";
 import { Route, Routes } from "react-router-dom";
 import Aboutus from "./pages/Aboutus";
 import Notfound from "./pages/Notfound";
@@ -16,8 +18,15 @@ import ForgottenPassword from "./pages/ForgottenPassword";
 import Checkout from "./pages/Subscribe/Checkout";
 import CheckoutFail from "./pages/Subscribe/CheckoutFail";
 import CheckoutSuccess from "./pages/Subscribe/CheckoutSuccess";
+import { useEffect } from "react";
+
 
 function App() {
+
+  useEffect(() =>{
+    Aos.init({ duration: 600 });
+  })
+
   return (
     <div className="mx-auto max-w-[1490px]">
       <Routes>
