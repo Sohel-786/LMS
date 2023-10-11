@@ -1,7 +1,4 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { BsFillPatchCheckFill, BsFillPersonVcardFill } from "react-icons/bs";
-import { FaSquareYoutube } from "react-icons/fa6";
 import { BsBoxArrowInRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import HomeLayout from "../../layouts/HomeLayout";

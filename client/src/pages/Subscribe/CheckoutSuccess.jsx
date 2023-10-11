@@ -1,18 +1,27 @@
 import { useEffect  } from "react";
 import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsFillPatchCheckFill, BsFillPersonVcardFill } from "react-icons/bs";
 import { FaSquareYoutube } from "react-icons/fa6";
 import { BsBoxArrowInRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import HomeLayout from "../../layouts/HomeLayout";
+import { getUserDetails } from "../../redux/slices/authSlice";
 
 
 function CheckoutSuccess() {
   const data = useSelector((s) => s?.auth?.data);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  async function load(){
+    await dispatch(getUserDetails());
+  }
 
   useEffect(() => {
+
+    load();
+
     const id = setTimeout(() => {
       toast.custom((t) => (
         <div
@@ -71,7 +80,7 @@ function CheckoutSuccess() {
 
   return (
     <HomeLayout>
-      <div className="w-full flex flex-col justify-center items-center py-20">
+      <div className="w-full flex flex-col justify-center items-center py-14">
         <div
           id="showImage"
           style={{ userSelect: "none" }}
