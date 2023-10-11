@@ -69,11 +69,6 @@ function Checkout() {
       theme: {
         color: "#0073ff",
       },
-      // prefill: {
-      //   name: data.fullname,
-      //   email: data.email,
-      //   contact: 9000090000,
-      // },
       handler: async function (response) {
         paymentDetails.razorpay_payment_id = response.razorpay_payment_id;
         paymentDetails.razorpay_subscription_id =
@@ -81,8 +76,7 @@ function Checkout() {
         paymentDetails.razorpay_signature = response.razorpay_signature;
 
         const res = await dispatch(verifyPayment(paymentDetails));
-        console.log("res on checkout", res, paymentDetails);
-        res?.payload
+        res?.payload?.data?.success
           ? navigate("/checkout/success")
           : navigate("/checkout/fail");
       },

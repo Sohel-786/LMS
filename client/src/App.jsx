@@ -14,6 +14,8 @@ import Profile from "./pages/Profile";
 import ResetPassword from "./pages/ResetPassword";
 import ForgottenPassword from "./pages/ForgottenPassword";
 import Checkout from "./pages/Subscribe/Checkout";
+import CheckoutFail from "./pages/Subscribe/CheckoutFail";
+import CheckoutSuccess from "./pages/Subscribe/CheckoutSuccess";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/course-description" element={<CourseDescription />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout/success" element={<CheckoutSuccess />} />
+        <Route path="/checkout/fail" element={<CheckoutFail />} />
         <Route path="/forgot-password" element={<ForgottenPassword />} />
         <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
         <Route path="*" element={<Notfound />} />

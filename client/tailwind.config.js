@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 
 /** @type {import('tailwindcss').Config} */
 

@@ -2,6 +2,7 @@ import Payment from "../models/payment.model.js";
 import User from "../models/user.model.js";
 import { razorpay } from "../server.js";
 import AppError from "../utils/appError.js";
+import crypto from "crypto";
 
 export const getRazorpayApiKey = async (req, res, next) => {
   try {
@@ -32,8 +33,7 @@ export const buySubscription = async (req, res, next) => {
 
     const subscription = await razorpay.subscriptions.create({
       plan_id: process.env.RAZORPAY_PLAN_ID,
-      customer_notify: 1,
-      total_count : 2
+      total_count : 1
     });
 
     user.subscription.id = subscription.id;
@@ -55,7 +55,7 @@ export const verifySubscription = async (req, res, next) => {
   try {
     const { id } = req.user;
 
-    const user = await User.findById(id).lean().exec();
+    const user = await User.findById(id);
 
     if (!user) {
       return next(new AppError("Unathorized, please login", 500));
@@ -98,7 +98,7 @@ export const cancelSubscription = async (req, res, next) => {
   try {
     const { id } = req.user;
 
-    const user = await User.findById(id).lean().exec();
+    const user = await User.findById(id);
 
     if (!user) {
       return next(new AppError("Unathorized, please login", 500));
