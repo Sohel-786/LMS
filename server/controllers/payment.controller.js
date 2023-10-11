@@ -33,7 +33,8 @@ export const buySubscription = async (req, res, next) => {
 
     const subscription = await razorpay.subscriptions.create({
       plan_id: process.env.RAZORPAY_PLAN_ID,
-      customer_notify: 1
+      customer_notify: 1,
+      total_count : 6
     });
 
     console.log("second point", subscription);
@@ -49,7 +50,7 @@ export const buySubscription = async (req, res, next) => {
       subscription_id: subscription.id,
     });
   } catch (e) {
-    return next(new AppError("Something Is Very Wrong sir", 500));
+    return next(new AppError("Something Went Very Wrong sir", 500));
   }
 };
 

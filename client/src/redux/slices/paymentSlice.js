@@ -20,8 +20,7 @@ export const getRazorpayId = createAsyncThunk("/payment/getId", async () => {
   }
 });
 
-export const purchaseCourseBundle = createAsyncThunk(
-  "/paymentpurchaseCourse",
+export const purchaseCourseBundle = createAsyncThunk("/paymentpurchaseCourse",
   async () => {
     try {
       const res = await axiosInstance.post("/payments/subscribe");
