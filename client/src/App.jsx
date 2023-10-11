@@ -44,7 +44,7 @@ function App() {
         <Route path="/course-description" element={<CourseDescription />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/checkout/success" element={<CheckoutSuccess />} />
-        <Route path="/checkout/fail" element={<CheckoutFail />} />
+        <Route path="/checkout/failed" element={<CheckoutFail />} />
         <Route path="/forgot-password" element={<ForgottenPassword />} />
         <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
         <Route path="*" element={<Notfound />} />

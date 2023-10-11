@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect  } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { BsFillPatchCheckFill, BsFillPersonVcardFill } from "react-icons/bs";
 import { FaSquareYoutube } from "react-icons/fa6";
 import { BsBoxArrowInRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import HomeLayout from "../../layouts/HomeLayout";
 
 
 function CheckoutSuccess() {
@@ -69,7 +70,7 @@ function CheckoutSuccess() {
   }, []);
 
   return (
-    <>
+    <HomeLayout>
       <div className="w-full flex flex-col justify-center items-center py-20">
         <div
           id="showImage"
@@ -115,7 +116,7 @@ function CheckoutSuccess() {
           </button>
         </div>
       </div>
-    </>
+    </HomeLayout>
   );
 }
 
