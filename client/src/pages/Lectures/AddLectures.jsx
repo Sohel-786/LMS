@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import HomeLayout from "../../layouts/HomeLayout";
 import { useState } from "react";
 import { addCourseLecture } from "../../redux/slices/lectureSlice";
+import {BiSolidVideos } from 'react-icons/bi';
 
 function AddLecture() {
   const courseDetails = useLocation().state;
@@ -12,6 +13,8 @@ function AddLecture() {
     VideoSrc: "",
     id: courseDetails._id,
   });
+
+  const [dragActive, setDragActive] = useState(false);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -57,17 +60,13 @@ function AddLecture() {
     container.style.borderColor = "transparent";
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const uploadedImage = e.dataTransfer.files[0];
-      setCourseDetails(function (state) {
-        return { ...state, thumbnail: uploadedImage };
-      });
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(uploadedImage);
-      fileReader.addEventListener("load", function () {
-        let result = this.result;
-        setCourseDetails(function (state) {
-          return { ...state, previewImage: result };
-        });
+      const video = e.dataTransfer.files[0];
+      const src = window.URL.createObjectURL(video);
+      console.log("src", src, video);
+      setFormData({
+        ...formData,
+        lecture: video,
+        VideoSrc: src,
       });
     }
   };
@@ -92,8 +91,8 @@ function AddLecture() {
 
   return (
     <HomeLayout>
-      <section className="flex flex-col justify-center items-center w-full py-20 pt-12">
-        <h1 className="mb-6 text-4xl font-bold tracking-wider">Add Lecture</h1>
+      <section className="flex flex-col justify-center items-center w-full py-20 pt-14">
+        <h1 className="text-4xl font-bold tracking-wider font-slab">ADD LECTURE</h1>
         <form
           noValidate
           onSubmit={(e) => {
@@ -133,7 +132,7 @@ function AddLecture() {
               ></div>
             ) : (
               <div className="border-[2px] border-dashed flex flex-col justify-center items-center w-full h-full">
-                <HiOutlinePhoto size={"70px"} className="text-gray-300" />
+                <BiSolidVideos size={"70px"} className="text-gray-300" />
                 <p className="text-gray-500 text-sm font-semibold text-center">
                   <label htmlFor="lecture">
                     <span
@@ -149,7 +148,7 @@ function AddLecture() {
             )}
           </div>
 
-          <div className="">
+          {formData.VideoSrc && <div className="">
             <button
               onClick={() => {
                 setFormData({
@@ -162,7 +161,7 @@ function AddLecture() {
             >
               CANCEL
             </button>
-          </div>
+          </div>}
 
           <input
             type="file"
