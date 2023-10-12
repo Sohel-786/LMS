@@ -20,12 +20,10 @@ import CheckoutFail from "./pages/Subscribe/CheckoutFail";
 import CheckoutSuccess from "./pages/Subscribe/CheckoutSuccess";
 import { useEffect } from "react";
 
-
 function App() {
-
-  useEffect(() =>{
+  useEffect(() => {
     Aos.init();
-  })
+  });
 
   return (
     <div className="mx-auto max-w-[1490px]">
@@ -39,12 +37,15 @@ function App() {
         <Route element={<AuthRoute allowedRoles={["ADMIN"]} />}>
           <Route path="/course-create" element={<CreateCourse />} />
         </Route>
-        <Route path="/profile" element={<Profile />} />
+
+        <Route element={<AuthRoute allowedRoles={["ADMIN", "USER"]} />}>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout/success" element={<CheckoutSuccess />} />
+          <Route path="/checkout/failed" element={<CheckoutFail />} />
+        </Route>
         <Route path="/courses" element={<Courses />} />
         <Route path="/course-description" element={<CourseDescription />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/checkout/success" element={<CheckoutSuccess />} />
-        <Route path="/checkout/failed" element={<CheckoutFail />} />
         <Route path="/forgot-password" element={<ForgottenPassword />} />
         <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
         <Route path="*" element={<Notfound />} />
