@@ -3,9 +3,11 @@ import HomeLayout from "../../layouts/HomeLayout";
 import { useEffect, useState } from "react";
 import { addCourseLecture } from "../../redux/slices/lectureSlice";
 import { BiSolidVideos } from "react-icons/bi";
+import { useDispatch } from "react-redux";
 
 function AddLecture() {
   const courseDetails = useLocation().state;
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
@@ -28,7 +30,6 @@ function AddLecture() {
   function handleVideo(e) {
     const video = e.target.files[0];
     const src = window.URL.createObjectURL(video);
-    console.log("src", src, video);
     setFormData({
       ...formData,
       lecture: video,
@@ -63,7 +64,6 @@ function AddLecture() {
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const video = e.dataTransfer.files[0];
       const src = window.URL.createObjectURL(video);
-      console.log("src", src, video);
       setFormData({
         ...formData,
         lecture: video,
@@ -83,7 +83,7 @@ function AddLecture() {
     }
 
     const res = await dispatch(addCourseLecture(formData));
-    if (response?.payload?.success) {
+    if (res?.payload?.success) {
       navigate(-1);
       formData({
         lecture: undefined,
@@ -97,7 +97,7 @@ function AddLecture() {
   return (
     <HomeLayout>
       <section className="flex flex-col justify-center items-center w-full py-20 pt-14">
-        <h1 className="text-4xl font-bold tracking-wider font-slab">
+        <h1 className="text-2xl sm:text-4xl font-bold tracking-wider font-slab">
           ADD LECTURE
         </h1>
         <form
@@ -105,13 +105,13 @@ function AddLecture() {
           onSubmit={(e) => {
             e.preventDefault();
           }}
-          className="bg-white text-black py-6 sm:py-12 px-4 sm:px-12 rounded-xl w-[95%] flex flex-col lg:flex-row items-center"
+          className="bg-white text-black py-6 sm:py-9 px-4 sm:px-12 rounded-xl w-[95%] flex flex-col lg:flex-row items-center lg:gap-10"
         >
-          <div className="w-full lg:w-[50%] h-[300px] lg:h-[450px] border-2 border-black">
+          <div className="w-full lg:w-[50%] h-[300px] lg:h-[450px]">
             <div
               id="container"
               onDragEnter={handleDrag}
-              className="w-full h-[90%] sm:h-[85%] flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
+              className="w-full h-[85%] flex flex-col items-center justify-center border-[2px] border-transparent border-dashed"
             >
               {formData.VideoSrc ? (
                 <div
@@ -157,7 +157,7 @@ function AddLecture() {
             </div>
 
             {formData.VideoSrc && (
-              <div className="">
+              <div className="w-full h-[15%] flex justify-center items-center">
                 <button
                   onClick={() => {
                     setFormData({

@@ -8,7 +8,6 @@ export const IsLoggedIn = (req, res, next) => {
   }
 
   const tokenDetails = JWT.verify(token, process.env.JWT_SECRET);
-  console.log(tokenDetails)
 
   if (!tokenDetails) {
     return next(new AppError("Unauthenticated, please login", 401));
@@ -36,7 +35,6 @@ export const authorizedRoles =
 export const authorizedSubscriber = async (req, res, next) => {
   const subscriptionStatus = req.user.subscription.status;
   const currentRole = req.user.role;
-  console.log(subscriptionStatus, currentRole)
   if (currentRole !== "ADMIN" && subscriptionStatus !== "active") {
     return next(new AppError("Please subscribe to access the course", 403));
   }
