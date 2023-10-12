@@ -3,7 +3,7 @@ import HomeLayout from "../../layouts/HomeLayout";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCourseLectures } from "../../redux/slices/lectureSlice";
-import { current } from "@reduxjs/toolkit";
+import { nanoid } from "nanoid";
 
 function DisplayLectures(){
 
@@ -21,15 +21,30 @@ function DisplayLectures(){
 
     return (
         <HomeLayout>
-            <div className="w-full grid grid-cols-2 px-12 my-16">
-                <div className="w-full border-2 border-black">
-                    <video className="w-full h-[330px]" controls autoPlay>
-                        <source src={lectures[currentId]} type="video/mp4" />
+            <div className="w-full flex px-12 my-16 gap-5">
+                <div className="w-[60%] border-2 border-black">
+                    <video className="w-full h-[350px]" controls autoPlay>
+                        <source src={lectures[currentId]?.lecture?.secure_url} type="video/mp4" />
                     </video>
+                    <h1>{lectures[currentId]?.title}</h1>
+                    <p>{lectures[currentId]?.description}</p>
                 </div>
 
-                <div>
-                  
+                <div className="w-[40%] border-2 border-black">
+                    {
+                        lectures.map((el) => {
+                            return(
+                                <div key={nanoid()} className="w-full h-[100px] flex justify-center items-center">
+                                        <video className="w-[30%] h-full">
+                                        <source src={el?.lecture?.secure_url} type="video/mp4" />
+                                        </video>
+                                        <div className="flex flex-col justify-center">
+
+                                        </div>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
         </HomeLayout>
