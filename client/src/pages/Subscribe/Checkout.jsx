@@ -16,14 +16,20 @@ import {
   verifyPayment,
 } from "../../redux/slices/paymentSlice";
 import toast from "react-hot-toast";
+import { getUserDetails } from "../../redux/slices/authSlice";
 
 function Checkout() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const razorpayKey = useSelector((s) => s?.payment?.key);
-  const subscription_id = useSelector((s) => s?.payment?.subscription_id);
   const data = useSelector((s) => s?.auth?.data);
+  var subscription_id;
+  if (data.subscription.id) {
+    subscription_id = data.subscription.id;
+  } else {
+    subscription_id = useSelector((s) => s?.payment?.subscription_id);
+  }
 
   const paymentDetails = {
     razorpay_payment_id: "",
@@ -33,7 +39,16 @@ function Checkout() {
 
   async function load() {
     await dispatch(getRazorpayId());
-    await dispatch(purchaseCourseBundle());
+    if (
+      !(
+        data.subscription.status === "created" ||
+        data.subscription.status === "active"
+      ) ||
+      !data.subscription.id
+    ) {
+      await dispatch(purchaseCourseBundle());
+      await dispatch(getUserDetails());
+    }
   }
 
   useEffect(() => {
@@ -55,6 +70,19 @@ function Checkout() {
   }, []);
 
   async function handleSubmit() {
+    if (data.subscription.status === "active") {
+      // toast.theme("You have already subscribed for the course");
+      toast("You have already subscribed for the course!", {
+        icon: "✌️",
+        style: {
+          borderRadius: "10px",
+          background: "#0062ff",
+          color: "#fff",
+        },
+      });
+      return;
+    }
+
     if (!razorpayKey || !subscription_id) {
       toast.error("Something Went Wrong");
       return;

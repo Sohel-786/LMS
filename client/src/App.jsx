@@ -19,6 +19,8 @@ import Checkout from "./pages/Subscribe/Checkout";
 import CheckoutFail from "./pages/Subscribe/CheckoutFail";
 import CheckoutSuccess from "./pages/Subscribe/CheckoutSuccess";
 import { useEffect } from "react";
+import DisplayLectures from "./pages/Lectures/DisplayLectures";
+import AddLecture from "./pages/Lectures/AddLectures";
 
 function App() {
   useEffect(() => {
@@ -34,8 +36,10 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/denied" element={<Denied />} />
+
         <Route element={<AuthRoute allowedRoles={["ADMIN"]} />}>
           <Route path="/course-create" element={<CreateCourse />} />
+          <Route path="/course/addlecture" element={<AddLecture />} />
         </Route>
 
         <Route element={<AuthRoute allowedRoles={["ADMIN", "USER"]} />}>
@@ -43,6 +47,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/checkout/success" element={<CheckoutSuccess />} />
           <Route path="/checkout/failed" element={<CheckoutFail />} />
+          <Route path="/course/lectures" element={<DisplayLectures />} />
         </Route>
         <Route path="/courses" element={<Courses />} />
         <Route path="/course-description" element={<CourseDescription />} />

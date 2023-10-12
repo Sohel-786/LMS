@@ -60,20 +60,11 @@ function CourseDescription() {
             </div>
 
             <div className="px-10 pb-7 text-white">
-              {role === "ADMIN" ? (
+              {(role === "ADMIN" || (role === 'USER' && data?.subscription?.status === "active")) ? (
                 <button
                   className="bg-green-500 py-[10px] w-full rounded-lg sm:mt-2 text-lg font-bold tracking-wider hover:scale-110 transition-all duration-300 active:scale-95 ease-in-out hover:bg-gradient-to-r from-green-700 via-green-600 to-green-700 border-transparent"
                   onClick={() => {
-                    navigate("/course/lectures");
-                  }}
-                >
-                  View Lectures
-                </button>
-              ) : data?.subscription?.status === "active" ? (
-                <button
-                  className="bg-green-500 py-[10px] w-full rounded-lg sm:mt-2 text-lg font-bold tracking-wider hover:scale-110 transition-all duration-300 active:scale-95 ease-in-out hover:bg-gradient-to-r from-green-700 via-green-600 to-green-700 border-transparent"
-                  onClick={() => {
-                    navigate("/course/lectures");
+                    navigate("/course/lectures", {state : {...state}});
                   }}
                 >
                   View Lectures
