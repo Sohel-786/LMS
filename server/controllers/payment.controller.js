@@ -4,6 +4,12 @@ import { razorpay } from "../server.js";
 import AppError from "../utils/appError.js";
 import crypto from "crypto";
 
+const cookieOptions = {
+  secure: true,
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7days
+  httpOnly: true,
+};
+
 export const getRazorpayApiKey = async (req, res, next) => {
   try {
     res.status(200).json({
@@ -81,6 +87,9 @@ export const verifySubscription = async (req, res, next) => {
     });
 
     user.subscription.status = "active";
+
+    const token = await user.JWTtoken();
+    res.cookie("token", token, cookieOptions);
 
     await user.save();
 
