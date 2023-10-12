@@ -22,6 +22,27 @@ export const getCourseLectures = createAsyncThunk('/course/lecture/get', async (
     } catch (err) {
         toast.error(err?.response?.data?.message);
     }
+});
+
+export const addCourseLecture = createAsyncThunk('/course/addlecture', async (data) =>{
+    try {   
+            const formData = new FormData();
+            formData.append('title', data.title);
+            formData.append('description', data.description);
+            formData.append('lecture', data.lecture);
+
+            const res = axiosInstance.post(`/courses/${data.id}`, formData);
+            toast.promise(res, {
+                loading : 'Wait, Adding Lecture to Course',
+                success : (data) => {
+                    return data?.data?.message;
+                },
+                error : 'Failed to Add Lecture'
+            })
+            return (await res).data;
+    } catch (err) {
+            toast.error(err?.response?.data?.message);
+    }
 })
 
 const lectures = createSlice({

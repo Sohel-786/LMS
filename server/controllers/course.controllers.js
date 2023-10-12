@@ -163,7 +163,7 @@ export const addLectureToCourse = async (req, res, next) => {
       res.status(200).json({
         success: true,
         message: "Lecture got added successfully",
-        coruse,
+        course,
       });
     }
   } catch (e) {
