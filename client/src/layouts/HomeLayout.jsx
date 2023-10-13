@@ -24,8 +24,8 @@ function HomeLayout({ children }) {
   function handleProfilemenuview(ref, useClickOutside) {
     useEffect(() => {
       function handleClickoutside(e) {
-        if(isLoggedIn){
-          if (ref.current && !((ref.current).contains(e.target))) {
+        if (isLoggedIn) {
+          if (ref.current && !ref.current.contains(e.target)) {
             useClickOutside();
           }
         }
@@ -172,6 +172,13 @@ function HomeLayout({ children }) {
         <div className="flex justify-center items-center gap-4 text-black">
           <div>
             <ul className="flex justify-center items-center gap-8 px-3">
+              {role === "ADMIN" && (
+                <Link to={"/course-create"}>
+                  <li className="text-lg font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+                    Create Course
+                  </li>
+                </Link>
+              )}
               <Link to={"/courses"}>
                 <li className="text-lg font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                   Courses
@@ -227,6 +234,13 @@ function HomeLayout({ children }) {
                       <BiSolidUser size={"18px"} /> My Profile
                     </div>
                   </Link>
+                  {role === "ADMIN" && (
+                    <Link to={"/admin/dashboard"}>
+                      <div className="flex gap-4 items-center py-2 px-2 font-bold text-sm text-stone-700 hover:bg-slate-200">
+                        <BiSolidUser size={"18px"} /> Admin Dashboard
+                      </div>
+                    </Link>
+                  )}
                   <div
                     onClick={handleLogout}
                     className="flex gap-4 cursor-pointer items-center py-2 px-2 font-bold text-sm text-stone-700 hover:bg-slate-200"
@@ -262,9 +276,11 @@ function HomeLayout({ children }) {
       </header>
 
       <div className="lg:hidden z-30 bg-white flex justify-center items-center w-full py-2 pt-3 shadow-headershadow fixed">
-        <div style={{
-          userSelect : 'none'
-        }}>
+        <div
+          style={{
+            userSelect: "none",
+          }}
+        >
           <img
             className="w-40"
             src="/assets/classroom.svg"
@@ -272,7 +288,8 @@ function HomeLayout({ children }) {
           />
         </div>
 
-          {isLoggedIn && <div
+        {isLoggedIn && (
+          <div
             onClick={() => {
               navigate("/profile");
             }}
@@ -281,8 +298,8 @@ function HomeLayout({ children }) {
               userSelect: "none",
               backgroundImage: `url(${img})`,
             }}
-          ></div>}
-
+          ></div>
+        )}
       </div>
 
       <div className="pt-16 lg:pt-0">{children}</div>
