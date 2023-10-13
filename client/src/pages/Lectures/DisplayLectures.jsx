@@ -42,7 +42,7 @@ function DisplayLectures() {
           </p>
         </div>
 
-        <div className="w-[40%] flex flex-col border-2 border-red-500 over">
+        <div className="w-[40%] flex flex-col">
           {role === "ADMIN" && (
             <button
               onClick={() => {
@@ -53,7 +53,7 @@ function DisplayLectures() {
               ADD LECTURE
             </button>
           )}
-          <div className="w-full h-[80%] flex flex-col items-center gap-3 pl-3">
+          <div className="w-full h-[80%] overflow-y-auto flex flex-col items-center gap-3 pl-2 py-3">
             {lectures.map((el, idc) => {
               return (
                 <div
@@ -64,9 +64,9 @@ function DisplayLectures() {
                   key={nanoid()}
                   className={
                     idc === focus
-                      ? `w-[90%] h-[115px] flex items-center cursor-pointer rounded-lg shadow-marquee px-2 gap-2 scale-105 bg-cyan-500 text-white`
+                      ? `w-[90%] min-h-[100px] flex items-center cursor-pointer rounded-lg shadow-marquee px-2 gap-2 scale-105 bg-cyan-500 text-white`
 
-                      : `w-[90%] h-[115px] flex items-center cursor-pointer rounded-lg shadow-marquee px-2 bg-gray-100 gap-2 hover:scale-110 hover:bg-sky-100 transition-all duration-300 ease-in-out`
+                      : `w-[90%] min-h-[100px] flex items-center cursor-pointer rounded-lg shadow-marquee px-2 bg-gray-100 gap-2 hover:scale-110 hover:bg-sky-100 transition-all duration-300 ease-in-out`
                   }
                 >
                   <video className="w-[30%] h-full">
@@ -74,8 +74,8 @@ function DisplayLectures() {
                   </video>
                   <div className="flex flex-col gap-1 h-full py-3 px-1 w-[70%]">
                     <h1 className="font-bold font-slab">
-                      {el.title.length > 60
-                        ? el.title.slice(0, 60) + "..."
+                      {el.title.length > 40
+                        ? el.title.slice(0, 40) + "..."
                         : el.title}
                     </h1>
                     <p className={`font-semibold font-roboto tracking-wide ${focus === idc ? 'text-red-800' : 'text-indigo-600'}`}>
