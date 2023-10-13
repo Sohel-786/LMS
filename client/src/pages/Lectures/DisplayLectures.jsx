@@ -13,6 +13,7 @@ function DisplayLectures() {
   const { lectures } = useSelector((s) => s?.lectures);
   const { role } = useSelector((s) => s?.auth);
   const [currentId, setCurrentId] = useState(0);
+  const [focus, setFocus] = useState(0);
 
   useEffect(() => {
     if (!state) navigate("/courses");
@@ -21,8 +22,8 @@ function DisplayLectures() {
 
   return (
     <HomeLayout>
-      <div className="w-full flex px-12 my-20 gap-5">
-        <div className="w-[60%]">
+      <div className="w-full flex pl-12 pr-4 my-20">
+        <div className="w-[60%] ">
           <video
             src={
               !lectures[currentId]
@@ -33,11 +34,15 @@ function DisplayLectures() {
             controls
             autoPlay
           ></video>
-          <h1 className="text-3xl font-semibold my-4 font-slab">{lectures[currentId]?.title}</h1>
-          <p className="text-lg font-semibold font-sans text-gray-600">{lectures[currentId]?.description}</p>
+          <h1 className="text-3xl font-semibold my-4 font-slab">
+            {lectures[currentId]?.title}
+          </h1>
+          <p className="text-lg font-semibold font-sans text-gray-600">
+            {lectures[currentId]?.description}
+          </p>
         </div>
 
-        <div className="w-[40%] flex flex-col">
+        <div className="w-[40%] flex flex-col border-2 border-red-500 over">
           {role === "ADMIN" && (
             <button
               onClick={() => {
@@ -48,23 +53,32 @@ function DisplayLectures() {
               ADD LECTURE
             </button>
           )}
-          <div className="w-full flex flex-col gap-2">
+          <div className="w-full h-[80%] flex flex-col items-center gap-3 pl-3">
             {lectures.map((el, idc) => {
               return (
                 <div
                   onClick={() => {
                     setCurrentId(idc);
+                    setFocus(idc);
                   }}
-                  id={'video' + currentId}
                   key={nanoid()}
-                  className="w-full h-[100px] flex items-center cursor-pointer rounded-lg shadow-marquee px-2 bg-gray-100 gap-2 hover:scale-105 hover:bg-sky-100 transition-all duration-300 ease-in-out"
+                  className={
+                    idc === focus
+                      ? `w-[90%] h-[115px] flex items-center cursor-pointer rounded-lg shadow-marquee px-2 gap-2 scale-105 bg-cyan-500 text-white`
+
+                      : `w-[90%] h-[115px] flex items-center cursor-pointer rounded-lg shadow-marquee px-2 bg-gray-100 gap-2 hover:scale-110 hover:bg-sky-100 transition-all duration-300 ease-in-out`
+                  }
                 >
                   <video className="w-[30%] h-full">
                     <source src={el?.lecture?.secure_url} type="video/mp4" />
                   </video>
                   <div className="flex flex-col gap-1 h-full py-3 px-1 w-[70%]">
-                    <h1 className="font-bold font-slab">{(el.title).length > 60 ? (el.title).slice(0,60) + '...' : (el.title)}</h1>
-                    <p className="font-semibold font-roboto tracking-wide text-indigo-600">
+                    <h1 className="font-bold font-slab">
+                      {el.title.length > 60
+                        ? el.title.slice(0, 60) + "..."
+                        : el.title}
+                    </h1>
+                    <p className={`font-semibold font-roboto tracking-wide ${focus === idc ? 'text-red-800' : 'text-indigo-600'}`}>
                       {el?.lecture?.duration}
                     </p>
                   </div>
