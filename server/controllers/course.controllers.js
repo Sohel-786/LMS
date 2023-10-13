@@ -2,6 +2,7 @@ import Course from "../models/course.model.js";
 import AppError from "../utils/appError.js";
 import cloudinary from "cloudinary";
 import fs from "fs/promises";
+import Duration from "../helpers/VideoDuration.js";
 
 export const getAllCourses = async (req, res, next) => {
   try {
@@ -127,8 +128,6 @@ export const addLectureToCourse = async (req, res, next) => {
     const { title, description } = req.body;
     const { courseId } = req.params;
 
-    console.log(req.file);
-
     if (!title || !description) {
       return next("All fields are required", 400);
     }
@@ -147,16 +146,22 @@ export const addLectureToCourse = async (req, res, next) => {
 
     if (req.file) {
       const result = await cloudinary.v2.uploader.upload(req.file.path, {
+        resource_type : "video",
         folder: "lms",
+        chunk_size :7000000
       });
 
+      console.log(result);
       if (result) {
         lectureData.lecture.public_id = result.public_id;
         lectureData.lecture.secure_url = result.secure_url;
+        console.log(Duration(result.duration));
+        lectureData.lecture.duration = (Duration(result.duration));
       }
 
       fs.rm(`uploads/${req.file.filename}`);
 
+      console.log(lectureData);
       course.lectures.push(lectureData);
       course.numberofLectures = course.lectures.length;
 
@@ -169,7 +174,7 @@ export const addLectureToCourse = async (req, res, next) => {
       });
     }
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     return next(new AppError(e.message, 500));
   }
 };
