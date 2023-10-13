@@ -72,7 +72,7 @@ function DisplayLectures() {
   }
   return (
     <HomeLayout>
-      <div className="w-full flex pl-12 pr-4 my-20">
+      <div className={`w-full flex pl-12 pr-4 ${role === 'ADMIN' ? 'mt-24' : 'mt-14'} mb-2`}>
         <div
           id="deleteLecture"
           className="hidden fixed h-[100vh] w-[100vw] top-0 right-0 left-0 bottom-0 bg-gradient-to-r from-[#0000007a] to-[#0000007a] justify-center items-center z-50"
@@ -176,12 +176,12 @@ function DisplayLectures() {
                       }`}
                     >
                       {el?.lecture?.duration}
-                      <RiDeleteBin6Fill
+                      {role === "ADMIN" && <RiDeleteBin6Fill
                         onClick={() => {
                           handleShow(el);
                         }}
                         className="text-2xl self-end text-green-700 hover:text-red-600 hover:scale-125 transition-all duration-200 ease-in-out"
-                      />
+                      />}
                     </p>
                   </div>
                 </div>
