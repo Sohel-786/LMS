@@ -22,7 +22,7 @@ function DisplayLectures() {
   return (
     <HomeLayout>
       <div className="w-full flex px-12 my-20 gap-5">
-        <div className="w-[60%] border-2 border-black">
+        <div className="w-[60%]">
           <video
             src={
               !lectures[currentId]
@@ -33,11 +33,11 @@ function DisplayLectures() {
             controls
             autoPlay
           ></video>
-          <h1 className="font-poppins text-2xl font-semibold">{lectures[currentId]?.title}</h1>
-          <p>{lectures[currentId]?.description}</p>
+          <h1 className="text-3xl font-semibold my-4 font-slab">{lectures[currentId]?.title}</h1>
+          <p className="text-lg font-semibold font-sans text-gray-600">{lectures[currentId]?.description}</p>
         </div>
 
-        <div className="w-[40%] border-2 border-black flex flex-col">
+        <div className="w-[40%] flex flex-col">
           {role === "ADMIN" && (
             <button
               onClick={() => {
@@ -55,6 +55,7 @@ function DisplayLectures() {
                   onClick={() => {
                     setCurrentId(idc);
                   }}
+                  id={'video' + currentId}
                   key={nanoid()}
                   className="w-full h-[100px] flex items-center cursor-pointer rounded-lg shadow-marquee px-2 bg-gray-100 gap-2 hover:scale-105 hover:bg-sky-100 transition-all duration-300 ease-in-out"
                 >
@@ -62,7 +63,7 @@ function DisplayLectures() {
                     <source src={el?.lecture?.secure_url} type="video/mp4" />
                   </video>
                   <div className="flex flex-col gap-1 h-full py-3 px-1 w-[70%]">
-                    <h1 className="font-bold font-slab">{el.title}</h1>
+                    <h1 className="font-bold font-slab">{(el.title).length > 60 ? (el.title).slice(0,60) + '...' : (el.title)}</h1>
                     <p className="font-semibold font-roboto tracking-wide text-indigo-600">
                       {el?.lecture?.duration}
                     </p>
