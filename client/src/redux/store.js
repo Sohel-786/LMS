@@ -8,8 +8,8 @@ const store = configureStore({
   reducer: {
     auth: authReducer,
     course: courseSlice,
-    payment : paymentSlice,
-    lectures : lectureSlice
+    payment: paymentSlice,
+    lectures: lectureSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),

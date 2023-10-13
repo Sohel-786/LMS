@@ -191,8 +191,8 @@ export const deleteLectureById = async (req, res, next) => {
       return next(new AppError("Course Doesn't exists", 400));
     }
 
-    const lectures = (course.lectures).filter((el) => {
-      if((el._id).toString() !== lectureId){
+    const lectures = course.lectures.filter((el) => {
+      if (el._id.toString() !== lectureId) {
         return el;
       }
     });
@@ -202,10 +202,10 @@ export const deleteLectureById = async (req, res, next) => {
     await course.save();
 
     res.status(200).json({
-      success : true,
-      message : 'Lecture got deleted successfully',
-      lectures : course.lectures
-    })
+      success: true,
+      message: "Lecture got deleted successfully",
+      lectures: course.lectures,
+    });
   } catch (e) {
     return next(new AppError(e.message, 500));
   }

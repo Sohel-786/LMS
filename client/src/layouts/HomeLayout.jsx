@@ -8,7 +8,7 @@ import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
 import { useEffect, useRef, useState } from "react";
 import { BiSolidUser } from "react-icons/bi";
 import { RiLogoutBoxRLine } from "react-icons/ri";
-import { BsFillClipboard2DataFill } from 'react-icons/bs';
+import { BsFillClipboard2DataFill } from "react-icons/bs";
 
 function HomeLayout({ children }) {
   const dispatch = useDispatch();
@@ -238,7 +238,8 @@ function HomeLayout({ children }) {
                   {role === "ADMIN" && (
                     <Link to={"/admin/dashboard"}>
                       <div className="flex gap-4 items-center py-2 px-2 font-bold text-sm text-stone-700 hover:bg-slate-200">
-                        <BsFillClipboard2DataFill size={"18px"} />Dashboard
+                        <BsFillClipboard2DataFill size={"18px"} />
+                        Dashboard
                       </div>
                     </Link>
                   )}
