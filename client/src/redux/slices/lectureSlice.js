@@ -43,6 +43,23 @@ export const addCourseLecture = createAsyncThunk('/course/addlecture', async (da
     } catch (err) {
         toast.error(err?.response?.data?.message);
     }
+});
+
+export const deleteCourseLecture = createAsyncThunk('/course/deleteLecture', async (data) => {
+    try {
+        const res = axiosInstance.post(`/courses/deleteLecture/${data.courseId}/${data.lectureId}`);
+        toast.promise(res, {
+            loading : 'Wait, Deleting selected lecture',
+            success : (data) => {
+                return data?.data?.message;
+            },
+            error : 'Enable to delete Lecture'
+        })
+        
+        return (await res).data;
+    } catch (err) {
+        toast.error(err?.response?.data?.message);
+    }
 })
 
 const lectures = createSlice({
@@ -56,6 +73,9 @@ const lectures = createSlice({
         })
         .addCase(addCourseLecture.fulfilled, (state, action) => {
             state.lectures = action?.payload?.course?.lectures;
+        })
+        .addCase(deleteCourseLecture.fulfilled, (state, action) => {
+            state.lectures = action?.payload?.lectures;
         })
     }
 })

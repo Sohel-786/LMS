@@ -40,7 +40,7 @@ export const createCourse = async (req, res, next) => {
   try {
     const { title, description, category, createdBy } = req.body;
 
-    if ((!title || !description || !category || !createdBy)) {
+    if (!title || !description || !category || !createdBy) {
       return next(new AppError("All fields are required", 400));
     }
 
@@ -98,6 +98,8 @@ export const updateCourse = async (req, res, next) => {
       return next(new AppError("Course Doesn't exists", 400));
     }
 
+    await course.save();
+
     return res.status(200).json({
       success: true,
       message: "Course Updated Successfully",
@@ -146,9 +148,9 @@ export const addLectureToCourse = async (req, res, next) => {
 
     if (req.file) {
       const result = await cloudinary.v2.uploader.upload(req.file.path, {
-        resource_type : "video",
+        resource_type: "video",
         folder: "lms",
-        chunk_size :7000000
+        chunk_size: 7000000,
       });
 
       console.log(result);
@@ -156,7 +158,7 @@ export const addLectureToCourse = async (req, res, next) => {
         lectureData.lecture.public_id = result.public_id;
         lectureData.lecture.secure_url = result.secure_url;
         console.log(Duration(result.duration));
-        lectureData.lecture.duration = (Duration(result.duration));
+        lectureData.lecture.duration = Duration(result.duration);
       }
 
       fs.rm(`uploads/${req.file.filename}`);
@@ -175,6 +177,36 @@ export const addLectureToCourse = async (req, res, next) => {
     }
   } catch (e) {
     // console.log(e);
+    return next(new AppError(e.message, 500));
+  }
+};
+
+export const deleteLectureById = async (req, res, next) => {
+  try {
+    const { courseId, lectureId } = req.params;
+
+    const course = await Course.findById(courseId);
+
+    if (!course) {
+      return next(new AppError("Course Doesn't exists", 400));
+    }
+
+    const lectures = (course.lectures).filter((el) => {
+      if((el._id).toString() !== lectureId){
+        return el;
+      }
+    });
+
+    course.lectures = lectures;
+
+    await course.save();
+
+    res.status(200).json({
+      success : true,
+      message : 'Lecture got deleted successfully',
+      lectures : course.lectures
+    })
+  } catch (e) {
     return next(new AppError(e.message, 500));
   }
 };
