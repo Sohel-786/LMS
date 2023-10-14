@@ -71,8 +71,7 @@ function Checkout() {
   }, []);
 
   async function handleSubmit() {
-    if (data.subscription.status === "active") {
-      // toast.theme("You have already subscribed for the course");
+    if (data?.subscription?.status === "active") {
       toast("You have already subscribed for the course!", {
         icon: "✌️",
         style: {
