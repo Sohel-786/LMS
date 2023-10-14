@@ -60,7 +60,7 @@ function Checkout() {
       const notice_p = document.getElementById("notice_p");
       const notice_close = document.getElementById("notice_close");
 
-      notice.style.minHeight = "58px";
+      notice.style.height = "62px";
       notice_p.style.display = "block";
       notice_close.style.display = "block";
     }, 1500);
@@ -118,7 +118,7 @@ function Checkout() {
   return (
     <HomeLayout>
       <div
-        className="w-full flex flex-col justify-center items-center pt-4 lg:pt-8 bg-cover lg:bg-contain"
+        className="w-full flex flex-col justify-center items-center pt-[18px] lg:pt-8 bg-cover lg:bg-contain"
         style={{
           backgroundImage: 'url("/assets/bg2.svg")',
         }}
@@ -129,7 +129,7 @@ function Checkout() {
         >
           <p
             id="notice_p"
-            className="font-roboto font-bold tracking-wide text-sm sm:text-lg text-center lg:mr-28 hidden"
+            className="font-roboto font-bold tracking-wide text-sm sm:my-0 sm:text-lg text-center lg:mr-28 hidden"
           >
             This is just for the development purpose, no ammount will be charged
             from you, you can proceed with buying option.
@@ -152,8 +152,16 @@ function Checkout() {
           </div>
         </div>
 
-        <div className="w-full flex justify-center items-center gap-6 pl-20 pr-4">
-          <div className="w-[45%] flex flex-col rounded-xl overflow-hidden h-[700px] my-[50px] shadow-marquee bg-white">
+        <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-6 px-2 lg:pl-20 lg:pr-4">
+          <div className="w-full h-full lg:hidden block">
+            <img
+              className="w-full aspect-auto"
+              src={"/assets/paymentPageImage.svg"}
+              alt="PaymentPage Image"
+            />
+          </div>
+
+          <div className="lg:w-[45%] md:w-[70%] w-full flex flex-col rounded-xl overflow-hidden lg:h-[700px] lg:my-[50px] md:my-[30px] my-[15px] shadow-marquee bg-white">
             <div className="w-full h-[32%]">
               <img
                 className="h-full w-full"
@@ -222,7 +230,7 @@ function Checkout() {
               <button
                 type="submit"
                 onClick={handleSubmit}
-                className="w-[90%] mt-3 flex justify-center items-center gap-[9px] py-3 m-auto bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 text-2xl font-bold rounded-xl text-white hover:scale-110 transition-all duration-300 ease-in-out"
+                className="w-[90%] mt-3 mb-5 lg:mb-0 flex justify-center items-center gap-[9px] py-3 m-auto bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 text-2xl font-bold rounded-xl text-white hover:scale-110 transition-all duration-300 ease-in-out"
               >
                 <SiWebmoney />
                 Buy Now
@@ -230,7 +238,7 @@ function Checkout() {
             </div>
           </div>
 
-          <div className="w-[55%] h-full">
+          <div className="w-[55%] h-full hidden lg:block">
             <img
               className="w-full aspect-auto"
               src={"/assets/paymentPageImage.svg"}
