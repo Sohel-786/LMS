@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { addCourseLecture } from "../../redux/slices/lectureSlice";
 import { BiSolidVideos } from "react-icons/bi";
 import { useDispatch } from "react-redux";
+import { FiChevronRight } from 'react-icons/fi';
 
 function AddLecture() {
   const courseDetails = useLocation().state;
@@ -96,10 +97,31 @@ function AddLecture() {
 
   return (
     <HomeLayout>
+      <div></div>
       <section className="flex flex-col justify-center items-center w-full py-20 pt-14">
-        <h1 className="text-2xl sm:text-4xl font-bold tracking-wider font-slab">
-          ADD LECTURE
-        </h1>
+        <div className="w-full">
+          <p className="flex items-center font-slab text-sm pl-12">
+            <span
+              className="cursor-pointer text-red-600 hover:text-red-800 hover:underline"
+              onClick={() => {
+                navigate("/courses");
+              }}
+            >
+              Courses
+            </span>
+            <FiChevronRight className="text-red-600" />
+            <span
+              className="cursor-pointer text-red-600 hover:text-red-800 hover:underline"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              {courseDetails.title}
+            </span>{" "}
+            <FiChevronRight className="text-red-600" />
+            <span className="text-indigo-400">Add Lecture</span>
+          </p>
+        </div>
         <form
           noValidate
           onSubmit={(e) => {

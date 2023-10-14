@@ -73,7 +73,9 @@ function DisplayLectures() {
   return (
     <HomeLayout>
       <div className={` ${role === "ADMIN" ? "mt-14" : "mt-14"}`}>
-        <p className="flex items-center font-slab text-sm pl-12"><span>Courses</span><FiChevronRight/><span>{state.title}</span></p>
+        <p className="flex items-center font-slab text-sm pl-12"><span className="cursor-pointer text-red-600 hover:underline hover:text-red-800" onClick={() => {
+          navigate('/courses')
+        }}>Courses</span><FiChevronRight className="text-red-600" /><span className="text-indigo-400">{state.title}</span></p>
       </div>
       <div className={`w-full flex pl-12 pr-4 mb-2`}>
         <div
