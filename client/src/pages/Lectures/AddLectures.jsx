@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { addCourseLecture } from "../../redux/slices/lectureSlice";
 import { BiSolidVideos } from "react-icons/bi";
 import { useDispatch } from "react-redux";
-import { FiChevronRight } from 'react-icons/fi';
+import { FiChevronRight } from "react-icons/fi";
 
 function AddLecture() {
   const courseDetails = useLocation().state;
@@ -100,7 +100,7 @@ function AddLecture() {
       <div></div>
       <section className="flex flex-col justify-center items-center w-full py-20 pt-14">
         <div className="w-full">
-          <p className="flex items-center font-slab text-sm pl-12">
+          <p className="flex items-center font-slab text-[12.1px] sm:text-sm pl-3 md:pl-8 lg:pl-12">
             <span
               className="cursor-pointer text-red-600 hover:text-red-800 hover:underline"
               onClick={() => {
@@ -196,7 +196,7 @@ function AddLecture() {
             )}
           </div>
 
-          <div className="w-full sm:w-[50%]">
+          <div className="w-full lg:w-[50%]">
             <input
               type="file"
               hidden

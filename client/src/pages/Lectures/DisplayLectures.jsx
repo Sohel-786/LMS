@@ -10,7 +10,7 @@ import { nanoid } from "nanoid";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
 import toast from "react-hot-toast";
-import { FiChevronRight } from 'react-icons/fi';
+import { FiChevronRight } from "react-icons/fi";
 
 function DisplayLectures() {
   const dispatch = useDispatch();
@@ -73,11 +73,22 @@ function DisplayLectures() {
   return (
     <HomeLayout>
       <div className={` ${role === "ADMIN" ? "mt-14" : "mt-14"}`}>
-        <p className="flex items-center font-slab text-sm pl-4 md:pl-9 lg:pl-12"><span className="cursor-pointer text-red-600 hover:underline hover:text-red-800" onClick={() => {
-          navigate('/courses')
-        }}>Courses</span><FiChevronRight className="text-red-600" /><span className="text-indigo-400">{state.title}</span></p>
+        <p className="flex items-center font-slab text-sm pl-4 md:pl-9 lg:pl-12">
+          <span
+            className="cursor-pointer text-red-600 hover:underline hover:text-red-800"
+            onClick={() => {
+              navigate("/courses");
+            }}
+          >
+            Courses
+          </span>
+          <FiChevronRight className="text-red-600" />
+          <span className="text-indigo-400">{state.title}</span>
+        </p>
       </div>
-      <div className={`w-full flex flex-col sm:flex-row px-3 md:pl-4 lg:pl-12 md:pr-2 lg:pr-4 mb-2`}>
+      <div
+        className={`w-full flex flex-col sm:flex-row px-3 md:pl-4 lg:pl-12 md:pr-2 lg:pr-4 mb-2`}
+      >
         <div
           id="deleteLecture"
           className="hidden fixed h-[100vh] w-[100vw] top-0 right-0 left-0 bottom-0 bg-gradient-to-r from-[#0000007a] to-[#0000007a] justify-center items-center z-50"
@@ -140,18 +151,18 @@ function DisplayLectures() {
           </p>
         </div>
 
-        <div className="w-full sm:w-[40%] flex flex-col">
+        <div className="w-full sm:w-[40%] flex flex-col mt-4 sm:mt-0">
           {role === "ADMIN" && (
             <button
               onClick={() => {
                 navigate("/course/addlecture", { state: { ...state } });
               }}
-              className="self-end py-2 px-5 relative -top-6 text-roboto tracking-wide bg-gradient-to-t from-cyan-800 via-cyan-600 to-cyan-400 text-white font-bold rounded-lg hover:scale-110 transition-all duration-300 ease-in-out"
+              className="self-end py-2 px-5 relative sm:-top-6 text-roboto tracking-wide bg-gradient-to-t from-cyan-800 via-cyan-600 to-cyan-400 text-white font-bold rounded-lg hover:scale-110 transition-all duration-300 ease-in-out"
             >
               ADD LECTURE
             </button>
           )}
-          <div className="w-full h-[80%] overflow-y-auto flex flex-col items-center gap-4 sm:gap-3 sm:pl-2 py-6 sm:py-3">
+          <div className="w-full h-[400px] sm:h-[80%] overflow-y-auto flex flex-col items-center gap-4 sm:gap-3 sm:pl-2 py-6 sm:py-3">
             {lectures.map((el, idc) => {
               return (
                 <div
