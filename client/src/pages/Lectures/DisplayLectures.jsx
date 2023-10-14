@@ -10,6 +10,7 @@ import { nanoid } from "nanoid";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
 import toast from "react-hot-toast";
+import { FiChevronRight } from 'react-icons/fi';
 
 function DisplayLectures() {
   const dispatch = useDispatch();
@@ -71,11 +72,10 @@ function DisplayLectures() {
   }
   return (
     <HomeLayout>
-      <div
-        className={`w-full flex pl-12 pr-4 ${
-          role === "ADMIN" ? "mt-24" : "mt-14"
-        } mb-2`}
-      >
+      <div className={` ${role === "ADMIN" ? "mt-14" : "mt-14"}`}>
+        <p className="flex items-center font-slab text-sm pl-12"><span>Courses</span><FiChevronRight/><span>{state.title}</span></p>
+      </div>
+      <div className={`w-full flex pl-12 pr-4 mb-2`}>
         <div
           id="deleteLecture"
           className="hidden fixed h-[100vh] w-[100vw] top-0 right-0 left-0 bottom-0 bg-gradient-to-r from-[#0000007a] to-[#0000007a] justify-center items-center z-50"
