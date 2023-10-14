@@ -25,7 +25,7 @@ function Checkout() {
   const razorpayKey = useSelector((s) => s?.payment?.key);
   const data = useSelector((s) => s?.auth?.data);
   var subscription_id;
-  
+
   if (data?.subscription?.id) {
     subscription_id = data.subscription.id;
   } else {
@@ -60,7 +60,7 @@ function Checkout() {
       const notice_p = document.getElementById("notice_p");
       const notice_close = document.getElementById("notice_close");
 
-      notice.style.height = "56px";
+      notice.style.minHeight = "58px";
       notice_p.style.display = "block";
       notice_close.style.display = "block";
     }, 1500);
@@ -71,7 +71,6 @@ function Checkout() {
   }, []);
 
   async function handleSubmit() {
-    console.log('sohel')
     if (data.subscription.status === "active") {
       // toast.theme("You have already subscribed for the course");
       toast("You have already subscribed for the course!", {
@@ -89,7 +88,6 @@ function Checkout() {
       toast.error("Something Went Wrong");
       return;
     }
-    console.log('sohel 2')
 
     const options = {
       key: razorpayKey,
@@ -120,18 +118,18 @@ function Checkout() {
   return (
     <HomeLayout>
       <div
-        className="w-full flex flex-col justify-center items-center sm:pt-8 bg-contain"
+        className="w-full flex flex-col justify-center items-center pt-4 lg:pt-8 bg-cover lg:bg-contain"
         style={{
           backgroundImage: 'url("/assets/bg2.svg")',
         }}
       >
         <div
           id="notice"
-          className="flex justify-end items-center w-full h-0 px-4 bg-red-400 transition-all ease-in-out duration-300"
+          className="flex justify-end items-center w-full h-0 px-2 sm:px-4 bg-red-400 transition-all ease-in-out duration-300"
         >
           <p
             id="notice_p"
-            className="font-roboto font-bold tracking-wide sm:text-lg text-center mr-28 hidden"
+            className="font-roboto font-bold tracking-wide text-sm sm:text-lg text-center lg:mr-28 hidden"
           >
             This is just for the development purpose, no ammount will be charged
             from you, you can proceed with buying option.
