@@ -49,15 +49,15 @@ function CheckoutFail(){
           </div>
           <div
             id='showMsg'
-            className="hidden flex-col justify-center items-center m-auto w-[90%] bg-red-200 py-20 rounded-3xl"
+            className="hidden flex-col justify-center items-center m-auto w-[98%] sm:w-[90%] bg-red-200 py-20 rounded-3xl"
           >
-            <div className="flex items-center gap-4 text-6xl font-poppins font-bold">
-              <BiSolidErrorCircle className="text-red-600 text-7xl" />
+            <div className="flex items-center gap-2 md:gap-3 lg:gap-4 text-center text-2xl md:text-5xl lg:text-6xl font-poppins font-bold">
+              <BiSolidErrorCircle className="text-red-600 text-4xl md:text-6xl lg:text-7xl" />
               <h1 className="text-red-600">Payment Failed</h1>
             </div>
   
-            <div className="flex flex-col gap-5 justify-center items-center ml-20 mt-8">
-              <h1 className="font-slab tracking-wide text-[35px] text-blue-500">
+            <div className="flex flex-col justify-center items-center text-center ml-4 md:ml-12 lg:ml-20 mt-3 md:mt-6 lg:mt-8">
+              <h1 className="font-slab tracking-wide text-2xl md:text-[30px] lg:text-[35px] text-blue-500">
                 Please Try Again Later
               </h1>
             </div>
@@ -69,7 +69,7 @@ function CheckoutFail(){
               onClick={() => {
                 navigate("/");
               }}
-              className="py-4 my-10 ml-14 px-16 rounded-xl bg-gradient-to-t from-green-800 via-green-600 to-green-400 text-white font-bold text-3xl hover:scale-110 transition-all duration-300 ease-in-out flex items-center gap-4"
+              className="py-2 md:py-3 lg:py-4 my-4 md:my-8 lg:my-10 ml-6 md:ml-10 lg:ml-14 px-8 md:px-12 lg:px-16 rounded-xl bg-gradient-to-t from-green-800 via-green-600 to-green-400 text-white font-bold text-xl md:text-2xl lg:text-3xl hover:scale-110 transition-all duration-300 ease-in-out flex items-center gap-2 lg:gap-4"
             >
               Go to dashboard <BsBoxArrowInRight />
             </button>

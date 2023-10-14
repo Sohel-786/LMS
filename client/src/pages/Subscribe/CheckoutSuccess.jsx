@@ -1,4 +1,4 @@
-import { useEffect  } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { BsFillPatchCheckFill, BsFillPersonVcardFill } from "react-icons/bs";
@@ -8,18 +8,16 @@ import { useNavigate } from "react-router-dom";
 import HomeLayout from "../../layouts/HomeLayout";
 import { getUserDetails } from "../../redux/slices/authSlice";
 
-
 function CheckoutSuccess() {
   const data = useSelector((s) => s?.auth?.data);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  async function load(){
+  async function load() {
     await dispatch(getUserDetails());
   }
 
   useEffect(() => {
-
     load();
 
     const id = setTimeout(() => {
@@ -65,13 +63,13 @@ function CheckoutSuccess() {
       ));
     }, 100);
 
-    const id2 = setTimeout(() =>{
-      const showImage = document.getElementById('showImage');
-      showImage.style.display = 'none';
+    const id2 = setTimeout(() => {
+      const showImage = document.getElementById("showImage");
+      showImage.style.display = "none";
 
-      const showMsg = document.getElementById('showMsg');
-      showMsg.style.display = 'flex';
-    },6000);
+      const showMsg = document.getElementById("showMsg");
+      showMsg.style.display = "flex";
+    }, 6000);
 
     return () => {
       clearTimeout(id);
@@ -93,12 +91,14 @@ function CheckoutSuccess() {
           />
         </div>
         <div
-          id='showMsg'
-          className="hidden flex-col justify-center items-center m-auto w-[90%] bg-blue-100 py-10 md:py-14 lg:py-20 rounded-3xl"
+          id="showMsg"
+          className="hidden flex-col justify-center items-center m-auto w-[98%] sm:w-[90%] bg-blue-100 py-10 md:py-14 lg:py-20 rounded-3xl"
         >
           <div className="flex items-center text-center  font-poppins font-bold gap-2 text-2xl sm:gap-4 md:text-4xl lg:text-6xl">
             <BsFillPatchCheckFill className="text-green-500 text-center inline-block sm:block text-2xl md:text-5xl lg:text-7xl" />
-            <h1 className="text-orange-600 inline-block sm:block">Payment Successful</h1>
+            <h1 className="text-orange-600 inline-block sm:block">
+              Payment Successful
+            </h1>
           </div>
 
           <div className="flex flex-col gap-2 md:gap-4 lg:gap-5 justify-center items-center ml-4 md:ml-12 lg:ml-20 mt-4 md:mt-6 lg:mt-8">
