@@ -94,21 +94,21 @@ function CheckoutSuccess() {
         </div>
         <div
           id='showMsg'
-          className="hidden flex-col justify-center items-center m-auto w-[90%] bg-blue-100 py-20 rounded-3xl"
+          className="hidden flex-col justify-center items-center m-auto w-[90%] bg-blue-100 py-10 md:py-14 lg:py-20 rounded-3xl"
         >
-          <div className="flex items-center gap-4 text-6xl font-poppins font-bold">
-            <BsFillPatchCheckFill className="text-green-500 text-7xl" />
-            <h1 className="text-orange-600">Payment Successful</h1>
+          <div className="flex items-center text-center  font-poppins font-bold gap-2 text-2xl sm:gap-4 md:text-4xl lg:text-6xl">
+            <BsFillPatchCheckFill className="text-green-500 text-center inline-block sm:block text-2xl md:text-5xl lg:text-7xl" />
+            <h1 className="text-orange-600 inline-block sm:block">Payment Successful</h1>
           </div>
 
-          <div className="flex flex-col gap-5 justify-center items-center ml-20 mt-8">
-            <h1 className="font-slab tracking-wide text-[42px] text-blue-600">
+          <div className="flex flex-col gap-2 md:gap-4 lg:gap-5 justify-center items-center ml-4 md:ml-12 lg:ml-20 mt-4 md:mt-6 lg:mt-8">
+            <h1 className="font-slab tracking-wide text-lg text-center md:text-[38px] lg:text-[42px] text-blue-600">
               Welcome to Pro Membership
             </h1>
-            <BsFillPersonVcardFill className="text-7xl text-indigo-500" />
-            <p className="text-4xl font-bold font-sans tracking-wide text-cyan-600 flex items-center gap-3">
+            <BsFillPersonVcardFill className="text-5xl md:text-6xl lg:text-7xl text-indigo-500" />
+            <p className="text-sm md:text-2xl lg:text-4xl font-bold font-sans tracking-wide text-cyan-600 flex items-center gap-1 lg:gap-3 md:gap-2">
               Now Enjoy All Premium Content{" "}
-              <FaSquareYoutube className="text-5xl text-[#dc2525]" />
+              <FaSquareYoutube className="text-xl inline-block lg:block md:text-4xl lg:text-5xl text-[#dc2525]" />
             </p>
           </div>
 
@@ -119,7 +119,7 @@ function CheckoutSuccess() {
             onClick={() => {
               navigate("/");
             }}
-            className="py-4 my-10 ml-20 px-28 rounded-xl bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 text-white font-bold text-3xl hover:scale-110 transition-all duration-300 ease-in-out flex items-center gap-4"
+            className="py-1 md:py-3 lg:py-4 my-4 md:my-8 lg:my-10 ml-4 md:ml-14 lg:ml-20 px-10 md:px-20 lg:px-28 rounded-xl bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 text-white font-bold text-lg md:text-2xl lg:text-3xl hover:scale-110 transition-all duration-300 ease-in-out flex items-center gap-4"
           >
             Go to dashboard <BsBoxArrowInRight />
           </button>

@@ -25,7 +25,8 @@ function Checkout() {
   const razorpayKey = useSelector((s) => s?.payment?.key);
   const data = useSelector((s) => s?.auth?.data);
   var subscription_id;
-  if (data.subscription.id) {
+  
+  if (data?.subscription?.id) {
     subscription_id = data.subscription.id;
   } else {
     subscription_id = useSelector((s) => s?.payment?.subscription_id);
@@ -41,10 +42,10 @@ function Checkout() {
     await dispatch(getRazorpayId());
     if (
       !(
-        data.subscription.status === "created" ||
-        data.subscription.status === "active"
+        data?.subscription?.status === "created" ||
+        data?.subscription?.status === "active"
       ) ||
-      !data.subscription.id
+      !data?.subscription?.id
     ) {
       await dispatch(purchaseCourseBundle());
       await dispatch(getUserDetails());
@@ -70,6 +71,7 @@ function Checkout() {
   }, []);
 
   async function handleSubmit() {
+    console.log('sohel')
     if (data.subscription.status === "active") {
       // toast.theme("You have already subscribed for the course");
       toast("You have already subscribed for the course!", {
@@ -87,6 +89,7 @@ function Checkout() {
       toast.error("Something Went Wrong");
       return;
     }
+    console.log('sohel 2')
 
     const options = {
       key: razorpayKey,
