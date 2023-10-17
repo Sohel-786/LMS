@@ -65,7 +65,7 @@ function AdminDashboard(){
 
     return(
         <HomeLayout>
-            <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10 text-white">
+            <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10">
                 <h1 className="text-center text-5xl font-semibold text-yellow-500">
                     Admin Dashboard
                 </h1>
@@ -110,7 +110,7 @@ function AdminDashboard(){
                             <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                                 <div className="flex flex-col items-center">
                                     <p className="font-semibold">Total Revenue</p>
-                                    <h3 className="text-4xl font-bold">{allPayments?.count * 499}</h3>
+                                    <h3 className="text-4xl font-bold">{allPayments?.count * 1}</h3>
                                 </div>
                                 <GiMoneyStack className="text-green-500 text-5xl"/>
                             </div>

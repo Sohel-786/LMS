@@ -21,6 +21,7 @@ import CheckoutSuccess from "./pages/Subscribe/CheckoutSuccess";
 import { useEffect } from "react";
 import DisplayLectures from "./pages/Lectures/DisplayLectures";
 import AddLecture from "./pages/Lectures/AddLectures";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   useEffect(() => {
@@ -40,6 +41,7 @@ function App() {
         <Route element={<AuthRoute allowedRoles={["ADMIN"]} />}>
           <Route path="/course-create" element={<CreateCourse />} />
           <Route path="/course/addlecture" element={<AddLecture />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Route>
 
         <Route element={<AuthRoute allowedRoles={["ADMIN", "USER"]} />}>
