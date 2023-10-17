@@ -36,6 +36,7 @@ function AdminDashboard() {
   const navigate = useNavigate();
 
   const { allUserCount, subscriberCount } = useSelector((s) => s?.stat);
+
   const { allPayments, finalMonths, monthlySalesRecord } = useSelector(
     (s) => s?.payment
   );
@@ -91,6 +92,11 @@ function AdminDashboard() {
   useEffect(() => {
     load();
   }, []);
+  console.log(
+    typeof allUserCount,
+    typeof subscriberCount,
+    typeof allPayments?.count
+  );
 
   return (
     <HomeLayout>
