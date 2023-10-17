@@ -62,6 +62,15 @@ export const cancelSubscription = createAsyncThunk('payment/cancelSubscription',
   } catch (err) {
     toast.error(err?.response?.data?.message);
   }
+});
+
+export const getPaymentRecords = createAsyncThunk('/payment/records', async () => {
+  try {
+     const res = axiosInstance.get('/payments?count=100');
+     toast
+  } catch (e) {
+    
+  }
 })
 
 const paymentSlice = createSlice({

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { IsLoggedIn, authorizedRoles } from "../middlewares/auth.middleware";
-import { userStats } from "../controllers/miscellaneous.controller";
+import { IsLoggedIn, authorizedRoles } from "../middlewares/auth.middleware.js";
+import { userStats } from "../controllers/miscellaneous.controller.js";
 const router = Router();
 
 router
