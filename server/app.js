@@ -10,7 +10,7 @@ import userRoutes from "./routes/user.routes.js";
 import errMiddleware from "./middlewares/error.middleware.js";
 import courseRoutes from "./routes/course.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
-import miscRoutes from './routes/miscellaneous.routes.js';
+import miscRoutes from "./routes/miscellaneous.routes.js";
 
 const app = express();
 
@@ -19,8 +19,8 @@ app.use(morgon("dev"));
 
 app.use(
   cors({
-    origin : [process.env.FRONTEND_URL],
-    credentials : true
+    origin: [process.env.FRONTEND_URL],
+    credentials: true,
   })
 );
 
@@ -33,7 +33,7 @@ app.use("/ping", (req, res) => {
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/courses", courseRoutes);
 app.use("/api/v1/payments", paymentRoutes);
-app.use('/api/v1', miscRoutes);
+app.use("/api/v1", miscRoutes);
 
 app.all("*", (req, res) => {
   res

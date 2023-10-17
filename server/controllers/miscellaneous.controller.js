@@ -2,20 +2,20 @@ import User from "../models/user.model";
 import AppError from "../utils/appError";
 
 export const userStats = async (req, res, next) => {
-    try {
-        const allUsersCount = await User.countDocuments();
+  try {
+    const allUsersCount = await User.countDocuments();
 
-        const subscribedUsers = await User.countDocuments({
-            'subscription.status' : 'active'
-        });
+    const subscribedUsers = await User.countDocuments({
+      "subscription.status": "active",
+    });
 
-        res.status(200).json({
-            success : true,
-            message : 'All registered user count',
-            allUsersCount,
-            subscribedUsers
-        })
-    } catch (e) {
-        return next(new AppError(e.message, 500));
-    }
-}
+    res.status(200).json({
+      success: true,
+      message: "All registered user count",
+      allUsersCount,
+      subscribedUsers,
+    });
+  } catch (e) {
+    return next(new AppError(e.message, 500));
+  }
+};

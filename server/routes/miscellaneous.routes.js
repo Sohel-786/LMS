@@ -4,7 +4,7 @@ import { userStats } from "../controllers/miscellaneous.controller";
 const router = Router();
 
 router
-    .route('/admin/stats/users')
-    .get(IsLoggedIn, authorizedRoles('ADMIN'), userStats);
+  .route("/admin/stats/users")
+  .get(IsLoggedIn, authorizedRoles("ADMIN"), userStats);
 
 export default router;
