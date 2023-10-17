@@ -126,7 +126,7 @@ function AdminDashboard(){
 
                         <button
                             onClick={() => {
-                                navigate("/course/create")
+                                navigate("/course-create")
                             }}
                             className="w-fit bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 rounded py-2 px-4 font-semibold text-lg cursor-pointer"
                         >
@@ -176,7 +176,7 @@ function AdminDashboard(){
                                             <td className="flex items-center gap-4">
                                                 <button
                                                     className="bg-green-500 hover:bg-green-600 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold"
-                                                    onClick={() => navigate("/course/displaylectures", {state: {...course}})}
+                                                    onClick={() => navigate("/course/lectures", {state: {...course}})}
                                                 >
                                                     <BsCollectionPlayFill />
                                                 </button>
