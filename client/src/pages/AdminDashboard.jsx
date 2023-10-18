@@ -111,8 +111,8 @@ function AdminDashboard() {
       </div>
 
       <div className="min-h-[90vh] w-full mt-3 flex flex-col gap-10">
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-5 w-full px-10">
-          <div className="flex w-full sm:w-[50%] flex-col items-center gap-10 p-5 shadow-marquee rounded-md">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-5 w-full px-3 sm:px-10">
+          <div className="flex w-full sm:w-[50%] flex-col items-center gap-1 sm:gap-10 px-3 py-5 sm:p-5 shadow-marquee rounded-md">
             <div className="w-full h-56 md:h-72 lg:h-80 flex justify-center items-center">
               <Pie data={userData} />
             </div>
@@ -120,14 +120,18 @@ function AdminDashboard() {
             <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
               <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
-                  <p className="font-bold text-[#f3007a]">Registered Users</p>
+                  <p className="font-semibold text-[#f3007a]">
+                    Registered Users
+                  </p>
                   <h3 className="text-4xl font-bold">{allUserCount}</h3>
                 </div>
                 <FaUsers className="text-[#00bfff] text-5xl" />
               </div>
               <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
-                  <p className="font-bold text-[#f3007a]">Subscribed Users</p>
+                  <p className="font-semibold text-[#f3007a]">
+                    Subscribed Users
+                  </p>
                   <h3 className="text-4xl font-bold">{subscriberCount}</h3>
                 </div>
                 <FaUsers className="text-[#00bf66] text-5xl" />
@@ -135,22 +139,24 @@ function AdminDashboard() {
             </div>
           </div>
 
-          <div className="flex w-full sm:w-[50%] flex-col items-center gap-10 p-5 shadow-marquee rounded-md">
-            <div className="sm:h-80 w-full flex justify-center items-center">
+          <div className="flex w-full sm:w-[50%] flex-col items-center gap-1 sm:gap-10 px-3 py-5 sm:p-5 shadow-marquee rounded-md">
+            <div className="h-64 sm:h-80 w-full flex justify-center items-center">
               <Bar data={salesData} />
             </div>
 
-            <div className="flex justify-center items-center gap-5">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
               <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
-                  <p className="font-semibold">Subscription Count</p>
+                  <p className="font-semibold text-[#f3007a]">
+                    Subscription Count
+                  </p>
                   <h3 className="text-4xl font-bold">{allPayments?.count}</h3>
                 </div>
                 <FcSalesPerformance className="text-yellow-500 text-5xl" />
               </div>
               <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
-                  <p className="font-semibold">Total Revenue</p>
+                  <p className="font-semibold text-[#f3007a]">Total Revenue</p>
                   <h3 className="text-4xl font-bold">
                     {allPayments?.count && allPayments?.count * 1}
                   </h3>
@@ -161,9 +167,9 @@ function AdminDashboard() {
           </div>
         </div>
 
-        <div className="w-full px-12 self-center flex flex-col items-center justify-center gap-10 mb-10">
+        <div className="w-full px-2 md:px-8 lg:px-12 self-center flex flex-col items-center justify-center gap-10 mb-10">
           <div className="flex w-full items-center justify-between">
-            <h1 className="text-center text-3xl font-bold font-roboto tracking-wide">
+            <h1 className="text-center text-base md:text-2xl lg:text-3xl font-bold font-roboto tracking-wide">
               Courses overview
             </h1>
 
@@ -171,67 +177,72 @@ function AdminDashboard() {
               onClick={() => {
                 navigate("/course-create");
               }}
-              className="w-fit bg-gradient-to-t from-cyan-700 via-cyan-600 to-cyan-400 transition-all ease-in-out duration-300 py-2 px-4 font-bold text-lg cursor-pointer text-white rounded-lg hover:scale-110 hover:bg-gradient-to-t hover:from-cyan-400 hover:via-cyan-600 hover:to-cyan-700"
+              className="w-fit bg-gradient-to-t from-cyan-700 via-cyan-600 to-cyan-400 transition-all ease-in-out duration-300 sm:py-2 py-1 px-2 sm:px-4 font-bold text-lg cursor-pointer text-white rounded-lg hover:scale-110 hover:bg-gradient-to-t hover:from-cyan-400 hover:via-cyan-600 hover:to-cyan-700"
             >
               Create new course
             </button>
           </div>
 
-          <table className="table w-full overflow-x-scroll font-semibold">
-            <thead>
-              <tr>
-                <th>S No</th>
-                <th>Course Title</th>
-                <th>Course Category</th>
-                <th>Instructor</th>
-                <th>Total Lectures</th>
-                <th>Description</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {courses?.map((course, idx) => {
-                return (
-                  <tr key={course._id}>
-                    <td>{idx + 1}</td>
-                    <td>
-                      <textarea
-                        readOnly
-                        value={course?.title}
-                        className="w-40 h-auto bg-transparent resize-none"
-                      ></textarea>
-                    </td>
-                    <td>{course?.category}</td>
-                    <td>{course?.createdBy}</td>
-                    <td>{course?.numberofLectures}</td>
-                    <td className="max-w-28 overflow-hidden text-ellipsis whitespace-nowrap">
-                      <textarea
-                        value={course?.description}
-                        readOnly
-                        className="w-80 h-auto bg-transparent resize-none"
-                      ></textarea>
-                    </td>
-                    <td className="flex items-center gap-4">
-                      <button
-                        className="bg-green-600 hover:bg-green-700 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold text-white hover:scale-110"
-                        onClick={() =>
-                          navigate("/course/lectures", { state: { ...course } })
-                        }
-                      >
-                        <BsCollectionPlayFill />
-                      </button>
-                      <button
-                        className="bg-red-600 hover:bg-red-700 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold text-white hover:scale-110"
-                        onClick={() => onCourseDelete(course?._id)}
-                      >
-                        <BsTrash />
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <div className="w-full overflow-x-scroll">
+            <table className="table font-semibold">
+              <thead>
+                <tr>
+                  <th>S No</th>
+                  <th>Course Title</th>
+                  <th>Course Category</th>
+                  <th>Instructor</th>
+                  <th>Total Lectures</th>
+                  <th>Description</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {courses?.map((course, idx) => {
+                  return (
+                    <tr key={course._id}>
+                      <td>{idx + 1}</td>
+                      <td>
+                        <textarea
+                          readOnly
+                          value={course?.title}
+                          className="w-40 h-auto bg-transparent resize-none"
+                        ></textarea>
+                      </td>
+                      <td>{course?.category}</td>
+                      <td>{course?.createdBy}</td>
+                      <td>{course?.numberofLectures}</td>
+                      <td className="max-w-28 overflow-hidden text-ellipsis whitespace-nowrap">
+                        <textarea
+                          value={course?.description}
+                          readOnly
+                          className="w-80 h-auto bg-transparent resize-none"
+                        ></textarea>
+                      </td>
+                      <td className="flex items-center gap-4">
+                        <button
+                          className="bg-green-600 hover:bg-green-700 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold text-white hover:scale-110"
+                          onClick={() =>
+                            navigate("/course/lectures", {
+                              state: { ...course },
+                            })
+                          }
+                        >
+                          <BsCollectionPlayFill />
+                        </button>
+                        <button
+                          className="bg-red-600 hover:bg-red-700 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold text-white hover:scale-110"
+                          onClick={() => onCourseDelete(course?._id)}
+                        >
+                          <BsTrash />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </HomeLayout>
