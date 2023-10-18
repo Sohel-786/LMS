@@ -111,19 +111,21 @@ function AdminDashboard() {
       </div>
 
       <div className="min-h-[90vh] w-full mt-3 flex flex-col gap-10">
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-5 w-full px-3 sm:px-10">
+
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-5 w-full px-3 md:px-4 lg:px-10">
+
           <div className="flex w-full sm:w-[50%] flex-col items-center gap-1 sm:gap-10 px-3 py-5 sm:p-5 shadow-marquee rounded-md">
             <div className="w-full h-56 md:h-72 lg:h-80 flex justify-center items-center">
               <Pie data={userData} />
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
+            <div className="flex flex-col lg:flex-row justify-center items-center gap-3 md:gap-1 lg:gap-5">
               <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold text-[#f3007a]">
                     Registered Users
                   </p>
-                  <h3 className="text-4xl font-bold">{allUserCount}</h3>
+                  <h3 className="text-2xl lg:text-4xl font-bold">{allUserCount}</h3>
                 </div>
                 <FaUsers className="text-[#00bfff] text-5xl" />
               </div>
@@ -132,7 +134,7 @@ function AdminDashboard() {
                   <p className="font-semibold text-[#f3007a]">
                     Subscribed Users
                   </p>
-                  <h3 className="text-4xl font-bold">{subscriberCount}</h3>
+                  <h3 className="text-2xl lg:text-4xl font-bold">{subscriberCount}</h3>
                 </div>
                 <FaUsers className="text-[#00bf66] text-5xl" />
               </div>
@@ -140,24 +142,24 @@ function AdminDashboard() {
           </div>
 
           <div className="flex w-full sm:w-[50%] flex-col items-center gap-1 sm:gap-10 px-3 py-5 sm:p-5 shadow-marquee rounded-md">
-            <div className="h-64 sm:h-80 w-full flex justify-center items-center">
+            <div className="h-64 md:h-72 lg:h-80 w-full flex justify-center items-center">
               <Bar data={salesData} />
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
+            <div className="flex flex-col lg:flex-row justify-center items-center gap-3 md:gap-1 lg:gap-5">
               <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold text-[#f3007a]">
                     Subscription Count
                   </p>
-                  <h3 className="text-4xl font-bold">{allPayments?.count}</h3>
+                  <h3 className="text-2xl lg:text-4xl font-bold">{allPayments?.count}</h3>
                 </div>
                 <FcSalesPerformance className="text-yellow-500 text-5xl" />
               </div>
               <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold text-[#f3007a]">Total Revenue</p>
-                  <h3 className="text-4xl font-bold">
+                  <h3 className="text-2xl lg:text-4xl font-bold">
                     {allPayments?.count && allPayments?.count * 1}
                   </h3>
                 </div>
@@ -167,7 +169,7 @@ function AdminDashboard() {
           </div>
         </div>
 
-        <div className="w-full px-2 md:px-8 lg:px-12 self-center flex flex-col items-center justify-center gap-10 mb-10">
+        <div className="w-full px-2 md:px-6 lg:px-8 self-center flex flex-col items-center justify-center gap-10 mb-10">
           <div className="flex w-full items-center justify-between">
             <h1 className="text-center text-base md:text-2xl lg:text-3xl font-bold font-roboto tracking-wide">
               Courses overview
