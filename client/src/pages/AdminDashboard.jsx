@@ -29,7 +29,7 @@ ChartJS.register(
   Title,
   Tooltip
 );
-import { BiChevronRight, BiLeftArrowAlt } from 'react-icons/bi';
+import { BiChevronRight, BiLeftArrowAlt } from "react-icons/bi";
 
 function AdminDashboard() {
   const dispatch = useDispatch();
@@ -37,9 +37,7 @@ function AdminDashboard() {
 
   const { allUserCount, subscriberCount } = useSelector((s) => s?.stat);
 
-  const { allPayments, monthlySalesRecord } = useSelector(
-    (s) => s?.payment
-  );
+  const { allPayments, monthlySalesRecord } = useSelector((s) => s?.payment);
   const courses = useSelector((s) => s?.course?.courseData);
 
   const userData = {
@@ -94,20 +92,34 @@ function AdminDashboard() {
 
   return (
     <HomeLayout>
-      <div className="pt-12 w-full ml-10">
-        <p className="flex items-center gap-[1px]"> <span  onClick={() => {
-          navigate(-1);
-        }} className="flex items-center gap-1 rounded-lg cursor-pointer hover:bg-gray-200 p-2 font-bold sm:text-lg font-slab text-green-700"><BiLeftArrowAlt className="text-red-600" /> Back</span><span className="text-2xl text-red-600"><BiChevronRight/></span><span className="text-indigo-500 font-slab sm:text-lg ">Admin Dashboard</span></p>
+      <div className="pt-12 w-full pl-10">
+        <p className="flex items-center gap-[1px]">
+          {" "}
+          <span
+            onClick={() => {
+              navigate(-1);
+            }}
+            className="flex items-center gap-1 rounded-lg cursor-pointer hover:bg-gray-200 p-2 font-bold sm:text-lg font-slab text-green-700"
+          >
+            <BiLeftArrowAlt className="text-red-600" /> Back
+          </span>
+          <span className="text-2xl text-red-600">
+            <BiChevronRight />
+          </span>
+          <span className="text-indigo-500 font-slab sm:text-lg ">
+            Admin Dashboard
+          </span>
+        </p>
       </div>
 
       <div className="min-h-[90vh] w-full mt-3 flex flex-col flex-wrap gap-10">
-        <div className="grid grid-cols-2 gap-5 m-auto mx-10">
-          <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
-            <div className="w-80 h-80">
+        <div className="flex justify-center items-center gap-5 w-full px-10">
+          <div className="flex w-[50%] flex-col items-center gap-10 p-5 shadow-marquee rounded-md">
+            <div className="w-full h-80 flex justify-center items-center">
               <Pie data={userData} />
             </div>
 
-            <div className="grid grid-cols-2 gap-5">
+            <div className="flex justify-center items-center gap-5">
               <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-bold text-[#f3007a]">Registered Users</p>
@@ -123,14 +135,15 @@ function AdminDashboard() {
                 <FaUsers className="text-[#00bf66] text-5xl" />
               </div>
             </div>
+
           </div>
 
-          <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
-            <div className="h-80 w-full relative">
-              <Bar className="absolute bottom-0 h-80 w-full" data={salesData} />
+          <div className="flex w-[50%] flex-col items-center gap-10 p-5 shadow-marquee rounded-md">
+            <div className="h-80 w-full flex justify-center items-center">
+              <Bar className="" data={salesData} />
             </div>
 
-            <div className="grid grid-cols-2 gap-5">
+            <div className="flex justify-center items-center gap-5">
               <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Subscription Count</p>
@@ -142,7 +155,7 @@ function AdminDashboard() {
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Total Revenue</p>
                   <h3 className="text-4xl font-bold">
-                    { allPayments?.count && allPayments?.count * 1}
+                    {allPayments?.count && allPayments?.count * 1}
                   </h3>
                 </div>
                 <GiMoneyStack className="text-green-500 text-5xl" />
@@ -167,7 +180,7 @@ function AdminDashboard() {
             </button>
           </div>
 
-          <table className="table overflow-x-scroll">
+          <table className="table overflow-x-scroll font-semibold">
             <thead>
               <tr>
                 <th>S No</th>
