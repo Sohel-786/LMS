@@ -236,12 +236,12 @@ function HomeLayout({ children }) {
                     </div>
                   </Link>
                   {role === "ADMIN" && (
-                    <Link to={"/admin/dashboard"}>
-                      <div className="flex gap-4 items-center py-2 px-2 font-bold text-sm text-stone-700 hover:bg-slate-200">
+                      <div onClick={() => {
+                        navigate("/admin/dashboard")
+                      }} className="flex gap-4 items-center py-2 px-2 font-bold text-sm text-stone-700 hover:bg-slate-200">
                         <BsFillClipboard2DataFill size={"18px"} />
                         Dashboard
                       </div>
-                    </Link>
                   )}
                   <div
                     onClick={handleLogout}
