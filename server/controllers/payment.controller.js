@@ -146,7 +146,6 @@ export const getAllPayments = async (req, res, next) => {
       skip: skip ? skip : 0, // // If skip is sent then use that else default to 0
     });
 
-    console.log(allPayments)
     const monthNames = [
       "January",
       "February",
@@ -180,7 +179,6 @@ export const getAllPayments = async (req, res, next) => {
     const monthlyWisePayments = allPayments.items.map((payment) => {
       // We are using payment.start_at which is in unix time, so we are converting it to Human readable format using Date()
       const monthsInNumbers = new Date(payment.start_at * 1000);
-
       return monthNames[monthsInNumbers.getMonth()];
     });
 

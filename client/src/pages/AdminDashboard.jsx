@@ -5,7 +5,6 @@ import { getPaymentRecords } from "../redux/slices/paymentSlice";
 import { getStatsData } from "../redux/slices/statsSlice";
 import { useEffect } from "react";
 import { getAllCourses } from "../redux/slices/courseSlice";
-
 import {
   ArcElement,
   BarElement,
@@ -37,7 +36,7 @@ function AdminDashboard() {
 
   const { allUserCount, subscriberCount } = useSelector((s) => s?.stat);
 
-  const { allPayments, finalMonths, monthlySalesRecord } = useSelector(
+  const { allPayments, monthlySalesRecord } = useSelector(
     (s) => s?.payment
   );
   const courses = useSelector((s) => s?.course?.courseData);
@@ -71,7 +70,6 @@ function AdminDashboard() {
       "Nov",
       "Dec",
     ],
-    fontColor: "white",
     datasets: [
       {
         label: "Sales / Month",
@@ -92,18 +90,10 @@ function AdminDashboard() {
   useEffect(() => {
     load();
   }, []);
-  console.log(
-    typeof allUserCount,
-    typeof subscriberCount,
-    typeof allPayments?.count
-  );
 
   return (
     <HomeLayout>
       <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10">
-        <h1 className="text-center text-5xl font-semibold text-yellow-500">
-          Admin Dashboard
-        </h1>
 
         <div className="grid grid-cols-2 gap-5 m-auto mx-10">
           <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
@@ -146,7 +136,7 @@ function AdminDashboard() {
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Total Revenue</p>
                   <h3 className="text-4xl font-bold">
-                    {allPayments?.count * 1}
+                    { allPayments?.count && allPayments?.count * 1}
                   </h3>
                 </div>
                 <GiMoneyStack className="text-green-500 text-5xl" />
