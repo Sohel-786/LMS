@@ -296,14 +296,14 @@ function AdminDashboard() {
       >
         <div
           id="changePass"
-          className="flex flex-col justify-center items-center w-[80%] md:w-[60%] lg:w-[40%] bg-white rounded-xl py-5 px-6 gap-4"
+          className="flex flex-col justify-center items-center w-[80%] md:w-[50%] lg:w-[40%] bg-white rounded-xl py-5 px-6 gap-4"
         >
           <h1 className="font-slab">
             Are you sure you wanna delete this course{" "}
             <span className="text-red-600 text-xl">?</span>
           </h1>
 
-          <div className="lg:w-[300px] lg:h-[380px] w-[95%] md:w-[45%] rounded-lg overflow-y-scroll bg-white hover:scale-105 transition-all duration-300 shadow-course">
+          <div className="lg:w-[300px] md:h-[380px] w-full md:w-[70%] rounded-lg overflow-y-scroll bg-white hover:scale-105 transition-all duration-300 shadow-course">
             <div className="w-full h-[38%] mb-2">
               <img
                 className="h-full md:w-full lg:aspect-auto aspect-auto"
