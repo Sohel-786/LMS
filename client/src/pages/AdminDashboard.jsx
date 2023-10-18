@@ -110,14 +110,14 @@ function AdminDashboard() {
         </p>
       </div>
 
-      <div className="min-h-[90vh] w-full mt-3 flex flex-col flex-wrap gap-10">
-        <div className="flex justify-center items-center gap-5 w-full px-10">
-          <div className="flex w-[50%] flex-col items-center gap-10 p-5 shadow-marquee rounded-md">
-            <div className="w-full h-80 flex justify-center items-center">
+      <div className="min-h-[90vh] w-full mt-3 flex flex-col gap-10">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-5 w-full px-10">
+          <div className="flex w-full sm:w-[50%] flex-col items-center gap-10 p-5 shadow-marquee rounded-md">
+            <div className="w-full h-56 md:h-72 lg:h-80 flex justify-center items-center">
               <Pie data={userData} />
             </div>
 
-            <div className="flex justify-center items-center gap-5">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
               <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-bold text-[#f3007a]">Registered Users</p>
@@ -135,9 +135,9 @@ function AdminDashboard() {
             </div>
           </div>
 
-          <div className="flex w-[50%] flex-col items-center gap-10 p-5 shadow-marquee rounded-md">
-            <div className="h-80 w-full flex justify-center items-center">
-              <Bar className="" data={salesData} />
+          <div className="flex w-full sm:w-[50%] flex-col items-center gap-10 p-5 shadow-marquee rounded-md">
+            <div className="sm:h-80 w-full flex justify-center items-center">
+              <Bar data={salesData} />
             </div>
 
             <div className="flex justify-center items-center gap-5">
@@ -177,7 +177,7 @@ function AdminDashboard() {
             </button>
           </div>
 
-          <table className="table overflow-x-scroll font-semibold">
+          <table className="table w-full overflow-x-scroll font-semibold">
             <thead>
               <tr>
                 <th>S No</th>
