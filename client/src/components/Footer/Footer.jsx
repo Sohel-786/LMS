@@ -44,7 +44,8 @@ function Footer() {
 
           {!(
             location.pathname === "/courses" ||
-            location.pathname === "/course-description"
+            location.pathname === "/course-description" ||
+            location.pathname === "/admin/dashboard"
           ) && (
             <div className="w-full hidden lg:flex justify-center items-center bg-black mt-10 rounded-2xl h-[115px]">
               <img className="w-[22%] aspect-auto" src="/assets/arrow.gif" />
@@ -72,7 +73,8 @@ function Footer() {
 
       {!(
         location.pathname === "/courses" ||
-        location.pathname === "/course-description"
+        location.pathname === "/course-description" ||
+        location.pathname === "/admin/dashboard"
       ) && (
         <div className="w-[70%] flex lg:hidden justify-center items-center bg-black mt-6 rounded-xl h-[70px]">
           <img className="w-[17%] aspect-auto" src="/assets/arrow.gif" />

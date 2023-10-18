@@ -80,14 +80,12 @@ function AdminDashboard() {
     ],
   };
 
-  async function load() {
-    await dispatch(getPaymentRecords());
-    await dispatch(getStatsData());
-    await dispatch(getAllCourses());
-  }
-
   useEffect(() => {
-    load();
+    (async () => {
+      await dispatch(getPaymentRecords());
+      await dispatch(getStatsData());
+      await dispatch(getAllCourses());
+    })();
   }, []);
 
   return (
@@ -135,7 +133,6 @@ function AdminDashboard() {
                 <FaUsers className="text-[#00bf66] text-5xl" />
               </div>
             </div>
-
           </div>
 
           <div className="flex w-[50%] flex-col items-center gap-10 p-5 shadow-marquee rounded-md">
