@@ -5,7 +5,7 @@ import { useState } from "react";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createCourse } from "../../redux/slices/courseSlice";
+import { createCourse, getAllCourses } from "../../redux/slices/courseSlice";
 import toast from "react-hot-toast";
 
 function CreateCourse() {
@@ -135,6 +135,7 @@ function CreateCourse() {
         thumbnail: null,
         previewImage: null,
       });
+      await dispatch(getAllCourses());
       navigate("/courses");
     }
   }

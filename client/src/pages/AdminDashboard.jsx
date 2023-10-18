@@ -3,8 +3,8 @@ import HomeLayout from "../layouts/HomeLayout";
 import { useNavigate } from "react-router-dom";
 import { getPaymentRecords } from "../redux/slices/paymentSlice";
 import { getStatsData } from "../redux/slices/statsSlice";
-import { useEffect } from "react";
-import { getAllCourses } from "../redux/slices/courseSlice";
+import { useEffect, useState } from "react";
+import { deleteCourse, getAllCourses } from "../redux/slices/courseSlice";
 import {
   ArcElement,
   BarElement,
@@ -30,6 +30,10 @@ ChartJS.register(
   Tooltip
 );
 import { BiChevronRight, BiLeftArrowAlt } from "react-icons/bi";
+import toast from "react-hot-toast";
+import { FaCheck } from "react-icons/fa6";
+import { BsPersonWorkspace } from "react-icons/bs";
+import { MdVideoLibrary } from "react-icons/md";
 
 function AdminDashboard() {
   const dispatch = useDispatch();
@@ -80,6 +84,40 @@ function AdminDashboard() {
     ],
   };
 
+  const [data, setdata] = useState(null);
+
+  function handleDelete(course) {
+    if (!course) {
+      toast.error("Something Went Wrong");
+      return;
+    }
+
+    const deleteContainer = document.getElementById("delete");
+    deleteContainer.style.display = "flex";
+    setdata(course);
+  }
+
+  async function handleCourseDelete() {
+    if (!data) {
+      toast.error("Something Went Wrong");
+      return;
+    }
+    const res = await dispatch(deleteCourse(data._id));
+
+    if (res?.payload?.success) {
+      setdata(null);
+      const deleteContainer = document.getElementById("delete");
+      deleteContainer.style.display = "none";
+      await dispatch(getAllCourses());
+    }
+  }
+
+  function handleClose() {
+    const deleteContainer = document.getElementById("delete");
+    deleteContainer.style.display = "none";
+    setdata(null);
+  }
+
   useEffect(() => {
     (async () => {
       await dispatch(getPaymentRecords());
@@ -90,7 +128,7 @@ function AdminDashboard() {
 
   return (
     <HomeLayout>
-      <div className="pt-12 w-full pl-10">
+      <div className="pt-12 w-full pl-2 md:pl-3 lg:pl-10">
         <p className="flex items-center gap-[1px]">
           {" "}
           <span
@@ -238,7 +276,7 @@ function AdminDashboard() {
                         </button>
                         <button
                           className="bg-red-600 hover:bg-red-700 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold text-white hover:scale-110"
-                          onClick={() => onCourseDelete(course?._id)}
+                          onClick={() => handleDelete(course)}
                         >
                           <BsTrash />
                         </button>
@@ -248,6 +286,96 @@ function AdminDashboard() {
                 })}
               </tbody>
             </table>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="delete"
+        className="hidden top-0 right-0 bottom-0 left-0 fixed bg-gradient-to-r from-[#00000095] to-[#00000095] justify-center items-center z-50"
+      >
+        <div
+          id="changePass"
+          className="flex flex-col justify-center items-center w-[80%] md:w-[60%] lg:w-[40%] bg-white rounded-xl py-5 px-6 gap-4"
+        >
+          <h1 className="font-slab">
+            Are you sure you wanna delete this course{" "}
+            <span className="text-red-600 text-xl">?</span>
+          </h1>
+
+          <div className="lg:w-[300px] lg:h-[380px] w-[95%] md:w-[45%] rounded-lg overflow-y-scroll bg-white hover:scale-105 transition-all duration-300 shadow-course">
+            <div className="w-full h-[38%] mb-2">
+              <img
+                className="h-full md:w-full lg:aspect-auto aspect-auto"
+                src={data?.thumbnail?.secure_url}
+                alt={"course thumbnail"}
+              />
+            </div>
+            <div className="flex flex-col justify-center px-6">
+              <div className="flex justify-center flex-col">
+                <h1 className="text-black font-bold text-[18px] md:text-[17px] sm:text-[22px]">
+                  {data?.title}
+                </h1>
+                <h3 className="text-gray-600 font-bold text-base sm:text-lg font-mono tracking-wide">
+                  {data?.category}
+                </h3>
+              </div>
+              <hr className="border-t-[1px] my-3" />
+              <div>
+                <div className="flex text-gray-700 text-[15.5px] font-bold tracking-wider">
+                  <FaCheck
+                    size={"50px"}
+                    className="bg-green-100 p-1 h-5 font-semibold rounded-full text-green-600 mt-1 mr-2"
+                  />
+                  <p>{data?.description}</p>
+                </div>
+
+                <div className="flex text-black text-[15.5px] font-bold tracking-wide my-3">
+                  <BsPersonWorkspace
+                    size={"22px"}
+                    className="h-5 font-semibold rounded-full text-green-600 mr-2"
+                  />
+                  <p>
+                    Mentor :{" "}
+                    <span className="text-yellow-900">{data?.createdBy}</span>
+                  </p>
+                </div>
+
+                <div className="flex text-black text-[15.5px] font-bold tracking-wide my-4">
+                  <MdVideoLibrary
+                    size={"23px"}
+                    className="h-5 font-semibold rounded-full text-green-700 mt-1 mr-[6px]"
+                  />
+                  <p>
+                    Totol Lectures :{" "}
+                    <span className="text-yellow-900">
+                      {data?.numberofLectures}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              userSelect: "none",
+            }}
+            className="w-full flex justify-center items-center gap-5 mt-1"
+          >
+            <button
+              onClick={handleCourseDelete}
+              className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800 hover:scale-110 transition-all duration-300"
+            >
+              Yes
+            </button>
+
+            <button
+              onClick={handleClose}
+              className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-orange-800 via-orange-600 to-orange-400 hover:bg-gradient-to-t hover:from-orange-400 hover:via-orange-600 hover:to-orange-800 hover:scale-110 transition-all duration-300"
+            >
+              CANCEL
+            </button>
           </div>
         </div>
       </div>
