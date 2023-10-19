@@ -29,11 +29,14 @@ ChartJS.register(
   Title,
   Tooltip
 );
-import { BiChevronRight, BiLeftArrowAlt } from "react-icons/bi";
+import { BiChevronRight, BiLeftArrowAlt, BiSolidEdit } from "react-icons/bi";
 import toast from "react-hot-toast";
 import { FaCheck } from "react-icons/fa6";
 import { BsPersonWorkspace } from "react-icons/bs";
 import { MdVideoLibrary } from "react-icons/md";
+import CourseCreateUpdate from '../components/Course/CourseCreateUpdate';
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { IoCloseSharp } from 'react-icons/io5';
 
 function AdminDashboard() {
   const dispatch = useDispatch();
@@ -84,7 +87,7 @@ function AdminDashboard() {
     ],
   };
 
-  const [data, setdata] = useState(null);
+  const [data, setData] = useState(null);
 
   function handleDelete(course) {
     if (!course) {
@@ -94,7 +97,7 @@ function AdminDashboard() {
 
     const deleteContainer = document.getElementById("delete");
     deleteContainer.style.display = "flex";
-    setdata(course);
+    setData(course);
   }
 
   async function handleCourseDelete() {
@@ -105,7 +108,7 @@ function AdminDashboard() {
     const res = await dispatch(deleteCourse(data._id));
 
     if (res?.payload?.success) {
-      setdata(null);
+      setData(null);
       const deleteContainer = document.getElementById("delete");
       deleteContainer.style.display = "none";
       await dispatch(getAllCourses());
@@ -115,7 +118,26 @@ function AdminDashboard() {
   function handleClose() {
     const deleteContainer = document.getElementById("delete");
     deleteContainer.style.display = "none";
-    setdata(null);
+    setData(null);
+  }
+
+  function handleCourseUpdate(courseData){
+    if(!courseData) {
+      toast.error('Something Went Wrong');
+      return;
+    }
+
+    setData(courseData);
+    disableBodyScroll("document");
+    const courseUpdate = document.getElementById('courseUpdate');
+    courseUpdate.style.display = 'flex';
+  }
+
+  function closeCourseUpdate(){
+    setData(null);
+    enableBodyScroll("document");
+    const courseUpdate = document.getElementById('courseUpdate');
+    courseUpdate.style.display = 'none';
   }
 
   useEffect(() => {
@@ -260,12 +282,12 @@ function AdminDashboard() {
                         <textarea
                           value={course?.description}
                           readOnly
-                          className="w-80 h-auto bg-transparent resize-none"
+                          className="w-72 h-auto bg-transparent resize-none"
                         ></textarea>
                       </td>
                       <td className="flex items-center gap-4">
                         <button
-                          className="bg-green-600 hover:bg-green-700 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold text-white hover:scale-110"
+                          className="bg-gradient-to-t from-green-950 via-green-700 to-green-400 hover:bg-gradient-to-t hover:from-green-600 hover:via-green-800 hover:to-green-950 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold text-white hover:scale-110"
                           onClick={() =>
                             navigate("/course/lectures", {
                               state: { ...course },
@@ -274,8 +296,16 @@ function AdminDashboard() {
                         >
                           <BsCollectionPlayFill />
                         </button>
+
                         <button
-                          className="bg-red-600 hover:bg-red-700 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold text-white hover:scale-110"
+                          className="bg-gradient-to-t from-indigo-900 via-indigo-600 to-indigo-400 hover:bg-gradient-to-t hover:from-indigo-500 hover:via-indigo-700 hover:to-indigo-950 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold text-white hover:scale-110"
+                          onClick={() => handleCourseUpdate(course)}
+                        >
+                          <BiSolidEdit />
+                        </button>
+
+                        <button
+                          className="bg-gradient-to-t from-red-950 via-red-700 to-red-500 hover:bg-gradient-to-t hover:from-red-600 hover:via-red-800 hover:to-red-950 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold text-white hover:scale-110"
                           onClick={() => handleDelete(course)}
                         >
                           <BsTrash />
@@ -378,6 +408,11 @@ function AdminDashboard() {
             </button>
           </div>
         </div>
+      </div>
+
+      <div id="courseUpdate" className="hidden justify-center items-center fixed top-0 right-0 left-0 bottom-0 overflow-y-scroll bg-white pt-56 z-50">
+        <div onClick={closeCourseUpdate} className="w-full absolute top-0 flex justify-end px-5"><IoCloseSharp className="text-4xl cursor-pointer text-red-600 mt-3" /></div>
+        { data &&  <CourseCreateUpdate courseData={data} />}
       </div>
     </HomeLayout>
   );
