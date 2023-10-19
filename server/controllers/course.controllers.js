@@ -219,12 +219,13 @@ export const deleteLectureById = async (req, res, next) => {
       if (el._id.toString() !== lectureId) {
         return el;
       }else{
-        public_id = el.lecture.public_id
+        public_id = el.lecture.public_id;
       }
     });
 
     if(public_id){
-      await cloudinary.v2.uploader.destroy(public_id);
+      console.log('Reached', typeof public_id)
+      await cloudinary.v2.uploader.destroy(public_id,{resource_type: 'video'});
     }
     course.lectures = lectures;
 
