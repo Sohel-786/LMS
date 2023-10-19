@@ -228,6 +228,7 @@ export const deleteLectureById = async (req, res, next) => {
       await cloudinary.v2.uploader.destroy(public_id,{resource_type: 'video'});
     }
     course.lectures = lectures;
+    course.numberofLectures = course.lectures.length;
 
     await course.save();
 
