@@ -74,7 +74,7 @@ function CourseDescription() {
                   className="bg-red-500 py-[10px] w-full rounded-lg sm:mt-2 text-lg font-bold tracking-wider hover:scale-110 transition-all duration-300 active:scale-95 ease-in-out hover:bg-gradient-to-r from-red-700 via-red-600 to-red-700 border-transparent"
                   onClick={() => {
                     if (!isLoggedIn) {
-                      navigate("/signin");
+                      navigate("/signin", {path : '/course-description', state : {...state}});
                     } else {
                       navigate("/checkout");
                     }

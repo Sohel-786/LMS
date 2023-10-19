@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import HomeLayout from "../layouts/HomeLayout";;
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { toast } from "react-hot-toast";
@@ -10,6 +10,7 @@ import { login } from "../redux/slices/authSlice";
 function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { path, state } = useLocation();
 
   const [viewPassword, setViewpassword] = useState(false);
   const [signinDetails, setSigninDetails] = useState({
@@ -42,7 +43,7 @@ function SignIn() {
     const res = await dispatch(login(signinDetails));
 
     if (res?.payload?.data?.success) {
-      navigate("/");
+      path ? navigate(path, {state : {...state}}) : navigate("/");
     }
   }
 
