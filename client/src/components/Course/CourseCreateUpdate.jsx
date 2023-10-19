@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { createCourse, getAllCourses, updateCourse } from "../../redux/slices/courseSlice";
 
-function CourseCreateUpdate({courseData}) {
+function CourseCreateUpdate({courseData, closeCourseUpdate}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -146,6 +146,8 @@ function CourseCreateUpdate({courseData}) {
           thumbnail: null,
           previewImage: null,
         });
+        await dispatch(getAllCourses());
+        closeCourseUpdate();
       }
     }else{
       const res = await dispatch(createCourse(courseDetails));
@@ -164,12 +166,12 @@ function CourseCreateUpdate({courseData}) {
     } 
   }
   return (
-      <section className="flex flex-col justify-center items-center w-full py-20 pt-12">
+      <section className={`flex flex-col items-center w-full ${location.pathname === '/admin/dashboard' ? 'py-0' : 'py-20'} pt-12`}>
         <h1 className="mb-4 lg:mb-1 text-4xl font-bold tracking-wider">
           {location.pathname === '/admin/dashboard' ? 'Update Course' : 'Create Course'}
         </h1>
         <form
-          noValidate
+          noValidate 
           onSubmit={(e) => {
             e.preventDefault();
           }}

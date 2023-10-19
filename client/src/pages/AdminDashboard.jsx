@@ -34,9 +34,9 @@ import toast from "react-hot-toast";
 import { FaCheck } from "react-icons/fa6";
 import { BsPersonWorkspace } from "react-icons/bs";
 import { MdVideoLibrary } from "react-icons/md";
-import CourseCreateUpdate from '../components/Course/CourseCreateUpdate';
+import CourseCreateUpdate from "../components/Course/CourseCreateUpdate";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
-import { IoCloseSharp } from 'react-icons/io5';
+import { IoCloseSharp } from "react-icons/io5";
 
 function AdminDashboard() {
   const dispatch = useDispatch();
@@ -121,23 +121,23 @@ function AdminDashboard() {
     setData(null);
   }
 
-  function handleCourseUpdate(courseData){
-    if(!courseData) {
-      toast.error('Something Went Wrong');
+  function handleCourseUpdate(courseData) {
+    if (!courseData) {
+      toast.error("Something Went Wrong");
       return;
     }
 
     setData(courseData);
     disableBodyScroll("document");
-    const courseUpdate = document.getElementById('courseUpdate');
-    courseUpdate.style.display = 'flex';
+    const courseUpdate = document.getElementById("courseUpdate");
+    courseUpdate.style.display = "flex";
   }
 
-  function closeCourseUpdate(){
+  function closeCourseUpdate() {
     setData(null);
     enableBodyScroll("document");
-    const courseUpdate = document.getElementById('courseUpdate');
-    courseUpdate.style.display = 'none';
+    const courseUpdate = document.getElementById("courseUpdate");
+    courseUpdate.style.display = "none";
   }
 
   useEffect(() => {
@@ -410,9 +410,22 @@ function AdminDashboard() {
         </div>
       </div>
 
-      <div id="courseUpdate" className="hidden justify-center items-center fixed top-0 right-0 left-0 bottom-0 overflow-y-scroll bg-white pt-56 z-50">
-        <div onClick={closeCourseUpdate} className="w-full absolute top-0 flex justify-end px-5"><IoCloseSharp className="text-4xl cursor-pointer text-red-600 mt-3" /></div>
-        { data &&  <CourseCreateUpdate courseData={data} />}
+      <div
+        id="courseUpdate"
+        className="hidden fixed top-0 right-0 left-0 bottom-0 overflow-y-scroll bg-white z-50"
+      >
+        <div
+          onClick={closeCourseUpdate}
+          className="w-full absolute top-0 flex justify-end px-5"
+        >
+          <IoCloseSharp className="text-4xl cursor-pointer text-red-600 mt-3" />
+        </div>
+        {data && (
+          <CourseCreateUpdate
+            courseData={data}
+            closeCourseUpdate={closeCourseUpdate}
+          />
+        )}
       </div>
     </HomeLayout>
   );
