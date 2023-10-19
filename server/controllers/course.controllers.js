@@ -83,19 +83,34 @@ export const createCourse = async (req, res, next) => {
 export const updateCourse = async (req, res, next) => {
   try {
     const { courseId } = req.params;
+    const { title, description, category, createdBy } = req.body;
 
-    const course = await Course.findByIdAndUpdate(
-      courseId,
-      {
-        $set: req.body,
-      },
-      {
-        runValidators: true,
-      }
-    );
+    if (!title || !description || !category || !createdBy) {
+      return next(new AppError("All fields are required", 400));
+    }
+
+    const course = await Course.findById(courseId);
 
     if (!course) {
       return next(new AppError("Course Doesn't exists", 400));
+    }
+
+    course.title = title,
+    course.description = description,
+    course.category = category,
+    course.createdBy = createdBy;
+
+    if (req.file) {
+      const result = await cloudinary.v2.uploader.upload(req.file.path, {
+        folder: "lms",
+      });
+
+      if (result) {
+        course.thumbnail.public_id = result.public_id;
+        course.thumbnail.secure_url = result.secure_url;
+      }
+
+      fs.rm(`uploads/${req.file.filename}`);
     }
 
     await course.save();

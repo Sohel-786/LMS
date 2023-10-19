@@ -140,6 +140,14 @@ function AdminDashboard() {
     courseUpdate.style.display = "none";
   }
 
+  async function closeAndUpdate(){
+    setData(null);
+    enableBodyScroll("document");
+    const courseUpdate = document.getElementById("courseUpdate");
+    courseUpdate.style.display = "none";
+    await dispatch(getAllCourses());
+  }
+
   useEffect(() => {
     (async () => {
       await dispatch(getPaymentRecords());
@@ -423,7 +431,7 @@ function AdminDashboard() {
         {data && (
           <CourseCreateUpdate
             courseData={data}
-            closeCourseUpdate={closeCourseUpdate}
+            closeCourseUpdate={closeAndUpdate}
           />
         )}
       </div>

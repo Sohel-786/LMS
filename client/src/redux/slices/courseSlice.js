@@ -71,12 +71,15 @@ export const deleteCourse = createAsyncThunk('/course/delete' , async (id) => {
 });
 
 export const updateCourse = createAsyncThunk('/course/update', async (data) => {
+  
   const formData = new FormData();
   formData.append("title", data.title);
   formData.append("description", data.description);
   formData.append("category", data.category);
   formData.append("createdBy", data.createdBy);
   formData.append("thumbnail", data.thumbnail);
+
+  console.log('data', data, formData);
   try {
     const res = axiosInstance.put(`/courses/${data._id}`, formData);
     toast.promise(res, {

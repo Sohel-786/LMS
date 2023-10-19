@@ -5,25 +5,33 @@ import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { createCourse, getAllCourses, updateCourse } from "../../redux/slices/courseSlice";
+import {
+  createCourse,
+  getAllCourses,
+  updateCourse,
+} from "../../redux/slices/courseSlice";
 
-function CourseCreateUpdate({courseData, closeCourseUpdate}) {
+function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
   const [dragActive, setDragActive] = useState(false);
-  const [courseDetails, setCourseDetails] = useState((location.pathname === '/admin/dashboard') ? {
-      ...courseData,
-      previewImage : courseData?.thumbnail?.secure_url
-  } : {
-    title: "",
-    description: "",
-    category: "",
-    createdBy: "",
-    thumbnail: null,
-    previewImage: null,
-  });
+  const [courseDetails, setCourseDetails] = useState(
+    location.pathname === "/admin/dashboard"
+      ? {
+          ...courseData,
+          previewImage: courseData?.thumbnail?.secure_url,
+        }
+      : {
+          title: "",
+          description: "",
+          category: "",
+          createdBy: "",
+          thumbnail: null,
+          previewImage: null,
+        }
+  );
 
   const handleDrag = function (e) {
     e.preventDefault();
@@ -128,10 +136,9 @@ function CourseCreateUpdate({courseData, closeCourseUpdate}) {
       return;
     }
 
-    if(location.pathname === '/admin/dashboard'){
-
-      if(!courseDetails._id){
-        toast.error('Something Went Wrong');
+    if (location.pathname === "/admin/dashboard") {
+      if (!courseDetails._id) {
+        toast.error("Something Went Wrong");
         return;
       }
 
@@ -146,10 +153,9 @@ function CourseCreateUpdate({courseData, closeCourseUpdate}) {
           thumbnail: null,
           previewImage: null,
         });
-        await dispatch(getAllCourses());
         closeCourseUpdate();
       }
-    }else{
+    } else {
       const res = await dispatch(createCourse(courseDetails));
       if (res?.payload?.success) {
         setCourseDetails({
@@ -163,190 +169,205 @@ function CourseCreateUpdate({courseData, closeCourseUpdate}) {
         await dispatch(getAllCourses());
         navigate("/courses");
       }
-    } 
+    }
   }
   return (
-      <section className={`flex flex-col items-center w-full ${location.pathname === '/admin/dashboard' ? 'py-0' : 'py-20'} pt-12`}>
-        <h1 className="mb-4 lg:mb-1 text-4xl font-bold tracking-wider">
-          {location.pathname === '/admin/dashboard' ? 'Update Course' : 'Create Course'}
-        </h1>
-        <form
-          noValidate 
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-          className="bg-white text-black py-6 sm:py-8 px-4 sm:px-32 rounded-xl w-[95%] lg:w-[70%] flex flex-col items-center"
+    <section
+      className={`flex flex-col items-center w-full ${
+        location.pathname === "/admin/dashboard" ? "py-0" : "py-20"
+      } pt-12`}
+    >
+      <h1 className="mb-4 lg:mb-1 text-4xl font-bold tracking-wider">
+        {location.pathname === "/admin/dashboard"
+          ? "Update Course"
+          : "Create Course"}
+      </h1>
+      <form
+        noValidate
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+        className="bg-white text-black py-6 sm:py-8 px-4 sm:px-32 rounded-xl w-[95%] lg:w-[70%] flex flex-col items-center"
+      >
+        <div
+          id="container"
+          onDragEnter={handleDrag}
+          className="w-full h-[200px] sm:h-56 flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
         >
-          <div
-            id="container"
-            onDragEnter={handleDrag}
-            className="w-full h-[200px] sm:h-56 flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
-          >
-            {courseDetails.previewImage ? (
+          {courseDetails.previewImage ? (
+            <div
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrop}
+              onMouseOver={handleBlur}
+              onMouseOut={handleBlurRemove}
+              className="w-full h-full flex justify-center items-center"
+            >
               <div
-                onDragEnter={handleDrag}
-                onDragLeave={handleDrag}
-                onDragOver={handleDrag}
-                onDrop={handleDrop}
-                onMouseOver={handleBlur}
-                onMouseOut={handleBlurRemove}
-                className="w-full h-full flex justify-center items-center"
+                id="thumbnailBtn"
+                className="hidden z-20 absolute flex-col gap-2"
               >
-                <div
-                  id="thumbnailBtn"
-                  className="hidden z-20 absolute flex-col gap-2"
+                <button
+                  onClick={handleFullImageView}
+                  className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent"
                 >
-                  <button
-                    onClick={handleFullImageView}
-                    className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent"
-                  >
-                    VIEW
-                  </button>
-                  <button
-                    onClick={() => {
-                      setCourseDetails({
-                        ...courseDetails,
-                        previewImage: "",
-                        thumbnail: "",
-                      });
-                    }}
-                    className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-red-500 hover:text-white hover:border-transparent"
-                  >
-                    CANCEL
-                  </button>
-                </div>
-
-                <img
-                  id="thumbnail"
-                  src={
-                    courseDetails.previewImage ? courseDetails.previewImage : ""
-                  }
-                  alt="Course Thumbnail"
-                  className="max-w-full h-full m-auto"
-                />
+                  VIEW
+                </button>
+                <button
+                  onClick={() => {
+                    setCourseDetails({
+                      ...courseDetails,
+                      previewImage: "",
+                      thumbnail: "",
+                    });
+                  }}
+                  className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-red-500 hover:text-white hover:border-transparent"
+                >
+                  CANCEL
+                </button>
               </div>
-            ) : dragActive ? (
-              <div
-                className="w-full h-full bg-gray-200 border-gray-300 transition-all duration-200 ease-in-out flex justify-center items-center border-[2px] border-dashed "
-                onDragEnter={handleDrag}
-                onDragLeave={handleDrag}
-                onDragOver={handleDrag}
-                onDrop={handleDrop}
-              ></div>
-            ) : (
-              <div className="border-[2px] border-dashed flex flex-col justify-center items-center w-full h-full">
-                <HiOutlinePhoto size={"70px"} className="text-gray-300" />
-                <p className="text-gray-500 text-sm font-semibold text-center">
-                  <label htmlFor="courseImage">
-                    <span
-                      type="button"
-                      className="text-indigo-600 text-base font-bold cursor-pointer p-1 px-[5px] hover:bg-indigo-100 hover:text-indigo-500 rounded-lg hover:scale-105 transition-all duration-300 ease-in-out"
-                    >
-                      Upload a file
-                    </span>{" "}
-                  </label>
-                  or drag and drop <br /> PNG, JPG, JPEG, WEBP
-                </p>
-              </div>
-            )}
-          </div>
 
-          {/* To View Image on Full Screen */}
-          <div
-            id="fullView"
-            className="fixed top-0 h-[100vh] w-[100vw] hidden z-50 bg-black flex-col justify-center items-center"
-          >
-            <RiCloseCircleFill
-              onClick={handleFullViewclose}
-              size={"50px"}
-              className="absolute top-3 right-8 cursor-pointer text-red-600 hover:text-red-800 bg-black border-[2px] border-transparent rounded-full hover:border-white"
-            />
-            <img
-              className="w-auto h-auto"
-              src={courseDetails.previewImage ? courseDetails.previewImage : ""}
-              alt="Preview Image"
-            />
-          </div>
+              <img
+                id="thumbnail"
+                src={
+                  courseDetails.previewImage ? courseDetails.previewImage : ""
+                }
+                alt="Course Thumbnail"
+                className="max-w-full h-full m-auto"
+              />
+            </div>
+          ) : dragActive ? (
+            <div
+              className="w-full h-full bg-gray-200 border-gray-300 transition-all duration-200 ease-in-out flex justify-center items-center border-[2px] border-dashed "
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrop}
+            ></div>
+          ) : (
+            <div className="border-[2px] border-dashed flex flex-col justify-center items-center w-full h-full">
+              <HiOutlinePhoto size={"70px"} className="text-gray-300" />
+              <p className="text-gray-500 text-sm font-semibold text-center">
+                <label htmlFor="courseImage">
+                  <span
+                    type="button"
+                    className="text-indigo-600 text-base font-bold cursor-pointer p-1 px-[5px] hover:bg-indigo-100 hover:text-indigo-500 rounded-lg hover:scale-105 transition-all duration-300 ease-in-out"
+                  >
+                    Upload a file
+                  </span>{" "}
+                </label>
+                or drag and drop <br /> PNG, JPG, JPEG, WEBP
+              </p>
+            </div>
+          )}
+        </div>
 
-          <input
-            type="file"
-            hidden
-            id="courseImage"
-            onChange={handleImage}
-            accept=".jpg, .jpeg, .png, .webp, .svg"
+        {/* To View Image on Full Screen */}
+        <div
+          id="fullView"
+          className="fixed top-0 h-[100vh] w-[100vw] hidden z-50 bg-black flex-col justify-center items-center"
+        >
+          <RiCloseCircleFill
+            onClick={handleFullViewclose}
+            size={"50px"}
+            className="absolute top-3 right-8 cursor-pointer text-red-600 hover:text-red-800 bg-black border-[2px] border-transparent rounded-full hover:border-white"
           />
+          <img
+            className="w-auto h-auto"
+            src={courseDetails.previewImage ? courseDetails.previewImage : ""}
+            alt="Preview Image"
+          />
+        </div>
 
+        <input
+          type="file"
+          hidden
+          id="courseImage"
+          onChange={handleImage}
+          accept=".jpg, .jpeg, .png, .webp, .svg"
+        />
+
+        <div className="my-2 w-full">
+          <label
+            className="block text-black font-semibold tracking-wide mb-3 font-sans"
+            htmlFor="title"
+          >
+            Title
+          </label>
+          <input
+            name="title"
+            onChange={handleChange}
+            className="rounded-lg border-gray-300 border-[1.2px] w-full"
+            type="text"
+            id="title"
+            value={courseDetails?.title}
+          />
+        </div>
+
+        <div className="grid grid-cols-2 w-full gap-3 my-4">
           <div className="my-2 w-full">
             <label
               className="block text-black font-semibold tracking-wide mb-3 font-sans"
-              htmlFor="title"
+              htmlFor="category"
             >
-              Title
+              Category
             </label>
             <input
-              name="title"
+              name="category"
               onChange={handleChange}
               className="rounded-lg border-gray-300 border-[1.2px] w-full"
               type="text"
-              id="title"
-              value={courseDetails?.title}
+              id="category"
+              value={courseDetails?.category}
             />
           </div>
-
-          <div className="grid grid-cols-2 w-full gap-3 my-4">
-            <div className="my-2 w-full">
-              <label
-                className="block text-black font-semibold tracking-wide mb-3 font-sans"
-                htmlFor="category"
-              >
-                Category
-              </label>
-              <input
-                name="category"
-                onChange={handleChange}
-                className="rounded-lg border-gray-300 border-[1.2px] w-full"
-                type="text"
-                id="category"
-                value={courseDetails?.category}
-              />
-            </div>
-            <div className="my-2 w-full">
-              <label
-                className="block text-black font-semibold tracking-wide mb-3 font-sans"
-                htmlFor="createdBy"
-              >
-                Created By
-              </label>
-              <input
-                name="createdBy"
-                onChange={handleChange}
-                className="rounded-lg border-gray-300 border-[1.2px] w-full"
-                type="text"
-                id="createdBy"
-                value={courseDetails?.createdBy}
-              />
-            </div>
-          </div>
-
           <div className="my-2 w-full">
             <label
               className="block text-black font-semibold tracking-wide mb-3 font-sans"
-              htmlFor="description"
+              htmlFor="createdBy"
             >
-              Description
+              Created By
             </label>
-            <textarea
-              name="description"
+            <input
+              name="createdBy"
               onChange={handleChange}
-              rows={"8"}
-              className="rounded-lg border-gray-300 border-[1.2px] w-full resize-y"
+              className="rounded-lg border-gray-300 border-[1.2px] w-full"
               type="text"
-              id="description"
-              value={courseDetails?.description}
+              id="createdBy"
+              value={courseDetails?.createdBy}
             />
           </div>
+        </div>
 
-          <div className="mt-6 flex items-center justify-end w-full border-t-[2px] border-gray-100 pt-3">
+        <div className="my-2 w-full">
+          <label
+            className="block text-black font-semibold tracking-wide mb-3 font-sans"
+            htmlFor="description"
+          >
+            Description
+          </label>
+          <textarea
+            name="description"
+            onChange={handleChange}
+            rows={"8"}
+            className="rounded-lg border-gray-300 border-[1.2px] w-full resize-y"
+            type="text"
+            id="description"
+            value={courseDetails?.description}
+          />
+        </div>
+
+        <div className="mt-6 flex items-center justify-end w-full border-t-[2px] border-gray-100 pt-3">
+          {location.pathname === "/admin/dashboard" ? (
+            <button
+              onClick={handleSubmit}
+              type="submit"
+              className="rounded-md text-white bg-indigo-600 px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:scale-110 focus:scale-110 transition-all duration-200"
+            >
+              Update
+            </button>
+          ) : (
             <button
               onClick={handleSubmit}
               type="submit"
@@ -354,9 +375,10 @@ function CourseCreateUpdate({courseData, closeCourseUpdate}) {
             >
               Create
             </button>
-          </div>
-        </form>
-      </section>
+          )}
+        </div>
+      </form>
+    </section>
   );
 }
 

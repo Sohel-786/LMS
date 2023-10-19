@@ -30,7 +30,12 @@ router
 router
   .route("/:courseId")
   .get(IsLoggedIn, authorizedSubscriber, getLecturesByCourseId)
-  .put(IsLoggedIn, authorizedRoles("ADMIN"), updateCourse)
+  .put(
+    IsLoggedIn,
+    authorizedRoles("ADMIN"),
+    upload.single("thumbnail"),
+    updateCourse
+  )
   .delete(IsLoggedIn, authorizedRoles("ADMIN"), deleteCourse)
   .post(
     IsLoggedIn,
