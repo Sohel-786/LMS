@@ -186,12 +186,25 @@ function ForgotPassword({ hideForgotPass }) {
 
             <hr className="border-b-[1.5px] my-2 sm:my-4" />
 
-            <button
-              onClick={handleSendMail}
-              className="bg-gradient-to-t from-indigo-900 via-indigo-600 to-indigo-400 w-fit self-center text-white px-5 py-3 text-xl font-bold font-poppins rounded-xl hover:bg-gradient-to-t hover:from-indigo-400 hover:via-indigo-600 hover:to-indigo-900 transition-all duration-300 ease-in-out hover:scale-110"
-            >
-              OK
-            </button>
+            <div className="w-full flex justify-center items-center gap-5">
+              <button
+                onClick={handleSendMail}
+                className="bg-gradient-to-t from-indigo-900 via-indigo-600 to-indigo-400 w-fit self-center text-white px-5 py-3 text-sm sm:text-xl font-bold font-poppins rounded-xl hover:bg-gradient-to-t hover:from-indigo-400 hover:via-indigo-600 hover:to-indigo-900 transition-all duration-300 ease-in-out hover:scale-110"
+              >
+                OK
+              </button>
+              <button
+                onClick={() =>{
+                  setRegisteredEmail({
+                    email: "",
+                  });
+                  setshowSendMail(false)
+                }}
+                className="bg-gradient-to-t from-orange-900 via-orange-600 to-orange-400 w-fit self-center text-white px-5 py-3 text-sm sm:text-xl font-bold font-poppins rounded-xl hover:bg-gradient-to-t hover:from-orange-400 hover:via-orange-600 hover:to-orange-900 transition-all duration-300 ease-in-out hover:scale-110"
+              >
+                CHANGE EMAIL
+              </button>
+            </div>
           </div>
         </div>
       )}

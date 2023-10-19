@@ -6,5 +6,3 @@ const axiosInstance = axios.create({
 })
 
 export default axiosInstance;
-
-console.log(import.meta.env.VITE_APP_BASE_URL, import.meta.env);
