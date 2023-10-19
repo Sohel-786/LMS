@@ -1,5 +1,6 @@
+import { lazy } from "react";
 import { Link } from "react-router-dom";
-import HomeLayout from "../layouts/HomeLayout";
+const HomeLayout = lazy(() => import("../layouts/HomeLayout"));
 import homepageImage from "/assets/homepage.png";
 import Typewriter from "typewriter-effect";
 import Marquee from "react-fast-marquee";

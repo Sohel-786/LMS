@@ -3,10 +3,11 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import AuthRoute from "./components/AuthRoute";
+import AuthRoute from "./components/Auth/AuthRoute";
 import Loading from "./components/Loading";
 import Denied from "./pages/Denied";
 import Notfound from "./pages/Notfound";
+import CurrentActiveRoute from "./components/Auth/CurrentActiveRoute";
 const Aboutus = lazy(() => import("./pages/Aboutus"));
 const SignUp = lazy(() => import("./pages/Signup"));
 const SignIn = lazy(() => import("./pages/SignIn"));
@@ -43,22 +44,26 @@ function App() {
             </Suspense>
           }
         />
-        <Route
-          path="/signup"
-          element={
-            <Suspense fallback={<Loading />}>
-              <SignUp />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/signin"
-          element={
-            <Suspense fallback={<Loading />}>
-              <SignIn />
-            </Suspense>
-          }
-        />
+
+        <Route element={<CurrentActiveRoute />}>
+          <Route
+            path="/signup"
+            element={
+              <Suspense fallback={<Loading />}>
+                <SignUp />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/signin"
+            element={
+              <Suspense fallback={<Loading />}>
+                <SignIn />
+              </Suspense>
+            }
+          />
+        </Route>
+
         <Route
           path="/contact"
           element={
