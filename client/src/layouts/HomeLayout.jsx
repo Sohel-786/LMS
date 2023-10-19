@@ -1,15 +1,15 @@
+import classroomLogo from "/assets/classroom.svg";
+import { TfiMenu } from "react-icons/tfi";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
-import { TfiMenu } from "react-icons/tfi";
 import { IoMdClose } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slices/authSlice";
 import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, lazy } from "react";
 import { BiSolidUser } from "react-icons/bi";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { BsFillClipboard2DataFill } from "react-icons/bs";
-import classroomLogo from '/assets/classroom.svg';
 
 function HomeLayout({ children }) {
   const dispatch = useDispatch();
@@ -239,12 +239,15 @@ function HomeLayout({ children }) {
                     </div>
                   </Link>
                   {role === "ADMIN" && (
-                      <div onClick={() => {
-                        navigate("/admin/dashboard")
-                      }} className="flex gap-4 items-center py-2 px-2 font-bold text-sm text-stone-700 hover:bg-slate-200 cursor-pointer">
-                        <BsFillClipboard2DataFill size={"18px"} />
-                        Dashboard
-                      </div>
+                    <div
+                      onClick={() => {
+                        navigate("/admin/dashboard");
+                      }}
+                      className="flex gap-4 items-center py-2 px-2 font-bold text-sm text-stone-700 hover:bg-slate-200 cursor-pointer"
+                    >
+                      <BsFillClipboard2DataFill size={"18px"} />
+                      Dashboard
+                    </div>
                   )}
                   <div
                     onClick={handleLogout}
