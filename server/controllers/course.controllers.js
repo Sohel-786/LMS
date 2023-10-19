@@ -101,6 +101,7 @@ export const updateCourse = async (req, res, next) => {
     course.createdBy = createdBy;
 
     if (req.file) {
+      await cloudinary.v2.uploader.destroy(course.thumbnail.public_id);
       const result = await cloudinary.v2.uploader.upload(req.file.path, {
         folder: "lms",
       });
@@ -128,6 +129,13 @@ export const updateCourse = async (req, res, next) => {
 export const deleteCourse = async (req, res, next) => {
   try {
     const { courseId } = req.params;
+
+    const course = await Course.findById(courseId);
+    if(!course){
+      return next(new AppError("Course Doesn't Exists"));
+    }
+
+    await cloudinary.v2.uploader.destroy(course.thumbnail.public_id);
 
     await Course.findByIdAndDelete(courseId);
 
@@ -205,13 +213,19 @@ export const deleteLectureById = async (req, res, next) => {
     if (!course) {
       return next(new AppError("Course Doesn't exists", 400));
     }
+    var public_id ;
 
     const lectures = course.lectures.filter((el) => {
       if (el._id.toString() !== lectureId) {
         return el;
+      }else{
+        public_id = el.lecture.public_id
       }
     });
 
+    if(public_id){
+      await cloudinary.v2.uploader.destroy(public_id);
+    }
     course.lectures = lectures;
 
     await course.save();

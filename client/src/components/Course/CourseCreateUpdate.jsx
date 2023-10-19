@@ -113,6 +113,7 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
   }
 
   function handleFullImageView() {
+    console.log('Sohel')
     disableBodyScroll(document);
     const fullView = document.getElementById("fullView");
     fullView.style.display = "flex";
@@ -124,7 +125,8 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
     fullView.style.display = "none";
   }
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault();
     if (
       !courseDetails.title ||
       !courseDetails.category ||
@@ -177,22 +179,36 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
         location.pathname === "/admin/dashboard" ? "py-0" : "py-20"
       } pt-12`}
     >
-      <h1 className="mb-4 lg:mb-1 text-4xl font-bold tracking-wider">
+      <h1 className="mb-4 lg:mb-8 text-4xl font-bold tracking-wider">
         {location.pathname === "/admin/dashboard"
           ? "Update Course"
           : "Create Course"}
       </h1>
-      <form
-        noValidate
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-        className="bg-white text-black py-6 sm:py-8 px-4 sm:px-32 rounded-xl w-[95%] lg:w-[70%] flex flex-col items-center"
-      >
+
+         {/* To View Image on Full Screen */}
+         <div
+          id="fullView"
+          className="fixed top-0 h-[100vh] w-[100vw] hidden z-50 bg-black flex-col justify-center items-center"
+        >
+          <RiCloseCircleFill
+            onClick={handleFullViewclose}
+            size={"50px"}
+            className="absolute top-3 right-2 md:right-3 sm:right-8 cursor-pointer text-red-600 hover:text-red-800 bg-black border-[2px] border-transparent rounded-full hover:border-white"
+          />
+          <img
+            className="w-auto h-auto"
+            src={courseDetails.previewImage ? courseDetails.previewImage : ""}
+            alt="Preview Image"
+          />
+        </div>
+
         <div
           id="container"
+          style={{
+            userSelect : 'none'
+          }}
           onDragEnter={handleDrag}
-          className="w-full h-[200px] sm:h-56 flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
+          className="w-[95%] md:w-[70%] lg:w-[50%] h-[200px] sm:h-56 flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed overflow-hidden"
         >
           {courseDetails.previewImage ? (
             <div
@@ -206,10 +222,12 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
             >
               <div
                 id="thumbnailBtn"
-                className="hidden z-20 absolute flex-col gap-2"
+                className="lg:hidden z-10 absolute flex-col gap-2"
               >
                 <button
-                  onClick={handleFullImageView}
+                  onClick={() => {
+                    handleFullImageView()
+                  }}
                   className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent"
                 >
                   VIEW
@@ -263,22 +281,11 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
           )}
         </div>
 
-        {/* To View Image on Full Screen */}
-        <div
-          id="fullView"
-          className="fixed top-0 h-[100vh] w-[100vw] hidden z-50 bg-black flex-col justify-center items-center"
-        >
-          <RiCloseCircleFill
-            onClick={handleFullViewclose}
-            size={"50px"}
-            className="absolute top-3 right-8 cursor-pointer text-red-600 hover:text-red-800 bg-black border-[2px] border-transparent rounded-full hover:border-white"
-          />
-          <img
-            className="w-auto h-auto"
-            src={courseDetails.previewImage ? courseDetails.previewImage : ""}
-            alt="Preview Image"
-          />
-        </div>
+      <form
+        noValidate
+        onSubmit={handleSubmit}
+        className="bg-white text-black px-4 sm:px-32 rounded-xl w-[95%] lg:w-[70%] flex flex-col items-center"
+      >
 
         <input
           type="file"
@@ -361,7 +368,6 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
         <div className="mt-6 flex items-center justify-end w-full border-t-[2px] border-gray-100 pt-3">
           {location.pathname === "/admin/dashboard" ? (
             <button
-              onClick={handleSubmit}
               type="submit"
               className="rounded-md text-white bg-indigo-600 px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:scale-110 focus:scale-110 transition-all duration-200"
             >
@@ -369,7 +375,6 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
             </button>
           ) : (
             <button
-              onClick={handleSubmit}
               type="submit"
               className="rounded-md text-white bg-indigo-600 px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:scale-110 focus:scale-110 transition-all duration-200"
             >
