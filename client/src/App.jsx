@@ -1,27 +1,27 @@
+import React , { useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Route, Routes } from "react-router-dom";
-import Aboutus from "./pages/Aboutus";
-import Notfound from "./pages/Notfound";
-import SignUp from "./pages/Signup";
-import SignIn from "./pages/SignIn";
-import Contact from "./pages/Contact";
-import Denied from "./pages/Denied";
-import Courses from "./pages/Course/Courses";
-import CourseDescription from "./pages/Course/CourseDescription";
-import AuthRoute from "./components/AuthRoute";
-import CreateCourse from "./pages/Course/CreateCourse";
 import Home from "./pages/Home";
-import Profile from "./pages/Profile";
-import ResetPassword from "./pages/ResetPassword";
-import ForgottenPassword from "./pages/ForgottenPassword";
-import Checkout from "./pages/Subscribe/Checkout";
-import CheckoutFail from "./pages/Subscribe/CheckoutFail";
-import CheckoutSuccess from "./pages/Subscribe/CheckoutSuccess";
-import { useEffect } from "react";
-import DisplayLectures from "./pages/Lectures/DisplayLectures";
-import AddLecture from "./pages/Lectures/AddLectures";
-import AdminDashboard from "./pages/AdminDashboard";
+import AuthRoute from "./components/AuthRoute";
+const Aboutus = React.lazy(() => import("./pages/Aboutus"));
+const Notfound = React.lazy(() => import("./pages/Notfound"));
+const SignUp = React.lazy(() => import("./pages/Signup"));
+const SignIn = React.lazy(() => import("./pages/SignIn"));
+const Contact = React.lazy(() => import("./pages/Contact"));
+const Denied = React.lazy(() => import("./pages/Denied"));
+const Courses = React.lazy(() => import("./pages/Course/Courses"));
+const CourseDescription = React.lazy(() => import("./pages/Course/CourseDescription"));
+const CreateCourse = React.lazy(() => import("./pages/Course/CreateCourse"));
+const Profile = React.lazy(() => import("./pages/Profile"));
+const ResetPassword = React.lazy(() => import("./pages/ResetPassword"));
+const ForgottenPassword = React.lazy(() => import("./pages/ForgottenPassword"));
+const Checkout = React.lazy(() => import("./pages/Subscribe/Checkout"));
+const CheckoutFail = React.lazy(() => import("./pages/Subscribe/CheckoutFail"));
+const CheckoutSuccess = React.lazy(() => import("./pages/Subscribe/CheckoutSuccess"));
+const DisplayLectures = React.lazy(() => import("./pages/Lectures/DisplayLectures"));
+const AddLecture = React.lazy(() => import("./pages/Lectures/AddLectures"));
+const AdminDashboard = React.lazy(() => import("./pages/AdminDashboard"));
 
 function App() {
   useEffect(() => {
@@ -51,6 +51,7 @@ function App() {
           <Route path="/checkout/failed" element={<CheckoutFail />} />
           <Route path="/course/lectures" element={<DisplayLectures />} />
         </Route>
+
         <Route path="/courses" element={<Courses />} />
         <Route path="/course-description" element={<CourseDescription />} />
         <Route path="/forgot-password" element={<ForgottenPassword />} />
