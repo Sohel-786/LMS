@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import { BiSolidUser } from "react-icons/bi";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { BsFillClipboard2DataFill } from "react-icons/bs";
+import classroomLogo from '/assets/classroom.svg';
 
 function HomeLayout({ children }) {
   const dispatch = useDispatch();
@@ -164,8 +165,10 @@ function HomeLayout({ children }) {
           className="w-[160px] aspect-auto relative -top-1"
         >
           <img
+            rel="preload"
+            fetchpriority="high"
             className="w-full aspect-auto"
-            src={"/assets/classroom.svg"}
+            src={classroomLogo}
             alt="logo"
           />
         </div>
@@ -284,8 +287,10 @@ function HomeLayout({ children }) {
           }}
         >
           <img
+            rel="preload"
+            fetchpriority="high"
             className="w-40"
-            src="/assets/classroom.svg"
+            src={classroomLogo}
             alt="Classroom Logo"
           />
         </div>

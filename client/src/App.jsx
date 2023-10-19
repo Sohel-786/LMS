@@ -1,27 +1,30 @@
-import React , { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import AuthRoute from "./components/AuthRoute";
-const Aboutus = React.lazy(() => import("./pages/Aboutus"));
-const Notfound = React.lazy(() => import("./pages/Notfound"));
-const SignUp = React.lazy(() => import("./pages/Signup"));
-const SignIn = React.lazy(() => import("./pages/SignIn"));
-const Contact = React.lazy(() => import("./pages/Contact"));
-const Denied = React.lazy(() => import("./pages/Denied"));
-const Courses = React.lazy(() => import("./pages/Course/Courses"));
-const CourseDescription = React.lazy(() => import("./pages/Course/CourseDescription"));
-const CreateCourse = React.lazy(() => import("./pages/Course/CreateCourse"));
-const Profile = React.lazy(() => import("./pages/Profile"));
-const ResetPassword = React.lazy(() => import("./pages/ResetPassword"));
-const ForgottenPassword = React.lazy(() => import("./pages/ForgottenPassword"));
-const Checkout = React.lazy(() => import("./pages/Subscribe/Checkout"));
-const CheckoutFail = React.lazy(() => import("./pages/Subscribe/CheckoutFail"));
-const CheckoutSuccess = React.lazy(() => import("./pages/Subscribe/CheckoutSuccess"));
-const DisplayLectures = React.lazy(() => import("./pages/Lectures/DisplayLectures"));
-const AddLecture = React.lazy(() => import("./pages/Lectures/AddLectures"));
-const AdminDashboard = React.lazy(() => import("./pages/AdminDashboard"));
+import Loading from "./components/Loading";
+import Denied from "./pages/Denied";
+import Notfound from "./pages/Notfound";
+const Aboutus = lazy(() => import("./pages/Aboutus"));
+const SignUp = lazy(() => import("./pages/Signup"));
+const SignIn = lazy(() => import("./pages/SignIn"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Courses = lazy(() => import("./pages/Course/Courses"));
+const CourseDescription = lazy(() =>
+  import("./pages/Course/CourseDescription")
+);
+const CreateCourse = lazy(() => import("./pages/Course/CreateCourse"));
+const Profile = lazy(() => import("./pages/Profile"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const ForgottenPassword = lazy(() => import("./pages/ForgottenPassword"));
+const Checkout = lazy(() => import("./pages/Subscribe/Checkout"));
+const CheckoutFail = lazy(() => import("./pages/Subscribe/CheckoutFail"));
+const CheckoutSuccess = lazy(() => import("./pages/Subscribe/CheckoutSuccess"));
+const DisplayLectures = lazy(() => import("./pages/Lectures/DisplayLectures"));
+const AddLecture = lazy(() => import("./pages/Lectures/AddLectures"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 
 function App() {
   useEffect(() => {
@@ -32,30 +35,142 @@ function App() {
     <div className="mx-auto max-w-[1490px]">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<Aboutus />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route
+          path="/about"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Aboutus />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <Suspense fallback={<Loading />}>
+              <SignUp />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/signin"
+          element={
+            <Suspense fallback={<Loading />}>
+              <SignIn />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Contact />
+            </Suspense>
+          }
+        />
         <Route path="/denied" element={<Denied />} />
 
         <Route element={<AuthRoute allowedRoles={["ADMIN"]} />}>
-          <Route path="/course-create" element={<CreateCourse />} />
-          <Route path="/course/addlecture" element={<AddLecture />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route
+            path="/course-create"
+            element={
+              <Suspense fallback={<Loading />}>
+                <CreateCourse />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/course/addlecture"
+            element={
+              <Suspense fallback={<Loading />}>
+                <AddLecture />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <Suspense fallback={<Loading />}>
+                <AdminDashboard />
+              </Suspense>
+            }
+          />
         </Route>
 
         <Route element={<AuthRoute allowedRoles={["ADMIN", "USER"]} />}>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/checkout/success" element={<CheckoutSuccess />} />
-          <Route path="/checkout/failed" element={<CheckoutFail />} />
-          <Route path="/course/lectures" element={<DisplayLectures />} />
+          <Route
+            path="/profile"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Profile />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Checkout />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/checkout/success"
+            element={
+              <Suspense fallback={<Loading />}>
+                <CheckoutSuccess />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/checkout/failed"
+            element={
+              <Suspense fallback={<Loading />}>
+                <CheckoutFail />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/course/lectures"
+            element={
+              <Suspense fallback={<Loading />}>
+                <DisplayLectures />
+              </Suspense>
+            }
+          />
         </Route>
 
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/course-description" element={<CourseDescription />} />
-        <Route path="/forgot-password" element={<ForgottenPassword />} />
-        <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
+        <Route
+          path="/courses"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Courses />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/course-description"
+          element={
+            <Suspense fallback={<Loading />}>
+              <CourseDescription />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/forgot-password"
+          element={
+            <Suspense fallback={<Loading />}>
+              <ForgottenPassword />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/reset-password/:resetToken"
+          element={
+            <Suspense fallback={<Loading />}>
+              <ResetPassword />
+            </Suspense>
+          }
+        />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </div>

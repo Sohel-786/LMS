@@ -69,9 +69,9 @@ function Contact() {
   return (
     <HomeLayout>
       <section className="flex justify-center items-center w-full py-10">
-        <div className="isolate px-6 py-10 sm:py-10 lg:px-8 w-[65%] rounded-xl">
+        <div className="isolate px-6 py-10 sm:py-10 lg:px-8 sm:w-[65%] rounded-xl">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-2xl font-bold tracking-tight sm:text-4xl">
               How can we help you?
             </h2>
           </div>

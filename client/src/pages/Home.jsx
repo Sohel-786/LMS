@@ -37,39 +37,41 @@ function Home() {
   const array2 = array.reverse();
 
   return (
-  
     <HomeLayout>
       <section className="flex flex-col justify-center items-center">
         <div className="pt-16  flex flex-col items-center justify-center gap-10 mx-8 lg:mx-16 lg:min-h-[90vh] lg:flex-row">
-
-        <div className="flex items-center justify-center lg:hidden mb-4">
-            <img src={homepageImage} alt="homepage" />
+          <div className="flex items-center justify-center lg:hidden mb-4">
+            <img
+              rel="preload"
+              fetchpriority="high"
+              src={homepageImage}
+              alt="homepage"
+            />
           </div>
-          
+
           <div className="w-full h-[400px] flex flex-col justify-center lg:block lg:h-auto lg:w-1/2">
             <div className="h-[120px] md:h-auto">
-             <h1 className="text-4xl tracking-wide font-semibold font-poppins lg:leading-[70px] lg:text-[53px]">
-              Learning is better with{" "}
-              <span className="inline-block text-[#f00037] after:content-[''] after:h-2 after:w-full after:float-left after:bg-gradient-to-r from-[#2d23a6] to-[#e10e5afc]">
-                <Typewriter
-                  options={{
-                    strings: [
-                      "Code",
-                      "Coaches",
-                      "Cohorts",
-                      "Community",
-                      "Classroom",
-                    ],
-                    autoStart: true,
-                    loop: true,
-                    deleteSpeed: 60,
-                    pauseFor: 2000,
-                  }}
-                />
-              </span>
-            </h1> 
+              <h1 className="text-4xl tracking-wide font-semibold font-poppins lg:leading-[70px] lg:text-[53px]">
+                Learning is better with{" "}
+                <span className="inline-block text-[#f00037] after:content-[''] after:h-2 after:w-full after:float-left after:bg-gradient-to-r from-[#2d23a6] to-[#e10e5afc]">
+                  <Typewriter
+                    options={{
+                      strings: [
+                        "Code",
+                        "Coaches",
+                        "Cohorts",
+                        "Community",
+                        "Classroom",
+                      ],
+                      autoStart: true,
+                      loop: true,
+                      deleteSpeed: 60,
+                      pauseFor: 2000,
+                    }}
+                  />
+                </span>
+              </h1>
             </div>
-            
 
             <h1 className="text-3xl font-slab font-bold mb-5 mt-6 sm:my-7 sm:text-4xl">
               Find Out Best{" "}
@@ -98,8 +100,16 @@ function Home() {
             </div>
           </div>
 
-          <div style={{userSelect: 'none'}} className="hidden lg:flex items-center justify-center lg:w-1/2">
-            <img src={homepageImage} alt="homepage" />
+          <div
+            style={{ userSelect: "none" }}
+            className="hidden lg:flex items-center justify-center lg:w-1/2"
+          >
+            <img
+              rel="preload"
+              fetchpriority="high"
+              src={homepageImage}
+              alt="homepage"
+            />
           </div>
         </div>
 
@@ -113,20 +123,18 @@ function Home() {
               alt="line"
             />
           </h1>
-          <Marquee className="py-6 sm:py-10" direction="right" pauseOnClick={true}>
+          <Marquee
+            className="py-6 sm:py-10"
+            direction="right"
+            pauseOnClick={true}
+          >
             {array.map((el) => (
-              <MarqueeDiv
-                key={nanoid()}
-                url={`/assets/companies/${el}.svg`}
-              />
+              <MarqueeDiv key={nanoid()} url={`/assets/companies/${el}.svg`} />
             ))}
           </Marquee>
           <Marquee className="py-5" pauseOnClick={true}>
             {array2.map((el) => (
-              <MarqueeDiv
-                key={nanoid()}
-                url={`/assets/companies/${el}.svg`}
-              />
+              <MarqueeDiv key={nanoid()} url={`/assets/companies/${el}.svg`} />
             ))}
           </Marquee>
         </div>
