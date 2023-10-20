@@ -212,6 +212,8 @@ function HomeLayout({ children }) {
               ref={wrapperRef}
             >
               <div
+                rel="preload"
+                fetchpriority="high"
                 onClick={() => {
                   setShowProfile(!showProfile);
                 }}
