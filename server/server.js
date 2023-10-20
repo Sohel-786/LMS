@@ -17,7 +17,9 @@ export const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_SECRET,
 });
 
-app.listen(process.env.PORT, () => {
+const PORT = process.env.PORT || 6020;
+
+app.listen(PORT, () => {
   connect();
-  console.log(`Listening on ${process.env.PORT}`);
+  console.log(`Listening on ${PORT}`);
 });
