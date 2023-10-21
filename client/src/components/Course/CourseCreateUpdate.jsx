@@ -177,7 +177,7 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
     <section
       className={`flex flex-col items-center w-full ${
         location.pathname === "/admin/dashboard" ? "py-0" : "py-20"
-      } pt-12`}
+      } pt-14 `}
     >
       <h1 className="mb-4 lg:mb-8 text-4xl font-bold tracking-wider">
         {location.pathname === "/admin/dashboard"
@@ -208,7 +208,7 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
             userSelect : 'none'
           }}
           onDragEnter={handleDrag}
-          className="w-[95%] md:w-[70%] lg:w-[50%] h-[200px] sm:h-56 flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed overflow-hidden"
+          className="w-[95%] md:w-[70%] lg:w-[50%] h-[200px] sm:h-56 flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
         >
           {courseDetails.previewImage ? (
             <div
@@ -252,7 +252,7 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
                   courseDetails.previewImage ? courseDetails.previewImage : ""
                 }
                 alt="Course Thumbnail"
-                className="max-w-full h-full m-auto"
+                className="max-w-full h-full"
               />
             </div>
           ) : dragActive ? (

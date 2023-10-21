@@ -21,7 +21,8 @@ app.use(
   cors({
     origin: [process.env.FRONTEND_URL],
     credentials: true,
-    exposedHeaders : ["Set-Cookie"]
+    exposedHeaders : ["Set-Cookie"],
+    allowedHeaders: ["Content-Type", "Authorization"]
   })
 );
 
