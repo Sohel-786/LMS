@@ -15,7 +15,7 @@ const cookieOptions = {
   secure: true,
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7days
   httpOnly: true,
-  SameSite: 'none'
+  SameSite: 'None'
 };
 
 //Todo : Wrap It all in Try Catch
