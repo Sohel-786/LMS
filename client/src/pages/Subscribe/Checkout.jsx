@@ -24,13 +24,8 @@ function Checkout() {
 
   const razorpayKey = useSelector((s) => s?.payment?.key);
   const data = useSelector((s) => s?.auth?.data);
-  var subscription_id;
+  const subscription_id = useSelector((s) => s?.payment?.subscription_id);
 
-  if (data?.subscription?.id) {
-    subscription_id = data.subscription.id;
-  } else {
-    subscription_id = useSelector((s) => s?.payment?.subscription_id);
-  }
 
   const paymentDetails = {
     razorpay_payment_id: "",
@@ -40,16 +35,9 @@ function Checkout() {
 
   async function load() {
     await dispatch(getRazorpayId());
-    if (
-      !(
-        data?.subscription?.status === "created" ||
-        data?.subscription?.status === "active"
-      ) ||
-      !data?.subscription?.id
-    ) {
-      await dispatch(purchaseCourseBundle());
-      await dispatch(getUserDetails());
-    }
+    await dispatch(getUserDetails());
+    await dispatch(purchaseCourseBundle());
+
   }
 
   useEffect(() => {

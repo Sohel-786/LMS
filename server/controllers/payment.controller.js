@@ -36,6 +36,18 @@ export const buySubscription = async (req, res, next) => {
       return next(new AppError("Admin can't buy a subscription", 400));
     }
 
+    if(user.subscription.status === 'active'){
+      return next(new AppError('Already a Subscriber'));
+    }
+
+    if(user.subscription.status === 'created' && user.subscription.id){
+      return res.status(200).json({
+        success: true,
+        message: "Subscribed Successfully",
+        subscription_id: user.subscription.id,
+      });
+    }
+
     const subscription = await razorpay.subscriptions.create({
       plan_id: process.env.RAZORPAY_PLAN_ID,
       total_count: 1,
