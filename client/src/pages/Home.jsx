@@ -39,7 +39,7 @@ function Home() {
   return (
     <HomeLayout>
       <section className="flex flex-col justify-center items-center">
-        <div className="pt-16  flex flex-col items-center justify-center gap-10 mx-8 lg:mx-16 lg:min-h-[90vh] lg:flex-row">
+        <div className="pt-16  flex flex-col items-center justify-center gap-10 mx-5  sm:mx-8 lg:mx-16 lg:min-h-[90vh] lg:flex-row">
           <div className="flex items-center justify-center lg:hidden mb-4">
             <img
               rel="preload"
@@ -87,13 +87,13 @@ function Home() {
 
             <div className="flex gap-4 sm:gap-7 my-6">
               <Link to="/courses">
-                <button className="bg-[#f00037] border-[2px] border-transparent text-white font-bold px-5 py-3 rounded-md text-[18px] hover:scale-110 cursor-pointer hover:bg-[#cc032a] transition-all ease-in-out duration-300 sm:text-xl">
+                <button className="bg-[#f00037] border-[2px] border-transparent text-white font-bold px-2 sm:px-5 py-3 rounded-md text-[17px] hover:scale-110 cursor-pointer hover:bg-[#cc032a] transition-all ease-in-out duration-300 sm:text-xl">
                   Expolore Courses
                 </button>
               </Link>
 
               <Link to="/contact">
-                <button className="bg-transparent hover:scale-110 text-[18px] px-5 py-3 border-2 border-[#f00037] text-[#f00037] font-bold rounded-md  cursor-pointer hover:bg-[#f00037] hover:text-white transition-all ease-in-out duration-300 sm:text-xl">
+                <button className="bg-transparent hover:scale-110 px-2 text-[16px] sm:px-5 py-3 border-2 border-[#f00037] text-[#f00037] font-bold rounded-md  cursor-pointer hover:bg-[#f00037] hover:text-white transition-all ease-in-out duration-300 sm:text-xl">
                   Contact Us
                 </button>
               </Link>
