@@ -22,7 +22,7 @@ function Courses() {
 
   return (
     <HomeLayout>
-      <section className="min-h-[90vh] flex flex-col justify-center items-center m-auto py-6 px-7 mb-7">
+      <section className="min-h-[90vh] flex flex-col justify-center items-center m-auto py-6 px-1 sm:px-7 mb-7">
         <div className="flex flex-col justify-center items-center w-[95%] gap-7 my-10 bg-[#fcf4f5] rounded-xl sm:rounded-lg py-14 lg:w-[90%]">
           <h1 className="text-4xl text-black sm:text-5xl font-bold">Our Courses</h1>
           <p className="sm:text-xl text- text-base text-center font-roboto font-semibold text-stone-600">
