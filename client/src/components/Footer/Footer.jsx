@@ -47,6 +47,7 @@ function Footer() {
             location.pathname === "/course-description" ||
             location.pathname === "/admin/dashboard"
           ) && (
+            // this for the bigger screen 
             <div className="w-full hidden lg:flex justify-center items-center bg-black mt-10 rounded-2xl h-[115px]">
               <img className="w-[22%] aspect-auto" src="/assets/arrow.gif" />
               <div className="flex flex-col justify-center">
@@ -71,12 +72,13 @@ function Footer() {
         </section>
       </div>
 
+        {/* this for small screen */}
       {!(
         location.pathname === "/courses" ||
         location.pathname === "/course-description" ||
         location.pathname === "/admin/dashboard"
       ) && (
-        <div className="w-[70%] flex lg:hidden justify-center items-center bg-black mt-6 rounded-xl h-[70px]">
+        <div className="w-[95%] md:w-[70%] flex lg:hidden justify-center items-center bg-black mt-6 rounded-lg overflow-hidden md:h-[100px]">
           <img className="w-[17%] aspect-auto" src="/assets/arrow.gif" />
           <div className="flex flex-col justify-center">
             <h1 className="text-white font-semibold text-sm">Get Started</h1>
