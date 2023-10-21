@@ -32,10 +32,10 @@ function Slide({ num, url, q, author, leftId, rightId }) {
       </div>
 
       <div id='slideview' className="absolute hidden justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-        <a href={leftId} className="btn btn-circle">
+        <a aria-label={author} href={leftId} className="btn btn-circle">
           ❮
         </a>
-        <a href={rightId} className="btn btn-circle">
+        <a aria-label={author} href={rightId} className="btn btn-circle">
           ❯
         </a>
       </div>

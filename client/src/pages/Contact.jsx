@@ -216,7 +216,7 @@ function Contact() {
                 </div>
                 <label className="text-sm leading-6" id="switch-1-label">
                   By selecting this, you agree to our{" "}
-                  <a href="#" className="font-semibold text-indigo-400">
+                  <a aria-label="privacy" href="#" className="font-semibold text-indigo-400">
                     privacy&nbsp;policy
                   </a>
                   .
