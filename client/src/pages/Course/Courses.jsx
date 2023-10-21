@@ -38,7 +38,7 @@ function Courses() {
             })
           ) : (
             <div className="shadow overflow-hidden rounded-xl max-w-sm mx-auto ">
-              <div className="animate-pulse w-[380px] h-[560px]  flex flex-col items-center">
+              <div className="animate-pulse w-[280px] h-[480px] sm:w-[380px] sm:h-[560px]  flex flex-col items-center">
                 <div className="w-full h-[38%] bg-slate-700"></div>
 
                 <div className="flex flex-col justify-center px-6 mt-3 w-full">
