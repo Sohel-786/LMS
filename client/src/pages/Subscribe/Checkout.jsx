@@ -97,6 +97,10 @@ function Checkout() {
       theme: {
         color: "#0073ff",
       },
+      prefill: {
+        name:  data.fullname,
+        email: data.email,
+      },
       handler: async function (response) {
         paymentDetails.razorpay_payment_id = response.razorpay_payment_id;
         paymentDetails.razorpay_subscription_id =
