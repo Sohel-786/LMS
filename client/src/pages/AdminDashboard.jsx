@@ -232,7 +232,7 @@ function AdminDashboard() {
                 <div className="flex flex-col items-center">
                   <p className="font-semibold text-[#f3007a]">Total Revenue</p>
                   <h3 className="text-2xl lg:text-4xl font-bold">
-                    {allPayments?.count && allPayments?.count * 1}
+                    {allPayments?.count && allPayments?.count * 499}
                   </h3>
                 </div>
                 <GiMoneyStack className="text-green-500 text-5xl" />
