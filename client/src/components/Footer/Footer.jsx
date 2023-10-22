@@ -49,7 +49,7 @@ function Footer() {
           ) && (
             // this for the bigger screen 
             <div className="w-full hidden lg:flex justify-center items-center bg-black mt-10 rounded-2xl h-[115px]">
-              <img className="w-[22%] aspect-auto" src="/assets/arrow.gif" />
+              <img alt="join" className="w-[22%] aspect-auto" src="/assets/arrow.gif" />
               <div className="flex flex-col justify-center">
                 <h1 className="text-white font-semibold text-xl">
                   Get Started
@@ -79,7 +79,7 @@ function Footer() {
         location.pathname === "/admin/dashboard"
       ) && (
         <div className="w-[95%] md:w-[70%] flex lg:hidden justify-center items-center bg-black mt-6 rounded-lg overflow-hidden md:h-[100px]">
-          <img className="w-[17%] aspect-auto" src="/assets/arrow.gif" />
+          <img alt='join' className="w-[17%] aspect-auto" src="/assets/arrow.gif" />
           <div className="flex flex-col justify-center">
             <h1 className="text-white font-semibold text-sm">Get Started</h1>
             <p className="text-yellow-300 text-xs font-semibold">

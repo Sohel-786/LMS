@@ -30,6 +30,7 @@ function Profile() {
   const [viewPassChange, setViewPassChange] = useState(false);
   const [viewOldPassword, setViewOldpassword] = useState(false);
   const [viewNewPassword, setViewNewpassword] = useState(false);
+  const [profilePhoto, setProfilePhoto] = useState(null);
 
   const [formData, setFormdata] = useState({
     fullname: fullname,
@@ -51,6 +52,8 @@ function Profile() {
 
   function handleImage(e) {
     const uploadedImage = e.target.files[0];
+    console.log(profilePhoto);
+    console.log(e);
     if (!uploadedImage) return;
 
     setFormdata((s) => {
@@ -65,7 +68,8 @@ function Profile() {
         return { ...s, previewImage: result };
       });
     });
-
+    
+    setProfilePhoto(e.target.files)
     setEnableSave(true);
   }
 
@@ -277,7 +281,7 @@ function Profile() {
           </label>
 
           <div>
-            <input onChange={handleImage} type="file" hidden id="profile" />
+            <input files={profilePhoto} onChange={handleImage} type="file" hidden id="profile" />
           </div>
         </div>
 
@@ -491,6 +495,7 @@ function Profile() {
                         previewImage: avatar.secure_url,
                       });
                       setEnableSave(false);
+                      setProfilePhoto(null)
                     }}
                     className="flex justify-center items-center rounded-xl bg-gradient-to-t from-stone-800 via-stone-600 to-stone-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-b hover:from-stone-900 hover:via-stone-700 hover:to-stone-500  py-2 gap-2 px-4 lg:text-xl lg:px-5"
                   >

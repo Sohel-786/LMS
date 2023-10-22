@@ -208,7 +208,7 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
             userSelect : 'none'
           }}
           onDragEnter={handleDrag}
-          className="w-[95%] md:w-[70%] lg:w-[50%] h-[200px] sm:h-56 flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
+          className="w-[95%] md:w-[70%] lg:w-[50%] h-[200px] sm:min-h-[230px] flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
         >
           {courseDetails.previewImage ? (
             <div
