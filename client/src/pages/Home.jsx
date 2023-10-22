@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import HomeLayout from "../layouts/HomeLayout";
-import homepageImage from "/assets/homepage.png";
+import homepageImage from "/assets/homepage.svg";
 import Typewriter from "typewriter-effect";
 import Marquee from "react-fast-marquee";
 import MarqueeDiv from "../components/MarqueeDiv";
