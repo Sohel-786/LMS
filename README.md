@@ -44,45 +44,59 @@ And Admin can create, update, and delete course. Admin can view registered users
 ## Screenshots
 
 - Home Page
+
 ![](client/public/githubReadme/homepage.png)
 
 - Login Page
+
 ![](client/public/githubReadme/login.png)
 
 - SignUp Page
+
 ![](client/public/githubReadme/signUp.png)
 
 - About Page
+
 ![](client/public/githubReadme/aboutUs.png)
 
-- Contact Page
+- Contact Page 
+
 ![](client/public/githubReadme/contactUs.png)
 
 - Course Landing Page
+
 ![](client/public/githubReadme/courseLandingPage.png)
 
 - Course Details Page
+
 ![](client/public/githubReadme/courseDetailsPage.png)
 
 - Checkout Page
+
 ![](client/public/githubReadme/checkout.png)
 
 - PaymentGateway
+
 ![](client/public/githubReadme/paymentGateway.png)
 
 - Payment Success Page
+
 ![](client/public/githubReadme/paymentSuccessPage.png)
 
 - Payment Failure
+
 ![](client/public/githubReadme/paymentFailedpage.png)
 
 - Lectures Page
+
 ![](client/public/githubReadme/Lectures.png)
 
 - Profile Page
+
 ![](client/public/githubReadme/profile.png)
 
 - Forgot Password Page
+
 ![](client/public/githubReadme/forgotPassword.png)
 
 ## Limitations
