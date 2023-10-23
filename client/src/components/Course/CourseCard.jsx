@@ -29,7 +29,7 @@ function CourseCard({ data }) {
               size={"50px"}
               className="bg-green-100 p-1 h-5 font-semibold rounded-full text-green-600 mt-1 mr-2"
             />
-            <p>{data.description}</p>
+            <p>{(data.description).slice(0,110)}...</p>
           </div>
 
           <div className="flex text-black text-[15.5px] font-bold tracking-wide my-3">
