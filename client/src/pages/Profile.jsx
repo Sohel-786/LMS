@@ -333,6 +333,7 @@ function Profile() {
                 style={{
                   caretColor: editable ? "green" : "transparent",
                   color: editable ? "#4f46e5" : "inherit",
+                  userSelect : "none"
                 }}
                 contentEditable={editable}
                 name="fullname"
