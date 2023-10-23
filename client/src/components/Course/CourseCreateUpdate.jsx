@@ -113,7 +113,6 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
   }
 
   function handleFullImageView() {
-    console.log('Sohel')
     disableBodyScroll(document);
     const fullView = document.getElementById("fullView");
     fullView.style.display = "flex";
