@@ -10,7 +10,6 @@ And Admin can create, update, and delete course. Admin can view registered users
 
 ```
     https://classroom-react.netlify.app/
-
 ```
 
 ## Tech Stack
