@@ -40,7 +40,9 @@ function Home() {
     <HomeLayout>
       <section className="flex flex-col justify-center items-center">
         <div className="pt-16  flex flex-col items-center justify-center gap-10 mx-5  sm:mx-8 lg:mx-16 lg:min-h-[90vh] lg:flex-row">
-          <div className="flex items-center justify-center lg:hidden mb-4">
+          <div style={{
+            userSelect : 'none'
+          }} className="flex items-center justify-center lg:hidden mb-4">
             <img
               rel="preload"
               fetchpriority="high"
