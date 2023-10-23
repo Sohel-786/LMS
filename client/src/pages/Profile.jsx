@@ -68,8 +68,8 @@ function Profile() {
         return { ...s, previewImage: result };
       });
     });
-    
-    setProfilePhoto(e.target.files)
+
+    setProfilePhoto(e.target.files);
     setEnableSave(true);
   }
 
@@ -198,7 +198,7 @@ function Profile() {
 
   async function handleCancelBundle() {
     const res = await dispatch(cancelSubscription());
-    if(res?.payload?.data?.success){
+    if (res?.payload?.data?.success) {
       await dispatch(getUserData());
       toast.success("Cancellation complete");
       navigate("/");
@@ -282,7 +282,13 @@ function Profile() {
           </label>
 
           <div>
-            <input files={profilePhoto} onChange={handleImage} type="file" hidden id="profile" />
+            <input
+              files={profilePhoto}
+              onChange={handleImage}
+              type="file"
+              hidden
+              id="profile"
+            />
           </div>
         </div>
 
@@ -469,7 +475,7 @@ function Profile() {
               </div>
             ) : (
               <button
-                aria-label ='Change Your password'
+                aria-label="Change Your password"
                 style={{
                   userSelect: "none",
                 }}
@@ -492,7 +498,7 @@ function Profile() {
               {editable ? (
                 <>
                   <button
-                    aria-label = 'Cancel Editing the profile'
+                    aria-label="Cancel Editing the profile"
                     onClick={() => {
                       setEditable(false);
                       setFormdata({
@@ -500,7 +506,7 @@ function Profile() {
                         previewImage: avatar.secure_url,
                       });
                       setEnableSave(false);
-                      setProfilePhoto(null)
+                      setProfilePhoto(null);
                     }}
                     className="flex justify-center items-center rounded-xl bg-gradient-to-t from-stone-800 via-stone-600 to-stone-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-b hover:from-stone-900 hover:via-stone-700 hover:to-stone-500  py-2 gap-2 px-4 lg:text-xl lg:px-5"
                   >
@@ -531,13 +537,18 @@ function Profile() {
                     Edit Profile
                   </button>
 
-                  {subscription && subscription?.status && (subscription?.status === 'created' || subscription?.status === 'active')  && <button
-                    onClick={handleCancelBundle}
-                    className="flex justify-center items-center rounded-xl bg-gradient-to-b from-red-800 via-red-600 to-red-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-red-900 hover:via-red-700 hover:to-red-500 py-2 gap-2 px-4 lg:text-xl lg:px-5"
-                  >
-                    <TbDeviceDesktopCancel size={"22px"} />
-                    Cancel Subscription
-                  </button>}
+                  {subscription &&
+                    subscription?.status &&
+                    (subscription?.status === "created" ||
+                      subscription?.status === "active") && (
+                      <button
+                        onClick={handleCancelBundle}
+                        className="flex justify-center items-center rounded-xl bg-gradient-to-b from-red-800 via-red-600 to-red-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-red-900 hover:via-red-700 hover:to-red-500 py-2 gap-2 px-4 lg:text-xl lg:px-5"
+                      >
+                        <TbDeviceDesktopCancel size={"22px"} />
+                        Cancel Subscription
+                      </button>
+                    )}
                 </>
               )}
             </div>
