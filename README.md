@@ -112,4 +112,4 @@ And Admin can create, update, and delete course. Admin can view registered users
 
 ## End Notes
 
-This project is completely responsive.
+This project is completely responsive. And you should visit the live link because there is much more then whatever you see in the screenshots.
