@@ -8,17 +8,16 @@ And Admin can create, update, and delete course. Admin can view registered users
 
 ### Visit the deployed site :
 
-````
+```
     https://classroom-react.netlify.app/
 
-````
+```
 
 ## Tech Stack
 
 **Client:** React, Tailwind CSS, Redux
 
 **Server:** Node, Express , MongoDB
-
 
 ## Features
 
@@ -33,14 +32,13 @@ And Admin can create, update, and delete course. Admin can view registered users
 
 **Admin**
 
-      Along with all the capabilities of USER, and Admin can also do,
+      Along with all the capabilities of USER, Admin can also do,
 
     - Create/Update/Delete Course
     - View Subscriber and Registered users count
     - Add/Delete Lectures of any course
     - No Need to Subscribe to view the lectures
 
-  
 ## Screenshots
 
 - Home Page
@@ -59,7 +57,7 @@ And Admin can create, update, and delete course. Admin can view registered users
 
 ![](client/public/githubReadme/aboutUs.png)
 
-- Contact Page 
+- Contact Page
 
 ![](client/public/githubReadme/contactUs.png)
 
@@ -99,22 +97,20 @@ And Admin can create, update, and delete course. Admin can view registered users
 
 ![](client/public/githubReadme/forgotPassword.png)
 
-## Limitations
+## This Pages are Accessible by ADMIN Only
 
-Some pages are not responsive yet , those pages are might not be properly visible on small screen devices. (Recommended Resolution: 1440 x 900)
+- Admin Dashboard Page
+
+![](client/public/githubReadme/adminDashboard.png)
+
+- Create Course Page
+
+![](client/public/githubReadme/createCourse.png)
+
+- ADD Lecture Page
+
+![](client/public/githubReadme/Addlecture.png)
 
 ## End Notes
 
-In this project, we tried to achieve near to perfect clone. This entire journey of this construct week has given us experiences and we have learned lots of things by applying to the real website and it gave us a lot of confidence. Most of the features are added and the functionality of the website is achieved.
-
-
-  
-## Team members and contributors
-
-Developers
-- [Soumya Ranjan Purohit](https://github.com/cybervirus997)
-- [Prakhar Tripathi](https://github.com/Prakharsvnit)
-- [Shahnawaz Malek](https://github.com/Malek1117/)
-- [Safiur Rahman](https://github.com/safiur799)
-- [Mohammed Mudassir]()
-
+This project is completely responsive.
