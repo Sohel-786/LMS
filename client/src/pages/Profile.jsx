@@ -333,14 +333,14 @@ function Profile() {
                 style={{
                   caretColor: editable ? "green" : "transparent",
                   color: editable ? "#4f46e5" : "inherit",
-                  userSelect : "none"
+                  pointerEvents: editable ? "" : "none"
                 }}
                 contentEditable={editable}
                 name="fullname"
                 id="fullname"
                 onChange={handleChange}
                 value={formData.fullname}
-                className="capitalize text-xl w-full font-roboto font-semibold tracking-wide outline-none border-none focus:outline-none focus:ring-0 bg-transparent lg:text-4xl"
+                className={`capitalize text-xl w-full font-roboto font-semibold tracking-wide outline-none border-none focus:outline-none focus:ring-0 bg-transparent lg:text-4xl`}
               />
             </fieldset>
 
