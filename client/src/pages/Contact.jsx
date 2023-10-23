@@ -225,6 +225,7 @@ function Contact() {
             </div>
             <div className="mt-10">
               <button
+                aria-label="Contact Us"
                 disabled={userDetails.term ? (disableBtn ? true : false) : true}
                 type="submit"
                 onClick={handleSubmit}

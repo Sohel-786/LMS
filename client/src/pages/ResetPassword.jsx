@@ -220,6 +220,7 @@ function ResetPassword() {
             className="w-full flex items-center justify-center gap-5 mt-5"
           >
             <button
+              aria-label="Change Password"
               type="submit"
               onClick={handleSubmit}
               className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-green-800 via-green-600 to-green-400 hover:bg-gradient-to-t hover:from-green-400 hover:via-green-600 hover:to-green-800 hover:scale-110 transition-all duration-300"

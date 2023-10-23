@@ -60,6 +60,7 @@ function Footer() {
               </div>
 
               <button
+                aria-label="Get your course"
                 onClick={() => {
                   navigate("/courses");
                 }}
@@ -88,6 +89,7 @@ function Footer() {
           </div>
 
           <button
+            aria-label="Get your course"
             onClick={() => {
               navigate("/courses");
             }}

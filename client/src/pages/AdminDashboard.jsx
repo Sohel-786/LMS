@@ -248,6 +248,7 @@ function AdminDashboard() {
             </h1>
 
             <button
+              aria-label="Create New Course"
               onClick={() => {
                 navigate("/course-create");
               }}
@@ -295,6 +296,7 @@ function AdminDashboard() {
                       </td>
                       <td className="flex items-center gap-4">
                         <button
+                          aria-label = 'Display Course Lectures'
                           className="bg-gradient-to-t from-green-950 via-green-700 to-green-400 hover:bg-gradient-to-t hover:from-green-600 hover:via-green-800 hover:to-green-950 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold text-white hover:scale-110"
                           onClick={() =>
                             navigate("/course/lectures", {
@@ -306,6 +308,7 @@ function AdminDashboard() {
                         </button>
 
                         <button
+                          aria-label = 'Edit the course'
                           className="bg-gradient-to-t from-indigo-900 via-indigo-600 to-indigo-400 hover:bg-gradient-to-t hover:from-indigo-500 hover:via-indigo-700 hover:to-indigo-950 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold text-white hover:scale-110"
                           onClick={() => handleCourseUpdate(course)}
                         >
@@ -313,6 +316,7 @@ function AdminDashboard() {
                         </button>
 
                         <button
+                          aria-label="Delete the Course Parmanently"
                           className="bg-gradient-to-t from-red-950 via-red-700 to-red-500 hover:bg-gradient-to-t hover:from-red-600 hover:via-red-800 hover:to-red-950 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold text-white hover:scale-110"
                           onClick={() => handleDelete(course)}
                         >
@@ -402,6 +406,7 @@ function AdminDashboard() {
             className="w-full flex justify-center items-center gap-5 mt-1"
           >
             <button
+              aria-label="Continue Deleting the Course"
               onClick={handleCourseDelete}
               className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800 hover:scale-110 transition-all duration-300"
             >
@@ -409,6 +414,7 @@ function AdminDashboard() {
             </button>
 
             <button
+              aria-label="Cancel Deleting the Course"
               onClick={handleClose}
               className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-orange-800 via-orange-600 to-orange-400 hover:bg-gradient-to-t hover:from-orange-400 hover:via-orange-600 hover:to-orange-800 hover:scale-110 transition-all duration-300"
             >

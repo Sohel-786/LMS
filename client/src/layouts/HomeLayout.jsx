@@ -92,7 +92,7 @@ function HomeLayout({ children }) {
           {/* This Drawer List */}
           <ul className="menu flex flex-col gap-3 p-4 w-80 bg-base-200 h-full font-slab text-xl tracking-wide pt-5 text-white bg-gradient-to-r from-slate-950 to-slate-700">
             <li className="absolute right-2 z-50">
-              <button onClick={hideDrawer} className="w-fit">
+              <button aria-label="Hide the Drawer" onClick={hideDrawer} className="w-fit">
                 <IoMdClose size={"28px"} />
               </button>
             </li>
@@ -128,6 +128,7 @@ function HomeLayout({ children }) {
                 className="flex items-center gap-4 w-[90%] absolute bottom-5"
               >
                 <button
+                  aria-label="Logout"
                   onClick={handleLogout}
                   className="btn bg-red-600 text-white rounded-md border-[2px]  hover:bg-red-800"
                 >
@@ -138,6 +139,7 @@ function HomeLayout({ children }) {
               <div className="flex justify-center items-center gap-4 w-[90%] absolute bottom-5">
                 <Link to={"/signin"}>
                   <button
+                    aria-label= 'Sign In'
                     onClick={hideDrawer}
                     className="btn border-[2px] text-white bg-green-500 rounded-md hover:bg-green-700"
                   >
@@ -146,6 +148,7 @@ function HomeLayout({ children }) {
                 </Link>
                 <Link to={"/signup"}>
                   <button
+                    aria-label="Create New Account"
                     onClick={hideDrawer}
                     className="btn border-[2px] text-white bg-sky-500 rounded-md hover:bg-sky-700"
                   >
@@ -263,6 +266,7 @@ function HomeLayout({ children }) {
           ) : (
             <div className="flex justify-center items-center gap-5">
               <button
+                aria-label="Login to your account"
                 onClick={() => {
                   navigate("/signin");
                 }}
@@ -272,6 +276,7 @@ function HomeLayout({ children }) {
               </button>
 
               <button
+                aria-label="Create New Account"
                 onClick={() => {
                   navigate("/signup");
                 }}

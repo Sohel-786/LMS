@@ -115,6 +115,7 @@ function DisplayLectures() {
             </div>
             <div className="flex justify-center items-center gap-5">
               <button
+                aria-label="Delete The lecture"
                 onClick={() => {
                   handleDelete(data._id);
                 }}
@@ -124,6 +125,7 @@ function DisplayLectures() {
               </button>
 
               <button
+                aria-label="Cancel Deleting the Lecture"
                 onClick={handleCancel}
                 className="px-5 py-2 font-bold font-roboto bg-gradient-to-t from-red-800 via-red-700 to-red-300 rounded-lg text-white hover:scale-110 transition-all duration-200 ease-in-out"
               >
@@ -154,6 +156,7 @@ function DisplayLectures() {
         <div className="w-full sm:w-[40%] flex flex-col mt-4 sm:mt-0">
           {role === "ADMIN" && (
             <button
+              aria-label="Add New Lecture"
               onClick={() => {
                 navigate("/course/addlecture", { state: { ...state } });
               }}

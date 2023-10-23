@@ -53,6 +53,7 @@ function CheckoutSuccess() {
           </div>
           <div className="flex border-l border-gray-200">
             <button
+              aria-label="Close the Notification"
               onClick={() => toast.dismiss(t.id)}
               className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-base font-bold text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 hover:bg-indigo-100"
             >
@@ -113,6 +114,7 @@ function CheckoutSuccess() {
           </div>
 
           <button
+            aria-label="Go to Dashboard"
             style={{
               userSelect: "none",
             }}

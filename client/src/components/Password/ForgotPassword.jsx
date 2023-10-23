@@ -131,6 +131,7 @@ function ForgotPassword({ hideForgotPass }) {
         className="w-full flex items-center justify-center gap-5 mt-5"
       >
         <button
+          aria-label="Continue Reset Password Process"
           onClick={handleCurrentSubmit}
           className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 hover:bg-gradient-to-t hover:from-blue-400 hover:via-blue-600 hover:to-blue-800 hover:scale-110 transition-all duration-300"
         >
@@ -138,6 +139,7 @@ function ForgotPassword({ hideForgotPass }) {
         </button>
 
         <button
+        aria-label="Cancel Reset Password Process"
           onClick={() => {
             setRegisteredEmail({
               email: "",
@@ -188,12 +190,14 @@ function ForgotPassword({ hideForgotPass }) {
 
             <div className="w-full flex justify-center items-center gap-5">
               <button
+                aria-label="Send Mail"
                 onClick={handleSendMail}
                 className="bg-gradient-to-t from-indigo-900 via-indigo-600 to-indigo-400 w-fit self-center text-white px-5 py-3 text-sm sm:text-xl font-bold font-poppins rounded-xl hover:bg-gradient-to-t hover:from-indigo-400 hover:via-indigo-600 hover:to-indigo-900 transition-all duration-300 ease-in-out hover:scale-110"
               >
                 OK
               </button>
               <button
+              aria-label="Change Emal Address"
                 onClick={() =>{
                   setRegisteredEmail({
                     email: "",
@@ -216,6 +220,7 @@ function ForgotPassword({ hideForgotPass }) {
         className="w-full flex items-center gap-3 sm:gap-5 mt-6"
       >
         <button
+          aria-label='Send Mail to Registered Email Address'
           onClick={handleSubmit}
           className="text-white px-4 sm:px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 hover:bg-gradient-to-t hover:from-blue-400 hover:via-blue-600 hover:to-blue-800 hover:scale-110 transition-all duration-300"
         >
@@ -223,6 +228,7 @@ function ForgotPassword({ hideForgotPass }) {
         </button>
 
         <button
+          aria-label="Cancel Reset Password Process"
           onClick={() => {
             setRegisteredEmail({
               email: "",

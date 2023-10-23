@@ -12,6 +12,7 @@ function Notfound() {
         Page not found...
       </p>
       <button
+        aria-label="Go Back to Previous Page"
         onClick={() => {
           navigate(-1);
         }}

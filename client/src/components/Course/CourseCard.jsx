@@ -54,6 +54,7 @@ function CourseCard({ data }) {
           </div>
         </div>
         <button
+        aria-label="View Course Details"
           onClick={() => {
             navigate("/course-description", { state: { ...data } });
           }}

@@ -81,7 +81,7 @@ function SignIn() {
             )}
           </div>
 
-          <button type="submit" className="btn bg-blue-500 text-white font-bold hover:bg-blue-600 focus:scale-110 hover:scale-110 mt-5">
+          <button aria-label="Login" type="submit" className="btn bg-blue-500 text-white font-bold hover:bg-blue-600 focus:scale-110 hover:scale-110 mt-5">
             Login
           </button>
 

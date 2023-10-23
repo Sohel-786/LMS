@@ -254,6 +254,7 @@ function Profile() {
 
             <div id="profileBtn" className="hidden absolute flex-col gap-2">
               <button
+                aria-label="See the Image on Full Screen"
                 onClick={handleFullImageView}
                 className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent"
               >
@@ -439,6 +440,7 @@ function Profile() {
                     className="w-full flex items-center gap-5 mt-1"
                   >
                     <button
+                      aria-label="Change the password"
                       onClick={handlePasswordSubmit}
                       className="text-white px-6 py-2 font-roboto font-bold rounded-lg bg-gradient-to-t from-sky-800 via-sky-600 to-sky-400 hover:bg-gradient-to-t hover:from-sky-400 hover:via-sky-600 hover:to-sky-800 hover:scale-110 transition-all duration-300"
                     >
@@ -446,6 +448,7 @@ function Profile() {
                     </button>
 
                     <button
+                      aria-label="Cancel Changing password"
                       onClick={() => {
                         setPasswordData({
                           oldPassword: "",
@@ -466,6 +469,7 @@ function Profile() {
               </div>
             ) : (
               <button
+                aria-label ='Change Your password'
                 style={{
                   userSelect: "none",
                 }}
@@ -488,6 +492,7 @@ function Profile() {
               {editable ? (
                 <>
                   <button
+                    aria-label = 'Cancel Editing the profile'
                     onClick={() => {
                       setEditable(false);
                       setFormdata({
@@ -504,6 +509,7 @@ function Profile() {
                   </button>
 
                   <button
+                    aria-label="Save Profile"
                     onClick={handleSubmit}
                     disabled={!enableSave}
                     className="flex justify-center items-center rounded-xl bg-gradient-to-b from-green-800 via-green-600 to-green-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-green-900 hover:via-green-700 hover:to-green-500 disabled:cursor-not-allowed disabled:bg-gradient-to-r disabled:from-red-800 disabled:to-red-500 py-2 gap-2 px-4 lg:text-xl lg:px-5"
@@ -515,7 +521,7 @@ function Profile() {
               ) : (
                 <>
                   <button
-                    aria-label="fullname"
+                    aria-label="Edit Profile"
                     onClick={() => {
                       setEditable(true);
                     }}

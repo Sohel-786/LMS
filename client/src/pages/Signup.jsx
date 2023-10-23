@@ -173,7 +173,7 @@ function SignUp() {
             )}
           </div>
 
-          <button className="btn text-white py-2 px-5 rounded-lg transition-all duration-300 bg-blue-500 font-bold hover:bg-blue-600 focus:scale-110 hover:scale-110 mt-5">
+          <button aria-label="Submit Details" className="btn text-white py-2 px-5 rounded-lg transition-all duration-300 bg-blue-500 font-bold hover:bg-blue-600 focus:scale-110 hover:scale-110 mt-5">
             Submit
           </button>
           <p className="font-bold text-[15px] tracking-wide my-4">

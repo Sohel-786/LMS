@@ -87,13 +87,13 @@ function Home() {
 
             <div className="flex gap-4 sm:gap-7 my-6">
               <Link to="/courses">
-                <button className="bg-[#f00037] border-[2px] border-transparent text-white font-bold px-2 sm:px-5 py-3 rounded-md text-[17px] hover:scale-110 cursor-pointer hover:bg-[#cc032a] transition-all ease-in-out duration-300 sm:text-xl">
-                  Expolore Courses
+                <button aria-label="Explore Our Courses" className="bg-[#f00037] border-[2px] border-transparent text-white font-bold px-2 sm:px-5 py-3 rounded-md text-[17px] hover:scale-110 cursor-pointer hover:bg-[#cc032a] transition-all ease-in-out duration-300 sm:text-xl">
+                  Explore Courses
                 </button>
               </Link>
 
               <Link to="/contact">
-                <button className="bg-transparent hover:scale-110 px-2 text-[16px] sm:px-5 py-3 border-2 border-[#f00037] text-[#f00037] font-bold rounded-md  cursor-pointer hover:bg-[#f00037] hover:text-white transition-all ease-in-out duration-300 sm:text-xl">
+                <button aria-label="Go to Contact Us Page" className="bg-transparent hover:scale-110 px-2 text-[16px] sm:px-5 py-3 border-2 border-[#f00037] text-[#f00037] font-bold rounded-md  cursor-pointer hover:bg-[#f00037] hover:text-white transition-all ease-in-out duration-300 sm:text-xl">
                   Contact Us
                 </button>
               </Link>

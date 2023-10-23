@@ -60,6 +60,7 @@ function CheckoutFail() {
           </div>
 
           <button
+            aria-label="Go to DashBoard"
             style={{
               userSelect: "none",
             }}
