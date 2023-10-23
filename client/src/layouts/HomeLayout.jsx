@@ -168,9 +168,12 @@ function HomeLayout({ children }) {
           className="w-[160px] aspect-auto relative -top-1"
         >
           <img
+            onClick={() => {
+              navigate('/')
+            }}
             rel="preload"
             fetchpriority="high"
-            className="w-full aspect-auto"
+            className="w-full aspect-auto cursor-pointer"
             src={classroomLogo}
             alt="logo"
           />

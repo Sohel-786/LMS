@@ -531,7 +531,7 @@ function Profile() {
                     Edit Profile
                   </button>
 
-                  {subscription && subscription?.status && subscription?.status === 'active' && <button
+                  {subscription && subscription?.status && (subscription?.status === 'created' || subscription?.status === 'active')  && <button
                     onClick={handleCancelBundle}
                     className="flex justify-center items-center rounded-xl bg-gradient-to-b from-red-800 via-red-600 to-red-400 text-white font-bold hover:scale-110 transition-all duration-300 ease-in-out hover:bg-gradient-to-t hover:from-red-900 hover:via-red-700 hover:to-red-500 py-2 gap-2 px-4 lg:text-xl lg:px-5"
                   >

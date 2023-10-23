@@ -26,7 +26,6 @@ function Checkout() {
   const data = useSelector((s) => s?.auth?.data);
   const subscription_id = useSelector((s) => s?.payment?.subscription_id);
 
-
   const paymentDetails = {
     razorpay_payment_id: "",
     razorpay_signature: "",
@@ -37,7 +36,6 @@ function Checkout() {
     await dispatch(getRazorpayId());
     await dispatch(getUserDetails());
     await dispatch(purchaseCourseBundle());
-
   }
 
   useEffect(() => {
@@ -215,7 +213,7 @@ function Checkout() {
               </div>
 
               <button
-                aria-label= 'Buy Course Bundle'
+                aria-label="Buy Course Bundle"
                 type="submit"
                 onClick={handleSubmit}
                 className="w-[90%] mt-3 mb-5 lg:mb-0 flex justify-center items-center gap-[9px] py-3 m-auto bg-gradient-to-t from-blue-800 via-blue-600 to-blue-400 text-2xl font-bold rounded-xl text-white hover:scale-110 transition-all duration-300 ease-in-out"
