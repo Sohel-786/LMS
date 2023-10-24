@@ -2,7 +2,7 @@ import { useEffect, lazy, Suspense } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
+const Home = lazy(() => import("./pages/Home"));
 import AuthRoute from "./components/Auth/AuthRoute";
 import Loading from "./components/Loading";
 import Denied from "./pages/Denied";
@@ -35,7 +35,9 @@ function App() {
   return (
     <div className="mx-auto max-w-[1490px]">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Suspense fallback={<Loading />}>
+              <Home />
+            </Suspense>} />
         <Route
           path="/about"
           element={
