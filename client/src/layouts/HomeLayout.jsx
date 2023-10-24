@@ -188,32 +188,39 @@ function HomeLayout({ children }) {
           <div>
             <ul className="flex justify-center items-center gap-8 px-3">
               {role === "ADMIN" && (
-                <Link to={"/course-create"}>
-                  <li className="text-lg font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
-                    Create Course
-                  </li>
-                </Link>
+                <li
+                  onClick={() => {
+                    navigate("/course-create");
+                  }}
+                  className="text-lg font-bold cursor-pointer font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110"
+                >
+                  Create Course
+                </li>
               )}
-              <Link to={"/courses"}>
-                <li className="text-lg font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+
+                <li onClick={() => {
+                    navigate("/courses");
+                  }} className="text-lg font-bold cursor-pointer font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                   Courses
                 </li>
-              </Link>
-              <Link to={"/about"}>
-                <li className="text-lg font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+
+                <li onClick={() => {
+                    navigate("/about");
+                  }} className="text-lg font-bold cursor-pointer font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                   About Us
                 </li>
-              </Link>
-              <Link to={"/contact"}>
-                <li className="text-lg font-bold font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+
+                <li onClick={() => {
+                    navigate("/contact");
+                  }} className="text-lg font-bold cursor-pointer font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                   Contact Us
                 </li>
-              </Link>
-              <Link to={"/"}>
-                <li className="text-lg font-bold font-mono hover:bg-pink-50 py-1 px-3 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
+
+                <li onClick={() => {
+                    navigate("/");
+                  }} className="text-lg font-bold font-mono cursor-pointer hover:bg-pink-50 py-1 px-3 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
                   Home
                 </li>
-              </Link>
             </ul>
           </div>
 
