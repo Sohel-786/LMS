@@ -77,7 +77,7 @@ function Home() {
 
             <h1 className="text-3xl font-slab font-bold mb-5 mt-6 sm:my-7 sm:text-4xl">
               Find Out Best{" "}
-              <span className="text-yellow-600 font-extrabold">
+              <span className="text-yellow-700 font-extrabold">
                 Online Courses
               </span>
             </h1>
@@ -89,7 +89,7 @@ function Home() {
 
             <div className="flex gap-4 sm:gap-7 my-6">
               <Link to="/courses">
-                <button aria-label="Start exploring courses" className="bg-[#f00037] border-[2px] border-transparent text-white font-bold px-2 sm:px-5 py-3 rounded-md text-[17px] hover:scale-110 cursor-pointer hover:bg-[#cc032a] transition-all ease-in-out duration-300 sm:text-xl">
+                <button aria-label="explore courses" className="bg-[#f00037] border-[2px] border-transparent text-white font-bold px-2 sm:px-5 py-3 rounded-md text-[17px] hover:scale-110 cursor-pointer hover:bg-[#cc032a] transition-all ease-in-out duration-300 sm:text-xl">
                   Explore Courses
                 </button>
               </Link>
