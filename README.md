@@ -110,6 +110,110 @@ And Admin can create, update, and delete course. Admin can view registered users
 
 ![](client/public/githubReadme/Addlecture.png)
 
+## Installation Steps
+
+    1. Clone the Project
+
+    ````
+        git clone https://github.com/Sohel-786/LMS.git
+    ````
+
+    2. There are two directories, Move into directory name `client`
+
+    ````
+        cd client
+    ````
+
+    & Install dependencies
+
+    ````
+        npm i
+    ````
+
+    3. Move into directory name `server`
+
+    ````
+        cd ..
+    ````
+
+    ````
+        cd server
+    ````
+
+     & Install dependencies
+
+     ````
+        npm i
+     ````
+
+    4. After Successful Installation of Dependencies for client and server both,
+        start the client and server.
+
+---
+
+- **First clone the app in your local machine by running the below command in Git Bash.**
+
+  - Run the Server
+
+  ```
+      npm run server
+  ```
+
+  - Run the Client, Move into Directory client first
+
+  ```
+     cd ..
+  ```
+
+  ```
+      cd client
+  ```
+
+  ```
+      npm run dev
+  ```
+
+## Note for Installation
+
+You Should have your own credentials to run the project on your local machine, you should have `.env` file in the root of `client` folder and in the root of `server` folder also. I will provide structure below for both `.env` files. In that structure i will write what environment variable your `.env` file should have.
+
+## .env file in client
+
+    ````
+
+    VITE_APP_BASE_URL = http://localhost:2346/api/v1
+
+    ````
+
+## .env file in server
+
+    ````
+
+    PORT = 2346
+    MONGO_URI = Your MongoDB Connection string
+    JWT_SECRET = Your JWT Secret 
+    FRONTEND_URL = 'http://localhost:5173'
+    JWT_EXPIRY = '72h'
+
+    CLOUDINARY_CLOUD_NAME = Your Cloudinary Name - Your can get this credentials from cloudinary 
+    CLOUDINARY_API_KEY = Your Cloudinary key - Your can get this credentials from cloudinary 
+    CLOUDINARY_API_SECRET = Your Cloudinary Api Secret - Your can get this credentials from cloudinary 
+
+    SMTP_HOST = 'smtp.gmail.com'
+    SMTP_PORT = '465'
+
+    SMTP_USERNAME = Your email address from which the emails will be sent to the users of this app (I used fake or temporary Email)
+
+    SMTP_PASSWORD = In Google account of your fake email Enable the two step verification and then you can get this one time password
+
+    SMTP_FROM_EMAIL = Your email address from which the emails will be sent to the users of this app (I used fake or temporary Email)
+
+    RAZORPAY_KEY_ID = your razorpay key_id - Your can get this credentials from razorpay 
+    RAZORPAY_SECRET =  your razorpay secret - Your can get this credentials from razorpay 
+    RAZORPAY_PLAN_ID =  your razorpay plan_id - Your can get this credentials from razorpay (you have to create one plan for this)
+
+    ````
+
 ## End Notes
 
 This project is completely responsive. And you should visit the live link because there is much more then whatever you see in the screenshots.
