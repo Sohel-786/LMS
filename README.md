@@ -114,9 +114,7 @@ And Admin can create, update, and delete course. Admin can view registered users
 
   *  1. Clone the Project
 
-    ````
         git clone https://github.com/Sohel-786/LMS.git
-    ````
 
   *  2. There are two directories, Move into directory name `client`
 
