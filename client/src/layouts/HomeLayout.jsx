@@ -50,9 +50,9 @@ function HomeLayout({ children }) {
 
     if (res?.payload?.data) {
       scrollTo({
-        top : 0,
-        behavior : 'smooth'
-      })
+        top: 0,
+        behavior: "smooth",
+      });
       navigate("/");
     }
   }
@@ -65,9 +65,9 @@ function HomeLayout({ children }) {
 
   function hideDrawer() {
     scrollTo({
-      top : 0,
-      behavior : 'smooth'
-    })
+      top: 0,
+      behavior: "smooth",
+    });
     const element = document.getElementsByClassName("drawer-toggle");
     element[0].checked = false;
     enableBodyScroll("document");
@@ -183,8 +183,8 @@ function HomeLayout({ children }) {
           <img
             onClick={() => {
               scrollTo({
-                top : 0,
-                behavior : 'smooth'
+                top: 0,
+                behavior: "smooth",
               });
               navigate("/");
             }}
@@ -203,8 +203,8 @@ function HomeLayout({ children }) {
                 <li
                   onClick={() => {
                     scrollTo({
-                      top : 0,
-                      behavior : 'smooth'
+                      top: 0,
+                      behavior: "smooth",
                     });
                     navigate("/course-create");
                   }}
@@ -214,45 +214,57 @@ function HomeLayout({ children }) {
                 </li>
               )}
 
-                <li onClick={() => {
-                   scrollTo({
-                    top : 0,
-                    behavior : 'smooth'
+              <li
+                onClick={() => {
+                  scrollTo({
+                    top: 0,
+                    behavior: "smooth",
                   });
-                    navigate("/courses");
-                  }} className="text-lg font-bold cursor-pointer font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
-                  Courses
-                </li>
+                  navigate("/courses");
+                }}
+                className="text-lg font-bold cursor-pointer font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110"
+              >
+                Courses
+              </li>
 
-                <li onClick={() => {
-                   scrollTo({
-                    top : 0,
-                    behavior : 'smooth'
+              <li
+                onClick={() => {
+                  scrollTo({
+                    top: 0,
+                    behavior: "smooth",
                   });
-                    navigate("/about");
-                  }} className="text-lg font-bold cursor-pointer font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
-                  About Us
-                </li>
+                  navigate("/about");
+                }}
+                className="text-lg font-bold cursor-pointer font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110"
+              >
+                About Us
+              </li>
 
-                <li onClick={() => {
-                   scrollTo({
-                    top : 0,
-                    behavior : 'smooth'
-                  })
-                    navigate("/contact");
-                  }} className="text-lg font-bold cursor-pointer font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
-                  Contact Us
-                </li>
-
-                <li onClick={() => {
-                   scrollTo({
-                    top : 0,
-                    behavior : 'smooth'
+              <li
+                onClick={() => {
+                  scrollTo({
+                    top: 0,
+                    behavior: "smooth",
                   });
-                    navigate("/");
-                  }} className="text-lg font-bold font-mono cursor-pointer hover:bg-pink-50 py-1 px-3 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110">
-                  Home
-                </li>
+                  navigate("/contact");
+                }}
+                className="text-lg font-bold cursor-pointer font-mono hover:bg-pink-50 py-1 px-2 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110"
+              >
+                Contact Us
+              </li>
+
+              <li
+                onClick={() => {
+                  scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                  navigate("/");
+                }}
+                className="text-lg font-bold font-mono cursor-pointer hover:bg-pink-50 py-1 px-3 rounded-lg  hover:text-red-600 transition-all duration-300 hover:scale-110"
+              >
+                Home
+              </li>
             </ul>
           </div>
 
@@ -294,8 +306,8 @@ function HomeLayout({ children }) {
                     <div
                       onClick={() => {
                         scrollTo({
-                          top : 0,
-                          behavior : 'smooth'
+                          top: 0,
+                          behavior: "smooth",
                         });
                         navigate("/admin/dashboard");
                       }}
@@ -320,8 +332,8 @@ function HomeLayout({ children }) {
                 aria-label="Login to your account"
                 onClick={() => {
                   scrollTo({
-                    top : 0,
-                    behavior : 'smooth'
+                    top: 0,
+                    behavior: "smooth",
                   });
                   navigate("/signin");
                 }}
@@ -334,8 +346,8 @@ function HomeLayout({ children }) {
                 aria-label="Create New Account"
                 onClick={() => {
                   scrollTo({
-                    top : 0,
-                    behavior : 'smooth'
+                    top: 0,
+                    behavior: "smooth",
                   });
                   navigate("/signup");
                 }}
@@ -368,9 +380,9 @@ function HomeLayout({ children }) {
           <div
             onClick={() => {
               scrollTo({
-                top : 0,
-                behavior : 'smooth'
-              })
+                top: 0,
+                behavior: "smooth",
+              });
               navigate("/profile");
             }}
             className="rounded-full w-[50px] h-[50px] cursor-pointer bg-center bg-cover border-[1px] border-pink-300 absolute right-3 top-5"
