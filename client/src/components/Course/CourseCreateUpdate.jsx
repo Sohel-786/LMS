@@ -169,8 +169,8 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
         });
         await dispatch(getAllCourses());
         scrollTo({
-          top : 0,
-          behavior : 'smooth'
+          top: 0,
+          behavior: "smooth",
         });
         navigate("/courses");
       }
@@ -188,110 +188,107 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
           : "Create Course"}
       </h1>
 
-         {/* To View Image on Full Screen */}
-         <div
-          id="fullView"
-          className="fixed top-0 h-[100vh] w-[100vw] hidden z-50 bg-black flex-col justify-center items-center"
-        >
-          <RiCloseCircleFill
-            onClick={handleFullViewclose}
-            size={"50px"}
-            className="absolute top-3 right-2 md:right-3 sm:right-8 cursor-pointer text-red-600 hover:text-red-800 bg-black border-[2px] border-transparent rounded-full hover:border-white"
-          />
-          <img
-            className="w-auto h-auto"
-            src={courseDetails.previewImage ? courseDetails.previewImage : ""}
-            alt="Preview Image"
-          />
-        </div>
+      {/* To View Image on Full Screen */}
+      <div
+        id="fullView"
+        className="fixed top-0 h-[100vh] w-[100vw] hidden z-50 bg-black flex-col justify-center items-center"
+      >
+        <RiCloseCircleFill
+          onClick={handleFullViewclose}
+          size={"50px"}
+          className="absolute top-3 right-2 md:right-3 sm:right-8 cursor-pointer text-red-600 hover:text-red-800 bg-black border-[2px] border-transparent rounded-full hover:border-white"
+        />
+        <img
+          className="w-auto h-auto"
+          src={courseDetails.previewImage ? courseDetails.previewImage : ""}
+          alt="Preview Image"
+        />
+      </div>
 
-        <div
-          id="container"
-          style={{
-            userSelect : 'none'
-          }}
-          onDragEnter={handleDrag}
-          className="w-[95%] md:w-[70%] lg:w-[50%] h-[200px] sm:min-h-[230px] flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
-        >
-          {courseDetails.previewImage ? (
+      <div
+        id="container"
+        style={{
+          userSelect: "none",
+        }}
+        onDragEnter={handleDrag}
+        className="w-[95%] md:w-[70%] lg:w-[50%] h-[200px] sm:min-h-[230px] flex flex-col items-center justify-center mb-6 border-[2px] border-transparent border-dashed"
+      >
+        {courseDetails.previewImage ? (
+          <div
+            onDragEnter={handleDrag}
+            onDragLeave={handleDrag}
+            onDragOver={handleDrag}
+            onDrop={handleDrop}
+            onMouseOver={handleBlur}
+            onMouseOut={handleBlurRemove}
+            className="w-full h-full flex justify-center items-center"
+          >
             <div
-              onDragEnter={handleDrag}
-              onDragLeave={handleDrag}
-              onDragOver={handleDrag}
-              onDrop={handleDrop}
-              onMouseOver={handleBlur}
-              onMouseOut={handleBlurRemove}
-              className="w-full h-full flex justify-center items-center"
+              id="thumbnailBtn"
+              className="lg:hidden z-10 absolute flex-col gap-2"
             >
-              <div
-                id="thumbnailBtn"
-                className="lg:hidden z-10 absolute flex-col gap-2"
+              <button
+                aria-label="View Image On Full Screen"
+                onClick={() => {
+                  handleFullImageView();
+                }}
+                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent"
               >
-                <button
-                  aria-label="View Image On Full Screen"
-                  onClick={() => {
-                    handleFullImageView()
-                  }}
-                  className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-cyan-400 hover:text-white hover:border-transparent"
-                >
-                  VIEW
-                </button>
-                <button
-                  aria-label="Cancel selected Image"
-                  onClick={() => {
-                    setCourseDetails({
-                      ...courseDetails,
-                      previewImage: "",
-                      thumbnail: "",
-                    });
-                  }}
-                  className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-red-500 hover:text-white hover:border-transparent"
-                >
-                  CANCEL
-                </button>
-              </div>
+                VIEW
+              </button>
+              <button
+                aria-label="Cancel selected Image"
+                onClick={() => {
+                  setCourseDetails({
+                    ...courseDetails,
+                    previewImage: "",
+                    thumbnail: "",
+                  });
+                }}
+                className="px-4 py-2 rounded-lg bg-gray-100 text-gray-400 font-bold text-sm border-[2px] border-stone-400 hover:scale-110 transition-all duration-200 ease-in-out hover:bg-red-500 hover:text-white hover:border-transparent"
+              >
+                CANCEL
+              </button>
+            </div>
 
-              <img
-                id="thumbnail"
-                src={
-                  courseDetails.previewImage ? courseDetails.previewImage : ""
-                }
-                alt="Course Thumbnail"
-                className="max-w-full h-full"
-              />
-            </div>
-          ) : dragActive ? (
-            <div
-              className="w-full h-full bg-gray-200 border-gray-300 transition-all duration-200 ease-in-out flex justify-center items-center border-[2px] border-dashed "
-              onDragEnter={handleDrag}
-              onDragLeave={handleDrag}
-              onDragOver={handleDrag}
-              onDrop={handleDrop}
-            ></div>
-          ) : (
-            <div className="border-[2px] border-dashed flex flex-col justify-center items-center w-full h-full">
-              <HiOutlinePhoto size={"70px"} className="text-gray-300" />
-              <p className="text-gray-500 text-sm font-semibold text-center">
-                <label htmlFor="courseImage">
-                  <span
-                    type="button"
-                    className="text-indigo-600 text-base font-bold cursor-pointer p-1 px-[5px] hover:bg-indigo-100 hover:text-indigo-500 rounded-lg hover:scale-105 transition-all duration-300 ease-in-out"
-                  >
-                    Upload a file
-                  </span>{" "}
-                </label>
-                or drag and drop <br /> PNG, JPG, JPEG, WEBP
-              </p>
-            </div>
-          )}
-        </div>
+            <img
+              id="thumbnail"
+              src={courseDetails.previewImage ? courseDetails.previewImage : ""}
+              alt="Course Thumbnail"
+              className="max-w-full h-full"
+            />
+          </div>
+        ) : dragActive ? (
+          <div
+            className="w-full h-full bg-gray-200 border-gray-300 transition-all duration-200 ease-in-out flex justify-center items-center border-[2px] border-dashed "
+            onDragEnter={handleDrag}
+            onDragLeave={handleDrag}
+            onDragOver={handleDrag}
+            onDrop={handleDrop}
+          ></div>
+        ) : (
+          <div className="border-[2px] border-dashed flex flex-col justify-center items-center w-full h-full">
+            <HiOutlinePhoto size={"70px"} className="text-gray-300" />
+            <p className="text-gray-500 text-sm font-semibold text-center">
+              <label htmlFor="courseImage">
+                <span
+                  type="button"
+                  className="text-indigo-600 text-base font-bold cursor-pointer p-1 px-[5px] hover:bg-indigo-100 hover:text-indigo-500 rounded-lg hover:scale-105 transition-all duration-300 ease-in-out"
+                >
+                  Upload a file
+                </span>{" "}
+              </label>
+              or drag and drop <br /> PNG, JPG, JPEG, WEBP
+            </p>
+          </div>
+        )}
+      </div>
 
       <form
         noValidate
         onSubmit={handleSubmit}
         className="bg-white text-black px-4 sm:px-32 rounded-xl w-[95%] lg:w-[70%] flex flex-col items-center"
       >
-
         <input
           type="file"
           hidden

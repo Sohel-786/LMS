@@ -60,35 +60,39 @@ function CourseDescription() {
             </div>
 
             <div className="px-10 pb-7 text-white">
-              {(role === "ADMIN" || (role === 'USER' && data?.subscription?.status === "active")) ? (
+              {role === "ADMIN" ||
+              (role === "USER" && data?.subscription?.status === "active") ? (
                 <button
                   aria-label="View Lectures"
                   className="bg-green-500 py-[10px] w-full rounded-lg sm:mt-2 text-lg font-bold tracking-wider hover:scale-110 transition-all duration-300 active:scale-95 ease-in-out hover:bg-gradient-to-r from-green-700 via-green-600 to-green-700 border-transparent"
                   onClick={() => {
                     scrollTo({
-                      top : 0,
-                      behavior : 'smooth'
+                      top: 0,
+                      behavior: "smooth",
                     });
-                    navigate("/course/lectures", {state : {...state}});
+                    navigate("/course/lectures", { state: { ...state } });
                   }}
                 >
                   View Lectures
                 </button>
               ) : (
                 <button
-                aria-label="Subscribe To Course"
+                  aria-label="Subscribe To Course"
                   className="bg-red-500 py-[10px] w-full rounded-lg sm:mt-2 text-lg font-bold tracking-wider hover:scale-110 transition-all duration-300 active:scale-95 ease-in-out hover:bg-gradient-to-r from-red-700 via-red-600 to-red-700 border-transparent"
                   onClick={() => {
                     if (!isLoggedIn) {
                       scrollTo({
-                        top : 0,
-                        behavior : 'smooth'
+                        top: 0,
+                        behavior: "smooth",
                       });
-                      navigate("/signin", {path : '/course-description', state : {...state}});
+                      navigate("/signin", {
+                        path: "/course-description",
+                        state: { ...state },
+                      });
                     } else {
                       scrollTo({
-                        top : 0,
-                        behavior : 'smooth'
+                        top: 0,
+                        behavior: "smooth",
                       });
                       navigate("/checkout");
                     }
