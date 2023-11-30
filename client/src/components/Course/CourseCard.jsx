@@ -56,6 +56,10 @@ function CourseCard({ data }) {
         <button
         aria-label="View Course Details"
           onClick={() => {
+            scrollTo({
+              top : 0,
+              behavior : 'smooth'
+            });
             navigate("/course-description", { state: { ...data } });
           }}
           className="bg-[#ed0331] text-white font-bold py-[10px] w-full rounded-lg mt-2 text-sm tracking-wider active:scale-105 active:border-green-500  border-[2px] hover:bg-gradient-to-r from-red-500

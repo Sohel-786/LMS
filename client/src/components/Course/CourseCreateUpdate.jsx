@@ -168,6 +168,10 @@ function CourseCreateUpdate({ courseData, closeCourseUpdate }) {
           previewImage: null,
         });
         await dispatch(getAllCourses());
+        scrollTo({
+          top : 0,
+          behavior : 'smooth'
+        });
         navigate("/courses");
       }
     }
