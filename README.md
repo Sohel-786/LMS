@@ -112,35 +112,37 @@ And Admin can create, update, and delete course. Admin can view registered users
 
 ## Installation Steps
 
-  *  1. Clone the Project
-    ``
+  ###  1. Clone the Project
+
+    ````
         git clone https://github.com/Sohel-786/LMS.git
-    ``
-  *  2. There are two directories, Move into directory name `client`
+    ````
+
+  ###  2. There are two directories, Move into directory name `client`
 
     ````
         cd client
     ````
 
-   * & Install dependencies
+  ### & Install dependencies
 
     ````
         npm i
     ````
 
-  *  3. Move into directory name `server`
+  ###  3. Move into directory name `server`
 
-    * First
+  ### First
 
         ````
             cd ..
         ````
-    * Second
+  ### Second
 
         ````
             cd server
         ````
-    * & Install dependencies
+  ### & Install dependencies
 
         ````
             npm i
@@ -176,7 +178,7 @@ And Admin can create, update, and delete course. Admin can view registered users
 
 You Should have your own credentials to run the project on your local machine, you should have `.env` file in the root of `client` folder and in the root of `server` folder also. I will provide structure below for both `.env` files. In that structure i will write what environment variable your `.env` file should have.
 
-## .env file in client folder
+### .env file in client folder
 
     ````
 
@@ -184,7 +186,7 @@ You Should have your own credentials to run the project on your local machine, y
 
     ````
 
-## .env file in server folder
+### .env file in server folder
 
     ````
 
