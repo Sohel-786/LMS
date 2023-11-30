@@ -112,7 +112,7 @@ And Admin can create, update, and delete course. Admin can view registered users
 
 ## Installation Steps
 
-  ###  1. Clone the Project
+ - ###  1. Clone the Project
 
     ````
         git clone https://github.com/Sohel-786/LMS.git
