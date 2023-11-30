@@ -114,38 +114,33 @@ And Admin can create, update, and delete course. Admin can view registered users
 
   *  1. Clone the Project
 
-    ````
         git clone https://github.com/Sohel-786/LMS.git
-    ````
 
   *  2. There are two directories, Move into directory name `client`
 
-    ````
         cd client
-    ````
 
-    & Install dependencies
+   * & Install dependencies
 
-    ````
         npm i
-    ````
 
   *  3. Move into directory name `server`
 
-    ````
-        cd ..
-    ````
+    - First
 
-    ````
-        cd server
-    ````
+        ````
+            cd ..
+        ````
+    - Second
 
-     & Install dependencies
+        ````
+            cd server
+        ````
+    - & Install dependencies
 
-     ````
-        npm i
-     ````
-
+        ````
+            npm i
+        ````
   *  4. After Successful Installation of Dependencies for client and server both,
         start the client and server.
 
