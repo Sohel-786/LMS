@@ -5,7 +5,7 @@ export function isEmail(string) {
 }
 
 export function isValidPassword(string) {
-  return string.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/);
+  return string.match(/^(?=.*[0-9])(?=.*[!@#$%^&*(_)])[a-zA-Z0-9!@#$%^&*(_)]{6,16}$/);
 }
 
 export function isValidPhoneNumber(string) {
