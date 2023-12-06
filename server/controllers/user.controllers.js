@@ -132,6 +132,10 @@ const getUser = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
 
+    if(!user){
+      return next(new AppError("Unauthenticated, please login", 400));
+    }
+
     return res.status(200).json({
       success: true,
       user,

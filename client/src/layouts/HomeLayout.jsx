@@ -287,7 +287,7 @@ function HomeLayout({ children }) {
               ></div>
 
               {showProfile && (
-                <div className="absolute flex flex-col justify-center w-36 bg-white shadow-menu top-16 right-4 rounded-md">
+                <div className="absolute flex flex-col justify-center w-36 bg-white shadow-menu top-16 right-4 rounded-md overflow-hidden">
                   <div className="w-full p-2">
                     <h1 className="font-slab text-sm tracking-wide text-indigo-500">
                       Hay
