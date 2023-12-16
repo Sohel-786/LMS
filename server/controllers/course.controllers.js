@@ -95,9 +95,9 @@ export const updateCourse = async (req, res, next) => {
       return next(new AppError("Course Doesn't exists", 400));
     }
 
-    course.title = title,
-    course.description = description,
-    course.category = category,
+    course.title = title;
+    course.description = description;
+    course.category = category;
     course.createdBy = createdBy;
 
     if (req.file) {
