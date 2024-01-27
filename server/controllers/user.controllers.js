@@ -120,6 +120,7 @@ const logout = (req, res) => {
     secure: true,
     maxAge: 0,
     httpOnly: true,
+    sameSite : 'none'
   });
 
   res.status(200).json({
