@@ -27,7 +27,7 @@ And Admin can create, update, and delete course. Admin can view registered users
     - Create and edit profile
     - View courses and lectures of courses (after subscribtion)
     - Change and reset password
-    - Can fill Contact us form
+    - Can fill Contact us form and will receive confirmation email
 
 **Admin**
 
