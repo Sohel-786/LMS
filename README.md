@@ -2,7 +2,7 @@
 
 # Classroom (MERN Stack Project)
 
-Classroom is a learning management system created by me with the collections of ideas gathered from many existing LMS, this allows user to purchase subscribtion through a payment gateway (test plan). User can create their profile, update profile, they can change password and even reset the password through a email if forgotten, they send contact email to the classroom. User can view course list and view lectures of any course after subscribtion
+Classroom is a learning management system created by me with the collections of ideas gathered from many existing LMS, this allows user to purchase subscribtion through a payment gateway (test plan). User can create their profile, update profile, they can change password and even reset the password through a email if forgotten, they can send contact email to the classroom. User can view course list and view lectures of any course after subscribtion
 
 And Admin can create, update, and delete course. Admin can view registered users and subscriber count, Admin can view total revenue of the year, Admin can view, edit, and delete lectures, and also Admin can also update his/her profile.
 
