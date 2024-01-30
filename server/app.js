@@ -19,7 +19,7 @@ app.use(morgon("dev"));
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL, 'https://shaikhsohel.netlify.app/'],
+    origin: [process.env.FRONTEND_URL, 'https://shaikhsohel.netlify.app'],
     credentials: true,
     exposedHeaders : ["set-cookie"],
   })
