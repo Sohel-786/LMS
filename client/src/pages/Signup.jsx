@@ -20,6 +20,7 @@ function SignUp() {
     fullname: "",
     password: "",
     avatar: "",
+    role: "USER",
   });
 
   function handlePassView() {
@@ -38,6 +39,7 @@ function SignUp() {
       !signupDetails.email ||
       !signupDetails.password ||
       !signupDetails.avatar ||
+      !signupDetails.role ||
       !signupDetails.fullname
     ) {
       toast.error("Please Fill all the field");
@@ -67,11 +69,19 @@ function SignUp() {
     formData.append("email", signupDetails.email);
     formData.append("password", signupDetails.password);
     formData.append("avatar", signupDetails.avatar);
+    formData.append("role", signupDetails.role);
 
     const res = await dispatch(createUser(formData));
 
     if (res?.payload?.data?.success) {
       navigate("/");
+      setSignupDetails({
+        email: "",
+        fullname: "",
+        password: "",
+        avatar: "",
+        role: "USER",
+      })
     }
   }
 
@@ -146,6 +156,20 @@ function SignUp() {
             placeholder="Enter your Email"
           />
 
+          <select
+            onChange={handleChange}
+            name="role"
+            className="w-[95%] sm:w-[80%] px-3 py-3 bg-transparent border-t-0 border-l-0 border-r-0 border-b-[2px] focus:ring-0 focus:border-sky-500 border-sky-500 focus:outline-none placeholder:font-semibold font-bold my-3"
+          >
+            <option value="USER" className="text-black">User</option>
+            <option value="ADMIN" className="text-black">Admin</option>
+          </select>
+
+          <p className="text-xs w-[80%] font-semibold text-gray-300">
+            Admin & User Role Can Be Defined From Here, Because It's A Personal
+            Project.
+          </p>
+
           <div className="w-[95%] sm:w-[80%] bg-transparent border-b-[2px] border-sky-500 my-3 flex justify-center items-center">
             <input
               onChange={handleChange}
@@ -173,7 +197,10 @@ function SignUp() {
             )}
           </div>
 
-          <button aria-label="Submit Details" className="btn text-white py-2 px-5 rounded-lg transition-all duration-300 bg-blue-500 font-bold hover:bg-blue-600 focus:scale-110 hover:scale-110 mt-5">
+          <button
+            aria-label="Submit Details"
+            className="btn text-white py-2 px-5 rounded-lg transition-all duration-300 bg-blue-500 font-bold hover:bg-blue-600 focus:scale-110 hover:scale-110 mt-5"
+          >
             Submit
           </button>
           <p className="font-bold text-[15px] tracking-wide my-4">

@@ -21,9 +21,9 @@ const cookieOptions = {
 //Todo : Wrap It all in Try Catch
 
 const register = async (req, res, next) => {
-  const { fullname, email, password } = req.body;
+  const { fullname, email, password, role } = req.body;
 
-  if ((!fullname, !email, !password)) {
+  if ((!fullname, !email, !password, !role)) {
     return next(new AppError("All input fields are required", 400));
   }
 
@@ -46,6 +46,7 @@ const register = async (req, res, next) => {
     fullname,
     email,
     password,
+    role : role.toUpperCase(),
     avatar: {
       public_id: email,
       secure_url: "secure_url",
